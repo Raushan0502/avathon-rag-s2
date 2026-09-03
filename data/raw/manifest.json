@@ -1,0 +1,68 @@
+[
+  {
+    "company": "Apple Inc.",
+    "ticker": "AAPL",
+    "cik": "0000320193",
+    "form": "10-K",
+    "filing_date": "2025-10-31",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+    "local_path": "data\\raw\\AAPL_10-K_2025-10-31.htm",
+    "sha256": "548ae59778cf08ee0f2ee088e7ece20d947076c3c01f74d2d65db4c2777e436a",
+    "retrieved_at": "2026-09-03T14:57:45.503529+00:00"
+  },
+  {
+    "company": "Apple Inc.",
+    "ticker": "AAPL",
+    "cik": "0000320193",
+    "form": "8-K",
+    "filing_date": "2026-07-30",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000018/aapl-20260730.htm",
+    "local_path": "data\\raw\\AAPL_8-K_2026-07-30.htm",
+    "sha256": "d8a173f0b8cb911e41d27ca69261bd1f0461940a73f7654fc46f41ec7912b660",
+    "retrieved_at": "2026-09-03T14:57:46.889082+00:00"
+  },
+  {
+    "company": "Microsoft Corporation",
+    "ticker": "MSFT",
+    "cik": "0000789019",
+    "form": "10-K",
+    "filing_date": "2026-07-29",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+    "local_path": "data\\raw\\MSFT_10-K_2026-07-29.htm",
+    "sha256": "4bcf2da2871acc19e32c5a62f36f6d83d6aae03cdc4aaa9a86a9a21ee8223f02",
+    "retrieved_at": "2026-09-03T14:57:51.381454+00:00"
+  },
+  {
+    "company": "Microsoft Corporation",
+    "ticker": "MSFT",
+    "cik": "0000789019",
+    "form": "8-K",
+    "filing_date": "2026-09-02",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526380280/d291965d8k.htm",
+    "local_path": "data\\raw\\MSFT_8-K_2026-09-02.htm",
+    "sha256": "6328d05612511965c29ff3d6a6919137eab86080fc2952d141c126cfe091d600",
+    "retrieved_at": "2026-09-03T14:57:52.517013+00:00"
+  },
+  {
+    "company": "Tesla, Inc.",
+    "ticker": "TSLA",
+    "cik": "0001318605",
+    "form": "10-K",
+    "filing_date": "2026-01-29",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm",
+    "local_path": "data\\raw\\TSLA_10-K_2026-01-29.htm",
+    "sha256": "90d5d2bc4057df41c645f85dcebe575af9b0953a6a1902d189297bec17fd440a",
+    "retrieved_at": "2026-09-03T14:57:55.631660+00:00"
+  },
+  {
+    "company": "Tesla, Inc.",
+    "ticker": "TSLA",
+    "cik": "0001318605",
+    "form": "8-K",
+    "filing_date": "2026-07-22",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026049213/tsla-20260722.htm",
+    "local_path": "data\\raw\\TSLA_8-K_2026-07-22.htm",
+    "sha256": "8b7bd18c607330e7869a017461c001e0351a913a106396139e3604d61db24109",
+    "retrieved_at": "2026-09-03T14:57:56.750728+00:00"
+  }
+]

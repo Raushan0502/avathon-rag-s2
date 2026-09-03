@@ -36,6 +36,45 @@
   walkthrough video, and a 1–2 page technical write-up (PDF). The write-up
   and video are tracked outside this repo and linked here once produced.
 
+## Data source (Step 2)
+
+The corpus is real, public SEC EDGAR filings — not synthetic — pulled
+directly from the SEC EDGAR submissions API
+(`https://data.sec.gov/submissions/CIK##########.json`), which requires no
+API key, only a descriptive `User-Agent` header (SEC's fair-use policy).
+
+**Companies:** Apple (AAPL), Microsoft (MSFT), Tesla (TSLA) — three large,
+well-known issuers from different sectors (consumer hardware, enterprise
+software, auto/energy), chosen so evaluation questions can span genuinely
+different business content rather than near-duplicate filings.
+
+**Document types, per company:**
+- Latest **10-K** (annual report) — long (2–8 MB HTML), highly structured:
+  business overview, risk factors, MD&A, financial statements, legal
+  proceedings. Representative of the "reports" document type in S2.
+- Latest **8-K** (current report on a material event) — short (25–40 KB
+  HTML), narrower and more announcement-like in style. Included
+  specifically to give the corpus document-length and document-style
+  diversity, since chunking and retrieval behave differently on long
+  structured filings vs. short single-topic announcements.
+
+6 documents total. Every document is fetched by
+[`scripts/fetch_corpus.py`](scripts/fetch_corpus.py) and logged in
+[`data/raw/manifest.json`](data/raw/manifest.json) with its source URL,
+filing date, and a SHA-256 checksum, so the corpus is fully reproducible
+and auditable — re-running the script re-derives the same (or, past the
+next filing, an updated) corpus from the primary source. Raw HTML files
+themselves are gitignored (large, and trivially re-fetchable); the
+manifest is committed as the record of what was sourced.
+
+**Scope/limitation acknowledged:** S2's prompt also mentions contracts,
+SOPs, and emails as document types. This corpus uses only SEC filings —
+still genuinely unstructured/semi-structured enterprise text requiring
+retrieval over long documents, but narrower in document *type* than a
+real enterprise content repository. This trade-off was made to keep the
+corpus verifiably real, free, and instantly reproducible without
+depending on any single company's website structure staying stable.
+
 ## Repository structure
 
 ```
@@ -61,6 +100,7 @@ python -m venv .venv
 pip install -r requirements.txt
 copy .env.example .env          # then fill in ANTHROPIC_API_KEY or OPENAI_API_KEY
 python scripts/check_setup.py   # sanity check: env + folder layout
+python scripts/fetch_corpus.py  # sources the corpus into data/raw/ (see Data source below)
 ```
 
 `requirements.txt` grows incrementally as each pipeline step is built and
@@ -72,8 +112,8 @@ Each step is implemented, run/tested locally, committed, and pushed to
 `dev` before the next step starts. `main` only receives a merge once the
 full pipeline is verified working end-to-end.
 
-- [x] **Step 1 — Repo scaffold & environment setup** (this commit)
-- [ ] **Step 2 — Data acquisition & corpus documentation**
+- [x] **Step 1 — Repo scaffold & environment setup**
+- [x] **Step 2 — Data acquisition & corpus documentation** (this commit)
 - [ ] **Step 3 — Ingestion pipeline** (load → chunk → embed → index)
 - [ ] **Step 4 — Hybrid retrieval** (dense + BM25 + fusion/re-ranking, vs. dense-only)
 - [ ] **Step 5 — Generation** (grounded answers + faithfulness annotation)

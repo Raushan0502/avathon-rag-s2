@@ -161,6 +161,7 @@ venv.bak/
 # reproducible from scripts/ (see README) and are not committed.
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/manifest.json
 data/processed/*
 !data/processed/.gitkeep
 *.faiss
