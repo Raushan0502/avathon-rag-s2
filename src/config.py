@@ -10,6 +10,10 @@ DATA_RAW_DIR = ROOT_DIR / "data" / "raw"
 DATA_PROCESSED_DIR = ROOT_DIR / "data" / "processed"
 RESULTS_DIR = ROOT_DIR / "results"
 
+EMBEDDING_MODEL_NAME = "BAAI/bge-small-en-v1.5"
+FAISS_INDEX_PATH = DATA_PROCESSED_DIR / "index.faiss"
+CHUNKS_PATH = DATA_PROCESSED_DIR / "chunks.jsonl"
+
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "anthropic")
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
