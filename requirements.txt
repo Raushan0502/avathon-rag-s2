@@ -33,6 +33,7 @@ packaging==26.3
 Pygments==2.21.0
 python-dotenv==1.2.3
 PyYAML==6.0.3
+rank_bm25==0.2.2
 regex==2026.9.3
 requests==2.34.2
 rich==15.0.0
