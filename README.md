@@ -152,10 +152,15 @@ faithfulness.
 **Provider fallback chain: Groq → Mistral → Gemini.** All three are
 external LLM APIs with a free tier — explicitly allowed for Track D, and
 kept at zero inference cost. Groq (`openai/gpt-oss-120b`) is primary for
-latency; Mistral (`mistral-small-latest`) is the tested, working fallback;
-Gemini (`gemini-2.0-flash`) is configured as a third fallback but wasn't
-exercised in this session's live testing — Groq answered every demo call,
-so Mistral and Gemini never got triggered. Which provider actually served
+latency; Mistral (`mistral-small-latest`) and Gemini (`gemini-flash-latest`) are
+tested, working fallbacks — though Groq answered every call in this
+session's testing, so neither fallback was actually triggered end-to-end.
+(Finding Gemini's working model ID took some trial and error: the
+originally-planned `gemini-2.0-flash` and `gemini-2.5-flash` both now
+404 as deprecated; `gemini-flash-latest` is the current alias. A live
+test also hit a transient 503 "high demand" error from Google's side —
+a real example, caught live, of exactly the kind of single-provider
+outage this fallback chain exists to route around.) Which provider actually served
 an answer is recorded on every response (`result["provider"]`), so the
 fallback is observable rather than silent. Full rationale in the module
 docstring.
@@ -183,6 +188,71 @@ handle a different retrieval path) end-to-end and saves the full trace
 (retrieved context + generated answer + faithfulness annotation per
 query) to `results/qa_demo.json`. All 6 came back correctly grounded and
 cited on the corpus.
+
+## Evaluation (Step 6)
+
+**Held-out eval set:** [`data/eval/qa_eval.json`](data/eval/qa_eval.json),
+24 hand-authored question/answer pairs (above the assignment's 20-pair
+minimum), spread across all 6 sourced documents. Each question was
+authored *against a specific, read, verified chunk* — not generated then
+checked after the fact — so every `reference_answer` and `gold_chunk_id`
+is traceable to real filing text. Ground truth is recorded at
+`(gold_doc_id, gold_section)` granularity rather than exact `chunk_id`,
+since adjacent overlapping chunks from the same section are equally
+valid evidence for a question (see `src/evaluate.py` docstring for the
+full reasoning, including why Recall@k reduces to a binary hit-rate here:
+each question has exactly one known-relevant section, not an exhaustive
+relevance-judged set).
+
+**Retrieval comparison, k=5, n=24** (`scripts/run_evaluation.py` →
+`results/retrieval_eval.json`):
+
+| Mode   | Mean Precision@5 | Mean Recall@5 |
+|--------|------------------:|---------------:|
+| Dense  | 0.400             | 0.833           |
+| BM25   | 0.375             | 0.875           |
+| **Hybrid (RRF)** | **0.400** | **0.917** |
+
+Hybrid retrieval matches dense on precision and beats both single
+retrievers on recall — 91.7% of questions found their gold section
+somewhere in the top 5 under hybrid, vs. 83.3% dense-only and 87.5%
+BM25-only. This is the quantitative answer to the Step 4 write-up
+question ("show hybrid vs. dense-only quantitatively"): fusion is
+finding relevant sections that *either single retriever alone missed*,
+without diluting precision.
+
+**End-to-end faithfulness** (hybrid retrieval → generation, all 24
+questions, `results/qa_eval_results.json`): **21 cited, 3 refused, 0
+ungrounded.** Getting to 0 ungrounded took a second real fix, not just
+the Step 5 one: 4 of the 24 answers were initially misflagged
+`UNGROUNDED` because the model cited using a browsing-style format
+(`【1†L1-L4】` — source number + dagger + line range) that the Step 5
+regex didn't recognize, on top of the plain `[1]` and `【1】` forms it
+already handled. Confirmed by inspecting the raw answer text (all 4 were
+in fact correctly grounded and cited), then widened the regex in
+`src/generation.py` to accept any non-bracket suffix between the source
+number and the closing bracket. Documented in the module rather than
+quietly patched, since misreading the model's own citation format is
+exactly the kind of silent detector gap the "how do you detect
+hallucination" write-up question is really asking about.
+
+The remaining **3 refusals are all legitimate, not bugs**:
+- q08 / q16 ("Does \[company\] report unresolved staff comments?") —
+  gold answer is a single word, "None." Such a terse, low-signal section
+  is hard for both dense and sparse retrieval to rank highly against a
+  full question; it didn't make the top 5, and the model correctly
+  refused rather than guess.
+- q21 (MSFT total revenue) — retrieval *did* hit the right section
+  (`Item 8`), but not the right sub-table: MSFT's Item 8 is a single
+  giant section (a consequence of the Step 3 chunking limitation —
+  running-header artifacts collapse many distinct sub-statements under
+  one label) containing dozens of unrelated tables, and k=5 wasn't
+  enough to consistently surface the one with the revenue breakdown. The
+  model again correctly refused rather than fabricate a number. This is
+  a genuine, understood retrieval-precision gap — not deep-dived further
+  given the 48-hour budget, but the fact that refusal (not
+  hallucination) is what happens when it's hit is itself evidence the
+  hallucination mitigation is working as designed.
 
 ## Repository structure
 
@@ -214,6 +284,7 @@ python scripts/fetch_corpus.py  # sources the corpus into data/raw/ (see Data so
 python scripts/build_index.py   # ingest -> chunk -> embed -> FAISS index (see Ingestion below)
 python scripts/compare_retrieval.py  # dense vs hybrid qualitative smoke test (see Hybrid retrieval below)
 python scripts/demo_qa.py       # end-to-end Q&A demo -> results/qa_demo.json (see Generation below)
+python scripts/run_evaluation.py  # full eval: retrieval P@k/R@k + faithfulness (see Evaluation below)
 ```
 
 `torch` is installed separately first from PyTorch's CPU-only wheel index —
@@ -234,8 +305,8 @@ full pipeline is verified working end-to-end.
 - [x] **Step 2 — Data acquisition & corpus documentation**
 - [x] **Step 3 — Ingestion pipeline** (load → chunk → embed → index)
 - [x] **Step 4 — Hybrid retrieval** (dense + BM25 + fusion/re-ranking, vs. dense-only)
-- [x] **Step 5 — Generation** (grounded answers + faithfulness annotation) (this commit)
-- [ ] **Step 6 — Evaluation harness** (≥20 QA pairs, Precision@k/Recall@k/faithfulness)
+- [x] **Step 5 — Generation** (grounded answers + faithfulness annotation)
+- [x] **Step 6 — Evaluation harness** (≥20 QA pairs, Precision@k/Recall@k/faithfulness) (this commit)
 - [ ] **Step 7 — Write-up, video, final polish**
 
 ## Notes on reproducibility

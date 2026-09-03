@@ -1,0 +1,218 @@
+[
+  {
+    "id": "q01",
+    "ticker": "AAPL",
+    "query": "What products make up Apple's Products category?",
+    "reference_answer": "iPhone, Mac, iPad, and Wearables, Home and Accessories (e.g. AirPods, Apple Watch, Apple TV, Beats products, HomePod).",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 1. Business",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::0"
+  },
+  {
+    "id": "q02",
+    "ticker": "AAPL",
+    "query": "According to Apple's 10-K, how has competition affected pricing and margins in its markets?",
+    "reference_answer": "Competition has intensified as competitors have aggressively cut prices and lowered product margins; Apple has only a minority market share in the global smartphone, personal computer, tablet, and wearables markets.",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 1A. Risk Factors",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::24"
+  },
+  {
+    "id": "q03",
+    "ticker": "AAPL",
+    "query": "What natural-disaster risk does Apple flag regarding its suppliers and contract manufacturers?",
+    "reference_answer": "Many of Apple's suppliers and contract manufacturers are located in areas prone to earthquakes and other natural disasters, and climate change is increasing the frequency and intensity of such events.",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 1A. Risk Factors",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::19"
+  },
+  {
+    "id": "q04",
+    "ticker": "AAPL",
+    "query": "Who leads Apple's cybersecurity risk management program?",
+    "reference_answer": "Apple's Head of Corporate Information Security, who leads a dedicated Information Security team responsible for identifying, assessing, and managing cybersecurity risk.",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 1C. Cybersecurity",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::69"
+  },
+  {
+    "id": "q05",
+    "ticker": "AAPL",
+    "query": "Where is Apple's corporate headquarters located?",
+    "reference_answer": "Cupertino, California.",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 2. Properties",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::71"
+  },
+  {
+    "id": "q06",
+    "ticker": "AAPL",
+    "query": "What EU investigation into Apple's App Store practices is described in its Legal Proceedings section?",
+    "reference_answer": "A Digital Markets Act Article 5(4) noncompliance investigation, opened by the European Commission on March 25, 2024, concerning how developers may communicate and promote offers, and conclude contracts, with end users for apps distributed through the App Store.",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 3. Legal Proceedings",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::72"
+  },
+  {
+    "id": "q07",
+    "ticker": "AAPL",
+    "query": "What was Apple's total net sales for fiscal year 2025, and how does it compare to fiscal 2024?",
+    "reference_answer": "$416,161 million in fiscal 2025, up from $391,035 million in fiscal 2024 (and $383,285 million in fiscal 2023).",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 8. Financial Statements and Supplementary Data",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::98"
+  },
+  {
+    "id": "q08",
+    "ticker": "AAPL",
+    "query": "Does Apple report any unresolved staff comments from the SEC in its 10-K?",
+    "reference_answer": "No -- Apple reports \"None.\"",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 1B. Unresolved Staff Comments",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::68"
+  },
+  {
+    "id": "q09",
+    "ticker": "TSLA",
+    "query": "What is Tesla's stated mission or focus in the Overview section of its 10-K?",
+    "reference_answer": "Bringing artificial intelligence into the real world through products and services such as Full Self-Driving (Supervised) and Robotaxi, and developing/commercializing AI robots (including Optimus), alongside its electric vehicle and energy generation/storage business.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 1. BUSINESS",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::3"
+  },
+  {
+    "id": "q10",
+    "ticker": "TSLA",
+    "query": "How does Tesla's 10-K describe the Cybertruck?",
+    "reference_answer": "A full-size electric pickup truck with a stainless steel exterior.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 1. BUSINESS",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::5"
+  },
+  {
+    "id": "q11",
+    "ticker": "TSLA",
+    "query": "What two reportable segments does Tesla operate?",
+    "reference_answer": "Automotive, and Energy generation and storage.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 1. BUSINESS",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::4"
+  },
+  {
+    "id": "q12",
+    "ticker": "TSLA",
+    "query": "What are the four stages of Tesla's cybersecurity incident response and breach management process?",
+    "reference_answer": "1) Preparation for a cybersecurity incident, 2) detection and analysis of a security incident, 3) containment, eradication and recovery, and 4) post-incident analysis.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 1C. CYBERSECURITY",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::112"
+  },
+  {
+    "id": "q13",
+    "ticker": "TSLA",
+    "query": "Where is Tesla headquartered?",
+    "reference_answer": "Austin, Texas.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 2. PROPERTIES",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::117"
+  },
+  {
+    "id": "q14",
+    "ticker": "TSLA",
+    "query": "Where does Tesla's 10-K direct readers for details on its material pending legal proceedings?",
+    "reference_answer": "To Note 13, Commitments and Contingencies, in the consolidated financial statements included elsewhere in the 10-K.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 3. LEGAL PROCEEDINGS",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::118"
+  },
+  {
+    "id": "q15",
+    "ticker": "TSLA",
+    "query": "What were Tesla's automotive sales revenues for 2025, 2024, and 2023?",
+    "reference_answer": "$65,821 million (2025), $72,480 million (2024), and $78,509 million (2023).",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::194"
+  },
+  {
+    "id": "q16",
+    "ticker": "TSLA",
+    "query": "Does Tesla report any unresolved staff comments from the SEC in its 10-K?",
+    "reference_answer": "No -- Tesla reports \"None.\"",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 1B. UNRESOLVED STAFF COMMENTS",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::111"
+  },
+  {
+    "id": "q17",
+    "ticker": "MSFT",
+    "query": "What does Microsoft say Copilot and AI agents are used for in its 10-K?",
+    "reference_answer": "Applying AI and ambient intelligence to drive insights, revolutionize many types of work and business processes, and provide substantive productivity gains using Microsoft 365 Copilot and agents.",
+    "gold_doc_id": "MSFT_10-K_2026-07-29",
+    "gold_section": "Item 1 Note About Forward-Looking Statements",
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::7"
+  },
+  {
+    "id": "q18",
+    "ticker": "MSFT",
+    "query": "What product lines make up Microsoft's Productivity and Business Processes segment?",
+    "reference_answer": "Microsoft 365 Commercial products and cloud services (including Microsoft 365 Copilot), Microsoft 365 Consumer products and cloud services, LinkedIn, and Dynamics products and cloud services.",
+    "gold_doc_id": "MSFT_10-K_2026-07-29",
+    "gold_section": "Item 1 Note About Forward-Looking Statements",
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::9"
+  },
+  {
+    "id": "q19",
+    "ticker": "MSFT",
+    "query": "What categories of impact does Microsoft's Risk Factors section warn its risks could have on the business?",
+    "reference_answer": "Adverse effects on Microsoft's business, operations, financial condition, results of operations, liquidity, and the trading price of its common stock.",
+    "gold_doc_id": "MSFT_10-K_2026-07-29",
+    "gold_section": "Item 1A ITEM 1A. RIS",
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::36"
+  },
+  {
+    "id": "q20",
+    "ticker": "MSFT",
+    "query": "Where does Microsoft's 10-K direct readers for information on legal proceedings?",
+    "reference_answer": "To Note 14, Contingencies, of the Notes to Financial Statements (Part II, Item 8 of the Form 10-K).",
+    "gold_doc_id": "MSFT_10-K_2026-07-29",
+    "gold_section": "ITEM 3. LEGAL",
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::110"
+  },
+  {
+    "id": "q21",
+    "ticker": "MSFT",
+    "query": "What was Microsoft's total revenue for fiscal year 2026, broken into product and service/other revenue?",
+    "reference_answer": "Total revenue of $331,839 million: $64,696 million from Product, and $267,143 million from Service and other (fiscal year ended June 30, 2026).",
+    "gold_doc_id": "MSFT_10-K_2026-07-29",
+    "gold_section": "Item 8 ITEM 8. FINANCIAL STATE",
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::159"
+  },
+  {
+    "id": "q22",
+    "ticker": "AAPL",
+    "query": "Who signed Apple's July 30, 2026 Form 8-K on the company's behalf, and in what role?",
+    "reference_answer": "Kevan Parekh, Senior Vice President and Chief Financial Officer.",
+    "gold_doc_id": "AAPL_8-K_2026-07-30",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "AAPL_8-K_2026-07-30::3"
+  },
+  {
+    "id": "q23",
+    "ticker": "MSFT",
+    "query": "What did Microsoft's September 2, 2026 Form 8-K say was furnished as Exhibit 99.1?",
+    "reference_answer": "Presentation materials (furnished under Regulation FD) describing an updated reportable-segment structure: (1) Agents and Infra and (2) Devices and Consumer.",
+    "gold_doc_id": "MSFT_8-K_2026-09-02",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "MSFT_8-K_2026-09-02::2"
+  },
+  {
+    "id": "q24",
+    "ticker": "TSLA",
+    "query": "Which Form 8-K item does Tesla's July 22, 2026 filing correspond to?",
+    "reference_answer": "Item 2.02, Results of Operations and Financial Condition.",
+    "gold_doc_id": "TSLA_8-K_2026-07-22",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "TSLA_8-K_2026-07-22::2"
+  }
+]

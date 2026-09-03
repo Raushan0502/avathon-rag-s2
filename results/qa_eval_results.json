@@ -1,0 +1,1204 @@
+[
+  {
+    "id": "q01",
+    "query": "What products make up Apple's Products category?",
+    "reference_answer": "iPhone, Mac, iPad, and Wearables, Home and Accessories (e.g. AirPods, Apple Watch, Apple TV, Beats products, HomePod).",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 1. Business",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Apple\u2019s\u202fProducts category consists of its hardware lines: the iPhone smartphone line, the Mac personal\u2011computer line, the iPad tablet line, and the Wearables, Home and Accessories segment (which includes smartwatches, wireless headphones, spatial computers, HomePod speakers, Apple\u202fTV, etc.)\u30103\u2020L1-L7\u3011\u30104\u2020L1-L7\u3011",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        3,
+        4
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::1",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1. Business",
+        "score": 0.03200204813108039
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::2",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1. Business",
+        "score": 0.029877369007803793
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::84",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 4. Mine Safety Disclosures",
+        "score": 0.029236022193768675
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::0",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1. Business",
+        "score": 0.02921395544346364
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::29",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.027783137179239824
+      }
+    ]
+  },
+  {
+    "id": "q02",
+    "query": "According to Apple's 10-K, how has competition affected pricing and margins in its markets?",
+    "reference_answer": "Competition has intensified as competitors have aggressively cut prices and lowered product margins; Apple has only a minority market share in the global smartphone, personal computer, tablet, and wearables markets.",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 1A. Risk Factors",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Apple\u2019s 10\u2011K notes that competition in its markets is intense and is driven largely by aggressive price cuts. Competitors frequently lower prices and sell at very low or even loss\u2011making cost structures, which creates \u201caggressive price competition\u201d and puts \u201cdownward pressure on gross margins\u201d for Apple\u2019s products and services\u30101\u2020L1-L4\u3011\u30102\u2020L1-L3\u3011\u30103\u2020L1-L4\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1,
+        2,
+        3
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::4",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1. Business",
+        "score": 0.03252247488101534
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::24",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.032018442622950824
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::23",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.031754032258064516
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::61",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.030798389007344232
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::21",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.029273504273504274
+      }
+    ]
+  },
+  {
+    "id": "q03",
+    "query": "What natural-disaster risk does Apple flag regarding its suppliers and contract manufacturers?",
+    "reference_answer": "Many of Apple's suppliers and contract manufacturers are located in areas prone to earthquakes and other natural disasters, and climate change is increasing the frequency and intensity of such events.",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 1A. Risk Factors",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Apple warns that many of its suppliers and contract\u2011manufacturers operate in regions that are prone to earthquakes and other natural disasters, creating a risk that such events could disrupt manufacturing and product delivery\u30101\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::19",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.03278688524590164
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::15",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.03200204813108039
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::40",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.029709507042253523
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::139",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "score": 0.027650648360030512
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::38",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.026171741361614778
+      }
+    ]
+  },
+  {
+    "id": "q04",
+    "query": "Who leads Apple's cybersecurity risk management program?",
+    "reference_answer": "Apple's Head of Corporate Information Security, who leads a dedicated Information Security team responsible for identifying, assessing, and managing cybersecurity risk.",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 1C. Cybersecurity",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Apple\u2019s cybersecurity risk\u2011management program is led by the company\u2019s Head of Corporate Information Security\u30101\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::70",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1C. Cybersecurity",
+        "score": 0.031754032258064516
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::107",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "ITEM 1B. UNRESOLVE",
+        "score": 0.031544957774465976
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::112",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1C. CYBERSECURITY",
+        "score": 0.03125763125763126
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::102",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "ITEM 1B. UNRESOLVE",
+        "score": 0.030798389007344232
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::106",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "ITEM 1B. UNRESOLVE",
+        "score": 0.030679156908665108
+      }
+    ]
+  },
+  {
+    "id": "q05",
+    "query": "Where is Apple's corporate headquarters located?",
+    "reference_answer": "Cupertino, California.",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 2. Properties",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Apple\u2019s corporate headquarters is located in Cupertino, California\u202f[1][5].",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1,
+        5
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::71",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 2. Properties",
+        "score": 0.03278688524590164
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::108",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "ITEM 1B. UNRESOLVE",
+        "score": 0.02964254577157803
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::139",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "score": 0.028850145288501453
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::0",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1. Business",
+        "score": 0.028782894736842105
+      },
+      {
+        "chunk_id": "AAPL_8-K_2026-07-30::0",
+        "doc_id": "AAPL_8-K_2026-07-30",
+        "section": "Full Document",
+        "score": 0.016129032258064516
+      }
+    ]
+  },
+  {
+    "id": "q06",
+    "query": "What EU investigation into Apple's App Store practices is described in its Legal Proceedings section?",
+    "reference_answer": "A Digital Markets Act Article 5(4) noncompliance investigation, opened by the European Commission on March 25, 2024, concerning how developers may communicate and promote offers, and conclude contracts, with end users for apps distributed through the App Store.",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 3. Legal Proceedings",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "The Legal\u202fProceedings section notes that the European Commission opened a formal non\u2011compliance investigation under Article\u202f5(4) of the EU Digital Markets Act\u2014examining how developers may communicate and promote offers to end\u2011users for apps distributed through the App Store\u2014and, on June\u202f24\u202f2024, a second investigation under Article\u202f6(4) concerning the Company\u2019s new contractual requirements for third\u2011party app developers and app marketplaces\u30101\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::72",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 3. Legal Proceedings",
+        "score": 0.03278688524590164
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::52",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.03225806451612903
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::53",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.030117753623188408
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::54",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.029957522915269395
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::2",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1. Business",
+        "score": 0.02967032967032967
+      }
+    ]
+  },
+  {
+    "id": "q07",
+    "query": "What was Apple's total net sales for fiscal year 2025, and how does it compare to fiscal 2024?",
+    "reference_answer": "$416,161 million in fiscal 2025, up from $391,035 million in fiscal 2024 (and $383,285 million in fiscal 2023).",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 8. Financial Statements and Supplementary Data",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Apple reported total net sales of **$416,161\u202fmillion for fiscal 2025**, versus **$391,035\u202fmillion for fiscal 2024**, an increase of roughly $25\u202fbillion year\u2011over\u2011year\u30105\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        5
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::80",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 4. Mine Safety Disclosures",
+        "score": 0.031009615384615385
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::87",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 4. Mine Safety Disclosures",
+        "score": 0.028850145288501453
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::192",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 8 ITEM 8. FINANCIAL STATE",
+        "score": 0.027884615384615386
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::79",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 4. Mine Safety Disclosures",
+        "score": 0.027417840375586856
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::112",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "score": 0.027071520029266508
+      }
+    ]
+  },
+  {
+    "id": "q08",
+    "query": "Does Apple report any unresolved staff comments from the SEC in its 10-K?",
+    "reference_answer": "No -- Apple reports \"None.\"",
+    "gold_doc_id": "AAPL_10-K_2025-10-31",
+    "gold_section": "Item 1B. Unresolved Staff Comments",
+    "retrieval_hit_at_k": false,
+    "generated_answer": "I cannot answer this from the provided documents.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [],
+      "has_citation": false,
+      "refused_unsupported": true,
+      "faithfulness_flag": "refused"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::12",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1. Business",
+        "score": 0.03252247488101534
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::174",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 16. Form 10-K Summary",
+        "score": 0.0315136476426799
+      },
+      {
+        "chunk_id": "AAPL_8-K_2026-07-30::2",
+        "doc_id": "AAPL_8-K_2026-07-30",
+        "section": "Full Document",
+        "score": 0.030776515151515152
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::102",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "ITEM 1B. UNRESOLVE",
+        "score": 0.029906956136464335
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::156",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 9A. Controls and Procedures",
+        "score": 0.029083245521601686
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "query": "What is Tesla's stated mission or focus in the Overview section of its 10-K?",
+    "reference_answer": "Bringing artificial intelligence into the real world through products and services such as Full Self-Driving (Supervised) and Robotaxi, and developing/commercializing AI robots (including Optimus), alongside its electric vehicle and energy generation/storage business.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 1. BUSINESS",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Tesla says its mission is \u201cbuilding a world of amazing abundance,\u201d and it is focused on bringing artificial intelligence into the real world through products and services such as Full\u202fSelf\u2011Driving, Robotaxi and AI\u2011powered robots (\u201cBots\u201d) like Optimus\u30101\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::3",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.03252247488101534
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::114",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 5 PAR",
+        "score": 0.03177805800756621
+      },
+      {
+        "chunk_id": "TSLA_8-K_2026-07-22::1",
+        "doc_id": "TSLA_8-K_2026-07-22",
+        "section": "Full Document",
+        "score": 0.029709507042253523
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::38",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.029206349206349208
+      },
+      {
+        "chunk_id": "TSLA_8-K_2026-07-22::2",
+        "doc_id": "TSLA_8-K_2026-07-22",
+        "section": "Full Document",
+        "score": 0.027912386121341344
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "query": "How does Tesla's 10-K describe the Cybertruck?",
+    "reference_answer": "A full-size electric pickup truck with a stainless steel exterior.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 1. BUSINESS",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Tesla\u2019s 10\u2011K describes the Cybertruck as a full\u2011size electric pickup truck with a stainless\u2011steel exterior that combines the utility and strength of a traditional truck with sports\u2011car\u2011like speed\u202f[1]. It also notes that the Cybertruck can be equipped with a three\u2011motor powertrain for even higher performance\u202f[4].",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1,
+        4
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::5",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.03028233151183971
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::72",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1A. RISK FACTORS",
+        "score": 0.029709507042253523
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::339",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES",
+        "score": 0.0288981288981289
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::9",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.028258706467661692
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::338",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES",
+        "score": 0.02786377708978328
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "query": "What two reportable segments does Tesla operate?",
+    "reference_answer": "Automotive, and Energy generation and storage.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 1. BUSINESS",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Tesla operates two reportable segments: (i) automotive and (ii) energy generation and storage\u30101\u2020L1-L4\u3011\u30102\u2020L1-L4\u3011",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1,
+        2
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::317",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.03252247488101534
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::4",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.03177805800756621
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::140",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "score": 0.029850746268656716
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::3",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.029513888888888888
+      },
+      {
+        "chunk_id": "MSFT_8-K_2026-09-02::1",
+        "doc_id": "MSFT_8-K_2026-09-02",
+        "section": "Full Document",
+        "score": 0.016129032258064516
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "query": "What are the four stages of Tesla's cybersecurity incident response and breach management process?",
+    "reference_answer": "1) Preparation for a cybersecurity incident, 2) detection and analysis of a security incident, 3) containment, eradication and recovery, and 4) post-incident analysis.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 1C. CYBERSECURITY",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Tesla\u2019s cybersecurity incident response and breach\u2011management process consists of four interconnected stages:  \n\n1. **Preparation for a cybersecurity incident**  \n2. **Detection and analysis of a security incident**  \n3. **Containment, eradication and recovery**  \n4. **Post\u2011incident analysis**  \n\nThese stages are described in Tesla\u2019s 2026 Form\u202f10\u2011K filing\u30101\u2020L1-L4\u3011\u30102\u2020L9-L12\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1,
+        2
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::113",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1C. CYBERSECURITY",
+        "score": 0.03278688524590164
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::112",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1C. CYBERSECURITY",
+        "score": 0.03225806451612903
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::116",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1C. CYBERSECURITY",
+        "score": 0.03149801587301587
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::105",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "ITEM 1B. UNRESOLVE",
+        "score": 0.030776515151515152
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::106",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "ITEM 1B. UNRESOLVE",
+        "score": 0.029877369007803793
+      }
+    ]
+  },
+  {
+    "id": "q13",
+    "query": "Where is Tesla headquartered?",
+    "reference_answer": "Austin, Texas.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 2. PROPERTIES",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Tesla is headquartered in Austin, Texas\u202f[1].",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::117",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 2. PROPERTIES",
+        "score": 0.030798389007344232
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::38",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.030017921146953404
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::14",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.029906956136464335
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::39",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.029857397504456328
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::72",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1A. RISK FACTORS",
+        "score": 0.029513888888888888
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "query": "Where does Tesla's 10-K direct readers for details on its material pending legal proceedings?",
+    "reference_answer": "To Note 13, Commitments and Contingencies, in the consolidated financial statements included elsewhere in the 10-K.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 3. LEGAL PROCEEDINGS",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Tesla\u2019s 10\u2011K tells readers to see **Note\u202f13, \u201cCommitments and Contingencies,\u201d** to the consolidated financial statements for a description of its material pending legal proceedings\u30103\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        3
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::308",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.029850746268656716
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::38",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.029709507042253523
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::118",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 3. LEGAL PROCEEDINGS",
+        "score": 0.029051670471052088
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::311",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.02886002886002886
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::298",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.02684684684684685
+      }
+    ]
+  },
+  {
+    "id": "q15",
+    "query": "What were Tesla's automotive sales revenues for 2025, 2024, and 2023?",
+    "reference_answer": "$65,821 million (2025), $72,480 million (2024), and $78,509 million (2023).",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Tesla\u2019s automotive\u2011sales revenue was:\n\n- **2025:**\u202f$65,821\u202fmillion\u30104\u3011  \n- **2024:**\u202f$72,480\u202fmillion\u30104\u3011  \n- **2023:**\u202f$78,509\u202fmillion\u30104\u3011",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        4
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::318",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.032266458495966696
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::150",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 4. MINE SAFETY DISCLOSURES",
+        "score": 0.031754032258064516
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::151",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 4. MINE SAFETY DISCLOSURES",
+        "score": 0.031544957774465976
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::194",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.031009615384615385
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::210",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.02976190476190476
+      }
+    ]
+  },
+  {
+    "id": "q16",
+    "query": "Does Tesla report any unresolved staff comments from the SEC in its 10-K?",
+    "reference_answer": "No -- Tesla reports \"None.\"",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 1B. UNRESOLVED STAFF COMMENTS",
+    "retrieval_hit_at_k": false,
+    "generated_answer": "I cannot answer this from the provided documents.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [],
+      "has_citation": false,
+      "refused_unsupported": true,
+      "faithfulness_flag": "refused"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::39",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.0315136476426799
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::38",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.03128054740957967
+      },
+      {
+        "chunk_id": "TSLA_8-K_2026-07-22::2",
+        "doc_id": "TSLA_8-K_2026-07-22",
+        "section": "Full Document",
+        "score": 0.029211087420042643
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::311",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.028782894736842105
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::12",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1. Business",
+        "score": 0.028665028665028666
+      }
+    ]
+  },
+  {
+    "id": "q17",
+    "query": "What does Microsoft say Copilot and AI agents are used for in its 10-K?",
+    "reference_answer": "Applying AI and ambient intelligence to drive insights, revolutionize many types of work and business processes, and provide substantive productivity gains using Microsoft 365 Copilot and agents.",
+    "gold_doc_id": "MSFT_10-K_2026-07-29",
+    "gold_section": "Item 1 Note About Forward-Looking Statements",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Microsoft says that Copilot and AI agents are intended to \u201cdrive insights, revolutionize many types of work and business processes, and provide substantive productivity gains\u201d\u202f[1].",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::7",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.03278688524590164
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::15",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.03125
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::69",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1A ITEM 1A. RIS",
+        "score": 0.03076923076923077
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::3",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.02964426877470356
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::4",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.029411764705882353
+      }
+    ]
+  },
+  {
+    "id": "q18",
+    "query": "What product lines make up Microsoft's Productivity and Business Processes segment?",
+    "reference_answer": "Microsoft 365 Commercial products and cloud services (including Microsoft 365 Copilot), Microsoft 365 Consumer products and cloud services, LinkedIn, and Dynamics products and cloud services.",
+    "gold_doc_id": "MSFT_10-K_2026-07-29",
+    "gold_section": "Item 1 Note About Forward-Looking Statements",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Microsoft\u2019s Productivity and Business Processes segment is made up of four product lines:\n\n1. **Microsoft\u202f365 Commercial products and cloud services** \u2013 including Microsoft\u202f365 Commercial, Enterprise Mobility\u202f+\u202fSecurity, the cloud portion of Windows Commercial, the per\u2011user portion of Power\u202fBI, Exchange, SharePoint, Microsoft\u202fTeams, Microsoft\u202f365 Security and Compliance, Microsoft\u202f365 Copilot, plus Windows Commercial on\u2011premises and Office licensed on\u2011premises\u30101\u3011.  \n2. **Microsoft\u202f365 Consumer products and cloud services** \u2013 including Microsoft\u202f365 Consumer subscriptions, Office licensed on\u2011premises and other consumer services\u30101\u3011.  \n3. **LinkedIn** \u2013 comprising Talent Solutions, Marketing Solutions, Premium Subscriptions and Sales Solutions\u30101\u3011.  \n4. **Dynamics products and cloud services** \u2013 including Dynamics\u202f365 (cloud\u2011based ERP, CRM, Power\u202fApps and Power\u202fAutomate) and on\u2011premises ERP and CRM applications\u30101\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::9",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.03278688524590164
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::237",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 8 ITEM 8. FINANCIAL STATE",
+        "score": 0.03225806451612903
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::8",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.031746031746031744
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::10",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.03076923076923077
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::121",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 7 Economic Conditions, Challenges, and Risks",
+        "score": 0.029910714285714284
+      }
+    ]
+  },
+  {
+    "id": "q19",
+    "query": "What categories of impact does Microsoft's Risk Factors section warn its risks could have on the business?",
+    "reference_answer": "Adverse effects on Microsoft's business, operations, financial condition, results of operations, liquidity, and the trading price of its common stock.",
+    "gold_doc_id": "MSFT_10-K_2026-07-29",
+    "gold_section": "Item 1A ITEM 1A. RIS",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Microsoft\u2019s Risk Factors warn that the identified risks could \u201cadversely affect our\u202fbusiness,\u202foperations,\u202ffinancial condition,\u202fand\u202fresults of operations\u201d\u30101\u2020L1-L3\u3011\u30103\u2020L1-L3\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1,
+        3
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::97",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1A ITEM 1A. RIS",
+        "score": 0.03252247488101534
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::13",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.03149801587301587
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::96",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1A ITEM 1A. RIS",
+        "score": 0.03055037313432836
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::59",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.027031963470319637
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::2",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.01639344262295082
+      }
+    ]
+  },
+  {
+    "id": "q20",
+    "query": "Where does Microsoft's 10-K direct readers for information on legal proceedings?",
+    "reference_answer": "To Note 14, Contingencies, of the Notes to Financial Statements (Part II, Item 8 of the Form 10-K).",
+    "gold_doc_id": "MSFT_10-K_2026-07-29",
+    "gold_section": "ITEM 3. LEGAL",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Microsoft\u2019s 10\u2011K tells readers to see **Note\u202f14 \u2013 Contingencies of the Notes to Financial Statements (Part\u202fII, Item\u202f8 of the Form\u202f10\u2011K)** for information about the legal proceedings in which the company is involved\u30104\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        4
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::34",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.03177805800756621
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::3",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.031009615384615385
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::65",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1A ITEM 1A. RIS",
+        "score": 0.02964426877470356
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::110",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "ITEM 3. LEGAL",
+        "score": 0.02938045560996381
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::35",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.016129032258064516
+      }
+    ]
+  },
+  {
+    "id": "q21",
+    "query": "What was Microsoft's total revenue for fiscal year 2026, broken into product and service/other revenue?",
+    "reference_answer": "Total revenue of $331,839 million: $64,696 million from Product, and $267,143 million from Service and other (fiscal year ended June 30, 2026).",
+    "gold_doc_id": "MSFT_10-K_2026-07-29",
+    "gold_section": "Item 8 ITEM 8. FINANCIAL STATE",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "I cannot answer this from the provided documents.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [],
+      "has_citation": false,
+      "refused_unsupported": true,
+      "faithfulness_flag": "refused"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::242",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 8 ITEM 8. FINANCIAL STATE",
+        "score": 0.03278688524590164
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::115",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 5 PAR",
+        "score": 0.03225806451612903
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::124",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 7 Economic Conditions, Challenges, and Risks",
+        "score": 0.03036576949620428
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::126",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 7 Economic Conditions, Challenges, and Risks",
+        "score": 0.030330882352941176
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::241",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 8 ITEM 8. FINANCIAL STATE",
+        "score": 0.030309988518943745
+      }
+    ]
+  },
+  {
+    "id": "q22",
+    "query": "Who signed Apple's July 30, 2026 Form 8-K on the company's behalf, and in what role?",
+    "reference_answer": "Kevan Parekh, Senior Vice President and Chief Financial Officer.",
+    "gold_doc_id": "AAPL_8-K_2026-07-30",
+    "gold_section": "Full Document",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Apple\u2019s July\u202f30,\u202f2026 Form\u202f8\u2011K was signed on the company\u2019s behalf by\u202fKevan\u202fParekh, who serves as Senior Vice President and Chief Financial Officer\u30101\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_8-K_2026-07-30::3",
+        "doc_id": "AAPL_8-K_2026-07-30",
+        "section": "Full Document",
+        "score": 0.03252247488101534
+      },
+      {
+        "chunk_id": "AAPL_8-K_2026-07-30::2",
+        "doc_id": "AAPL_8-K_2026-07-30",
+        "section": "Full Document",
+        "score": 0.03177805800756621
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::174",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 16. Form 10-K Summary",
+        "score": 0.031754032258064516
+      },
+      {
+        "chunk_id": "AAPL_8-K_2026-07-30::0",
+        "doc_id": "AAPL_8-K_2026-07-30",
+        "section": "Full Document",
+        "score": 0.03036576949620428
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::175",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 16. Form 10-K Summary",
+        "score": 0.030330882352941176
+      }
+    ]
+  },
+  {
+    "id": "q23",
+    "query": "What did Microsoft's September 2, 2026 Form 8-K say was furnished as Exhibit 99.1?",
+    "reference_answer": "Presentation materials (furnished under Regulation FD) describing an updated reportable-segment structure: (1) Agents and Infra and (2) Devices and Consumer.",
+    "gold_doc_id": "MSFT_8-K_2026-09-02",
+    "gold_section": "Full Document",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Microsoft\u2019s September\u202f2,\u202f2026 Form\u202f8\u2011K states that a copy of its presentation materials is furnished as Exhibit\u202f99.1 \u2013 an Investor Presentation dated September\u202f2026 titled \u201cFY27 Segments and Investor Metrics,\u201d which describes the company\u2019s updated reporting structure and provides summary financial information and historical data consistent with that structure\u30101\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "MSFT_8-K_2026-09-02::2",
+        "doc_id": "MSFT_8-K_2026-09-02",
+        "section": "Full Document",
+        "score": 0.032266458495966696
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::268",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 15 PART IV",
+        "score": 0.030090497737556562
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::267",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 15 PART IV",
+        "score": 0.03007688828584351
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::276",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 15 PART IV",
+        "score": 0.029827662395050816
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::272",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 15 PART IV",
+        "score": 0.029513888888888888
+      }
+    ]
+  },
+  {
+    "id": "q24",
+    "query": "Which Form 8-K item does Tesla's July 22, 2026 filing correspond to?",
+    "reference_answer": "Item 2.02, Results of Operations and Financial Condition.",
+    "gold_doc_id": "TSLA_8-K_2026-07-22",
+    "gold_section": "Full Document",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Tesla\u2019s July\u202f22,\u202f2026 filing is made under Item\u202f2.02 of Form\u202f8\u2011K \u2013 \u201cResults of Operations and Financial Condition.\u201d\u30104\u3011",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        4
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_8-K_2026-07-22::0",
+        "doc_id": "TSLA_8-K_2026-07-22",
+        "section": "Full Document",
+        "score": 0.03252247488101534
+      },
+      {
+        "chunk_id": "TSLA_8-K_2026-07-22::2",
+        "doc_id": "TSLA_8-K_2026-07-22",
+        "section": "Full Document",
+        "score": 0.03252247488101534
+      },
+      {
+        "chunk_id": "AAPL_8-K_2026-07-30::0",
+        "doc_id": "AAPL_8-K_2026-07-30",
+        "section": "Full Document",
+        "score": 0.03076923076923077
+      },
+      {
+        "chunk_id": "TSLA_8-K_2026-07-22::1",
+        "doc_id": "TSLA_8-K_2026-07-22",
+        "section": "Full Document",
+        "score": 0.03057889822595705
+      },
+      {
+        "chunk_id": "MSFT_8-K_2026-09-02::0",
+        "doc_id": "MSFT_8-K_2026-09-02",
+        "section": "Full Document",
+        "score": 0.030330882352941176
+      }
+    ]
+  }
+]

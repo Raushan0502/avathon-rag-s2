@@ -33,7 +33,7 @@ from src.config import GEMINI_API_KEY, GROQ_API_KEY, MISTRAL_API_KEY
 
 GROQ_MODEL = "openai/gpt-oss-120b"
 MISTRAL_MODEL = "mistral-small-latest"
-GEMINI_MODEL = "gemini-2.0-flash"
+GEMINI_MODEL = "gemini-flash-latest"
 
 CANNOT_ANSWER_PHRASE = "I cannot answer this from the provided documents."
 
@@ -131,11 +131,18 @@ def call_llm(prompt: str) -> tuple[str, str]:
 
 
 def annotate_faithfulness(answer: str, num_sources: int) -> dict:
-    # Models occasionally emit full-width CJK brackets (e.g. "【4】") instead of
-    # the ASCII "[4]" requested in the prompt -- observed live from the Groq
-    # provider during Step 5 testing. Both forms count as a citation; only
-    # a genuinely uncited claim should be flagged.
-    citation_markers = re.findall(r"[\[【](\d+)[\]】]", answer)
+    # Models emit citations in more than one bracket style despite the
+    # prompt requesting plain "[4]": full-width CJK brackets ("【4】",
+    # observed in Step 5 testing), and a browsing-style format with a
+    # dagger and a line range ("【1†L1-L4】", observed in Step 6's broader
+    # 24-question eval -- 4 answers were initially misflagged UNGROUNDED
+    # purely because this second format wasn't recognized, even though
+    # every one of them was in fact correctly grounded). The regex below
+    # accepts a source number immediately after an opening ASCII or
+    # full-width bracket, followed by an optional non-bracket suffix
+    # (the dagger/line-range part) before the closing bracket, so both
+    # citation styles -- and plain "[4]" -- all count.
+    citation_markers = re.findall(r"[\[【](\d+)[^\]】\[【]{0,20}[\]】]", answer)
     cited = sorted({int(n) for n in citation_markers})
     cited = [n for n in cited if 1 <= n <= num_sources]
     refused = CANNOT_ANSWER_PHRASE.lower() in answer.lower()
