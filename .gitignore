@@ -157,6 +157,15 @@ ENV/
 env.bak/
 venv.bak/
 
+# Project-specific: raw sourced documents and generated indexes are
+# reproducible from scripts/ (see README) and are not committed.
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+*.faiss
+*.index
+
 # Spyder project settings
 .spyderproject
 .spyproject
