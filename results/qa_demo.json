@@ -1,0 +1,344 @@
+[
+  {
+    "query": "What are the main risk factors related to competition?",
+    "provider": "groq",
+    "answer": "The filings identify several key competition\u2011related risks:\n\n*\u202fBoth companies face **intense, low\u2011barrier competition** that can erode market share if they fail to keep innovating and delivering appealing products and services\u202f[1][2].  \n*\u202fCompetitors often use **aggressive pricing and low\u2011cost structures**, creating downward pressure on gross margins and forcing price\u2011sensitive customers to switch\u202f[2][4].  \n*\u202fThe **rapid evolution of technology**, frequent introduction of new products, short product life cycles, and shifting user needs increase the difficulty of staying ahead\u202f[1][2].  \n*\u202fRivals may **imitate products and infringe intellectual property**, adding further competitive pressure\u202f[2].  \n*\u202fSuccess depends on maintaining **strong product\u2011feature, performance, design, security, ecosystem, marketing, distribution, service, and reputation advantages**; weaknesses in any of these areas can harm competitiveness\u202f[2].  \n\nThese factors together constitute the primary competition\u2011related risk exposures highlighted in the reports.",
+    "faithfulness": {
+      "citations": [
+        1,
+        2,
+        4
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::36",
+        "ticker": "MSFT",
+        "form": "10-K",
+        "section": "Item 1A ITEM 1A. RIS",
+        "score": 0.032266458495966696,
+        "text": "K FACTORS Our operations and financial results are subject to various risks and uncertainties, including those described below, that could adversely affect our business, operations, financial condition, results of operations, liquidity, and the trading price of our common stock. Statements in this section reflect our beliefs and opinions as to matters that could adversely affect us in the future. References to past events are provided by way of example only and are not intended to be a complete listing or a representation as to whether or not such matters have occurred in the past. STRATEGIC AND COMPETITIVE RISKS We face intense competition across all markets for our products and services, which could adversely affect our results of operations. Competition in the technology sector Our competitors range in size from diversified global companies with significant research and development resources to small, specialized firms who may be more effective in deploying technical, marketing, and financial resources. Barriers to entry in many of our businesses are low and many of the areas in which we compete evolve rapidly with changing and disruptive technologies, shifting user needs, and frequent introductions of new products and services. If we do not continue to innovate and provide products, devices, and services that appeal to businesses and consumers, we may not remain competitive, which could adversely affect our"
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::4",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 1. Business",
+        "score": 0.031754032258064516,
+        "text": "distribution channels accounted for 40% and 60%, respectively, of total net sales. Competition The markets for the Company\u2019s products and services are highly competitive and are characterized by aggressive price competition, downward pressure on gross margins, continual improvement in product performance, and price sensitivity on the part of consumers and businesses. The markets in which the Company competes are further defined by frequent introduction of new products and services, short product life cycles, evolving industry standards, and rapid adoption of technological advancements by competitors. Many of the Company\u2019s competitors seek to compete primarily through aggressive pricing and very low cost structures, and by imitating the Company\u2019s products and infringing on its intellectual property. Apple Inc. | 2025 Form 10-K | 2 The Company\u2019s ability to compete successfully depends heavily on ensuring the continuing and timely introduction of innovative new products, services and technologies to the marketplace. The Company designs and develops nearly the entire solution for its products, including the hardware, operating system, numerous software applications and related services. Principal competitive factors important to the Company include price, product and service features (including security features), relative price and performance, product and service quality and reliability, design and technology innovation, a strong third-party software and accessories ecosystem, marketing and distribution capability, service and support, corporate reputation, and the ability to effectively"
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::97",
+        "ticker": "MSFT",
+        "form": "10-K",
+        "section": "Item 1A ITEM 1A. RIS",
+        "score": 0.030536130536130537,
+        "text": "also increase the security risks described elsewhere in these risk factors. 27 PART I Item 1A The occurrence of regional epidemics or a global pandemic could adversely affect our business, operations, financial condition, and results of operations. The extent to which global pandemics impact our business going forward will depend on factors such as the duration and scope of the pandemic; governmental, business, and individuals' actions in response to the pandemic; and the impact on economic activity, including the possibility of recession or financial market instability. Measures to contain a global pandemic may intensify other risks described in these Risk Factors. The long-term effects of climate change on the global economy and the IT industry are unclear. Environmental regulations or changes in the supply, demand, or available sources of energy or other resources may affect the availability or cost of goods and services, including natural resources, necessary to run our business. Changes in climate where we operate may increase the costs of powering and cooling computer hardware we use to develop software and provide cloud-based services. Our global business exposes us to operational and economic risks. Our customers, employees, and infrastructure are located throughout the world and a significant part of our revenue comes from international sales. The global nature of our business creates operational, economic, and geopolitical risks. Global,"
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::59",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.028790389395194696,
+        "text": "and changing laws and regulations regarding online safety, including enhanced protections for minors and mandatory age verification requirements. These laws and regulations can increase regulatory risks by requiring complex compliance measures and significant modifications to the Company\u2019s products, services and operations, and may lead to operational disruptions, heightened privacy and data security risks, increased costs and potential liability and fines, all of which can have a material adverse impact on the Company\u2019s business, financial condition, results of operations and stock price. Financial Risks The Company\u2019s net sales and gross margins are subject to volatility and downward pressure due to a variety of factors. The Company\u2019s gross margins vary significantly across its products, services, geographic segments and distribution channels and can change over time. The Company\u2019s net sales and gross margins are subject to volatility and downward pressure due to a variety of factors, including: continued industry-wide global product pricing pressures and product pricing actions that the Company may take in response to such pressures; increased competition; the Company\u2019s ability to effectively stimulate demand for certain of its products and services; compressed product life cycles; supply shortages; potential increases in the cost of components, outside manufacturing services, and developing, acquiring and delivering content for the Company\u2019s services; the Company\u2019s ability to manage product quality and warranty costs effectively; shifts in the"
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::109",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "score": 0.01639344262295082,
+        "text": "experience. For arrangements with multiple performance obligations, which represent promises within an arrangement that are distinct, the Company allocates revenue to all distinct performance obligations based on their relative stand-alone selling prices (\u201cSSPs\u201d). When available, the Company uses observable prices to determine SSPs. When observable prices are not available, SSPs are established that reflect the Company\u2019s best estimates of what the selling prices of the performance obligations would be if they were sold regularly on a stand-alone basis. The Company\u2019s process for estimating SSPs without observable prices considers multiple factors that may vary depending upon the unique facts and circumstances related to each performance obligation including, where applicable, prices charged by the Company for similar offerings, market trends in the pricing for similar offerings, product-specific business objectives and the estimated cost to provide the performance obligation. The Company has identified the performance obligations regularly included in arrangements involving the sale of iPhone, Mac and iPad. The first material performance obligation, which represents the substantial portion of the allocated sales price, is the hardware and bundled software delivered at the time of sale. The second material performance obligation is the right to receive certain product-related bundled services, which include iCloud \u00ae , Siri \u00ae and Maps. The Company allocates revenue and any related discounts to all of its performance obligations based"
+      }
+    ]
+  },
+  {
+    "query": "What legal proceedings is the company involved in?",
+    "provider": "groq",
+    "answer": "Apple is currently subject to a variety of unresolved legal matters.  It faces ongoing claims and lawsuits that arise in the ordinary course of business, including settlements that have not materially impacted its results but remain uncertain\u202f[1].  The company is also confronting numerous patent\u2011related claims and other intellectual\u2011property litigation, as well as government investigations and regulatory actions\u202f[2][3].  In addition, Apple is dealing with antitrust investigations and civil antitrust lawsuits in multiple jurisdictions, which could have a material adverse effect on its business\u202f[5].",
+    "faithfulness": {
+      "citations": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::76",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 3. Legal Proceedings",
+        "score": 0.03252247488101534,
+        "text": "in October 2025. Other Legal Proceedings The Company is subject to other legal proceedings and claims that have not been fully resolved and that have arisen in the ordinary course of business. The Company settled certain matters during the fourth quarter of 2025 that did not individually or in the aggregate have a material impact on the Company\u2019s financial condition or operating results. The outcome of litigation is inherently uncertain. If one or more legal matters were resolved against the Company in a reporting period for amounts above management\u2019s expectations, the Company\u2019s financial condition and operating results for that reporting period could be materially adversely affected."
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::45",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.03125763125763126,
+        "text": "results of operations, financial condition and stock price. Legal and Regulatory Compliance Risks The Company\u2019s business, results of operations and financial condition could be adversely impacted by unfavorable results of legal proceedings or government investigations. The Company is subject to various claims, legal proceedings and government investigations that have arisen in the ordinary course of business and have not yet been fully resolved, and new matters may arise in the future. In addition, the Company enters into agreements that include indemnification provisions that can subject the Company to costs and damages in the event of a claim against an indemnified third party. The number of claims, legal proceedings and government investigations involving the Company, and the alleged magnitude of such claims, proceedings and government investigations, has generally increased over time and may continue to increase. The Company has faced and continues to face a significant number of patent claims relating to its standards-enabled products, and new claims may arise in the future, including as a result of new legal or regulatory frameworks. For example, technology, data and other intellectual property asset\u2013holding companies frequently assert their intellectual property rights and seek royalties and often enter into litigation based on allegations of infringement or other violations of intellectual property rights. These risks, and the risks of novel claims being attempted, may be"
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::51",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.029211087420042643,
+        "text": "its values, including the environmental and societal impact of its business, through various reports, information provided on the Company\u2019s website, and in press statements and other communications. The Company also pursues environmental and other goals and initiatives that involve risks and uncertainties, require investments, and depend in part on third-party performance or data that is outside the Company\u2019s control, and the Company may not be able to fully achieve all of its goals and initiatives. Efforts by the Company to advance its business and values, or achieve its goals and further its initiatives, or to align with stakeholders\u2019 expectations, or comply with evolving, varied and at times conflicting federal, state and international laws, executive orders, regulations and standards, or any failure or perceived failure to do so, can result in adverse reactions by consumers and other stakeholders, including the commencement of legal and regulatory proceedings against the Company, and can materially adversely affect the Company\u2019s business, reputation, results of operations, financial condition and stock price. Apple Inc. | 2025 Form 10-K | 13 The technology industry, including, in some instances, the Company, is subject to intense media, political and regulatory scrutiny, which exposes the Company to increasing regulation, government investigations, legal actions and penalties. From time to time, the Company has made changes to its business, including actions taken in"
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::312",
+        "ticker": "TSLA",
+        "form": "10-K",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.028782894736842105,
+        "text": "ongoing investigation has concluded that any wrongdoing occurred. We cannot predict the outcome or impact of any ongoing matters. Should the government decide to pursue an enforcement action, there exists the possibility of a material adverse impact on our business, results of operations, prospects, cash flows, financial position or brand. We are also subject to various other legal proceedings, risks and claims that arise from the normal course of business activities. For example, on August 5, 2023, a putative class action was filed in the United States District Court for the Northern District of California, purportedly on behalf of all U.S. individuals impacted by a data misappropriation incident earlier that year. Several additional lawsuits followed, each asserting claims under various state laws and seeking monetary damages and other relief. If an unfavorable ruling or development were to occur in these or other possible legal proceedings, risks and claims, there exists the possibility of a material adverse impact on our business, results of operations, prospects, cash flows, financial position or brand. Letters of Credit As of December 31, 2025, we had $ 556 million of unused letters of credit outstanding. Note 14 \u2013 Variable Interest Entity Arrangements We have entered into various arrangements with investors to facilitate the funding and monetization of our energy generation systems and vehicles. In particular, our"
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::53",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.027479766610201392,
+        "text": "and alternative fee structures for iOS and iPadOS apps, alternative methods of distribution for iOS and iPadOS apps, alternative payment processing for apps across the Company\u2019s operating systems, and additional tools and application programming interfaces for developers. The Company has also continued to make changes to its compliance plan in response to feedback and engagement with the Commission. Although the Company\u2019s compliance plan is intended to address the DMA\u2019s obligations, it has been challenged by the Commission and may be challenged further by private litigants. The DMA provides for significant fines and penalties for noncompliance. While the changes introduced by the Company in the EU are intended to reduce new privacy and security risks that the DMA poses to EU users, many risks will remain. Changes to the Company\u2019s business in response to the DMA or other laws and regulations could materially adversely affect the Company\u2019s business, reputation, results of operations, financial condition and stock price. The Company is also currently subject to antitrust investigations and litigation in various jurisdictions around the world, which can result in legal proceedings and claims against the Company that could, individually or in the aggregate, have a material adverse impact on the Company\u2019s business, results of operations, financial condition and stock price. For example, the Company is subject to civil antitrust lawsuits in the"
+      }
+    ]
+  },
+  {
+    "query": "What did Microsoft say about its Copilot product?",
+    "provider": "groq",
+    "answer": "Microsoft says Copilot is a digital companion that \u201cinforms, entertains, and inspires\u201d users and is built into its Edge browser and Bing search to help acquire and engage users\u30104\u3011.  It is an AI\u2011powered assistant that drives productivity gains across Microsoft\u202f365, applying AI and ambient intelligence to create new experiences and business value\u30101\u3011.  The company is investing heavily in AI infrastructure to support the growth of Copilot seats and usage\u30102\u3011.",
+    "faithfulness": {
+      "citations": [
+        1,
+        2,
+        4
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::7",
+        "ticker": "MSFT",
+        "form": "10-K",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.03200204813108039,
+        "text": "ways that utilize ubiquitous computing to unleash new experiences and opportunities for businesses and individuals. \u2022 Applying AI and ambient intelligence to drive insights, revolutionize many types of work and business processes, and provide substantive productivity gains using Microsoft 365 Copilot and agents. \u2022 Helping customers drive frontier transformation by applying frontier AI capabilities, engineering expertise, and trusted platforms to reinvent how their organizations operate, improve decision-making, create new value, and deliver measurable business outcomes from AI. \u2022 Providing a unified intelligence layer for enterprise AI to ground AI in a continuously evolving understanding of an organization\u2019s data. \u2022 Providing training on generative AI and greater access to digital learning and resources through skilling programs and initiatives, grants, and LinkedIn learning pathways. \u2022 Inventing new gaming experiences that bring people together around their shared love for games on any device and pushing the boundaries of innovation with console and PC gaming. \u2022 Leveraging Windows to fuel our cloud business, grow our share of the PC market, and drive increased engagement with our services like Microsoft Edge, Bing, Copilot, Microsoft Teams, Microsoft 365 Consumer, XBOX Game Pass, and more. Our future growth depends on our ability to transcend current product category definitions, business models, and sales motions. 4 PART I Item 1 Commitment to Sustainability Microsoft is committed to sustainability and"
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::127",
+        "ticker": "MSFT",
+        "form": "10-K",
+        "section": "Item 7 Economic Conditions, Challenges, and Risks",
+        "score": 0.031054405392392875,
+        "text": "sales, as well as an increase in Office 2024 transactional purchasing. \u2022 Microsoft 365 Consumer products and cloud services revenue increased $1.8 billion or 24%. Microsoft 365 Consumer cloud revenue grew 28% driven by growth in revenue per user and Microsoft 365 Consumer subscriber growth of 7%. \u2022 LinkedIn revenue increased $2.0 billion or 11% with growth across all lines of business. \u2022 Dynamics products and cloud services revenue increased $1.2 billion or 15% driven by growth in Dynamics 365. Dynamics 365 revenue grew 18% with growth across all workloads. 38 PART II Item 7 Operating income increased $14.1 billion or 20%. \u2022 Cost of revenue increased $2.6 billion or 12% driven by investments in AI infrastructure to support Microsoft 365 Copilot seat and usage growth. \u2022 Gross margin increased $16.6 billion or 17% driven by growth in Microsoft 365 Commercial cloud. Gross margin percentage increased slightly primarily driven by efficiency gains in Microsoft 365 Commercial cloud, offset in part by continued investments in AI infrastructure and growing AI product usage. \u2022 Operating expenses increased $2.5 billion or 9% driven by continued investments in research and development compute capacity, AI talent, and data to support product development that benefits the entire portfolio, as well as investments in commercial sales and higher Copilot advertising expenses. Revenue, gross margin, and operating income"
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::10",
+        "ticker": "MSFT",
+        "form": "10-K",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.030776515151515152,
+        "text": "365, comprising a set of intelligent, cloud-based applications across ERP, CRM, Power Apps, and Power Automate; and on-premises ERP and CRM applications. Microsoft 365 Commercial Products and Cloud Services Microsoft 365 Commercial is an AI-powered business and productivity solutions platform that brings together Office, Windows, Microsoft 365 Copilot, and Enterprise Mobility + Security to help organizations empower their employees. Growth depends on our ability to reach new users in new markets such as frontline workers, small and medium businesses, and growth markets, as well as add AI-enabled tools, features, and agentic scenarios to our core product and service offerings across communication, collaboration, analytics, security, compliance, and other AI business productivity categories. Microsoft 365 Commercial revenue is mainly affected by a combination of continued installed base growth and average revenue per user expansion, as well as the continued shift from Office licensed on-premises to Microsoft 365. Microsoft 365 Consumer Products and Cloud Services Microsoft 365 Consumer is designed to increase personal productivity and creativity through a range of products and services. Growth depends on our ability to reach new users, add value to our core product set with new features including AI tools, and continue to expand our product and service offerings into new markets. Microsoft 365 Consumer cloud revenue and Office Consumer products revenue is mainly affected by the percentage"
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::22",
+        "ticker": "MSFT",
+        "form": "10-K",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.03028233151183971,
+        "text": "is designed to deliver relevant search, native, and display advertising to a global audience. Microsoft Copilot is a digital companion designed to inform, entertain, and inspire. Our Microsoft Edge browser and Bing search engine with Copilot are key tools to enable user acquisition and engagement, while our technology platform enables accelerated delivery of digital advertising solutions. In addition to first-party tools, we have several partnerships with companies through which we provide and monetize search offerings. Growth depends on our ability to attract new users, understand intent, and match intent with relevant content on advertising offerings. Competition Windows faces competition from various software products and from alternative platforms and devices. We believe Windows competes effectively by giving customers choice, value, flexibility, security, an easy-to-use interface, and compatibility with a broad range of hardware and software applications, including those that enable productivity. Devices face competition from various computer, tablet, and hardware manufacturers who offer a unique combination of high-quality industrial design and innovative technologies across various price points. Many of these manufacturers are also current or potential partners and customers, including our Windows OEMs. XBOX and our cloud gaming services face competition from various online gaming ecosystems and game streaming services. Our gaming platform competes with other console platforms. We believe our gaming platform is effectively positioned against, and uniquely differentiated from,"
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::21",
+        "ticker": "MSFT",
+        "form": "10-K",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.029957522915269395,
+        "text": "and digital stores. We\u2019ve seen new devices from third-party manufacturers along with key PC and mobile end points that help us empower gamers to play in a way that is most convenient to them. We are focused on growing the platform and expanding to new ecosystems to engage as many gamers as possible. XBOX enables people to connect and share online gaming experiences that are accessible on XBOX consoles, Windows-enabled devices, and other devices. XBOX is designed to benefit users by providing access to a network of certified applications and services and to benefit our developer and partner ecosystems by providing access to a large customer base. XBOX revenue is mainly affected by subscriptions and sales of first- and third-party content, as well as advertising. Growth of our XBOX business is determined by the overall active user base through XBOX enabled content, availability of games, providing exclusive game content that gamers seek, the computational power and reliability of the devices used to access our content and services, and the ability to create new experiences. Search Advertising Our Search advertising business is designed to deliver relevant search, native, and display advertising to a global audience. Microsoft Copilot is a digital companion designed to inform, entertain, and inspire. Our Microsoft Edge browser and Bing search engine with Copilot are key tools to"
+      }
+    ]
+  },
+  {
+    "query": "What does Tesla say about its manufacturing and production capacity?",
+    "provider": "groq",
+    "answer": "Tesla says it is actively expanding and optimizing its manufacturing capacity to support newer vehicle models, next\u2011generation platforms and its own high\u2011volume battery\u2011cell production.  It emphasizes that \u201cwe are focused on growing and optimizing our manufacturing capacity, which includes capacity for manufacturing newer vehicle models and future vehicles utilizing aspects of our next generation platform\u201d and that this effort is tied to improving performance, lowering costs and increasing affordability\u202f[1].  In 2025 the company produced roughly\u202f1.66\u202fmillion consumer vehicles and delivered about\u202f1.64\u202fmillion, reflecting its strategy of leveraging existing factories and production lines while increasing utilization, reducing costs and expanding global infrastructure\u202f[4].  Tesla also notes that continued growth depends on the construction and ramp\u2011up of new factories, and that any delays or issues in meeting projected timelines, costs or capacity could affect its ability to increase production on a sustained basis\u202f[5].\u202f[3]",
+    "faithfulness": {
+      "citations": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::125",
+        "ticker": "TSLA",
+        "form": "10-K",
+        "section": "ITEM 4. MINE SAFETY DISCLOSURES",
+        "score": 0.032266458495966696,
+        "text": "Outlook Automotive and AI Enabled Products\u2014Production We are focused on growing and optimizing our manufacturing capacity, which includes capacity for manufacturing newer vehicle models and future vehicles utilizing aspects of our next generation platform, while maximizing production rate and efficiency at our Gigafactories. In 2025, we completed the refresh of our vehicle lineup with the launch of the new Model Y and additional variants for Model 3 and Model Y. The next phase of production growth will be initiated by advances in autonomy and the introduction of new products, including those built on our next generation vehicle platform, as well as our ability to efficiently manufacture our own cells that we are developing to have high-volume output, lower capital and production costs and longer range. Our goals are to improve vehicle performance, decrease production costs and increase affordability and customer awareness. We are also capitalizing on our strengths in real-world AI data to advance the development of Optimus, a general purpose, autonomous humanoid robot. These plans are subject to uncertainties inherent in establishing and ramping manufacturing operations, which may be exacerbated by new product and manufacturing technologies we introduce, the number of concurrent international projects, any industry-wide component constraints, labor shortages and any future impact from events outside of our control. For example, changes to fiscal and trade policy with"
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::47",
+        "ticker": "TSLA",
+        "form": "10-K",
+        "section": "ITEM 1A. RISK FACTORS",
+        "score": 0.032018442622950824,
+        "text": "intend to incorporate sequential design and manufacturing changes into vehicles and energy products manufactured at each new factory. If we experience any issues or delays in meeting our projected timelines, costs, capital efficiency and production capacity for our new factories, expanding and managing teams to implement iterative design and production changes there, maintaining and complying with the terms of any debt financing that we obtain to fund them or generating and maintaining demand for the vehicles and energy products we manufacture there, our business, prospects, operating results and financial condition may be harmed. Such delays could also in turn affect our ability to meet demand for our services, such as Robotaxi, which are dependent upon the production and deployment of Tesla vehicles. We may be unable to grow our global product sales, delivery and installation capabilities and our servicing and vehicle charging networks, or we may be unable to accurately project and effectively manage our growth. Our success will depend on our ability to continue to expand our sales capabilities. We are targeting a global mass demographic with a broad range of potential customers, in which we have relatively limited experience projecting demand 13 Table of Contents and pricing our products. We currently produce numerous international variants at a limited number of factories, and if our specific demand expectations for"
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::124",
+        "ticker": "TSLA",
+        "form": "10-K",
+        "section": "ITEM 4. MINE SAFETY DISCLOSURES",
+        "score": 0.0315136476426799,
+        "text": "compared to the prior year. In 2025, our net income attributable to common stockholders was $3.79 billion, representing a decrease of $3.30 billion compared to the prior year. We continue to ramp production and build and optimize our manufacturing capacity, expand our operations while focusing on further cost reductions and operational efficiencies to enable increased deliveries and deployments of our products, and invest in research and development to accelerate our AI, software and fleet-based profits for further revenue growth. We ended 2025 with $44.06 billion in cash and cash equivalents and investments, representing an increase of $7.50 billion from the end of 2024. Our cash flows provided by operating activities were $14.75 billion in 2025 compared to $14.92 billion in 2024, representing a decrease of $176 million. Capital expenditures amounted to $8.53 billion in 2025 compared to $11.34 billion in 2024, representing a decrease of $2.82 billion. Overall growth has allowed our business to generally fund itself, and we will continue to make critical high-value investments while maintaining a strong balance sheet. 31 Management Opportunities, Challenges and Uncertainties and 2026 Outlook Automotive and AI Enabled Products\u2014Production We are focused on growing and optimizing our manufacturing capacity, which includes capacity for manufacturing newer vehicle models and future vehicles utilizing aspects of our next generation platform, while maximizing production rate and efficiency"
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::123",
+        "ticker": "TSLA",
+        "form": "10-K",
+        "section": "ITEM 4. MINE SAFETY DISCLOSURES",
+        "score": 0.031024531024531024,
+        "text": "prudent investments. In 2025, we produced approximately 1.66 million consumer vehicles and delivered approximately 1.64 million consumer vehicles. We are focused on profitable growth via a differentiated and efficiently managed product portfolio that leverages our existing factories and production lines, further improving and deploying our FSD (Supervised) capabilities, including future autonomous capabilities through our purpose-built Robotaxi product, Cybercab, reducing costs, increasing vehicle production, utilized capacity and delivery capabilities, improving and developing our vehicles, battery and AI compute technologies, vertically integrating and localizing our supply chain, and expanding our global infrastructure, including our service and charging infrastructure. We have continued to expand and refine our Robotaxi service after its June 2025 launch, capitalizing on our AI investments and scalable mobility infrastructure to advance a service-driven business model. In 2025, we deployed 46.7 GWh of energy storage products. We are focused on ramping the production, increasing the market penetration of our energy storage products, developing our battery technologies and vertically integrating, localizing and expanding our supply chain. In 2025, we recognized total revenues of $94.83 billion, representing a decrease of $2.86 billion compared to the prior year. In 2025, our net income attributable to common stockholders was $3.79 billion, representing a decrease of $3.30 billion compared to the prior year. We continue to ramp production and build and optimize our manufacturing capacity,"
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::46",
+        "ticker": "TSLA",
+        "form": "10-K",
+        "section": "ITEM 1A. RISK FACTORS",
+        "score": 0.030090497737556562,
+        "text": "costs, which may harm our business and operating results. We may be unable to meet our projected construction timelines, costs and production ramps at new factories, or we may experience difficulties in generating and maintaining demand for products manufactured there and related services. Our ability to increase production of our vehicles and energy products on a sustained basis, make them affordable globally by accessing local supply chains and workforces and streamline delivery logistics is dependent on the construction and ramp of our current and future factories. The construction of and commencement and ramp of production at these factories are subject to a number of uncertainties inherent in all new manufacturing operations, including ongoing compliance with regulatory requirements, procurement and maintenance of construction, environmental and operational licenses and permitting, supply chain constraints, hiring, training and retention of qualified employees and the pace of bringing production equipment and processes online with the capability to manufacture high-quality units at scale. Moreover, we will have to establish and ramp production of our proprietary battery cells and packs at our new factories, and we additionally intend to incorporate sequential design and manufacturing changes into vehicles and energy products manufactured at each new factory. If we experience any issues or delays in meeting our projected timelines, costs, capital efficiency and production capacity for our new factories,"
+      }
+    ]
+  },
+  {
+    "query": "What did the company announce in its most recent 8-K filing?",
+    "provider": "groq",
+    "answer": "In its most recent Form\u202f8\u2011K, Apple disclosed that it had issued a press release reporting the company\u2019s financial results for its third fiscal quarter, which ended June\u202f27,\u202f2026\u30101\u3011.",
+    "faithfulness": {
+      "citations": [
+        1
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_8-K_2026-07-30::2",
+        "ticker": "AAPL",
+        "form": "8-K",
+        "section": "Full Document",
+        "score": 0.03055037313432836,
+        "text": "emerging growth company, indicate by check mark if the Registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act. \u2610 Item 2.02 Results of Operations and Financial Condition. On July 30, 2026, Apple Inc. (\u201cApple\u201d) issued a press release regarding Apple\u2019s financial results for its third fiscal quarter ended June 27, 2026. A copy of Apple\u2019s press release is attached hereto as Exhibit 99.1. The information contained in this Current Report shall not be deemed \u201cfiled\u201d for purposes of Section 18 of the Securities Exchange Act of 1934, as amended (the \u201cExchange Act\u201d), or incorporated by reference in any filing under the Securities Act of 1933, as amended, or the Exchange Act, except as shall be expressly set forth by specific reference in such a filing. Item 9.01 Financial Statements and Exhibits. (d) Exhibits. Exhibit Number Exhibit Description 99.1 Press release issued by Apple Inc. on July 30, 2026. 104 Inline XBRL for the cover page of this Current Report on Form 8-K. SIGNATURE Pursuant to the requirements of the Securities Exchange Act of 1934, the Registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized. Date: July 30, 2026 Apple Inc. By:"
+      },
+      {
+        "chunk_id": "MSFT_8-K_2026-09-02::2",
+        "ticker": "MSFT",
+        "form": "8-K",
+        "section": "Full Document",
+        "score": 0.02782608695652174,
+        "text": "on two reportable segments: (1) Agents and Infra and (2) Devices and Consumer. A copy of the presentation materials is furnished as Exhibit 99.1 to this report. The exhibit furnished on this report under Regulation FD provides a description of our updated reporting structure and presents summary financial information and historical data on a basis consistent with the updated reporting structure. In accordance with General Instruction B.2 of Form 8-K, the information in this Current Report on Form 8-K, including Exhibit 99.1, shall not be deemed to be \u201cfiled\u201d for purposes of Section 18 of the Securities Exchange Act of 1934, as amended (the \u201cExchange Act\u201d), or otherwise subject to the liability of that section, and shall not be incorporated by reference into any registration statement or other document filed under the Securities Act of 1933, as amended, or the Exchange Act, except as shall be expressly set forth by specific reference in such filing. Item 9.01. Financial Statements and Exhibits (d) Exhibits: 99.1 Investor Presentation, dated September 2026, titled \u201cFY27 Segments and Investor Metrics\u201d 104 Cover Page Interactive Data File (embedded within the Inline XBRL document) SIGNATURE Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized. MICROSOFT CORPORATION"
+      },
+      {
+        "chunk_id": "AAPL_8-K_2026-07-30::0",
+        "ticker": "AAPL",
+        "form": "8-K",
+        "section": "Full Document",
+        "score": 0.026785714285714288,
+        "text": "aapl-20260730 false 0000320193 0000320193 2026-07-30 2026-07-30 0000320193 us-gaap:CommonStockMember 2026-07-30 2026-07-30 0000320193 aapl:A1.625NotesDue2026Member 2026-07-30 2026-07-30 0000320193 aapl:A2.000NotesDue2027Member 2026-07-30 2026-07-30 0000320193 aapl:A1.375NotesDue2029Member 2026-07-30 2026-07-30 0000320193 aapl:A3.050NotesDue2029Member 2026-07-30 2026-07-30 0000320193 aapl:A0.500Notesdue2031Member 2026-07-30 2026-07-30 0000320193 aapl:A3.600NotesDue2042Member 2026-07-30 2026-07-30 UNITED STATES SECURITIES AND EXCHANGE COMMISSION Washington, D.C. 20549 FORM 8-K CURRENT REPORT Pursuant to Section 13 OR 15(d) of The Securities Exchange Act of 1934 July 30, 2026 Date of Report (Date of earliest event reported) Apple Inc. (Exact name of Registrant as specified in its charter) California 001-36743 94-2404110 (State or other jurisdiction of incorporation) (Commission File Number) (I.R.S. Employer Identification No.) One Apple Park Way Cupertino , California 95014 (Address of principal executive offices) (Zip Code) ( 408 ) 996-1010 (Registrant\u2019s telephone number, including area code) Not applicable (Former name or former address, if changed since last report.) Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the Registrant under any of the following provisions: \u2610 Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425) \u2610 Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12) \u2610 Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b)) \u2610 Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c)) Securities registered"
+      },
+      {
+        "chunk_id": "MSFT_8-K_2026-09-02::0",
+        "ticker": "MSFT",
+        "form": "8-K",
+        "section": "Full Document",
+        "score": 0.01639344262295082,
+        "text": "8-K 0000789019 false 0000789019 2026-09-02 2026-09-02 0000789019 msft:NotesTwoPointOneTwoFivePercentDueDecemberSixTwentyTwentyOneMember 2026-09-02 2026-09-02 0000789019 msft:NotesThreePointOneTwoFivePercentDueDecemberSixTwentyTwentyEightMember 2026-09-02 2026-09-02 0000789019 msft:NotesTwoPointSixTwoFivePercentDueMayTwoTwentyThirtyThreeMember 2026-09-02 2026-09-02 UNITED STATES SECURITIES AND EXCHANGE COMMISSION WASHINGTON, D.C. 20549 FORM 8-K CURRENT REPORT PURSUANT TO SECTION 13 OR 15(D) OF THE SECURITIES EXCHANGE ACT OF 1934 Date of Report (Date of earliest event reported) September 2, 2026 Microsoft Corporation Washington 001-37845 91-1144442 (State or Other Jurisdiction of Incorporation) (Commission File Number) (IRS Employer Identification No.) One Microsoft Way , Redmond , Washington 98052-6399 ( 425 ) 882-8080 www.microsoft.com/investor Check the appropriate box below if the Form 8-K filing is intended to simultaneously satisfy the filing obligation of the registrant under any of the following provisions (see General Instruction A.2. below): \u2610 Written communications pursuant to Rule 425 under the Securities Act (17 CFR 230.425) \u2610 Soliciting material pursuant to Rule 14a-12 under the Exchange Act (17 CFR 240.14a-12) \u2610 Pre-commencement communications pursuant to Rule 14d-2(b) under the Exchange Act (17 CFR 240.14d-2(b)) \u2610 Pre-commencement communications pursuant to Rule 13e-4(c) under the Exchange Act (17 CFR 240.13e-4(c)) Securities registered pursuant to Section 12(b) of the Act: Title of each class Trading Symbol Name of exchange on which registered Common stock, $0.00000625 par value per share MSFT NASDAQ 3.125% Notes due 2028 MSFT NASDAQ 2.625% Notes due 2033 MSFT NASDAQ Indicate by check mark"
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::12",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 1. Business",
+        "score": 0.01639344262295082,
+        "text": "employee sentiment in areas like career development, manager performance and inclusion. The Company is committed to the safety and security of its team members everywhere it operates. The Company supports employees with general safety, security and crisis management training, and by putting specific programs in place for those working in potentially high-hazard environments. Available Information The Company\u2019s Annual Reports on Form 10-K, Quarterly Reports on Form 10-Q, Current Reports on Form 8-K, and amendments to reports filed pursuant to Sections 13(a) and 15(d) of the Securities Exchange Act of 1934, as amended (\u201cExchange Act\u201d), are filed with the U.S. Securities and Exchange Commission (\u201cSEC\u201d). Such reports and other information filed by the Company with the SEC are available free of charge at investor.apple.com/investor-relations/sec-filings/default.aspx when such reports are available on the SEC\u2019s website. The Company periodically provides certain information for investors on its corporate website, www.apple.com, and its investor relations website, investor.apple.com. This includes press releases and other information about financial performance, information on corporate governance, and details related to the Company\u2019s annual meeting of shareholders. The information contained on the websites referenced in this Form 10-K is not incorporated by reference into this filing. Further, the Company\u2019s references to website URLs are intended to be inactive textual references only. Apple Inc. | 2025 Form 10-K | 4"
+      }
+    ]
+  },
+  {
+    "query": "What is the company's dividend or capital return policy?",
+    "provider": "groq",
+    "answer": "Apple\u2019s capital\u2011return policy includes a cash dividend and an ongoing share\u2011repurchase program.  As of September\u202f27\u202f2025 the company paid a quarterly cash dividend of\u202f$0.26 per share and intends to increase the dividend each year, subject to board declaration\u202f[3].  Apple also maintains an authorized share\u2011repurchase program of up to\u202f$100\u202fbillion; in 2025 it repurchased\u202f$89.3\u202fbillion of its common stock and paid\u202f$15.4\u202fbillion in dividends and dividend equivalents\u202f[5].\n\nTesla, by contrast, has never declared or paid cash dividends and does not anticipate paying any in the foreseeable future; any future dividend would be at the discretion of its board of directors\u202f[1].",
+    "faithfulness": {
+      "citations": [
+        1,
+        3,
+        5
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::119",
+        "ticker": "TSLA",
+        "form": "10-K",
+        "section": "ITEM 4. MINE SAFETY DISCLOSURES",
+        "score": 0.03057889822595705,
+        "text": "Not applicable. 28 PART II ITEM 5. MARKET FOR REGISTRANT\u2019S COMMON EQUITY, RELATED STOCKHOLDER MATTERS AND ISSUER PURCHASES OF EQUITY SECURITIES Market Information Our common stock has traded on The NASDAQ Global Select Market under the symbol \u201cTSLA\u201d since it began trading on June 29, 2010. Our initial public offering was priced at approximately $1.13 per share on June 28, 2010 as adjusted to give effect to the three-for-one stock split effected in the form of a stock dividend in August 2022 and the five-for-one stock split effected in the form of a stock dividend in August 2020. Holders As of January 23, 2026, there were 9,797 holders of record of our common stock. A substantially greater number of holders of our common stock are \u201cstreet name\u201d or beneficial holders, whose shares are held by banks, brokers and other financial institutions. Dividend Policy We have never declared or paid cash dividends on our common stock. We currently do not anticipate paying any cash dividends in the foreseeable future. Any future determination to declare cash dividends will be made at the discretion of our board of directors, subject to applicable laws, and will depend on our financial condition, results of operations, capital requirements, general business conditions and other factors that our board of directors may deem relevant. 29 Stock Performance Graph"
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::78",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 4. Mine Safety Disclosures",
+        "score": 0.028958333333333336,
+        "text": "purchases 27,247 $ 238.56 27,247 Total 89,498 $ 99,779 (1) On May 2, 2024, the Company announced a program to repurchase up to $110 billion of the Company\u2019s common stock. During the fourth quarter of 2025, the Company utilized the final $19.8 billion under the May 2024 program. On May 1, 2025, the Company announced an additional program to repurchase up to $100 billion of the Company\u2019s common stock. As of September 27, 2025, $221 million of the May 2025 program had been utilized. The programs do not obligate the Company to acquire a minimum amount of shares. Under the programs, shares may be repurchased in privately negotiated or open market transactions, including under plans complying with Rule 10b5-1 under the Exchange Act. Apple Inc. | 2025 Form 10-K | 19 Company Stock Performance The following graph shows a comparison of five-year cumulative total shareholder return, calculated on a dividend-reinvested basis, for the Company, the S&P 500 Index and the Dow Jones U.S. Technology Total Stock Market Index. The graph assumes $100 was invested in each of the Company\u2019s common stock, the S&P 500 Index and the Dow Jones U.S. Technology Total Stock Market Index as of the market close on September 25, 2020. Past stock price performance is not necessarily indicative of future stock price performance. September 2020 September"
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::90",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 4. Mine Safety Disclosures",
+        "score": 0.02889344262295082,
+        "text": "variety of individual suppliers. As of September 27, 2025, the Company had manufacturing purchase obligations of $56.2 billion, with $55.4 billion payable within 12 months. Other Purchase Obligations The Company\u2019s other purchase obligations primarily consist of noncancelable obligations to acquire capital assets, including assets related to product manufacturing, and noncancelable obligations related to supplier arrangements, licensed intellectual property and content, and distribution rights. As of September 27, 2025, the Company had other purchase obligations of $14.8 billion, with $7.0 billion payable within 12 months. Deemed Repatriation Tax Payable As of September 27, 2025, the balance of the deemed repatriation tax payable imposed by the U.S. Tax Cuts and Jobs Act of 2017 (\u201cTCJA\u201d) was $8.8 billion, which was payable within 12 months. Apple Inc. | 2025 Form 10-K | 25 Capital Return Program In addition to its contractual cash requirements, the Company has an authorized share repurchase program. The program does not obligate the Company to acquire a minimum amount of shares. As of September 27, 2025, the Company\u2019s quarterly cash dividend was $0.26 per share. The Company intends to increase its dividend on an annual basis, subject to declaration by the Board. In May 2025, the Company announced a new share repurchase program of up to $100 billion and raised its quarterly dividend from $0.25 to $0.26 per share"
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::66",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.028665028665028666,
+        "text": "and stock price could be materially adversely affected. Apple Inc. | 2025 Form 10-K | 16 General Risks The price of the Company\u2019s stock is subject to volatility. The Company\u2019s stock has experienced substantial price volatility in the past and may continue to do so in the future. Additionally, the Company, the technology industry and the stock market as a whole have, from time to time, experienced extreme stock price and volume fluctuations that have affected stock prices in ways that may have been unrelated to these companies\u2019 operating performance. Price volatility may cause the average price at which the Company repurchases its stock in a given period to exceed the stock\u2019s price at a given point in time. The Company believes the price of its stock should reflect expectations of future growth and profitability. The Company also believes the price of its stock should reflect expectations that its cash dividend will continue at current levels or grow, and that its current share repurchase program will be fully consummated. Future dividends are subject to declaration by the Company\u2019s Board of Directors (\u201cBoard\u201d), and the Company\u2019s share repurchase program does not obligate it to acquire any specific number of shares. If the Company fails to meet expectations related to future growth, profitability, dividends, share repurchases or other market expectations, the price"
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::91",
+        "ticker": "AAPL",
+        "form": "10-K",
+        "section": "Item 4. Mine Safety Disclosures",
+        "score": 0.02857142857142857,
+        "text": "increase its dividend on an annual basis, subject to declaration by the Board. In May 2025, the Company announced a new share repurchase program of up to $100 billion and raised its quarterly dividend from $0.25 to $0.26 per share beginning in May 2025. During 2025, the Company repurchased $89.3 billion of its common stock and paid dividends and dividend equivalents of $15.4 billion. Recent Accounting Pronouncements Internal-Use Software In September 2025, the Financial Accounting Standards Board (\u201cFASB\u201d) issued Accounting Standards Update (\u201cASU\u201d) No. 2025-06, Intangibles\u2014Goodwill and Other\u2014Internal-Use Software (Subtopic 350-40): Targeted Improvements to the Accounting for Internal-Use Software (\u201cASU 2025-06\u201d), which modernizes the accounting for internal-use software. ASU 2025-06 removes all references to software development stages and requires capitalization of software costs when management has committed to the software project and it is probable the software will be completed and perform its intended use. ASU 2025-06 will be effective for the Company in its first quarter of 2029, and early adoption is permitted. The Company is currently evaluating the timing and method of its adoption of ASU 2025-06. Disaggregation of Income Statement Expenses In November 2024, the FASB issued ASU No. 2024-03, Income Statement\u2014Reporting Comprehensive Income\u2014Expense Disaggregation Disclosures (Subtopic 220-40): Disaggregation of Income Statement Expenses (\u201cASU 2024-03\u201d) and in January 2025, the FASB issued ASU No. 2025-01, Income Statement\u2014Reporting"
+      }
+    ]
+  }
+]

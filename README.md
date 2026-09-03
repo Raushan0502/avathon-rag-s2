@@ -142,6 +142,48 @@ candidates rather than being redundant with dense search. The actual
 quantitative dense-vs-hybrid comparison (Precision@k, Recall@k) against
 the held-out QA set is Step 6's job, using this same module.
 
+## Generation (Step 5)
+
+`src/generation.py` builds a grounded-answer prompt from the top-k hybrid
+retrieval results (each source numbered, e.g. `[1]`, with its
+ticker/form/section shown), calls an LLM, and annotates the answer for
+faithfulness.
+
+**Provider fallback chain: Groq → Mistral → Gemini.** All three are
+external LLM APIs with a free tier — explicitly allowed for Track D, and
+kept at zero inference cost. Groq (`openai/gpt-oss-120b`) is primary for
+latency; Mistral (`mistral-small-latest`) is the tested, working fallback;
+Gemini (`gemini-2.0-flash`) is configured as a third fallback but wasn't
+exercised in this session's live testing — Groq answered every demo call,
+so Mistral and Gemini never got triggered. Which provider actually served
+an answer is recorded on every response (`result["provider"]`), so the
+fallback is observable rather than silent. Full rationale in the module
+docstring.
+
+**Hallucination mitigation:** the system prompt requires every claim to
+carry a source citation and instructs the model to say it cannot answer
+rather than guess when context is insufficient.
+**Hallucination detection:** `annotate_faithfulness()` checks each answer
+for citation markers and for the explicit "cannot answer" refusal phrase,
+flagging any answer with zero citations as `UNGROUNDED`. This caught a
+real bug during testing, not a hypothetical one: two answers were
+initially flagged `UNGROUNDED` because Groq's model emitted full-width
+citation brackets (`【4】`) instead of the ASCII `[4]` the prompt
+requested — the citation *was* there, the detector's regex just didn't
+recognize that bracket style. Fixed by widening the regex to accept both
+forms; the original false-positive-flagged answers are what surfaced the
+gap. This is exactly the kind of silent-failure mode Track D's write-up
+questions ask about, and it's called out here rather than quietly patched
+without a record.
+
+`scripts/demo_qa.py` runs 6 representative queries (one deliberately
+probing a topic — dividend policy — not obviously covered by the risk/
+legal/competition-heavy sections retrieved earlier, to see the pipeline
+handle a different retrieval path) end-to-end and saves the full trace
+(retrieved context + generated answer + faithfulness annotation per
+query) to `results/qa_demo.json`. All 6 came back correctly grounded and
+cited on the corpus.
+
 ## Repository structure
 
 ```
@@ -170,6 +212,8 @@ copy .env.example .env          # then fill in ANTHROPIC_API_KEY or OPENAI_API_K
 python scripts/check_setup.py   # sanity check: env + folder layout
 python scripts/fetch_corpus.py  # sources the corpus into data/raw/ (see Data source below)
 python scripts/build_index.py   # ingest -> chunk -> embed -> FAISS index (see Ingestion below)
+python scripts/compare_retrieval.py  # dense vs hybrid qualitative smoke test (see Hybrid retrieval below)
+python scripts/demo_qa.py       # end-to-end Q&A demo -> results/qa_demo.json (see Generation below)
 ```
 
 `torch` is installed separately first from PyTorch's CPU-only wheel index —
@@ -189,8 +233,8 @@ full pipeline is verified working end-to-end.
 - [x] **Step 1 — Repo scaffold & environment setup**
 - [x] **Step 2 — Data acquisition & corpus documentation**
 - [x] **Step 3 — Ingestion pipeline** (load → chunk → embed → index)
-- [x] **Step 4 — Hybrid retrieval** (dense + BM25 + fusion/re-ranking, vs. dense-only) (this commit)
-- [ ] **Step 5 — Generation** (grounded answers + faithfulness annotation)
+- [x] **Step 4 — Hybrid retrieval** (dense + BM25 + fusion/re-ranking, vs. dense-only)
+- [x] **Step 5 — Generation** (grounded answers + faithfulness annotation) (this commit)
 - [ ] **Step 6 — Evaluation harness** (≥20 QA pairs, Precision@k/Recall@k/faithfulness)
 - [ ] **Step 7 — Write-up, video, final polish**
 
