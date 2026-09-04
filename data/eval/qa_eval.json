@@ -214,5 +214,95 @@
     "gold_doc_id": "TSLA_8-K_2026-07-22",
     "gold_section": "Full Document",
     "gold_chunk_id": "TSLA_8-K_2026-07-22::2"
+  },
+  {
+    "id": "q25",
+    "ticker": "TSLA",
+    "doc_type": "contract",
+    "query": "Under Tesla's Stock Option Award Agreement, how long may an option be exercised after the participant ceases to be a Service Provider because of death or disability?",
+    "reference_answer": "Twelve (12) months after the participant ceases to be a Service Provider, and never after the Term/Expiration date.",
+    "gold_doc_id": "TSLA_tsla-2025x12x31xex109",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "TSLA_tsla-2025x12x31xex109::1"
+  },
+  {
+    "id": "q26",
+    "ticker": "TSLA",
+    "doc_type": "contract",
+    "query": "Which Tesla equity plan governs the Restricted Stock Unit Agreement, and what happens to terms not defined in that agreement?",
+    "reference_answer": "The Tesla, Inc. Amended and Restated 2019 Equity Incentive Plan; terms not otherwise defined in the Award Agreement carry the meanings defined in that Plan.",
+    "gold_doc_id": "TSLA_tsla-2025x12x31xex1010",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "TSLA_tsla-2025x12x31xex1010::0"
+  },
+  {
+    "id": "q27",
+    "ticker": "MSFT",
+    "doc_type": "policy",
+    "query": "What is the stated purpose of Microsoft's General Insider Trading Policy?",
+    "reference_answer": "To prevent the misuse of material, nonpublic information about Microsoft or other publicly traded companies obtained by virtue of your position at Microsoft.",
+    "gold_doc_id": "MSFT_msft-ex19_1",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "MSFT_msft-ex19_1::0"
+  },
+  {
+    "id": "q28",
+    "ticker": "MSFT",
+    "doc_type": "policy",
+    "query": "Under Microsoft's insider trading policy, which family relationships can give rise to beneficial ownership of shares?",
+    "reference_answer": "Shares owned by immediate family members who live with you or use your address as their regular address -- for example a spouse, domestic partner, minor children, college students, parents, grandparents, and grandchildren.",
+    "gold_doc_id": "MSFT_msft-ex19_1",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "MSFT_msft-ex19_1::1"
+  },
+  {
+    "id": "q29",
+    "ticker": "MSFT",
+    "doc_type": "policy",
+    "query": "Who is covered by Microsoft's Executive Compensation Recovery Policy?",
+    "reference_answer": "Microsoft's Covered Officers -- the policy explains when Microsoft will be required or authorized to seek recovery of incentive compensation awarded or paid to them.",
+    "gold_doc_id": "MSFT_msft-ex97_1",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "MSFT_msft-ex97_1::0"
+  },
+  {
+    "id": "q30",
+    "ticker": "NIST",
+    "doc_type": "standard",
+    "query": "According to the NIST incident handling guide, why is detecting security breaches still necessary after controls have been implemented?",
+    "reference_answer": "Because residual risk inevitably persists after controls are implemented, detection is needed to alert the organization whenever incidents occur, so the impact can be contained and recovered from.",
+    "gold_doc_id": "NIST_SP-800-61r2",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "NIST_SP-800-61r2::58"
+  },
+  {
+    "id": "q31",
+    "ticker": "NIST",
+    "doc_type": "standard",
+    "query": "What does the GOVERN function of the NIST Cybersecurity Framework 2.0 address?",
+    "reference_answer": "Understanding organizational context; establishing cybersecurity strategy and cybersecurity supply chain risk management; roles, responsibilities and authorities; policy; and oversight of cybersecurity strategy.",
+    "gold_doc_id": "NIST_CSF-2.0",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "NIST_CSF-2.0::11"
+  },
+  {
+    "id": "q32",
+    "ticker": "EMAIL",
+    "doc_type": "email",
+    "query": "What was decided about the Atlanta Gas Light Peaker deal?",
+    "reference_answer": "After discussion with the customer, the transaction is not being pursued.",
+    "gold_doc_id": "EMAIL_hodge-j_inbox_474",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "EMAIL_hodge-j_inbox_474::0"
+  },
+  {
+    "id": "q33",
+    "ticker": "EMAIL",
+    "doc_type": "email",
+    "query": "Which meter numbers were requested for historical flow information, and how far back?",
+    "reference_answer": "Meters #1008, #1007, #1358, #1009 and #1175, with two years of history requested.",
+    "gold_doc_id": "EMAIL_bass-e_sent_881",
+    "gold_section": "Full Document",
+    "gold_chunk_id": "EMAIL_bass-e_sent_881::0"
   }
 ]

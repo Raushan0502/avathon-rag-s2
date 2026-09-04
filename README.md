@@ -48,38 +48,75 @@ well-known issuers from different sectors (consumer hardware, enterprise
 software, auto/energy), chosen so evaluation questions can span genuinely
 different business content rather than near-duplicate filings.
 
-**Document types, per company:**
-- Latest **10-K** (annual report) — long (2–8 MB HTML), highly structured:
-  business overview, risk factors, MD&A, financial statements, legal
-  proceedings. Representative of the "reports" document type in S2.
-- Latest **8-K** (current report on a material event) — short (25–40 KB
-  HTML), narrower and more announcement-like in style. Included
-  specifically to give the corpus document-length and document-style
-  diversity, since chunking and retrieval behave differently on long
-  structured filings vs. short single-topic announcements.
+S2 describes a company drowning in *"contracts, reports, SOPs, emails"*,
+so the corpus deliberately spans all four types and **three file formats**
+rather than one homogeneous source. **39 documents, 1,148 chunks:**
 
-6 documents total. Every document is fetched by
+| Type | Documents | Format | Chunks | Source |
+|---|---|---|---|---|
+| Reports | 3× 10-K, 3× 8-K | HTML | 809 | SEC EDGAR |
+| Standards / SOP | NIST SP 800-61r2, NIST CSF 2.0 | **PDF** | 230 | NIST (public domain) |
+| Policies | MSFT EX-19.1/19.2/19.3, EX-97.1 | HTML | 45 | SEC EDGAR exhibits |
+| Contracts | TSLA EX-10.9, EX-10.10 | HTML | 39 | SEC EDGAR exhibits |
+| Emails | 25× AESLC business emails | **plain text** | 25 | AESLC (Enron) corpus |
+
+- **Reports** — 10-Ks are long (2–8 MB) and highly structured; 8-Ks are
+  short and announcement-like, so chunking and retrieval behave
+  differently across the two.
+- **Contracts** — real Reg S-K item 601(b)(10) material-contract exhibits
+  (a stock option award agreement and an RSU agreement), discovered
+  *dynamically* from each 10-K's own filing index rather than hardcoded,
+  since exhibit numbering changes year to year. Apple contributes none —
+  it incorporates most exhibits by reference, and the fetcher simply
+  skips companies with no match rather than failing.
+- **Policies** — insider-trading and compensation-recovery policies. These
+  are genuine internal governance documents, the closest public analogue
+  to an enterprise SOP.
+- **Standards** — NIST security publications, chosen because they pair
+  directly with the filings' Item 1C Cybersecurity disclosures, making
+  genuine cross-document questions possible ("how does this company's
+  incident response compare to the NIST phases?"). They are also the
+  corpus's PDF-format documents.
+- **Emails** — real business correspondence in plain text, a register and
+  format completely unlike the filings.
+
+Every document is fetched by
 [`scripts/fetch_corpus.py`](scripts/fetch_corpus.py) and logged in
 [`data/raw/manifest.json`](data/raw/manifest.json) with its source URL,
-filing date, and a SHA-256 checksum, so the corpus is fully reproducible
-and auditable — re-running the script re-derives the same (or, past the
-next filing, an updated) corpus from the primary source. Raw HTML files
-themselves are gitignored (large, and trivially re-fetchable); the
-manifest is committed as the record of what was sourced.
+document type, format, and SHA-256 checksum, so the corpus is fully
+reproducible and auditable. Everything is keyless and free. The email
+sample is drawn with a fixed seed, so re-running reproduces the same 25
+emails and the evaluation stays stable. Raw files are gitignored (large,
+trivially re-fetchable); the manifest is committed as the record.
 
-**Scope/limitation acknowledged:** S2's prompt also mentions contracts,
-SOPs, and emails as document types. This corpus uses only SEC filings —
-still genuinely unstructured/semi-structured enterprise text requiring
-retrieval over long documents, but narrower in document *type* than a
-real enterprise content repository. This trade-off was made to keep the
-corpus verifiably real, free, and instantly reproducible without
-depending on any single company's website structure staying stable.
+**Limitations acknowledged:**
+- The **emails are a documented domain gap.** No public email archive
+  exists for Apple, Microsoft or Tesla, so the corpus uses the canonical
+  public business-email corpus (Enron, via AESLC). The emails are real
+  correspondence, but from a different company and era than the filings —
+  they add format and register diversity, not thematic continuity.
+- AESLC files carry `@subject` / `@ann*` trailers belonging to that
+  dataset's *subject-line summarization* task. The `@subject` line is
+  promoted into the text; the `@ann*` lines are human-written alternative
+  subject lines and are **dropped**, since indexing them would attribute
+  text to the sender that they never wrote.
 
 ## Ingestion & chunking (Step 3)
 
-Pipeline: `scripts/build_index.py` → `src/ingest.py` (HTML → clean text →
+Pipeline: `scripts/build_index.py` → `src/ingest.py` (load → clean text →
 section-aware chunks) → `src/embed_index.py` (embed with
 `BAAI/bge-small-en-v1.5` → build a FAISS `IndexFlatIP` index).
+
+**Document loading dispatches on file type**, since the corpus spans three
+formats and each loses something different in extraction:
+- **HTML** — BeautifulSoup, dropping script/style. Blank lines collapse but
+  single newlines survive, because the Item-header regex anchors on line
+  boundaries.
+- **PDF** — pdfplumber, page by page. The NIST PDFs carry a real text
+  layer so no OCR is needed; **a scanned document would come back empty
+  here**, and this pipeline has no OCR stage to fall back on.
+- **Plain text** — read as-is, minus the AESLC trailer handling described
+  above.
 
 **Chunking strategy** (full rationale in the `src/ingest.py` module
 docstring): two-stage — split each filing on its numbered "Item" section
@@ -100,7 +137,16 @@ labels end up named after a mid-page running-header artifact rather than
 the section's true title — the chunk *boundaries* are still correct,
 only the section *label* metadata is occasionally imprecise.
 
-Result on the 6 sourced filings: 809 chunks across 64 detected sections.
+**Only the SEC filings have "Item" headers**, so the non-SEC documents
+(NIST PDFs, contract/policy exhibits, emails) all take the
+`"Full Document"` fallback and are chunked by the sliding window alone.
+For emails and short exhibits that is the right answer. For an 80-page
+NIST PDF it is genuinely coarse — the document's own numbered headings
+could drive a finer split — and, as the Evaluation section shows, this
+coarseness **distorts Precision@k** for those documents rather than being
+a merely cosmetic limitation.
+
+Result: 1,148 chunks across 97 detected sections in 39 documents.
 A built-in smoke test in `build_index.py` embeds 3 hand-written queries
 and prints top-3 FAISS results after every rebuild — verified on this
 corpus to return correctly on-topic chunks (competition risk → Risk
@@ -192,11 +238,12 @@ cited on the corpus.
 ## Evaluation (Step 6)
 
 **Held-out eval set:** [`data/eval/qa_eval.json`](data/eval/qa_eval.json),
-24 hand-authored question/answer pairs (above the assignment's 20-pair
-minimum), spread across all 6 sourced documents. Each question was
-authored *against a specific, read, verified chunk* — not generated then
-checked after the fact — so every `reference_answer` and `gold_chunk_id`
-is traceable to real filing text. Ground truth is recorded at
+33 hand-authored question/answer pairs (above the assignment's 20-pair
+minimum), covering all five document types: 24 on reports, 3 on policies,
+2 each on contracts, standards and emails. Each question was authored
+*against a specific, read, verified chunk* — not generated then checked
+after the fact — so every `reference_answer` and `gold_chunk_id` is
+traceable to real source text. Ground truth is recorded at
 `(gold_doc_id, gold_section)` granularity rather than exact `chunk_id`,
 since adjacent overlapping chunks from the same section are equally
 valid evidence for a question (see `src/evaluate.py` docstring for the
@@ -204,27 +251,90 @@ full reasoning, including why Recall@k reduces to a binary hit-rate here:
 each question has exactly one known-relevant section, not an exhaustive
 relevance-judged set).
 
-**Retrieval comparison, k=5, n=24** (`scripts/run_evaluation.py` →
+**Retrieval comparison, k=5, n=33** (`scripts/run_evaluation.py` →
 `results/retrieval_eval.json`):
 
 | Mode   | Mean Precision@5 | Mean Recall@5 |
 |--------|------------------:|---------------:|
-| Dense  | 0.400             | 0.833           |
-| BM25   | 0.375             | 0.875           |
-| **Hybrid (RRF)** | **0.400** | **0.917** |
+| Dense  | 0.455             | 0.879           |
+| BM25   | 0.412             | 0.879           |
+| **Hybrid (RRF)** | **0.455** | **0.909** |
 
-Hybrid retrieval matches dense on precision and beats both single
-retrievers on recall — 91.7% of questions found their gold section
-somewhere in the top 5 under hybrid, vs. 83.3% dense-only and 87.5%
-BM25-only. This is the quantitative answer to the Step 4 write-up
-question ("show hybrid vs. dense-only quantitatively"): fusion is
-finding relevant sections that *either single retriever alone missed*,
-without diluting precision.
+**Hybrid wins on recall (0.909) over both single retrievers (0.879 each)
+at equal precision to dense.** That is the quantitative answer to the
+Step 4 question ("show hybrid vs. dense-only quantitatively"): fusion
+surfaces relevant sections that *either retriever alone missed*, without
+diluting precision. Recall is also the metric to trust here — see below.
 
-**End-to-end faithfulness** (hybrid retrieval → generation, all 24
-questions, `results/qa_eval_results.json`): **22 cited, 2 refused, 0
-ungrounded.** Getting to 0 ungrounded took a second real fix, not just
-the Step 5 one: 4 of the 24 answers were initially misflagged
+### Precision@k is not comparable across document types here
+
+Aggregate precision rose from 0.400 (24 questions, filings only) to 0.455
+after the corpus was widened. **That is a metric artifact, not an
+improvement**, and it is worth stating plainly rather than banking as a
+win. Breaking hybrid precision down by document type against the size of
+each question's gold section:
+
+| doc_type | n | mean P@5 | median gold-section size |
+|---|---:|---:|---:|
+| standard (NIST PDF) | 2 | **1.000** | **177 chunks** |
+| contract | 2 | 0.600 | 20 |
+| policy | 3 | 0.600 | 7 |
+| report | 24 | 0.400 | 13 |
+| email | 2 | **0.200** | **1 chunk** |
+
+The correlation is the whole story. The NIST PDFs score a perfect 1.000
+because each is a single 177-chunk `"Full Document"` section, so *any*
+chunk retrieved from that file counts as relevant — precision measures
+"did we land in the right file", not "did we find the right passage".
+Emails sit at the opposite extreme: their gold section is one chunk, so
+Precision@5 is **capped at 0.200 by construction**, and scoring exactly
+0.200 actually means the right email was retrieved every single time.
+
+So Precision@k here is a function of section granularity as much as
+retrieval quality, and the aggregate is only meaningful when compared
+*within* a document type. Recall@k, being a binary hit-rate, is immune to
+this and is the sounder basis for the dense/BM25/hybrid comparison above.
+Fixing this properly means finer section splitting for non-SEC documents
+(the NIST publications have their own numbered headings) — identified,
+not implemented, within the time budget.
+
+### "Cited" does not mean "correct" — a concrete failure
+
+The most important finding of the whole build, surfaced only because the
+corpus grew. **q14** ("Where does Tesla's 10-K direct readers for details
+on its material pending legal proceedings?") is answered, confidently and
+*with a citation*, from the wrong place:
+
+> Tesla's 10-K tells readers that details … are provided in its periodic
+> SEC filings — Form 10-K, 10-Q, 8-K and proxy statements — accessible
+> through the SEC's website and Tesla's investor-relations site **[2]**
+
+The correct answer is "Note 13, Commitments and Contingencies". Tesla's
+Item 3 is a single terse chunk that merely cross-references that note;
+when the corpus grew 42%, that tiny section was crowded out of the top 5,
+and retrieval returned Item 8 / Item 1 chunks instead. The model then did
+exactly what it was told — grounded its answer in the retrieved context
+and cited it — and produced a fluent, cited, **wrong** answer.
+
+This exposes the real limit of the hallucination-detection strategy:
+`annotate_faithfulness` verifies that an answer *is grounded in retrieved
+context*, which catches uncited assertions but is blind to
+**mis-grounded** ones — answers faithfully citing context that does not
+actually address the question. Catching those needs answer-vs-reference
+comparison (an LLM judge, or entailment scoring against the gold answer),
+which this pipeline does not have. Two honest consequences:
+1. The 30/33 "cited" figure below is a **grounding** rate, not an accuracy
+   rate. It should not be read as "91% correct".
+2. Growing a corpus can *regress* specific queries. q14 passed before the
+   expansion and fails after it. Small, terse, high-value sections are
+   the first casualties as a corpus scales — an argument for section-aware
+   boosting or a higher k, both untested here.
+
+**End-to-end grounding** (hybrid retrieval → generation, all 33
+questions, `results/qa_eval_results.json`): **30 cited, 3 refused, 0
+ungrounded** — read as a grounding rate, with the q14 caveat above.
+Getting to 0 ungrounded took a second real fix, not just
+the Step 5 one: 4 of the answers were initially misflagged
 `UNGROUNDED` because the model cited using a browsing-style format
 (`【1†L1-L4】` — source number + dagger + line range) that the Step 5
 regex didn't recognize, on top of the plain `[1]` and `【1】` forms it
@@ -236,12 +346,14 @@ quietly patched, since misreading the model's own citation format is
 exactly the kind of silent detector gap the "how do you detect
 hallucination" write-up question is really asking about.
 
-The remaining **2 refusals are legitimate, not bugs** — q08 / q16 ("Does
+The **3 refusals are legitimate, not bugs** — q08 / q16 ("Does
 \[company\] report unresolved staff comments?"), whose gold answer is the
-single word "None." Such a terse, low-signal section is hard for both
-dense and sparse retrieval to rank highly against a full-sentence
-question; it didn't make the top 5, and the model correctly refused
-rather than guess.
+single word "None", plus q21 below. Such a terse, low-signal section is
+hard for both dense and sparse retrieval to rank highly against a
+full-sentence question; it didn't make the top 5, and the model correctly
+refused rather than guess. Note this is the *same* root cause as q14 —
+tiny sections lose to larger ones — but with the safe outcome (refusal)
+rather than the dangerous one (a confident wrong answer).
 
 **One borderline case worth naming: q21 (MSFT total revenue).** Across
 repeated runs this question flips between answering-with-citation and
@@ -266,7 +378,7 @@ propagates into answer-level instability downstream.
 python -m unittest discover -s tests
 ```
 
-57 unit tests across the five `src/` modules, using the standard library's
+60 unit tests across the five `src/` modules, using the standard library's
 `unittest` (no extra dependency to install). They are deliberately
 **offline and fast** (~0.02s total): no network calls, no API keys, and no
 embedding-model download — `embed_texts` is exercised against a stub
@@ -274,6 +386,10 @@ encoder, and retrieval tests assemble a `RetrievalIndex` by hand from a
 3-vector FAISS index and a real BM25 index over three short strings.
 
 What they pin down, beyond the happy path:
+- **Multi-format loading** — HTML tag stripping, the email `@subject` /
+  `@ann*` trailer handling (annotation lines must never be indexed as if
+  the sender wrote them), and an unsupported extension raising rather
+  than silently yielding empty text.
 - **Chunking** — every word survives windowing, no window exceeds the size
   limit, and overlap actually repeats the right words.
 - **Section splitting** — the two real failure modes found while building
