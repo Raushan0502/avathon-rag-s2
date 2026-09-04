@@ -15,7 +15,14 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.ingest import chunk_prose, chunk_section, chunk_table, count_tokens, split_blocks
+from src.ingest import (
+    build_embed_text,
+    chunk_prose,
+    chunk_section,
+    chunk_table,
+    count_tokens,
+    split_blocks,
+)
 
 HEADER = "|  | 2025 | 2024 |"
 SEPARATOR = "| --- | --- | --- |"
@@ -129,6 +136,30 @@ class TestChunkSection(unittest.TestCase):
 
     def test_returns_nothing_for_empty_input(self) -> None:
         self.assertEqual(chunk_section(""), [])
+
+
+class TestBuildEmbedText(unittest.TestCase):
+    META = {"company": "Apple Inc.", "form": "10-K", "ticker": "AAPL"}
+
+    def test_prefixes_company_form_and_section(self) -> None:
+        out = build_embed_text(self.META, "Item 1A. Risk Factors", "Competition is intense.")
+        self.assertTrue(out.startswith("Apple Inc. | 10-K | Item 1A. Risk Factors"))
+
+    def test_original_chunk_text_is_preserved_after_the_header(self) -> None:
+        out = build_embed_text(self.META, "Item 2. Properties", "Cupertino, California.")
+        self.assertTrue(out.endswith("Cupertino, California."))
+
+    def test_placeholder_section_is_omitted(self) -> None:
+        # Non-SEC documents use "Full Document", which carries no meaning
+        # and would only dilute the embedding.
+        out = build_embed_text(self.META, "Full Document", "Body text.")
+        self.assertNotIn("Full Document", out)
+        self.assertTrue(out.startswith("Apple Inc. | 10-K"))
+
+    def test_missing_metadata_does_not_leave_empty_separators(self) -> None:
+        out = build_embed_text({}, "Full Document", "Body text.")
+        self.assertEqual(out, "Body text.")
+        self.assertNotIn("|", out)
 
 
 if __name__ == "__main__":

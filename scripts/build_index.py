@@ -53,7 +53,12 @@ def main() -> None:
     embedder = SentenceTransformer(EMBEDDING_MODEL_NAME)
 
     print("Embedding chunks...")
-    embeddings = embed_texts(embedder, [c["text"] for c in chunk_dicts], is_query=False)
+    # Embed the context-prefixed form (see ingest.build_embed_text), falling
+    # back to raw text for any chunk built before that field existed. The
+    # clean `text` is what retrieval returns and what the model quotes.
+    embeddings = embed_texts(
+        embedder, [c.get("embed_text") or c["text"] for c in chunk_dicts], is_query=False
+    )
     print(f"  embeddings shape: {embeddings.shape}")
 
     print("Building FAISS index...")

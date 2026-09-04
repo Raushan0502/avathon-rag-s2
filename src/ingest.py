@@ -597,6 +597,40 @@ def chunk_prose(
     return chunks
 
 
+def build_embed_text(doc_meta: dict, section_title: str, chunk_text: str) -> str:
+    """Prefix a chunk with its document and section context, for embedding.
+
+    A chunk is embedded in isolation, having lost every clue about where it
+    came from. "Competition is intense and margins are under pressure"
+    could be any issuer in any year, so it embeds no closer to "Apple
+    competition risk" than to any other company's near-identical wording --
+    and the corpus is full of near-identical wording, because filings are
+    written from common templates. Prefixing the provenance puts the
+    issuer, form and section into the vector itself.
+
+    Only the embedding input carries this prefix. The stored ``text`` stays
+    clean, because that is what gets shown to the model as quotable context
+    and to a reader as a citation; the prompt already states provenance
+    separately, so duplicating it there would waste context.
+
+    Args:
+        doc_meta: Manifest entry for the document.
+        section_title: Section the chunk came from.
+        chunk_text: The chunk itself.
+
+    Returns:
+        ``"<company> | <form> | <section>\\n<chunk>"``, with empty fields
+        omitted so non-SEC documents do not gain blank separators.
+    """
+    parts = [
+        doc_meta.get("company", ""),
+        doc_meta.get("form", ""),
+        section_title if section_title != "Full Document" else "",
+    ]
+    header = " | ".join(part for part in parts if part)
+    return f"{header}\n{chunk_text}" if header else chunk_text
+
+
 def chunk_section(text: str, max_tokens: int = CHUNK_MAX_TOKENS) -> list[str]:
     """Chunk one section, keeping tables intact and prose sentence-aligned.
 
@@ -667,6 +701,7 @@ def build_all_chunks(verbose: bool = True) -> list[dict]:
                         "chunk_index": len(doc_chunks),
                         "word_count": len(window.split()),
                         "text": window,
+                        "embed_text": build_embed_text(doc_meta, section_title, window),
                     }
                 )
 

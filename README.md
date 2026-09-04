@@ -252,6 +252,19 @@ header row**, and only 3 of 123 prose chunks start mid-sentence. The
 tokenizer is loaded once and cached, and falls back to a conservative
 word-based estimate if unavailable, so ingest still runs offline.
 
+**Contextual enrichment.** A chunk is embedded in isolation, having lost
+every clue about where it came from — and filings are written from common
+templates, so "Competition is intense and margins are under pressure"
+reads identically across a dozen issuers. Each chunk is therefore embedded
+with a provenance prefix, `Apple Inc. | 10-K | Item 1A. Risk Factors`,
+which puts the issuer, form and section into the vector itself
+(`build_embed_text`). Only the *embedding input* carries the prefix: the
+stored `text` stays clean, because that is what the model quotes and what
+a reader sees as a citation, and the prompt already states provenance
+separately. The placeholder `"Full Document"` section is omitted rather
+than embedded, since it carries no meaning and would only dilute the
+vector.
+
 Section detection is a regex heuristic, not a
 schema-aware parser, with two known failure modes that are corrected for
 explicitly in code (see `_dedupe_header_matches`): table-of-contents
@@ -514,7 +527,7 @@ propagates into answer-level instability downstream.
 python -m unittest discover -s tests
 ```
 
-115 unit tests across the six `src/` modules, using the standard library's
+119 unit tests across the six `src/` modules, using the standard library's
 `unittest` (no extra dependency to install). They are deliberately
 **offline and fast** (~0.02s total): no network calls, no API keys, and no
 embedding-model download — `embed_texts` is exercised against a stub
