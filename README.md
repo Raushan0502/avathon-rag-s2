@@ -305,14 +305,7 @@ address line still matches. That last one is left as-is and noted rather
 than chased — one artifact in 56 sections is not worth another regex
 epicycle.
 
-> **Rebuild pending.** The corpus was expanded to 100 documents and the
-> extraction/preprocessing stages rewritten *after* the index was last
-> built. Every chunk count, retrieval metric and evaluation figure below
-> this point still describes the earlier 39-document / 1,148-chunk build.
-> They are left in place rather than deleted so the before/after comparison
-> survives, but they are **not** current. The index rebuild and
-> re-evaluation happen together once the chunking work lands, since chunk
-> ids shift and the eval set's `gold_chunk_id` references need remapping.
+Result on the current corpus: **8,146 chunks across 100 documents.**
 
 A built-in smoke test in `build_index.py` embeds 3 hand-written queries
 and prints top-3 FAISS results after every rebuild — verified on this
@@ -347,13 +340,30 @@ cost (full trade-off in the module docstring). `RetrievalIndex.search(query,
 mode="dense"|"bm25"|"hybrid")` is the shared interface Step 5 (generation)
 and Step 6 (evaluation) both call.
 
-`scripts/compare_retrieval.py` is a qualitative smoke test (not the
-rigorous metric) run across 5 queries: hybrid changed the top-3 result
-set on every one of them (1–2 of 3 results reordered/replaced vs.
-dense-only), confirming BM25 is pulling in genuinely different
-candidates rather than being redundant with dense search. The actual
-quantitative dense-vs-hybrid comparison (Precision@k, Recall@k) against
-the held-out QA set is Step 6's job, using this same module.
+`scripts/compare_retrieval.py` is a qualitative smoke test showing that
+BM25 genuinely reorders results rather than duplicating dense retrieval.
+The quantitative comparison is in Step 6 below — and it does **not**
+favour hybrid.
+
+**Hybrid does not beat dense on this corpus, and that is the finding.**
+On an earlier 39-document corpus hybrid won on recall (0.917 vs 0.833),
+which is what this section originally claimed. Growing the corpus to 100
+documents reversed it: dense now leads on every metric, and hybrid sits
+between dense and BM25 — it is being *dragged down* by its weaker
+component rather than lifted by a complementary one.
+
+The mechanism is BM25's own statistics. **IDF is computed corpus-wide**,
+so adding 20 NIST security publications and nine more issuers made terms
+like "incident", "controls", "risk" and "net sales" far less
+discriminative. BM25's MRR fell from competitive to 0.554 while dense
+held at 0.762, and RRF — which weights the two retrievers equally by rank
+position — has no way to discount the degraded one.
+
+That is a genuinely more useful result than the original: it shows the
+fusion win was **corpus-dependent, not a property of hybrid retrieval**.
+A weighted fusion (or a learned re-ranker) that could down-weight BM25 as
+its IDF quality degrades is the obvious next step, and is named in the
+write-up as identified-but-not-implemented rather than quietly dropped.
 
 ## Generation (Step 5)
 
@@ -405,139 +415,124 @@ cited on the corpus.
 ## Evaluation (Step 6)
 
 **Held-out eval set:** [`data/eval/qa_eval.json`](data/eval/qa_eval.json),
-33 hand-authored question/answer pairs (above the assignment's 20-pair
-minimum), covering all five document types: 24 on reports, 3 on policies,
-2 each on contracts, standards and emails. Each question was authored
-*against a specific, read, verified chunk* — not generated then checked
-after the fact — so every `reference_answer` and `gold_chunk_id` is
-traceable to real source text. Ground truth is recorded at
-`(gold_doc_id, gold_section)` granularity rather than exact `chunk_id`,
-since adjacent overlapping chunks from the same section are equally
-valid evidence for a question (see `src/evaluate.py` docstring for the
-full reasoning, including why Recall@k reduces to a binary hit-rate here:
-each question has exactly one known-relevant section, not an exhaustive
-relevance-judged set).
+**45 hand-authored question/answer pairs** (the assignment asks for 20),
+covering all five document types. Every question was authored *against a
+specific, read, verified chunk* — not generated then checked afterwards —
+so each `reference_answer` and `gold_chunk_id` is traceable to real source
+text. Relevance is judged at `(gold_doc_id, gold_section)` rather than
+exact `chunk_id`, since overlapping chunks from the same section are
+equally valid evidence.
 
-**Retrieval comparison, k=5, n=33** (`scripts/run_evaluation.py` →
-`results/retrieval_eval.json`):
+### Questions are tiered by k, because Precision@k measures answer-set size
 
-| Mode   | Mean Precision@5 | Mean Recall@5 |
-|--------|------------------:|---------------:|
-| Dense  | 0.455             | 0.879           |
-| BM25   | 0.412             | 0.879           |
-| **Hybrid (RRF)** | **0.455** | **0.909** |
+The first 33 questions were all scored at k=5, which turned out to be
+close to meaningless for many of them. **Precision@5 cannot exceed
+`min(gold_chunks, 5) / 5`.** "Where is Apple headquartered?" is answered
+by exactly one chunk in the corpus, so a *perfect* retriever scores
+0.20 — the other four slots have nothing correct to hold. Eleven of the
+original 33 questions had one-chunk answers, dragging mean attainable
+precision to 0.65 rather than 1.0.
 
-**Hybrid wins on recall (0.909) over both single retrievers (0.879 each)
-at equal precision to dense.** That is the quantitative answer to the
-Step 4 question ("show hybrid vs. dense-only quantitatively"): fusion
-surfaces relevant sections that *either retriever alone missed*, without
-diluting precision. Recall is also the metric to trust here — see below.
+The fix is not to invent extra gold chunks — those passages genuinely do
+not answer the question, and labelling them would inflate the metric
+while measuring less. Instead each question now carries its own
+**`eval_k`, matched to how many chunks really answer it**, and 12 new
+questions were added spanning four tiers, each grounded in a real section
+of a real document:
 
-### Precision@k is not comparable across document types here
+| Tier | Question type | Example gold section | Gold chunks |
+|---|---|---|---|
+| **k=1** | known-item / pinpoint | Apple `Item 9. Changes in and Disagreements with Accountants` (`"None."`) | 1 |
+| **k=5** | narrow topical | Meta `Item 1C. Cybersecurity` | 4 |
+| **k=10** | broader topical | Amazon `Item 1. Business` | 10 |
+| **k=20** | wide topical | Meta `Item 3. Legal Proceedings` | 23 |
 
-Aggregate precision rose from 0.400 (24 questions, filings only) to 0.455
-after the corpus was widened. **That is a metric artifact, not an
-improvement**, and it is worth stating plainly rather than banking as a
-win. Breaking hybrid precision down by document type against the size of
-each question's gold section:
+Results report the raw figure, the **attainable ceiling**, and
+**attainment** against it, plus **MRR** — because Precision@1 is
+all-or-nothing and cannot distinguish a gold at rank 2 from one at rank
+500.
 
-| doc_type | n | mean P@5 | median gold-section size |
-|---|---:|---:|---:|
-| standard (NIST PDF) | 2 | **1.000** | **177 chunks** |
-| contract | 2 | 0.600 | 20 |
-| policy | 3 | 0.600 | 7 |
-| report | 24 | 0.400 | 13 |
-| email | 2 | **0.200** | **1 chunk** |
+### Retrieval results (n=45, per-question k)
 
-The correlation is the whole story. The NIST PDFs score a perfect 1.000
-because each is a single 177-chunk `"Full Document"` section, so *any*
-chunk retrieved from that file counts as relevant — precision measures
-"did we land in the right file", not "did we find the right passage".
-Emails sit at the opposite extreme: their gold section is one chunk, so
-Precision@5 is **capped at 0.200 by construction**, and scoring exactly
-0.200 actually means the right email was retrieved every single time.
+| Mode | P@k | ceiling | attainment | R@k | **MRR** |
+|--------|------:|------:|------:|------:|------:|
+| **Dense** | **0.349** | 0.738 | **47%** | **0.867** | **0.762** |
+| BM25 | 0.218 | 0.738 | 30% | 0.733 | 0.554 |
+| Hybrid (RRF) | 0.290 | 0.738 | 39% | 0.867 | 0.727 |
 
-So Precision@k here is a function of section granularity as much as
-retrieval quality, and the aggregate is only meaningful when compared
-*within* a document type. Recall@k, being a binary hit-rate, is immune to
-this and is the sounder basis for the dense/BM25/hybrid comparison above.
-Fixing this properly means finer section splitting for non-SEC documents
-(the NIST publications have their own numbered headings) — identified,
-not implemented, within the time budget.
+**Dense wins on every metric.** See Step 4 above for why hybrid lost once
+the corpus grew — BM25's corpus-wide IDF degraded, and equal-weight RRF
+cannot compensate.
 
-### "Cited" does not mean "correct" — a concrete failure
+### By tier (hybrid)
 
-The most important finding of the whole build, surfaced only because the
-corpus grew. **q14** ("Where does Tesla's 10-K direct readers for details
-on its material pending legal proceedings?") is answered, confidently and
-*with a citation*, from the wrong place:
+| Tier | n | P@k | ceiling | attainment | R@k | MRR |
+|---|---:|---:|---:|---:|---:|---:|
+| k=1 | 3 | 0.000 | 1.000 | 0% | 0.000 | 0.278 |
+| k=5 | 36 | 0.328 | 0.678 | 48% | 0.917 | 0.756 |
+| k=10 | 3 | 0.267 | 0.967 | 28% | 1.000 | 0.556 |
+| k=20 | 3 | 0.150 | 0.967 | 16% | 1.000 | 1.000 |
 
-> Tesla's 10-K tells readers that details … are provided in its periodic
-> SEC filings — Form 10-K, 10-Q, 8-K and proxy statements — accessible
-> through the SEC's website and Tesla's investor-relations site **[2]**
+Two things this exposes that a single blended number hid:
 
-The correct answer is "Note 13, Commitments and Contingencies". Tesla's
-Item 3 is a single terse chunk that merely cross-references that note;
-when the corpus grew 42%, that tiny section was crowded out of the top 5,
-and retrieval returned Item 8 / Item 1 chunks instead. The model then did
-exactly what it was told — grounded its answer in the retrieved context
-and cited it — and produced a fluent, cited, **wrong** answer.
+- **k=1 scores 0.000 but MRR is 0.278** — the golds sit at ranks 2–3, not
+  missing. For `k1c` the rank-1 result was a *different* Apple RSU exhibit
+  whose "1. General" clause is **textually identical** to the gold.
+  Retrieval cannot separate them because nothing distinguishes them; that
+  is a corpus property, not a retriever fault.
+- **As k grows, recall reaches 1.000 while precision attainment falls to
+  16%.** The system reliably *locates* the right section and then fills
+  the remaining slots with neighbours — a ranking-depth weakness, not a
+  findability one.
 
-This exposes the real limit of the hallucination-detection strategy:
-`annotate_faithfulness` verifies that an answer *is grounded in retrieved
-context*, which catches uncited assertions but is blind to
-**mis-grounded** ones — answers faithfully citing context that does not
-actually address the question. Catching those needs answer-vs-reference
-comparison (an LLM judge, or entailment scoring against the gold answer),
-which this pipeline does not have. Two honest consequences:
-1. The 30/33 "cited" figure below is a **grounding** rate, not an accuracy
-   rate. It should not be read as "91% correct".
-2. Growing a corpus can *regress* specific queries. q14 passed before the
-   expansion and fails after it. Small, terse, high-value sections are
-   the first casualties as a corpus scales — an argument for section-aware
-   boosting or a higher k, both untested here.
+**Caveat stated plainly:** the k=1/10/20 tiers have only 3 questions each,
+so those figures move in 33% steps. Only the k=5 tier (n=36) is
+statistically meaningful. Widening the thin tiers is the obvious next step.
 
-**End-to-end grounding** (hybrid retrieval → generation, all 33
-questions, `results/qa_eval_results.json`): **30 cited, 3 refused, 0
-ungrounded** — read as a grounding rate, with the q14 caveat above.
-Getting to 0 ungrounded took a second real fix, not just
-the Step 5 one: 4 of the answers were initially misflagged
-`UNGROUNDED` because the model cited using a browsing-style format
-(`【1†L1-L4】` — source number + dagger + line range) that the Step 5
-regex didn't recognize, on top of the plain `[1]` and `【1】` forms it
-already handled. Confirmed by inspecting the raw answer text (all 4 were
-in fact correctly grounded and cited), then widened the regex in
-`src/generation.py` to accept any non-bracket suffix between the source
-number and the closing bracket. Documented in the module rather than
-quietly patched, since misreading the model's own citation format is
+### End-to-end faithfulness (n=45)
+
+**41 cited, 4 refused, 0 ungrounded**, every answer served by Groq.
+
+The four refusals — q07, q21, q27, q31 — line up almost exactly with the
+five retrieval misses. **When retrieval fails, the system declines rather
+than fabricating**, which is the hallucination mitigation working as
+designed. `results/qa_eval_results.json` holds the full per-question
+trace; `results/qa_demo.json` holds six representative end-to-end Q&A
+traces with retrieved context, generated answer and faithfulness
+annotation.
+
+Reaching 0 ungrounded took two real fixes to the *detector*, not the
+model. Answers were initially misflagged `UNGROUNDED` because the model
+cited using full-width brackets (`【4】`) and a browsing-style format
+(`【1†L1-L4】`) that the regex did not recognise. Both were confirmed by
+reading the raw answers — every one was correctly grounded — before
+widening the pattern. Misreading the model's own citation format is
 exactly the kind of silent detector gap the "how do you detect
-hallucination" write-up question is really asking about.
+hallucination" question is really asking about.
 
-The **3 refusals are legitimate, not bugs** — q08 / q16 ("Does
-\[company\] report unresolved staff comments?"), whose gold answer is the
-single word "None", plus q21 below. Such a terse, low-signal section is
-hard for both dense and sparse retrieval to rank highly against a
-full-sentence question; it didn't make the top 5, and the model correctly
-refused rather than guess. Note this is the *same* root cause as q14 —
-tiny sections lose to larger ones — but with the safe outcome (refusal)
-rather than the dangerous one (a confident wrong answer).
+### "Cited" does not mean "correct"
 
-**One borderline case worth naming: q21 (MSFT total revenue).** Across
-repeated runs this question flips between answering-with-citation and
-refusing, even though retrieval is deterministic and hits the right
-section (`Item 8`) every time. The cause is that retrieval hits the right
-*section* but not reliably the right *sub-table*: MSFT's Item 8 is one
-giant section (a consequence of the Step 3 chunking limitation — running
-header artifacts collapse many distinct financial statements under one
-label) holding dozens of unrelated tables, so at k=5 the specific
-revenue-breakdown chunk sits right at the edge of the retrieved window.
-Whether the model can answer therefore depends on borderline context, and
-its refusal threshold is not perfectly stable run to run. Both outcomes
-are acceptable behaviour — it either cites correctly or declines, and in
-no run does it fabricate a revenue figure — but it is an honest caveat
-that the headline faithfulness split moves by one question between runs,
-and a concrete illustration of how a coarse section boundary upstream
-propagates into answer-level instability downstream.
+The most important limitation. `annotate_faithfulness` verifies an answer
+**is grounded in retrieved context** — it catches uncited assertions but
+is blind to **mis-grounded** ones: answers that faithfully cite context
+which does not actually address the question.
+
+This was caught live on an earlier corpus. Asked where Tesla's 10-K
+points readers for legal proceedings (correct answer: "Note 13,
+Commitments and Contingencies"), the system returned a fluent, confidently
+**cited, wrong** answer about SEC filings and investor-relations websites —
+because Tesla's one-chunk Item 3 had been crowded out of the top 5.
+
+Two consequences, stated so the numbers are not over-read:
+
+1. **41/45 "cited" is a grounding rate, not an accuracy rate.** It should
+   not be read as "91% correct".
+2. **Growing a corpus can regress specific queries.** Small, terse,
+   high-value sections are the first casualties as a corpus scales.
+
+Catching mis-grounding needs answer-vs-reference comparison — an LLM judge
+or entailment scoring against the gold answer — which this pipeline does
+not have. Identified, not implemented.
 
 ## Tests
 
@@ -545,7 +540,7 @@ propagates into answer-level instability downstream.
 python -m unittest discover -s tests
 ```
 
-125 unit tests across the six `src/` modules, using the standard library's
+139 unit tests across the six `src/` modules, using the standard library's
 `unittest` (no extra dependency to install). They are deliberately
 **offline and fast** (~0.02s total): no network calls, no API keys, and no
 embedding-model download — `embed_texts` is exercised against a stub
@@ -629,8 +624,11 @@ full pipeline is verified working end-to-end.
 - [x] **Step 3 — Ingestion pipeline** (load → chunk → embed → index)
 - [x] **Step 4 — Hybrid retrieval** (dense + BM25 + fusion/re-ranking, vs. dense-only)
 - [x] **Step 5 — Generation** (grounded answers + faithfulness annotation)
-- [x] **Step 6 — Evaluation harness** (≥20 QA pairs, Precision@k/Recall@k/faithfulness) (this commit)
-- [ ] **Step 7 — Write-up, video, final polish**
+- [x] **Step 6 — Evaluation harness** (45 QA pairs, Precision@k/Recall@k/MRR/faithfulness)
+- [x] **Step 7 — Corpus expansion to 100 docs**, multi-format extraction, preprocessing, validation gate
+- [x] **Step 8 — Production chunking** (token budgets, table preservation, contextual enrichment, structure-aware sections)
+- [ ] **Step 9 — Empirical embedding-model comparison** (the one algorithm choice still argued analytically rather than measured)
+- [ ] **Step 10 — Write-up, video, merge to `main`**
 
 ## Notes on reproducibility
 
