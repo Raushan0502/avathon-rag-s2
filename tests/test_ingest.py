@@ -10,7 +10,82 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.ingest import chunk_words, load_document_text, render_table, split_into_sections
+from src.ingest import (
+    chunk_words,
+    load_document_text,
+    normalise_text,
+    render_table,
+    split_into_sections,
+)
+
+
+class TestNormaliseText(unittest.TestCase):
+    def test_normalises_smart_quotes_and_dashes_to_ascii(self) -> None:
+        # The same word must embed identically whichever filer produced it.
+        self.assertEqual(normalise_text("the Company’s “plan”"), "the Company's \"plan\"")
+        self.assertEqual(normalise_text("non‑GAAP"), "non-GAAP")
+
+    def test_strips_control_characters_and_zero_width_marks(self) -> None:
+        self.assertEqual(normalise_text("clean\x00te​xt"), "cleantext")
+
+    def test_rejoins_words_hyphenated_across_a_line_break(self) -> None:
+        # PDF text layers break words at line ends; left alone, one word
+        # embeds as two meaningless fragments.
+        self.assertEqual(normalise_text("informa-\ntion security"), "information security")
+
+    def test_does_not_rejoin_a_genuine_compound_at_line_end(self) -> None:
+        # "Well-Known" keeps its hyphen: the continuation is capitalised,
+        # so it is a real compound, not a broken word.
+        self.assertIn("Well-", normalise_text("Well-\nKnown Sources"))
+
+    def test_removes_table_of_contents_dot_leaders(self) -> None:
+        text = "Real content here\n2.1 Events and Incidents ................ 6\nMore content"
+        self.assertEqual(normalise_text(text), "Real content here\nMore content")
+
+    def test_removes_standalone_page_numbers(self) -> None:
+        self.assertEqual(normalise_text("Content\n17\nMore"), "Content\nMore")
+
+    def test_removes_repeated_page_footers_that_differ_only_by_page_number(self) -> None:
+        # The real case: a running footer is never twice the same string,
+        # because it carries the page number. Exact matching misses it.
+        text = "\n".join(
+            f"In fiscal {2020 + i} the segment reported growth driven by higher unit "
+            f"volumes across every major geography.\n"
+            f"Apple Inc. | 2025 Form 10-K | {i + 10}"
+            for i in range(6)
+        )
+        cleaned = normalise_text(text)
+        self.assertNotIn("Form 10-K |", cleaned)
+
+    def test_digit_masking_does_not_delete_prose_differing_only_by_a_number(self) -> None:
+        # Masking digits makes such sentences look identical; only the
+        # word-count guard stops them being deleted as page furniture.
+        text = "\n".join(
+            f"In fiscal {2020 + i} the segment reported growth driven by higher unit "
+            f"volumes across every major geography."
+            for i in range(6)
+        )
+        cleaned = normalise_text(text)
+        self.assertEqual(len(cleaned.splitlines()), 6, "real prose must survive")
+        self.assertIn("In fiscal 2023", cleaned)
+
+    def test_keeps_a_long_repeated_line_which_is_probably_real_prose(self) -> None:
+        sentence = (
+            "The Company is subject to legal proceedings and claims that have not been "
+            "fully resolved and that have arisen in the ordinary course of business."
+        )
+        text = "\n".join([sentence] * 6)
+        self.assertIn(sentence, normalise_text(text))
+
+    def test_leaves_rendered_table_rows_untouched(self) -> None:
+        # Table rows repeat structurally and contain digits; the line-level
+        # cleaners must not dismantle what render_table just recovered.
+        row = "| Total net sales | $416,161 | $391,035 |"
+        text = "\n".join([row] * 6)
+        self.assertIn(row, normalise_text(text))
+
+    def test_collapses_runs_of_spaces_and_blank_lines(self) -> None:
+        self.assertEqual(normalise_text("a    b\n\n\n   \nc"), "a b\nc")
 
 
 class TestRenderTable(unittest.TestCase):
