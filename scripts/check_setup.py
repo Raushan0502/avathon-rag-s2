@@ -19,6 +19,11 @@ from src.config import (
 
 
 def main() -> None:
+    """Report the Python version, configured LLM providers, and data dirs.
+
+    Raises:
+        SystemExit: If any required data directory is missing.
+    """
     print(f"Python: {sys.version.split()[0]}")
     print(f"Project root: {ROOT_DIR}")
     configured = [

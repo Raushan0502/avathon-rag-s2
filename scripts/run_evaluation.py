@@ -37,6 +37,15 @@ K = 5
 
 
 def run_retrieval_comparison(index: RetrievalIndex, eval_set: list[dict]) -> dict:
+    """Score every eval question under each retrieval mode.
+
+    Args:
+        index: Loaded retrieval index.
+        eval_set: Questions from ``data/eval/qa_eval.json``.
+
+    Returns:
+        Metrics keyed by mode name ("dense", "bm25", "hybrid").
+    """
     print(f"\n=== Retrieval comparison (k={K}, n={len(eval_set)} questions) ===")
     results = {}
     for mode in ["dense", "bm25", "hybrid"]:
@@ -50,6 +59,17 @@ def run_retrieval_comparison(index: RetrievalIndex, eval_set: list[dict]) -> dic
 
 
 def run_generation_trace(index: RetrievalIndex, eval_set: list[dict]) -> list[dict]:
+    """Answer every eval question with hybrid retrieval and record the trace.
+
+    Args:
+        index: Loaded retrieval index.
+        eval_set: Questions from ``data/eval/qa_eval.json``.
+
+    Returns:
+        One record per question: the generated answer, which provider served
+        it, its faithfulness annotation, whether retrieval found the gold
+        section, and the retrieved context.
+    """
     print(f"\n=== End-to-end generation + faithfulness (hybrid, k={K}) ===")
     records = []
     faithfulness_counts = {"cited": 0, "refused": 0, "UNGROUNDED": 0}
@@ -88,6 +108,7 @@ def run_generation_trace(index: RetrievalIndex, eval_set: list[dict]) -> list[di
 
 
 def main() -> None:
+    """Run the retrieval comparison and generation trace, saving both to results/."""
     t0 = time.time()
     eval_set = json.loads(EVAL_SET_PATH.read_text(encoding="utf-8"))
     print(f"Loaded {len(eval_set)} eval questions from {EVAL_SET_PATH}")

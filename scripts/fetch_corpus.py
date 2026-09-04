@@ -28,7 +28,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from src.config import DATA_RAW_DIR
+from src.config import DATA_RAW_DIR, MANIFEST_PATH, ROOT_DIR
 
 # SEC requires a descriptive User-Agent identifying the requester; it does
 # not need to be a real personal address, just a contactable-looking one.
@@ -45,23 +45,41 @@ FORM_TYPES = ["10-K", "8-K"]
 
 
 def sec_get(url: str) -> requests.Response:
-    resp = requests.get(url, headers={"User-Agent": SEC_USER_AGENT}, timeout=30)
-    resp.raise_for_status()
+    """GET an EDGAR URL with the required User-Agent, then pause for fair use.
+
+    Args:
+        url: Full EDGAR API or Archives URL.
+
+    Returns:
+        The successful response.
+
+    Raises:
+        requests.HTTPError: On any non-2xx response.
+    """
+    response = requests.get(url, headers={"User-Agent": SEC_USER_AGENT}, timeout=30)
+    response.raise_for_status()
     time.sleep(REQUEST_DELAY_SECONDS)
-    return resp
-
-
-def get_submissions(cik: str) -> dict:
-    url = f"https://data.sec.gov/submissions/CIK{cik}.json"
-    return sec_get(url).json()
+    return response
 
 
 def find_latest_filing(submissions: dict, form_type: str) -> dict | None:
+    """Find the most recent filing of a given form type in a submissions index.
+
+    EDGAR returns the recent-filings index as parallel arrays in reverse
+    chronological order, so the first match is the newest.
+
+    Args:
+        submissions: Parsed ``data.sec.gov/submissions/CIK*.json`` payload.
+        form_type: Form to look for, e.g. ``"10-K"`` or ``"8-K"``.
+
+    Returns:
+        Dict with ``filingDate``, ``accessionNumber`` and ``primaryDocument``,
+        or None if the company has no filing of that type on the index.
+    """
     recent = submissions["filings"]["recent"]
     for i, form in enumerate(recent["form"]):
         if form == form_type:
             return {
-                "form": form,
                 "filingDate": recent["filingDate"][i],
                 "accessionNumber": recent["accessionNumber"][i],
                 "primaryDocument": recent["primaryDocument"][i],
@@ -69,28 +87,16 @@ def find_latest_filing(submissions: dict, form_type: str) -> dict | None:
     return None
 
 
-def build_doc_url(cik: str, accession_number: str, primary_document: str) -> str:
-    cik_int = str(int(cik))  # strip leading zeros
-    accession_nodash = accession_number.replace("-", "")
-    return (
-        f"https://www.sec.gov/Archives/edgar/data/{cik_int}/"
-        f"{accession_nodash}/{primary_document}"
-    )
-
-
-def download(url: str, dest_path: Path) -> str:
-    resp = sec_get(url)
-    dest_path.write_bytes(resp.content)
-    return hashlib.sha256(resp.content).hexdigest()
-
-
 def main() -> None:
+    """Download each company's latest 10-K and 8-K, then write the manifest."""
     DATA_RAW_DIR.mkdir(parents=True, exist_ok=True)
     manifest = []
 
     for company in COMPANIES:
         print(f"Fetching submissions index for {company['name']} ({company['ticker']})...")
-        submissions = get_submissions(company["cik"])
+        submissions = sec_get(
+            f"https://data.sec.gov/submissions/CIK{company['cik']}.json"
+        ).json()
 
         for form_type in FORM_TYPES:
             filing = find_latest_filing(submissions, form_type)
@@ -98,15 +104,21 @@ def main() -> None:
                 print(f"  [SKIP] no {form_type} found for {company['ticker']}")
                 continue
 
-            source_url = build_doc_url(
-                company["cik"], filing["accessionNumber"], filing["primaryDocument"]
+            # Archives paths use the CIK without leading zeros and the
+            # accession number without dashes.
+            source_url = (
+                f"https://www.sec.gov/Archives/edgar/data/{int(company['cik'])}/"
+                f"{filing['accessionNumber'].replace('-', '')}/{filing['primaryDocument']}"
             )
-            ext = Path(filing["primaryDocument"]).suffix or ".html"
-            local_name = f"{company['ticker']}_{form_type}_{filing['filingDate']}{ext}"
-            local_path = DATA_RAW_DIR / local_name
+            extension = Path(filing["primaryDocument"]).suffix or ".html"
+            local_path = (
+                DATA_RAW_DIR
+                / f"{company['ticker']}_{form_type}_{filing['filingDate']}{extension}"
+            )
 
-            print(f"  Downloading {form_type} filed {filing['filingDate']} -> {local_name}")
-            checksum = download(source_url, local_path)
+            print(f"  Downloading {form_type} filed {filing['filingDate']} -> {local_path.name}")
+            content = sec_get(source_url).content
+            local_path.write_bytes(content)
 
             manifest.append(
                 {
@@ -116,15 +128,14 @@ def main() -> None:
                     "form": form_type,
                     "filing_date": filing["filingDate"],
                     "source_url": source_url,
-                    "local_path": str(local_path.relative_to(DATA_RAW_DIR.parent.parent)),
-                    "sha256": checksum,
+                    "local_path": str(local_path.relative_to(ROOT_DIR)),
+                    "sha256": hashlib.sha256(content).hexdigest(),
                     "retrieved_at": datetime.now(timezone.utc).isoformat(),
                 }
             )
 
-    manifest_path = DATA_RAW_DIR / "manifest.json"
-    manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    print(f"\nWrote {len(manifest)} documents. Manifest: {manifest_path}")
+    MANIFEST_PATH.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    print(f"\nWrote {len(manifest)} documents. Manifest: {MANIFEST_PATH}")
 
 
 if __name__ == "__main__":

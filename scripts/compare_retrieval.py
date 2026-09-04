@@ -28,30 +28,30 @@ QUERIES = [
 ]
 
 
-def snippet(text: str, n: int = 120) -> str:
-    return text[:n].replace("\n", " ")
-
-
 def main() -> None:
+    """Print dense-only vs hybrid top-3 results side by side for each query.
+
+    The overlap count is the signal to watch: consistently 3/3 would mean
+    BM25 contributes nothing beyond dense retrieval and fusion is dead weight.
+    """
     print("Loading retrieval index (embedder + FAISS + BM25)...")
     index = RetrievalIndex.load()
 
     for query in QUERIES:
         dense = index.search(query, k=3, mode="dense")
         hybrid = index.search(query, k=3, mode="hybrid")
-
-        dense_ids = [c["chunk_id"] for c in dense]
-        hybrid_ids = [c["chunk_id"] for c in hybrid]
-        overlap = len(set(dense_ids) & set(hybrid_ids))
+        overlap = len({c["chunk_id"] for c in dense} & {c["chunk_id"] for c in hybrid})
 
         print(f"\nQ: {query}")
         print(f"  top-3 overlap (dense vs hybrid): {overlap}/3")
-        print("  dense-only:")
-        for c in dense:
-            print(f"    [{c['score']:.3f}] {c['ticker']} {c['form']} / {c['section']}: {snippet(c['text'])}...")
-        print("  hybrid (RRF):")
-        for c in hybrid:
-            print(f"    [{c['score']:.4f}] {c['ticker']} {c['form']} / {c['section']}: {snippet(c['text'])}...")
+        for label, results in [("dense-only", dense), ("hybrid (RRF)", hybrid)]:
+            print(f"  {label}:")
+            for c in results:
+                snippet = c["text"][:120].replace("\n", " ")
+                print(
+                    f"    [{c['score']:.4f}] {c['ticker']} {c['form']} "
+                    f"/ {c['section']}: {snippet}..."
+                )
 
 
 if __name__ == "__main__":

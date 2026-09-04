@@ -36,6 +36,7 @@ TOP_K = 5
 
 
 def main() -> None:
+    """Answer each demo query end-to-end and save the traces to results/."""
     print("Loading retrieval index...")
     index = RetrievalIndex.load()
 
