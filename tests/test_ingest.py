@@ -11,7 +11,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.ingest import (
-    chunk_words,
     load_document_text,
     normalise_text,
     render_table,
@@ -266,31 +265,6 @@ class TestSplitIntoSections(unittest.TestCase):
         item7_sections = [t for t, _ in sections if t.lower().startswith("item 7")]
         self.assertEqual(len(item7_sections), 1, f"expected 1 Item 7 section, got {item7_sections}")
         self.assertIn("Page three content.", dict(sections)[item7_sections[0]])
-
-
-class TestChunkWords(unittest.TestCase):
-    def test_returns_empty_list_for_blank_text(self) -> None:
-        self.assertEqual(chunk_words(""), [])
-        self.assertEqual(chunk_words("   \n  "), [])
-
-    def test_short_text_becomes_a_single_chunk(self) -> None:
-        self.assertEqual(chunk_words("one two three", size=10, overlap=2), ["one two three"])
-
-    def test_windows_overlap_by_the_requested_word_count(self) -> None:
-        words = [str(i) for i in range(10)]
-        chunks = chunk_words(" ".join(words), size=4, overlap=2)
-        self.assertEqual(chunks[0], "0 1 2 3")
-        self.assertEqual(chunks[1], "2 3 4 5", "second window repeats the last 2 words")
-
-    def test_every_word_appears_in_at_least_one_chunk(self) -> None:
-        words = [str(i) for i in range(25)]
-        chunks = chunk_words(" ".join(words), size=7, overlap=3)
-        covered = {w for chunk in chunks for w in chunk.split()}
-        self.assertEqual(covered, set(words), "no words dropped at the tail")
-
-    def test_no_chunk_exceeds_the_window_size(self) -> None:
-        chunks = chunk_words(" ".join(str(i) for i in range(50)), size=8, overlap=2)
-        self.assertTrue(all(len(c.split()) <= 8 for c in chunks))
 
 
 if __name__ == "__main__":

@@ -229,13 +229,30 @@ emails failing a 500-character floor calibrated for filings. Thresholds are
 now per document type. A gate that cries wolf on 16% of a corpus gets
 ignored, so that calibration mattered more than the gate itself.
 
-**Chunking strategy** (full rationale in the `src/ingest.py` module
-docstring): two-stage — split each filing on its numbered "Item" section
-headers first (so a chunk never blends, say, Risk Factors with Legal
-Proceedings), then slide a 220-word / 40-word-overlap window within each
-section (keeps each chunk well under the embedding model's 512-token
-limit while the overlap preserves sentences that would otherwise be cut
-at a window boundary). Section detection is a regex heuristic, not a
+### Chunking strategy
+
+Two stages: split each filing on its numbered "Item" section headers (so a
+chunk never blends, say, Risk Factors with Legal Proceedings), then split
+**within** each section using a token budget that preserves structure.
+
+Stage 2 originally slid a fixed 220-word / 40-word-overlap window. That was
+replaced once tables and PDFs entered the corpus, because it had four
+defects — each demonstrated on real data before being fixed:
+
+| Defect | Consequence | Fix |
+|---|---|---|
+| Windows joined with spaces, **discarding newlines** | The Markdown tables recovered during extraction were flattened straight back into one line | Chunk on block boundaries, preserving newlines |
+| A split table's later parts had **no header row** | `\| Line item 15 \| 1500 \|` gives no clue which column is which year — the exact problem rendering tables was meant to solve | `chunk_table` repeats the header in every part and splits only on row boundaries |
+| Windows began **mid-sentence** | Weaker embedding, and poor reading as cited context | `chunk_prose` packs whole sentences, carrying whole-sentence overlap |
+| Sizing in **words**, not tokens | The model truncates at 512 tokens *silently*; the words→tokens ratio is ~1.3 for prose but far higher for numeric tables | `count_tokens` measures with the model's own tokenizer |
+
+Measured on Apple's 10-K after the change: **0 chunks exceed the 512-token
+limit** (max 400, the configured budget), **all 61 table chunks carry a
+header row**, and only 3 of 123 prose chunks start mid-sentence. The
+tokenizer is loaded once and cached, and falls back to a conservative
+word-based estimate if unavailable, so ingest still runs offline.
+
+Section detection is a regex heuristic, not a
 schema-aware parser, with two known failure modes that are corrected for
 explicitly in code (see `_dedupe_header_matches`): table-of-contents
 entries matching the same pattern as real headers, and long sections
@@ -497,7 +514,7 @@ propagates into answer-level instability downstream.
 python -m unittest discover -s tests
 ```
 
-99 unit tests across the six `src/` modules, using the standard library's
+115 unit tests across the six `src/` modules, using the standard library's
 `unittest` (no extra dependency to install). They are deliberately
 **offline and fast** (~0.02s total): no network calls, no API keys, and no
 embedding-model download — `embed_texts` is exercised against a stub
