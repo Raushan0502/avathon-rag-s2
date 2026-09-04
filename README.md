@@ -43,32 +43,64 @@ directly from the SEC EDGAR submissions API
 (`https://data.sec.gov/submissions/CIK##########.json`), which requires no
 API key, only a descriptive `User-Agent` header (SEC's fair-use policy).
 
-**Companies:** Apple (AAPL), Microsoft (MSFT), Tesla (TSLA) — three large,
-well-known issuers from different sectors (consumer hardware, enterprise
-software, auto/energy), chosen so evaluation questions can span genuinely
-different business content rather than near-duplicate filings.
+**Companies:** 12 large issuers spanning consumer hardware, enterprise
+software, autos, retail, banking, pharma and networking (AAPL, MSFT, TSLA,
+AMZN, GOOGL, META, NVDA, JPM, WMT, JNJ, KO, CSCO), so evaluation questions
+span genuinely different business content rather than near-duplicate
+filings. Apple, Microsoft and Tesla are listed first deliberately — the
+evaluation set is authored against their filings, and the per-type caps
+retain documents in fetch order, so capping can never drop a document a
+gold answer depends on.
 
 S2 describes a company drowning in *"contracts, reports, SOPs, emails"*,
 so the corpus deliberately spans all four types and **three file formats**
-rather than one homogeneous source. **39 documents, 1,148 chunks:**
+rather than one homogeneous source. **100 documents, balanced 20 per type:**
 
-| Type | Documents | Format | Chunks | Source |
-|---|---|---|---|---|
-| Reports | 3× 10-K, 3× 8-K | HTML | 809 | SEC EDGAR |
-| Standards / SOP | NIST SP 800-61r2, NIST CSF 2.0 | **PDF** | 230 | NIST (public domain) |
-| Policies | MSFT EX-19.1/19.2/19.3, EX-97.1 | HTML | 45 | SEC EDGAR exhibits |
-| Contracts | TSLA EX-10.9, EX-10.10 | HTML | 39 | SEC EDGAR exhibits |
-| Emails | 25× AESLC business emails | **plain text** | 25 | AESLC (Enron) corpus |
+| Type | Documents | Format | Source |
+|---|---|---|---|
+| Reports | 20 — latest 10-K + 8-K across 10 issuers | HTML | SEC EDGAR |
+| Contracts | 20 — EX-10 material-contract exhibits | HTML | SEC EDGAR exhibits |
+| Policies | 20 — EX-19 insider trading, EX-97 clawback | HTML | SEC EDGAR exhibits |
+| Standards / SOP | 20 — NIST SP 800 series + CSF 2.0 | **PDF** | NIST (public domain) |
+| Emails | 20 — AESLC business emails | **plain text** | AESLC (Enron) corpus |
+
+**Balance here is by document count, not retrieval weight.** A 10-K is
+~250 chunks and an email is 1, so reports still dominate chunk share
+even at 20 documents each. That is stated rather than implied away by the
+even counts: corpus *balance* matters far less in RAG than it does in
+supervised learning, because nothing is trained on this distribution — the
+embedding model is frozen and retrieval is query-conditional, so distant
+chunks never compete. The one place composition genuinely feeds the
+algorithm is **BM25**, whose IDF is computed corpus-wide: adding 20 NIST
+security publications measurably reduces how discriminative terms like
+"incident" and "controls" are. The reason for the diversity is therefore
+evidence, not statistics — demonstrating that multi-format loading and all
+four S2 document types actually work.
+
+Exhibits are discovered from **EDGAR's authoritative document Type column**
+(`EX-10.9`, `EX-19.1`), not from filenames. Filename matching was tried
+first and silently under-matched: Apple names exhibits
+`a10-kexhibit4109272025.htm`, which no `ex10`-style pattern catches, and
+that alone was why an early run found 2 contracts instead of 20. The type
+regex is anchored so `EX-101.SCH` — an XBRL taxonomy file — cannot
+masquerade as `EX-10`. Because material contracts are filed only
+occasionally, exhibits are harvested from a deeper filing history (last 3
+10-Ks, 8 8-Ks per issuer) while only the newest filing of each form
+becomes a *report*, keeping report coverage spread across issuers.
+
+Fetching is resilient by necessity: EDGAR returns transient 503s under
+sustained crawling, and an early run died mid-corpus because one flaky
+request aborted everything. `sec_get` now retries with exponential backoff,
+and a document that still fails is skipped with a warning rather than
+taking the run down.
 
 - **Reports** — 10-Ks are long (2–8 MB) and highly structured; 8-Ks are
   short and announcement-like, so chunking and retrieval behave
   differently across the two.
 - **Contracts** — real Reg S-K item 601(b)(10) material-contract exhibits
-  (a stock option award agreement and an RSU agreement), discovered
-  *dynamically* from each 10-K's own filing index rather than hardcoded,
-  since exhibit numbering changes year to year. Apple contributes none —
-  it incorporates most exhibits by reference, and the fetcher simply
-  skips companies with no match rather than failing.
+  (equity award, RSU and similar agreements), discovered dynamically as
+  described above. Issuers that file none — Apple incorporates most of its
+  by reference — simply contribute none rather than failing the run.
 - **Policies** — insider-trading and compensation-recovery policies. These
   are genuine internal governance documents, the closest public analogue
   to an enterprise SOP.
@@ -85,7 +117,7 @@ Every document is fetched by
 [`data/raw/manifest.json`](data/raw/manifest.json) with its source URL,
 document type, format, and SHA-256 checksum, so the corpus is fully
 reproducible and auditable. Everything is keyless and free. The email
-sample is drawn with a fixed seed, so re-running reproduces the same 25
+sample is drawn with a fixed seed, so re-running reproduces the same
 emails and the evaluation stays stable. Raw files are gitignored (large,
 trivially re-fetchable); the manifest is committed as the record.
 
@@ -103,20 +135,99 @@ trivially re-fetchable); the manifest is committed as the record.
 
 ## Ingestion & chunking (Step 3)
 
-Pipeline: `scripts/build_index.py` → `src/ingest.py` (load → clean text →
-section-aware chunks) → `src/embed_index.py` (embed with
-`BAAI/bge-small-en-v1.5` → build a FAISS `IndexFlatIP` index).
+Pipeline: **extract → normalise → validate → section-split → chunk → embed → index.**
 
-**Document loading dispatches on file type**, since the corpus spans three
-formats and each loses something different in extraction:
-- **HTML** — BeautifulSoup, dropping script/style. Blank lines collapse but
-  single newlines survive, because the Item-header regex anchors on line
-  boundaries.
-- **PDF** — pdfplumber, page by page. The NIST PDFs carry a real text
-  layer so no OCR is needed; **a scanned document would come back empty
-  here**, and this pipeline has no OCR stage to fall back on.
-- **Plain text** — read as-is, minus the AESLC trailer handling described
-  above.
+```
+fetch_corpus.py ─→ data/raw/ ─→ validate_corpus.py ──(gate, exits non-zero)
+                                        │
+                     build_index.py ─→ ingest.py ─→ embed_index.py ─→ data/processed/
+                        load_document_text → normalise_text → split_into_sections → chunk_words
+```
+
+### Extraction — dispatches on file type
+
+- **HTML** — BeautifulSoup, dropping script/style. `<table>` elements are
+  rendered to Markdown **in place** before surrounding text is flattened.
+- **PDF** — tables are located first and extracted structurally, then the
+  page's prose is read with those regions *masked out*, so table content is
+  never emitted twice in two shapes. The NIST PDFs carry a real text layer
+  so no OCR is needed.
+- **Plain text** — read as-is, minus the AESLC trailer handling above.
+
+**Tables keep their structure.** Flattening destroyed the thing that makes
+a financial figure answerable: three fiscal years collapsed into an
+unlabelled number sequence. Tables now render as Markdown pipe rows, which
+took three fixes to work on real filings — `colspan` expansion (without it
+rows are ragged and figures drift out from under their headers), row-local
+`$`/`%` merging (filings put currency marks in their own cells, and only on
+*some* rows, so a column-wide rule fails and leaves the grid skewed), and
+dropping all-empty spacer columns. Layout tables — anything under 2×2 — are
+emitted as plain lines rather than dressed up as data.
+
+```
+before:  Net sales: Products $ 307,003 $ 294,866 $ 298,085 Total net sales 416,161 391,035 383,285
+after:   | Total net sales | $416,161 | 6% | $391,035 | 2% | $383,285 |
+```
+
+**Images are not extracted, and this is a known limitation.** HTML `<img>`
+elements are discarded including their `alt` text, and PDF extraction reads
+only the text layer, so charts, figures and scanned pages contribute
+nothing. **Supporting them requires an OCR stage** (Tesseract, or a
+document-AI service) that this pipeline deliberately does not have. The
+consequence is that a scanned document yields little or no text *without
+raising* — which is precisely what the validation gate below exists to
+catch.
+
+### Preprocessing (`normalise_text`)
+
+Extraction output is not yet fit to embed. Five ordered passes, each
+targeting a defect measured in this corpus — order matters, since unicode
+is normalised before any pattern matching and de-hyphenation runs before
+repeated-line detection:
+
+1. **Unicode NFKC + punctuation mapping** — smart quotes, the full dash
+   range, NBSP and zero-width marks, so the same word embeds identically
+   whichever filer produced it.
+2. **De-hyphenation** — PDF text layers break words at line ends
+   (`informa-\ntion`); left alone one word embeds as two fragments.
+3. **Dot-leader / page-number stripping** — contents-page filler.
+4. **Repeated page-furniture removal** — running headers and footers.
+5. **Whitespace collapse.**
+
+Rendered table rows are passed through untouched, so preprocessing does not
+dismantle what extraction just recovered.
+
+Measured on real documents: dot-leaders **80 → 0**, page footers
+**58 → 0**, bare page numbers **101 → 0**, with 620 table rows preserved.
+
+Two subtleties worth naming, both found by tests rather than reasoning:
+NFKC rewrites U+2011 into U+2010 *before* the punctuation map runs, so
+mapping only the characters visible in the source silently missed
+non-breaking hyphens. And running footers are never twice the same string
+because they carry the page number — they need **digit-masked** comparison
+to detect. That fix initially deleted *everything*, because body sentences
+differing only by a year also collapse to one template; a word-count guard
+(furniture is label-shaped, prose is not) is what separates them.
+
+### Validation gate (`scripts/validate_corpus.py`)
+
+Extraction fails silently: a scanned PDF returns an empty string, not an
+error. At 6 documents a human can read every one; at 100 that stops being
+true, so five metrics stand in for reading them — `yield_ratio` (chars per
+source byte, the check that catches a missing text layer), `alpha_ratio`
+(punctuation-heavy leftovers), `boilerplate_ratio`, `table_row_ratio`
+(did tables actually survive), and `mean_words_per_line` (fragmented
+multi-column extraction). It writes a per-document report and **exits
+non-zero**, so it can gate a rebuild rather than being advisory.
+
+Current status: **100/100 documents pass** — mean yield 0.374, alpha 0.799,
+boilerplate 0.088, table rows 0.115.
+
+Its first run over the full corpus reported 16 failures that were **all
+false positives of the gate's own making** — healthy 178–472 character
+emails failing a 500-character floor calibrated for filings. Thresholds are
+now per document type. A gate that cries wolf on 16% of a corpus gets
+ignored, so that calibration mattered more than the gate itself.
 
 **Chunking strategy** (full rationale in the `src/ingest.py` module
 docstring): two-stage — split each filing on its numbered "Item" section
@@ -146,7 +257,15 @@ could drive a finer split — and, as the Evaluation section shows, this
 coarseness **distorts Precision@k** for those documents rather than being
 a merely cosmetic limitation.
 
-Result: 1,148 chunks across 97 detected sections in 39 documents.
+> **Rebuild pending.** The corpus was expanded to 100 documents and the
+> extraction/preprocessing stages rewritten *after* the index was last
+> built. Every chunk count, retrieval metric and evaluation figure below
+> this point still describes the earlier 39-document / 1,148-chunk build.
+> They are left in place rather than deleted so the before/after comparison
+> survives, but they are **not** current. The index rebuild and
+> re-evaluation happen together once the chunking work lands, since chunk
+> ids shift and the eval set's `gold_chunk_id` references need remapping.
+
 A built-in smoke test in `build_index.py` embeds 3 hand-written queries
 and prints top-3 FAISS results after every rebuild — verified on this
 corpus to return correctly on-topic chunks (competition risk → Risk
@@ -378,7 +497,7 @@ propagates into answer-level instability downstream.
 python -m unittest discover -s tests
 ```
 
-60 unit tests across the five `src/` modules, using the standard library's
+99 unit tests across the six `src/` modules, using the standard library's
 `unittest` (no extra dependency to install). They are deliberately
 **offline and fast** (~0.02s total): no network calls, no API keys, and no
 embedding-model download — `embed_texts` is exercised against a stub
@@ -434,7 +553,8 @@ pip install --index-url https://download.pytorch.org/whl/cpu torch --no-deps
 pip install -r requirements.txt
 copy .env.example .env          # then fill in ANTHROPIC_API_KEY or OPENAI_API_KEY
 python scripts/check_setup.py   # sanity check: env + folder layout
-python scripts/fetch_corpus.py  # sources the corpus into data/raw/ (see Data source below)
+python scripts/fetch_corpus.py  # sources 100 documents into data/raw/ (see Data source below)
+python scripts/validate_corpus.py    # extraction-quality gate; exits non-zero on failure
 python scripts/build_index.py   # ingest -> chunk -> embed -> FAISS index (see Ingestion below)
 python scripts/compare_retrieval.py  # dense vs hybrid qualitative smoke test (see Hybrid retrieval below)
 python scripts/demo_qa.py       # end-to-end Q&A demo -> results/qa_demo.json (see Generation below)
