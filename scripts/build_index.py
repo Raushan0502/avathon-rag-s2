@@ -21,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.config import CHUNKS_PATH, FAISS_INDEX_PATH
 from src.embed_index import build_faiss_index, embed_texts, get_embedder, save_chunks, save_index
-from src.ingest import build_all_chunks, chunks_to_dicts
+from src.ingest import build_all_chunks
 
 SMOKE_TEST_QUERIES = [
     "What are the main risk factors related to competition?",
@@ -58,8 +58,7 @@ def main() -> None:
     t0 = time.time()
 
     print("Loading + chunking documents...")
-    chunks = build_all_chunks()
-    chunk_dicts = chunks_to_dicts(chunks)
+    chunk_dicts = build_all_chunks()
     print_chunk_stats(chunk_dicts)
 
     print("\nLoading embedding model (BAAI/bge-small-en-v1.5)...")
