@@ -68,6 +68,21 @@ class TestNormaliseText(unittest.TestCase):
         self.assertEqual(len(cleaned.splitlines()), 6, "real prose must survive")
         self.assertIn("In fiscal 2023", cleaned)
 
+    def test_keeps_short_repeated_content_such_as_a_None_answer(self) -> None:
+        # Regression: "None." is the real content of 10-K Items 1B, 4 and 9B,
+        # so it repeats several times per filing and matched the
+        # short-and-frequent furniture signature. Deleting it removed whole
+        # sections from the corpus and broke two evaluation questions.
+        text = "\n".join(
+            f"Item {label}\nNone."
+            for label in ["1B. Unresolved", "4. Mine Safety", "9B. Other", "5. Market", "6. Reserved", "7. MD and A"]
+        )
+        self.assertEqual(
+            sum(1 for line in normalise_text(text).splitlines() if line == "None."),
+            6,
+            "terse legitimate content must not be mistaken for page furniture",
+        )
+
     def test_keeps_a_long_repeated_line_which_is_probably_real_prose(self) -> None:
         sentence = (
             "The Company is subject to legal proceedings and claims that have not been "

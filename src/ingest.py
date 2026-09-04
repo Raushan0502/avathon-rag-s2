@@ -140,6 +140,11 @@ DOT_LEADER_RE = re.compile(r"\.{4,}\s*\d*\s*$")
 PAGE_NUMBER_RE = re.compile(r"(?:page\s*)?\d{1,4}", re.IGNORECASE)
 # Page furniture must be short and frequent; a long repeated line is more
 # likely to be genuine repeated prose (e.g. a standard risk disclaimer).
+# Furniture also has to be long enough to *be* furniture. Without a floor,
+# "None." -- which is the real content of 10-K Items 1B, 4 and 9B, and so
+# repeats several times per filing -- matches the short-and-frequent
+# signature and gets deleted, taking whole sections with it.
+MIN_BOILERPLATE_LEN = 15
 MAX_BOILERPLATE_LEN = 80
 # Digit masking (below) makes any two sentences differing only by a number
 # look identical, so a length limit alone would delete real prose. Page
@@ -203,7 +208,7 @@ def normalise_text(text: str) -> str:
         return (
             bool(line)
             and not line.startswith("|")
-            and len(line) <= MAX_BOILERPLATE_LEN
+            and MIN_BOILERPLATE_LEN <= len(line) <= MAX_BOILERPLATE_LEN
             and len(line.split()) <= MAX_BOILERPLATE_WORDS
         )
 
