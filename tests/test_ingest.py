@@ -10,7 +10,56 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.ingest import chunk_words, load_document_text, split_into_sections
+from src.ingest import chunk_words, load_document_text, render_table, split_into_sections
+
+
+class TestRenderTable(unittest.TestCase):
+    def test_renders_markdown_pipe_table_with_header_separator(self) -> None:
+        rendered = render_table([["Year", "Sales"], ["2025", "416,161"], ["2024", "391,035"]])
+        self.assertEqual(
+            rendered.splitlines(),
+            ["| Year | Sales |", "| --- | --- |", "| 2025 | 416,161 |", "| 2024 | 391,035 |"],
+        )
+
+    def test_keeps_figures_attached_to_row_label_and_column_header(self) -> None:
+        # The whole point: a value must stay recoverable as
+        # (row label, column header) rather than becoming a loose number.
+        rendered = render_table([["", "2025", "2024"], ["Total net sales", "416,161", "391,035"]])
+        row = [line for line in rendered.splitlines() if "Total net sales" in line][0]
+        self.assertEqual(row, "| Total net sales | 416,161 | 391,035 |")
+
+    def test_merges_currency_cell_into_the_following_value(self) -> None:
+        # Filings put the currency mark in its own cell.
+        rendered = render_table([["Region", "Amount", ""], ["Americas", "$", "178,353"]])
+        self.assertIn("| Americas | $178,353 |", rendered)
+
+    def test_merges_percent_cell_into_the_preceding_value(self) -> None:
+        rendered = render_table([["Region", "Change", ""], ["Europe", "10", "%"]])
+        self.assertIn("| Europe | 10% |", rendered)
+
+    def test_symbol_merge_realigns_rows_of_differing_cell_counts(self) -> None:
+        # Only some rows carry a "$" cell, which skews the grid; merging it
+        # away has to bring those rows back into alignment.
+        rendered = render_table(
+            [["Region", "2025"], ["Americas", "$", "178,353"], ["Europe", "111,032"]]
+        )
+        body = [line for line in rendered.splitlines() if "|" in line][2:]
+        self.assertEqual(body[0].count("|"), body[1].count("|"), f"misaligned: {body}")
+
+    def test_drops_columns_that_are_empty_throughout(self) -> None:
+        rendered = render_table([["A", "", "B"], ["1", "", "2"]])
+        self.assertEqual(rendered.splitlines()[0], "| A | B |")
+
+    def test_single_column_layout_table_is_not_dressed_up_as_a_table(self) -> None:
+        # HTML filings use <table> for page layout; those must not gain a
+        # fake header row implying tabular meaning.
+        rendered = render_table([["Just a heading"], ["and a paragraph"]])
+        self.assertNotIn("|", rendered)
+        self.assertEqual(rendered, "Just a heading\nand a paragraph")
+
+    def test_empty_table_yields_empty_string(self) -> None:
+        self.assertEqual(render_table([]), "")
+        self.assertEqual(render_table([["", ""], ["", ""]]), "")
 
 
 class TestLoadDocumentText(unittest.TestCase):
@@ -56,6 +105,36 @@ class TestLoadDocumentText(unittest.TestCase):
     def test_email_without_a_subject_trailer_is_read_as_is(self) -> None:
         path = self.write("e.txt", "Just a plain body.\n")
         self.assertEqual(load_document_text(path), "Just a plain body.")
+
+    def test_html_tables_are_rendered_in_place_not_flattened(self) -> None:
+        path = self.write(
+            "f.htm",
+            "<body><p>Segment results:</p><table>"
+            "<tr><td></td><td>2025</td><td>2024</td></tr>"
+            "<tr><td>Total net sales</td><td>416,161</td><td>391,035</td></tr>"
+            "</table><p>After the table.</p></body>",
+        )
+        text = load_document_text(path)
+        self.assertIn("| Total net sales | 416,161 | 391,035 |", text)
+        # Rendered in document order, between the surrounding prose.
+        self.assertLess(text.index("Segment results:"), text.index("Total net sales"))
+        self.assertLess(text.index("Total net sales"), text.index("After the table."))
+
+    def test_html_table_colspan_is_expanded_so_columns_stay_aligned(self) -> None:
+        path = self.write(
+            "f.htm",
+            "<body><table>"
+            "<tr><td></td><td colspan='2'>FY2025</td><td>FY2024</td></tr>"
+            "<tr><td>Revenue</td><td>1</td><td>2</td><td>3</td></tr>"
+            "</table></body>",
+        )
+        header = [ln for ln in load_document_text(path).splitlines() if "FY2025" in ln][0]
+        self.assertEqual(header, "| | FY2025 | | FY2024 |".replace("| |", "|  |"))
+
+    def test_html_images_are_dropped_including_alt_text(self) -> None:
+        # Documented limitation: image content needs an OCR stage we do not have.
+        path = self.write("f.htm", "<body><p>Chart:</p><img alt='Revenue grew 12%'></body>")
+        self.assertNotIn("Revenue grew", load_document_text(path))
 
     def test_unsupported_format_raises_with_the_filename(self) -> None:
         path = self.write("data.csv", "a,b,c")

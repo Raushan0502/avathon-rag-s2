@@ -45,7 +45,7 @@ import re
 import sys
 from pathlib import Path
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.config import MANIFEST_PATH
@@ -65,25 +65,99 @@ ITEM_HEADER_RE = re.compile(
 ITEM_NUMBER_RE = re.compile(r"item\s+\d+[a-z]?(?:\.\d+)?", re.IGNORECASE)
 
 
+def render_table(rows: list[list[str]]) -> str:
+    """Render a table as a Markdown pipe table, or plain text if it isn't one.
+
+    Financial filings answer questions like "what were net sales in FY2024?"
+    only if a figure stays attached to its row label and column header.
+    Flattening a table to running text destroys that: three fiscal years
+    collapse into an unlabelled number sequence. Markdown pipe rows keep the
+    association, are compact, and are a format LLMs read reliably.
+
+    HTML filings also use ``<table>`` heavily for pure layout, so anything
+    without at least 2 rows and 2 populated columns is emitted as plain
+    lines instead of being dressed up as a data table.
+
+    Args:
+        rows: Table cells as a list of rows; cells may be None or blank.
+
+    Returns:
+        A Markdown table (header row, separator, body rows), or newline-joined
+        text for layout tables, or an empty string if there is no content.
+    """
+    cleaned = []
+    for row in rows:
+        cells = [re.sub(r"\s+", " ", (cell or "").strip()) for cell in row]
+        # Merge symbol-only cells into their neighbour, per row. Filings put
+        # the currency mark and percent sign in their own cells, and only on
+        # some rows -- so this has to be row-local, not column-wide. Doing it
+        # here also de-skews the table: a row carrying a lone "$" has one
+        # more cell than its neighbours, and collapsing it restores alignment.
+        merged: list[str] = []
+        for cell in cells:
+            if cell == "%" and merged:
+                merged[-1] = f"{merged[-1]}%"
+            elif cell == "$":
+                merged.append("$")  # attached to the next value below
+            elif merged and merged[-1] == "$":
+                merged[-1] = f"${cell}"
+            else:
+                merged.append(cell)
+        if any(merged):
+            cleaned.append(merged)
+    if not cleaned:
+        return ""
+
+    width = max(len(row) for row in cleaned)
+    cleaned = [row + [""] * (width - len(row)) for row in cleaned]
+
+    # Drop columns that are empty throughout -- filings are full of spacer
+    # columns, and the merge above empties more of them.
+    keep = [i for i in range(width) if any(row[i] for row in cleaned)]
+    cleaned = [[row[i] for i in keep] for row in cleaned]
+    if not cleaned or not keep:
+        return ""
+
+    if len(cleaned) < 2 or len(keep) < 2:
+        return "\n".join(" ".join(cell for cell in row if cell) for row in cleaned)
+
+    header, *body = cleaned
+    lines = ["| " + " | ".join(header) + " |", "| " + " | ".join("---" for _ in header) + " |"]
+    lines += ["| " + " | ".join(row) + " |" for row in body]
+    return "\n".join(lines)
+
+
 def load_document_text(local_path: Path) -> str:
-    """Extract plain text from a corpus document, dispatching on file type.
+    """Extract text from a corpus document, dispatching on file type.
 
     The corpus spans three formats, each needing a different extraction
     path, and each losing something different in the process:
 
     - **HTML** (filings, exhibits): parsed with BeautifulSoup, dropping
-      script/style. Blank lines are collapsed but single newlines are kept,
-      because ``ITEM_HEADER_RE`` anchors on line boundaries.
-    - **PDF** (NIST publications): text layer extracted per page with
-      pdfplumber. These PDFs carry a real text layer, so no OCR is needed;
-      a scanned document would come back empty here and would need an OCR
-      stage, which this pipeline does not have.
+      script/style. ``<table>`` elements are rendered to Markdown *in place*
+      before the surrounding text is flattened, so tabular figures keep
+      their row/column association (see ``render_table``). Blank lines are
+      collapsed but single newlines are kept, because ``ITEM_HEADER_RE``
+      anchors on line boundaries.
+    - **PDF** (NIST publications): tables are located first and extracted
+      structurally, then the page's remaining prose is read with those table
+      regions filtered out, so table content is not duplicated between the
+      two. These PDFs carry a real text layer, so no OCR is needed.
     - **Plain text** (emails): read as-is, minus the AESLC corpus's
       ``@subject``/``@ann*`` trailer. The ``@subject`` line is promoted to
       the top of the text so the email's subject is embedded alongside its
       body; the ``@ann*`` lines are alternative subject lines belonging to
       that dataset's summarization task, not to the email, so they are
       dropped rather than indexed as if the sender wrote them.
+
+    **Images are not extracted.** HTML ``<img>`` elements are discarded by
+    ``get_text`` (including any alt text), and PDF extraction reads only the
+    text layer, so charts, figures and any scanned page contribute nothing.
+    A scanned document therefore yields little or no text *without raising* --
+    supporting it would require an OCR stage (e.g. Tesseract or a document-AI
+    service) that this pipeline deliberately does not have. The validation
+    step is what surfaces such documents rather than letting them index
+    silently.
 
     Args:
         local_path: Path to the document under ``data/raw``.
@@ -102,15 +176,48 @@ def load_document_text(local_path: Path) -> str:
         )
         for tag in soup(["script", "style"]):
             tag.decompose()
+        # Replace each table with its rendered form in document order, so the
+        # table stays where it appeared relative to the surrounding prose.
+        for table in soup.find_all("table"):
+            rows = []
+            for row in table.find_all("tr"):
+                cells: list[str] = []
+                for cell in row.find_all(["td", "th"]):
+                    # Expand colspan so a cell lands in the column it spans
+                    # from; without this, rows are ragged and figures drift
+                    # out from under their header.
+                    try:
+                        span = max(1, int(cell.get("colspan", 1)))
+                    except (TypeError, ValueError):
+                        span = 1
+                    cells.append(cell.get_text(" ", strip=True))
+                    cells.extend([""] * (span - 1))
+                rows.append(cells)
+            table.replace_with(NavigableString(f"\n{render_table(rows)}\n"))
         lines = [line.strip() for line in soup.get_text(separator="\n").splitlines()]
         return "\n".join(line for line in lines if line)
 
     if suffix == ".pdf":
         import pdfplumber
 
+        blocks = []
         with pdfplumber.open(local_path) as pdf:
-            pages = [page.extract_text() or "" for page in pdf.pages]
-        lines = [line.strip() for line in "\n".join(pages).splitlines()]
+            for page in pdf.pages:
+                tables = page.find_tables()
+                # Read prose with the table regions masked out, so figures
+                # inside tables are not emitted twice in two different shapes.
+                boxes = [table.bbox for table in tables]
+                page_text = page.filter(
+                    lambda obj: not any(
+                        box[0] <= (obj["x0"] + obj["x1"]) / 2 <= box[2]
+                        and box[1] <= (obj["top"] + obj["bottom"]) / 2 <= box[3]
+                        for box in boxes
+                    )
+                ).extract_text() or ""
+                blocks.append(page_text)
+                blocks.extend(render_table(table.extract()) for table in tables)
+
+        lines = [line.strip() for line in "\n".join(blocks).splitlines()]
         return "\n".join(line for line in lines if line)
 
     if suffix == ".txt":

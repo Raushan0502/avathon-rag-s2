@@ -10,7 +10,85 @@
     "local_path": "data\\raw\\AAPL_10-K_2025-10-31.htm",
     "format": "htm",
     "sha256": "548ae59778cf08ee0f2ee088e7ece20d947076c3c01f74d2d65db4c2777e436a",
-    "retrieved_at": "2026-09-04T08:12:07.272544+00:00"
+    "retrieved_at": "2026-09-04T11:37:07.950869+00:00"
+  },
+  {
+    "company": "Apple Inc.",
+    "ticker": "AAPL",
+    "cik": "0000320193",
+    "form": "EX-10.19",
+    "doc_type": "contract",
+    "filing_date": "2024-11-01",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/a10-kexhibit10199282024.htm",
+    "local_path": "data\\raw\\AAPL_a10-kexhibit10199282024.htm",
+    "format": "htm",
+    "sha256": "709a3d4ee979efa60dfa7308e9fb2bb1e9a7e67b0807ce96e45bca909968d42f",
+    "retrieved_at": "2026-09-04T11:37:13.129452+00:00"
+  },
+  {
+    "company": "Apple Inc.",
+    "ticker": "AAPL",
+    "cik": "0000320193",
+    "form": "EX-10.20",
+    "doc_type": "contract",
+    "filing_date": "2024-11-01",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/a10-kexhibit10209282024.htm",
+    "local_path": "data\\raw\\AAPL_a10-kexhibit10209282024.htm",
+    "format": "htm",
+    "sha256": "9361695ae1f80639b630cf1fbf8c64668b31df579d0956fd4bc72c26227b73ec",
+    "retrieved_at": "2026-09-04T11:37:14.782848+00:00"
+  },
+  {
+    "company": "Apple Inc.",
+    "ticker": "AAPL",
+    "cik": "0000320193",
+    "form": "EX-10.21",
+    "doc_type": "contract",
+    "filing_date": "2024-11-01",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/a10-kexhibit10219282024.htm",
+    "local_path": "data\\raw\\AAPL_a10-kexhibit10219282024.htm",
+    "format": "htm",
+    "sha256": "45cd817685bc39cd4debb0e8c46bf6de994995c89406c2f94eb9ba50cf3aca05",
+    "retrieved_at": "2026-09-04T11:37:16.449102+00:00"
+  },
+  {
+    "company": "Apple Inc.",
+    "ticker": "AAPL",
+    "cik": "0000320193",
+    "form": "EX-10.22",
+    "doc_type": "contract",
+    "filing_date": "2024-11-01",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/a10-kexhibit10229282024.htm",
+    "local_path": "data\\raw\\AAPL_a10-kexhibit10229282024.htm",
+    "format": "htm",
+    "sha256": "54ccd2c8291bbf07eba431c56aa6d48be32e8850cee39ec02d08c5fb6624fc0c",
+    "retrieved_at": "2026-09-04T11:37:18.145943+00:00"
+  },
+  {
+    "company": "Apple Inc.",
+    "ticker": "AAPL",
+    "cik": "0000320193",
+    "form": "EX-19.1",
+    "doc_type": "policy",
+    "filing_date": "2024-11-01",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/a10-kexhibit1919282024.htm",
+    "local_path": "data\\raw\\AAPL_a10-kexhibit1919282024.htm",
+    "format": "htm",
+    "sha256": "86821df5256c33b3f17a946d28033c484d851b2b13ea07c0b30ed8c9a910da92",
+    "retrieved_at": "2026-09-04T11:37:20.039266+00:00"
+  },
+  {
+    "company": "Apple Inc.",
+    "ticker": "AAPL",
+    "cik": "0000320193",
+    "form": "EX-97.1",
+    "doc_type": "policy",
+    "filing_date": "2024-11-01",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/a10-kexhibit97109282024.htm",
+    "local_path": "data\\raw\\AAPL_a10-kexhibit97109282024.htm",
+    "format": "htm",
+    "sha256": "7c3ba5e41440fb01a190bff819a3a3071ca859e69a1ea06e360bfe6ab60378a3",
+    "retrieved_at": "2026-09-04T11:37:21.572378+00:00"
   },
   {
     "company": "Apple Inc.",
@@ -23,7 +101,33 @@
     "local_path": "data\\raw\\AAPL_8-K_2026-07-30.htm",
     "format": "htm",
     "sha256": "d8a173f0b8cb911e41d27ca69261bd1f0461940a73f7654fc46f41ec7912b660",
-    "retrieved_at": "2026-09-04T08:12:10.349948+00:00"
+    "retrieved_at": "2026-09-04T11:37:24.891068+00:00"
+  },
+  {
+    "company": "Apple Inc.",
+    "ticker": "AAPL",
+    "cik": "0000320193",
+    "form": "EX-10.1",
+    "doc_type": "contract",
+    "filing_date": "2026-02-24",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126006577/ef20060722_ex10-1.htm",
+    "local_path": "data\\raw\\AAPL_ef20060722_ex10-1.htm",
+    "format": "htm",
+    "sha256": "09bd83585ab0b2b037d1adc3502824dd6fe9323cda5a207a962b0381071d540e",
+    "retrieved_at": "2026-09-04T11:37:33.368009+00:00"
+  },
+  {
+    "company": "Apple Inc.",
+    "ticker": "AAPL",
+    "cik": "0000320193",
+    "form": "EX-10.2",
+    "doc_type": "contract",
+    "filing_date": "2026-02-24",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126006577/ef20065677_ex10-2.htm",
+    "local_path": "data\\raw\\AAPL_ef20065677_ex10-2.htm",
+    "format": "htm",
+    "sha256": "8e3282d9c4f2c7697ec9ebffaaadc23bcdb9ee350dad3dedfbaec1c49edb0bec",
+    "retrieved_at": "2026-09-04T11:37:36.135678+00:00"
   },
   {
     "company": "Microsoft Corporation",
@@ -36,59 +140,98 @@
     "local_path": "data\\raw\\MSFT_10-K_2026-07-29.htm",
     "format": "htm",
     "sha256": "4bcf2da2871acc19e32c5a62f36f6d83d6aae03cdc4aaa9a86a9a21ee8223f02",
-    "retrieved_at": "2026-09-04T08:12:14.069799+00:00"
+    "retrieved_at": "2026-09-04T11:37:46.935842+00:00"
   },
   {
     "company": "Microsoft Corporation",
     "ticker": "MSFT",
     "cik": "0000789019",
-    "form": "EX-19",
+    "form": "EX-19.1",
     "doc_type": "policy",
     "filing_date": "2026-07-29",
     "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-ex19_1.htm",
     "local_path": "data\\raw\\MSFT_msft-ex19_1.htm",
     "format": "htm",
     "sha256": "a29b935b707474df08e9c4b5de47e87f51bd4fb07178a61c9cc7f355f3bb1a71",
-    "retrieved_at": "2026-09-04T08:12:17.102325+00:00"
+    "retrieved_at": "2026-09-04T11:37:50.429354+00:00"
   },
   {
     "company": "Microsoft Corporation",
     "ticker": "MSFT",
     "cik": "0000789019",
-    "form": "EX-19",
+    "form": "EX-19.2",
     "doc_type": "policy",
     "filing_date": "2026-07-29",
     "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-ex19_2.htm",
     "local_path": "data\\raw\\MSFT_msft-ex19_2.htm",
     "format": "htm",
     "sha256": "df5d6f528be80dcd172148afb67c2d53152bf76ab227e03dbfc46e52f3cbf08a",
-    "retrieved_at": "2026-09-04T08:12:18.619533+00:00"
+    "retrieved_at": "2026-09-04T11:37:52.113233+00:00"
   },
   {
     "company": "Microsoft Corporation",
     "ticker": "MSFT",
     "cik": "0000789019",
-    "form": "EX-19",
+    "form": "EX-19.3",
     "doc_type": "policy",
     "filing_date": "2026-07-29",
     "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-ex19_3.htm",
     "local_path": "data\\raw\\MSFT_msft-ex19_3.htm",
     "format": "htm",
     "sha256": "ca64e194ce82fd2e175af7430b670e33f5342a3468a869dc93d9edc394255401",
-    "retrieved_at": "2026-09-04T08:12:20.105971+00:00"
+    "retrieved_at": "2026-09-04T11:37:53.798850+00:00"
   },
   {
     "company": "Microsoft Corporation",
     "ticker": "MSFT",
     "cik": "0000789019",
-    "form": "EX-97",
+    "form": "EX-97.1",
     "doc_type": "policy",
     "filing_date": "2026-07-29",
     "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-ex97_1.htm",
     "local_path": "data\\raw\\MSFT_msft-ex97_1.htm",
     "format": "htm",
     "sha256": "f1d59b2a7f69a269bac9610cc5f6486f13b3cb7f2fc4dc7a7d61054e25c7cf75",
-    "retrieved_at": "2026-09-04T08:12:21.602555+00:00"
+    "retrieved_at": "2026-09-04T11:37:55.451606+00:00"
+  },
+  {
+    "company": "Microsoft Corporation",
+    "ticker": "MSFT",
+    "cik": "0000789019",
+    "form": "EX-10.7",
+    "doc_type": "contract",
+    "filing_date": "2025-07-30",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-ex10_7.htm",
+    "local_path": "data\\raw\\MSFT_msft-ex10_7.htm",
+    "format": "htm",
+    "sha256": "d40b76b743142b28929343f13007012d3b4f4b0f6dc0967b354bedf6aecf67fa",
+    "retrieved_at": "2026-09-04T11:37:59.141176+00:00"
+  },
+  {
+    "company": "Microsoft Corporation",
+    "ticker": "MSFT",
+    "cik": "0000789019",
+    "form": "EX-10.8",
+    "doc_type": "contract",
+    "filing_date": "2025-07-30",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-ex10_8.htm",
+    "local_path": "data\\raw\\MSFT_msft-ex10_8.htm",
+    "format": "htm",
+    "sha256": "6db7cf6a41b1403fff220286e71f8d20acecb40bc0f691dd384a9b336c43e535",
+    "retrieved_at": "2026-09-04T11:38:00.810712+00:00"
+  },
+  {
+    "company": "Microsoft Corporation",
+    "ticker": "MSFT",
+    "cik": "0000789019",
+    "form": "EX-10.5",
+    "doc_type": "contract",
+    "filing_date": "2024-07-30",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-ex10_5.htm",
+    "local_path": "data\\raw\\MSFT_msft-ex10_5.htm",
+    "format": "htm",
+    "sha256": "f129c397050a7ab67add55a16490e996a3d374cfbfa7995f02afb6413eb612df",
+    "retrieved_at": "2026-09-04T11:38:04.459645+00:00"
   },
   {
     "company": "Microsoft Corporation",
@@ -101,7 +244,7 @@
     "local_path": "data\\raw\\MSFT_8-K_2026-09-02.htm",
     "format": "htm",
     "sha256": "6328d05612511965c29ff3d6a6919137eab86080fc2952d141c126cfe091d600",
-    "retrieved_at": "2026-09-04T08:12:23.138386+00:00"
+    "retrieved_at": "2026-09-04T11:38:06.116484+00:00"
   },
   {
     "company": "Tesla, Inc.",
@@ -114,33 +257,59 @@
     "local_path": "data\\raw\\TSLA_10-K_2026-01-29.htm",
     "format": "htm",
     "sha256": "90d5d2bc4057df41c645f85dcebe575af9b0953a6a1902d189297bec17fd440a",
-    "retrieved_at": "2026-09-04T08:12:26.649379+00:00"
+    "retrieved_at": "2026-09-04T11:38:23.356748+00:00"
   },
   {
     "company": "Tesla, Inc.",
     "ticker": "TSLA",
     "cik": "0001318605",
-    "form": "EX-10",
-    "doc_type": "contract",
-    "filing_date": "2026-01-29",
-    "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-2025x12x31xex1010.htm",
-    "local_path": "data\\raw\\TSLA_tsla-2025x12x31xex1010.htm",
-    "format": "htm",
-    "sha256": "c0b609e13849ca1c5eccaf0c2b574ea6b6114eb8b2ceaefb999b63b4d6c4e030",
-    "retrieved_at": "2026-09-04T08:12:29.862509+00:00"
-  },
-  {
-    "company": "Tesla, Inc.",
-    "ticker": "TSLA",
-    "cik": "0001318605",
-    "form": "EX-10",
+    "form": "EX-10.9",
     "doc_type": "contract",
     "filing_date": "2026-01-29",
     "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-2025x12x31xex109.htm",
     "local_path": "data\\raw\\TSLA_tsla-2025x12x31xex109.htm",
     "format": "htm",
     "sha256": "cbc69ed4901d2f5433d38ff8d3d7d74c452315f380082579d47b9eb186bed5bd",
-    "retrieved_at": "2026-09-04T08:12:31.393408+00:00"
+    "retrieved_at": "2026-09-04T11:38:26.688909+00:00"
+  },
+  {
+    "company": "Tesla, Inc.",
+    "ticker": "TSLA",
+    "cik": "0001318605",
+    "form": "EX-10.10",
+    "doc_type": "contract",
+    "filing_date": "2026-01-29",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-2025x12x31xex1010.htm",
+    "local_path": "data\\raw\\TSLA_tsla-2025x12x31xex1010.htm",
+    "format": "htm",
+    "sha256": "c0b609e13849ca1c5eccaf0c2b574ea6b6114eb8b2ceaefb999b63b4d6c4e030",
+    "retrieved_at": "2026-09-04T11:38:28.238008+00:00"
+  },
+  {
+    "company": "Tesla, Inc.",
+    "ticker": "TSLA",
+    "cik": "0001318605",
+    "form": "EX-19",
+    "doc_type": "policy",
+    "filing_date": "2025-01-30",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828025003063/tsla-2024x12x31xex19.htm",
+    "local_path": "data\\raw\\TSLA_tsla-2024x12x31xex19.htm",
+    "format": "htm",
+    "sha256": "b70f19ef48ba744b2083cc2fa581a38298893fc8644103fd5603238afc724210",
+    "retrieved_at": "2026-09-04T11:38:31.570843+00:00"
+  },
+  {
+    "company": "Tesla, Inc.",
+    "ticker": "TSLA",
+    "cik": "0001318605",
+    "form": "EX-97",
+    "doc_type": "policy",
+    "filing_date": "2024-01-29",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828024002390/tsla-2023x12x31xex97.htm",
+    "local_path": "data\\raw\\TSLA_tsla-2023x12x31xex97.htm",
+    "format": "htm",
+    "sha256": "963bd378d52ccec29278f410068f9eaf2c3476b113e907b3ef6ee3ae56da9558",
+    "retrieved_at": "2026-09-04T11:38:34.949950+00:00"
   },
   {
     "company": "Tesla, Inc.",
@@ -153,7 +322,462 @@
     "local_path": "data\\raw\\TSLA_8-K_2026-07-22.htm",
     "format": "htm",
     "sha256": "8b7bd18c607330e7869a017461c001e0351a913a106396139e3604d61db24109",
-    "retrieved_at": "2026-09-04T08:12:32.928870+00:00"
+    "retrieved_at": "2026-09-04T11:38:36.618148+00:00"
+  },
+  {
+    "company": "Tesla, Inc.",
+    "ticker": "TSLA",
+    "cik": "0001318605",
+    "form": "EX-10.1",
+    "doc_type": "contract",
+    "filing_date": "2025-11-07",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000110465925108507/tm2530590d1_ex10-1.htm",
+    "local_path": "data\\raw\\TSLA_tm2530590d1_ex10-1.htm",
+    "format": "htm",
+    "sha256": "31ddceb1d8bfea866d260b099c65bafc6cc9acd0e7dce201ef91ae52361322b0",
+    "retrieved_at": "2026-09-04T11:38:50.901079+00:00"
+  },
+  {
+    "company": "Tesla, Inc.",
+    "ticker": "TSLA",
+    "cik": "0001318605",
+    "form": "EX-10.2",
+    "doc_type": "contract",
+    "filing_date": "2025-11-07",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000110465925108507/tm2530590d1_ex10-2.htm",
+    "local_path": "data\\raw\\TSLA_tm2530590d1_ex10-2.htm",
+    "format": "htm",
+    "sha256": "a8cea03e877cc8675a99a8460477e83958acc15863d6791d1f3a545351d17a1e",
+    "retrieved_at": "2026-09-04T11:38:52.633316+00:00"
+  },
+  {
+    "company": "Tesla, Inc.",
+    "ticker": "TSLA",
+    "cik": "0001318605",
+    "form": "EX-10.3",
+    "doc_type": "contract",
+    "filing_date": "2025-11-07",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000110465925108507/tm2530590d1_ex10-3.htm",
+    "local_path": "data\\raw\\TSLA_tm2530590d1_ex10-3.htm",
+    "format": "htm",
+    "sha256": "ecf90e5ba3acd0100b50441a50b608853ba95df59b7319c946f83267cc13180d",
+    "retrieved_at": "2026-09-04T11:38:54.721210+00:00"
+  },
+  {
+    "company": "Amazon.com, Inc.",
+    "ticker": "AMZN",
+    "cik": "0001018724",
+    "form": "10-K",
+    "doc_type": "report",
+    "filing_date": "2026-02-06",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+    "local_path": "data\\raw\\AMZN_10-K_2026-02-06.htm",
+    "format": "htm",
+    "sha256": "beb1bfc28558135e76882db0cf36ba72a1ab44e2144fe37534f4da1e120ddb57",
+    "retrieved_at": "2026-09-04T11:39:00.834312+00:00"
+  },
+  {
+    "company": "Amazon.com, Inc.",
+    "ticker": "AMZN",
+    "cik": "0001018724",
+    "form": "EX-19.1",
+    "doc_type": "policy",
+    "filing_date": "2025-02-07",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231xex191.htm",
+    "local_path": "data\\raw\\AMZN_amzn-20241231xex191.htm",
+    "format": "htm",
+    "sha256": "b64f6d2033b3b95621d540dd897d45838cb9f14cfe2fe4addef39f8caeeb8a8b",
+    "retrieved_at": "2026-09-04T11:39:06.381570+00:00"
+  },
+  {
+    "company": "Amazon.com, Inc.",
+    "ticker": "AMZN",
+    "cik": "0001018724",
+    "form": "EX-10.7",
+    "doc_type": "contract",
+    "filing_date": "2024-02-02",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231xex107.htm",
+    "local_path": "data\\raw\\AMZN_amzn-20231231xex107.htm",
+    "format": "htm",
+    "sha256": "fb7ad1f29201de3991fe9aeb0859af021293475d432657097f1e5efb8729dc14",
+    "retrieved_at": "2026-09-04T11:39:14.284010+00:00"
+  },
+  {
+    "company": "Amazon.com, Inc.",
+    "ticker": "AMZN",
+    "cik": "0001018724",
+    "form": "EX-97.1",
+    "doc_type": "policy",
+    "filing_date": "2024-02-02",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231xex971.htm",
+    "local_path": "data\\raw\\AMZN_amzn-20231231xex971.htm",
+    "format": "htm",
+    "sha256": "c72054771797c82b44175340d214ca5395d395419628508867cc87d87f929fc1",
+    "retrieved_at": "2026-09-04T11:39:16.091995+00:00"
+  },
+  {
+    "company": "Amazon.com, Inc.",
+    "ticker": "AMZN",
+    "cik": "0001018724",
+    "form": "8-K",
+    "doc_type": "report",
+    "filing_date": "2026-07-30",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260730.htm",
+    "local_path": "data\\raw\\AMZN_8-K_2026-07-30.htm",
+    "format": "htm",
+    "sha256": "0100ab39d898b67817437a007c096f18591db3f4dc5c39f2d1eb6f535d6508b3",
+    "retrieved_at": "2026-09-04T11:39:17.897572+00:00"
+  },
+  {
+    "company": "Amazon.com, Inc.",
+    "ticker": "AMZN",
+    "cik": "0001018724",
+    "form": "EX-10.1",
+    "doc_type": "contract",
+    "filing_date": "2026-06-10",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926072140/tm2613616d4_ex10-1.htm",
+    "local_path": "data\\raw\\AMZN_tm2613616d4_ex10-1.htm",
+    "format": "htm",
+    "sha256": "97439b2e2c1b9d65f4677a646bf9bf3a297f091b7ac4fe00eff650d8558605e9",
+    "retrieved_at": "2026-09-04T11:39:27.114983+00:00"
+  },
+  {
+    "company": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "cik": "0001652044",
+    "form": "10-K",
+    "doc_type": "report",
+    "filing_date": "2026-02-05",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+    "local_path": "data\\raw\\GOOGL_10-K_2026-02-05.htm",
+    "format": "htm",
+    "sha256": "c2f6301004f35411a20611c14ff01d80a85c0bcbab6053c80d8cc7f6fc747161",
+    "retrieved_at": "2026-09-04T11:39:38.888836+00:00"
+  },
+  {
+    "company": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "cik": "0001652044",
+    "form": "EX-19.01",
+    "doc_type": "policy",
+    "filing_date": "2025-02-05",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/googexhibit1901q42024.htm",
+    "local_path": "data\\raw\\GOOGL_googexhibit1901q42024.htm",
+    "format": "htm",
+    "sha256": "9d382d59012c557966e4e1020cfa4cff602cff20011b1c1e89aca246295d1603",
+    "retrieved_at": "2026-09-04T11:39:44.838316+00:00"
+  },
+  {
+    "company": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "cik": "0001652044",
+    "form": "EX-10.02",
+    "doc_type": "contract",
+    "filing_date": "2024-01-31",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/googexhibit1002q42023.htm",
+    "local_path": "data\\raw\\GOOGL_googexhibit1002q42023.htm",
+    "format": "htm",
+    "sha256": "0f615cbe0e0df48c3be98eeebab1d30fb3b06f990ba841423854104d9c3b6e12",
+    "retrieved_at": "2026-09-04T11:39:48.712117+00:00"
+  },
+  {
+    "company": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "cik": "0001652044",
+    "form": "EX-97.01",
+    "doc_type": "policy",
+    "filing_date": "2024-01-31",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/googexhibit9701q42023.htm",
+    "local_path": "data\\raw\\GOOGL_googexhibit9701q42023.htm",
+    "format": "htm",
+    "sha256": "b5770251e53306e28b089e4e5012d7e5e1de63f98ab4b520c54a8dd502a11b0d",
+    "retrieved_at": "2026-09-04T11:39:50.567232+00:00"
+  },
+  {
+    "company": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "cik": "0001652044",
+    "form": "8-K",
+    "doc_type": "report",
+    "filing_date": "2026-08-10",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526342390/d171253d8k.htm",
+    "local_path": "data\\raw\\GOOGL_8-K_2026-08-10.htm",
+    "format": "htm",
+    "sha256": "4d9706b04a3e5d9358b76d9471a2b115f237be878fbb4c2c24a164569fc9b1e3",
+    "retrieved_at": "2026-09-04T11:39:52.066750+00:00"
+  },
+  {
+    "company": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "cik": "0001652044",
+    "form": "EX-10.01",
+    "doc_type": "contract",
+    "filing_date": "2026-06-11",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526267578/d57679dex1001.htm",
+    "local_path": "data\\raw\\GOOGL_d57679dex1001.htm",
+    "format": "htm",
+    "sha256": "195bf90f9fbf18bdf6dbdc0e37d599dd8e972de40ba71e41aa95f2deb6d144f1",
+    "retrieved_at": "2026-09-04T11:39:58.808948+00:00"
+  },
+  {
+    "company": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "cik": "0001652044",
+    "form": "EX-10.1",
+    "doc_type": "contract",
+    "filing_date": "2026-06-05",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526259830/d36818dex101.htm",
+    "local_path": "data\\raw\\GOOGL_d36818dex101.htm",
+    "format": "htm",
+    "sha256": "459b5f68177c60f2fb0e189566801de16accbc62eec9b788875b60313a78b537",
+    "retrieved_at": "2026-09-04T11:40:02.265135+00:00"
+  },
+  {
+    "company": "Alphabet Inc.",
+    "ticker": "GOOGL",
+    "cik": "0001652044",
+    "form": "EX-10.2",
+    "doc_type": "contract",
+    "filing_date": "2026-06-05",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526259830/d36818dex102.htm",
+    "local_path": "data\\raw\\GOOGL_d36818dex102.htm",
+    "format": "htm",
+    "sha256": "e1958771b4581ec3ce13861807b986ac77941765a36fdbcd411b6676867c5ecf",
+    "retrieved_at": "2026-09-04T11:40:04.252920+00:00"
+  },
+  {
+    "company": "Meta Platforms, Inc.",
+    "ticker": "META",
+    "cik": "0001326801",
+    "form": "10-K",
+    "doc_type": "report",
+    "filing_date": "2026-01-29",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+    "local_path": "data\\raw\\META_10-K_2026-01-29.htm",
+    "format": "htm",
+    "sha256": "97d1a65e8f28c8d2878a1f73218b89f8da3be83e6517c5cffdd81845c8ce40be",
+    "retrieved_at": "2026-09-04T11:40:14.956993+00:00"
+  },
+  {
+    "company": "Meta Platforms, Inc.",
+    "ticker": "META",
+    "cik": "0001326801",
+    "form": "EX-19.1",
+    "doc_type": "policy",
+    "filing_date": "2025-01-30",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680125000017/meta-12312024x10kexhibit191.htm",
+    "local_path": "data\\raw\\META_meta-12312024x10kexhibit191.htm",
+    "format": "htm",
+    "sha256": "9c9f28025c0f9c5e79b2995cb4cb45c744fdb85daf0f1095df87eb27bf104690",
+    "retrieved_at": "2026-09-04T11:40:21.906507+00:00"
+  },
+  {
+    "company": "Meta Platforms, Inc.",
+    "ticker": "META",
+    "cik": "0001326801",
+    "form": "EX-19.2",
+    "doc_type": "policy",
+    "filing_date": "2025-01-30",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680125000017/meta-12312024x10kexhibit192.htm",
+    "local_path": "data\\raw\\META_meta-12312024x10kexhibit192.htm",
+    "format": "htm",
+    "sha256": "c5c843a85d940de73d4d3435a840424935a4da2f082b6aeaf75ca2e2ecb02bfd",
+    "retrieved_at": "2026-09-04T11:40:23.576406+00:00"
+  },
+  {
+    "company": "Meta Platforms, Inc.",
+    "ticker": "META",
+    "cik": "0001326801",
+    "form": "8-K",
+    "doc_type": "report",
+    "filing_date": "2026-07-29",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050596/meta-20260729.htm",
+    "local_path": "data\\raw\\META_8-K_2026-07-29.htm",
+    "format": "htm",
+    "sha256": "96f9c8482c2798770b715995e7513f43e0a026d44c844aa133f6c70951eb22a8",
+    "retrieved_at": "2026-09-04T11:40:25.224412+00:00"
+  },
+  {
+    "company": "NVIDIA Corporation",
+    "ticker": "NVDA",
+    "cik": "0001045810",
+    "form": "10-K",
+    "doc_type": "report",
+    "filing_date": "2026-02-25",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+    "local_path": "data\\raw\\NVDA_10-K_2026-02-25.htm",
+    "format": "htm",
+    "sha256": "73d81f5a111abcf72426c840871e76f5f5edc9631f436d495a86b6f87306d58b",
+    "retrieved_at": "2026-09-04T11:40:42.473730+00:00"
+  },
+  {
+    "company": "NVIDIA Corporation",
+    "ticker": "NVDA",
+    "cik": "0001045810",
+    "form": "EX-19.1",
+    "doc_type": "policy",
+    "filing_date": "2026-02-25",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-2026xex191.htm",
+    "local_path": "data\\raw\\NVDA_nvda-2026xex191.htm",
+    "format": "htm",
+    "sha256": "048f6220458657791dc26b302b6b313ca1f101b869d434e968d03b3fc98bec35",
+    "retrieved_at": "2026-09-04T11:40:45.856483+00:00"
+  },
+  {
+    "company": "NVIDIA Corporation",
+    "ticker": "NVDA",
+    "cik": "0001045810",
+    "form": "EX-19.1",
+    "doc_type": "policy",
+    "filing_date": "2025-02-26",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000023/nvda-2025xex191.htm",
+    "local_path": "data\\raw\\NVDA_nvda-2025xex191.htm",
+    "format": "htm",
+    "sha256": "6f34eb3eea18dc8cae0c232caa189bd44a6c85b0c92774efa631f7948184a5b3",
+    "retrieved_at": "2026-09-04T11:40:54.768056+00:00"
+  },
+  {
+    "company": "NVIDIA Corporation",
+    "ticker": "NVDA",
+    "cik": "0001045810",
+    "form": "EX-97.1",
+    "doc_type": "policy",
+    "filing_date": "2024-02-21",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/compensationrecoverypolicy.htm",
+    "local_path": "data\\raw\\NVDA_compensationrecoverypolicy.htm",
+    "format": "htm",
+    "sha256": "013b39580819701d82da7a3df7062a9caba9dff1d5e87b61c06182c8f5811850",
+    "retrieved_at": "2026-09-04T11:40:58.262670+00:00"
+  },
+  {
+    "company": "NVIDIA Corporation",
+    "ticker": "NVDA",
+    "cik": "0001045810",
+    "form": "8-K",
+    "doc_type": "report",
+    "filing_date": "2026-09-03",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm",
+    "local_path": "data\\raw\\NVDA_8-K_2026-09-03.htm",
+    "format": "htm",
+    "sha256": "089fc17e99aaaa97e4b4b8a13c5b78dca7c4f0d24aca12c2d275a4e765ca461a",
+    "retrieved_at": "2026-09-04T11:40:59.929808+00:00"
+  },
+  {
+    "company": "JPMorgan Chase & Co.",
+    "ticker": "JPM",
+    "cik": "0000019617",
+    "form": "10-K",
+    "doc_type": "report",
+    "filing_date": "2026-02-13",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+    "local_path": "data\\raw\\JPM_10-K_2026-02-13.htm",
+    "format": "htm",
+    "sha256": "4d9febdbc2038dcdca8726053286df4cbbfd48885051cbd781efcc3becb66a23",
+    "retrieved_at": "2026-09-04T11:41:18.279493+00:00"
+  },
+  {
+    "company": "JPMorgan Chase & Co.",
+    "ticker": "JPM",
+    "cik": "0000019617",
+    "form": "EX-19",
+    "doc_type": "policy",
+    "filing_date": "2026-02-13",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/corp10k2025exhibit19.htm",
+    "local_path": "data\\raw\\JPM_corp10k2025exhibit19.htm",
+    "format": "htm",
+    "sha256": "f84cd328a817f7f7a644d1f1fc5bc01d9283b11de9b873a6476b49d8f0ba1f84",
+    "retrieved_at": "2026-09-04T11:41:25.502103+00:00"
+  },
+  {
+    "company": "JPMorgan Chase & Co.",
+    "ticker": "JPM",
+    "cik": "0000019617",
+    "form": "EX-97",
+    "doc_type": "policy",
+    "filing_date": "2026-02-13",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/corp10k2025exhibit97.htm",
+    "local_path": "data\\raw\\JPM_corp10k2025exhibit97.htm",
+    "format": "htm",
+    "sha256": "0733b0fe202ed2018caea3ab3c7aee07d1beafc79f74855a1235e50a428fb028",
+    "retrieved_at": "2026-09-04T11:41:27.183448+00:00"
+  },
+  {
+    "company": "JPMorgan Chase & Co.",
+    "ticker": "JPM",
+    "cik": "0000019617",
+    "form": "8-K",
+    "doc_type": "report",
+    "filing_date": "2026-07-23",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/19617/000119312526314128/d103985d8k.htm",
+    "local_path": "data\\raw\\JPM_8-K_2026-07-23.htm",
+    "format": "htm",
+    "sha256": "3c3bb4d31499036f5bc8faa0d49495b45611fb164b63aa711685a6970099f7f6",
+    "retrieved_at": "2026-09-04T11:41:28.674177+00:00"
+  },
+  {
+    "company": "Walmart Inc.",
+    "ticker": "WMT",
+    "cik": "0000104169",
+    "form": "10-K",
+    "doc_type": "report",
+    "filing_date": "2026-03-13",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm",
+    "local_path": "data\\raw\\WMT_10-K_2026-03-13.htm",
+    "format": "htm",
+    "sha256": "276a6accff6066f00342ba03b390c6c2bd51aa7246f0346df22df0b839a5bf5c",
+    "retrieved_at": "2026-09-04T11:41:47.213387+00:00"
+  },
+  {
+    "company": "Walmart Inc.",
+    "ticker": "WMT",
+    "cik": "0000104169",
+    "form": "EX-19",
+    "doc_type": "policy",
+    "filing_date": "2026-03-13",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmtexhibit19fy26.htm",
+    "local_path": "data\\raw\\WMT_wmtexhibit19fy26.htm",
+    "format": "htm",
+    "sha256": "2b4c9e3460808cab2a8e8f413f1bd5e28037be04c3c057ce571821dbbb79d951",
+    "retrieved_at": "2026-09-04T11:41:56.323143+00:00"
+  },
+  {
+    "company": "Walmart Inc.",
+    "ticker": "WMT",
+    "cik": "0000104169",
+    "form": "8-K",
+    "doc_type": "report",
+    "filing_date": "2026-08-20",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000145/wmt-20260820.htm",
+    "local_path": "data\\raw\\WMT_8-K_2026-08-20.htm",
+    "format": "htm",
+    "sha256": "a6e2ecb4e628fde201bfad6ee7f109a40cac04a7ffff15e67ec6a22a20e3d97a",
+    "retrieved_at": "2026-09-04T11:42:11.432310+00:00"
+  },
+  {
+    "company": "Johnson & Johnson",
+    "ticker": "JNJ",
+    "cik": "0000200406",
+    "form": "10-K",
+    "doc_type": "report",
+    "filing_date": "2026-02-11",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/200406/000020040626000016/jnj-20251228.htm",
+    "local_path": "data\\raw\\JNJ_10-K_2026-02-11.htm",
+    "format": "htm",
+    "sha256": "082f4e489d4c19f585cae4c8b62acea92bd6727576f7b0e450b9dfe8ecd42694",
+    "retrieved_at": "2026-09-04T11:42:29.653554+00:00"
+  },
+  {
+    "company": "Johnson & Johnson",
+    "ticker": "JNJ",
+    "cik": "0000200406",
+    "form": "8-K",
+    "doc_type": "report",
+    "filing_date": "2026-08-04",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/200406/000020040626000167/jnj-20260804.htm",
+    "local_path": "data\\raw\\JNJ_8-K_2026-08-04.htm",
+    "format": "htm",
+    "sha256": "2b843912a8bb70e561847f88d3b414239daa1b40cfa2dd3513f1519306deeffe",
+    "retrieved_at": "2026-09-04T11:43:02.132855+00:00"
   },
   {
     "company": "NIST",
@@ -162,11 +786,11 @@
     "doc_type": "standard",
     "filing_date": "",
     "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf",
-    "title": "NIST SP 800-61r2: Computer Security Incident Handling Guide",
+    "title": "Computer Security Incident Handling Guide",
     "local_path": "data\\raw\\NIST_SP-800-61r2.pdf",
     "format": "pdf",
     "sha256": "b1c5ead0632dcfb979c59d8c462b094ad2465ddaf62d5c246289d6d9b4419df1",
-    "retrieved_at": "2026-09-04T08:12:36.589795+00:00"
+    "retrieved_at": "2026-09-04T11:44:30.799516+00:00"
   },
   {
     "company": "NIST",
@@ -175,11 +799,245 @@
     "doc_type": "standard",
     "filing_date": "",
     "source_url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
-    "title": "NIST Cybersecurity Framework 2.0",
+    "title": "Cybersecurity Framework 2.0",
     "local_path": "data\\raw\\NIST_CSF-2.0.pdf",
     "format": "pdf",
     "sha256": "3c31f46fee98cac0c4323453e5109291a213b4de7fef8c058af9bf67f717433c",
-    "retrieved_at": "2026-09-04T08:12:46.696417+00:00"
+    "retrieved_at": "2026-09-04T11:44:34.332113+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-150",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-150.pdf",
+    "title": "Guide to Cyber Threat Information Sharing",
+    "local_path": "data\\raw\\NIST_SP-800-150.pdf",
+    "format": "pdf",
+    "sha256": "c9ade17b8524d0bae4f77e4aefa79f0b752ca18dcaf01c84214bf2b8a05376f8",
+    "retrieved_at": "2026-09-04T11:44:37.666415+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-181r1",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-181r1.pdf",
+    "title": "Workforce Framework for Cybersecurity",
+    "local_path": "data\\raw\\NIST_SP-800-181r1.pdf",
+    "format": "pdf",
+    "sha256": "d27e324ed650551015ffe5d44608fcd1e1b71dafadd5f4d44f3767002e0e9313",
+    "retrieved_at": "2026-09-04T11:44:40.701599+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-40r4",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-40r4.pdf",
+    "title": "Guide to Enterprise Patch Management",
+    "local_path": "data\\raw\\NIST_SP-800-40r4.pdf",
+    "format": "pdf",
+    "sha256": "351f4a828d6c0bc8bf98f25ba3f87ec5add0ed8cf8bb4a6e6cb4e7e4a9731833",
+    "retrieved_at": "2026-09-04T11:44:44.093025+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-46r2",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-46r2.pdf",
+    "title": "Guide to Enterprise Telework Security",
+    "local_path": "data\\raw\\NIST_SP-800-46r2.pdf",
+    "format": "pdf",
+    "sha256": "8d236e4b51c0ff0005e6a5be5724de6ba404954021d26c7d7aa4665b6b38a7de",
+    "retrieved_at": "2026-09-04T11:44:47.188859+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-124r1",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r1.pdf",
+    "title": "Managing the Security of Mobile Devices",
+    "local_path": "data\\raw\\NIST_SP-800-124r1.pdf",
+    "format": "pdf",
+    "sha256": "3fd9a25e3439b32cc70f71470f2e8d6d15f5b149bcce0b1fdffe697240ccaedb",
+    "retrieved_at": "2026-09-04T11:44:50.253498+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-88r1",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-88r1.pdf",
+    "title": "Guidelines for Media Sanitization",
+    "local_path": "data\\raw\\NIST_SP-800-88r1.pdf",
+    "format": "pdf",
+    "sha256": "acd2315cb1823d51db93b180d898fabfdf5e964e3fcb41cf44d14b4c3ec8c5c4",
+    "retrieved_at": "2026-09-04T11:44:53.569431+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-218",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf",
+    "title": "Secure Software Development Framework",
+    "local_path": "data\\raw\\NIST_SP-800-218.pdf",
+    "format": "pdf",
+    "sha256": "617746e553a9e2da49bfbd4eef0dfc3094758a39b869314e4173ac36605cde22",
+    "retrieved_at": "2026-09-04T11:44:57.433408+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-184",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-184.pdf",
+    "title": "Guide for Cybersecurity Event Recovery",
+    "local_path": "data\\raw\\NIST_SP-800-184.pdf",
+    "format": "pdf",
+    "sha256": "c03b6245d3ebbe71a5b52072f756504b76f9fd36e8e8c8a71115364b09f2946f",
+    "retrieved_at": "2026-09-04T11:45:04.084586+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-209",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-209.pdf",
+    "title": "Security Guidelines for Storage Infrastructure",
+    "local_path": "data\\raw\\NIST_SP-800-209.pdf",
+    "format": "pdf",
+    "sha256": "d94e95a18e6a12395d7e3ed8707266028ad188ce0a6e985137278d3e4416706d",
+    "retrieved_at": "2026-09-04T11:45:06.914456+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_CSWP-04162018",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.04162018.pdf",
+    "title": "Framework for Improving Critical Infrastructure Cybersecurity",
+    "local_path": "data\\raw\\NIST_CSWP-04162018.pdf",
+    "format": "pdf",
+    "sha256": "0f3ca796610ab024cbc3484cbd6799e19b4d9159d3634972a2a76af83f15fb92",
+    "retrieved_at": "2026-09-04T11:45:10.138865+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-210",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-210.pdf",
+    "title": "General Access Control Guidance for Cloud Systems",
+    "local_path": "data\\raw\\NIST_SP-800-210.pdf",
+    "format": "pdf",
+    "sha256": "147271600180dfd048c21da0892a1228f574bdf7b69f5982710a3aa6ebf79a95",
+    "retrieved_at": "2026-09-04T11:45:13.619627+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-172",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-172.pdf",
+    "title": "Enhanced Security Requirements for CUI",
+    "local_path": "data\\raw\\NIST_SP-800-172.pdf",
+    "format": "pdf",
+    "sha256": "3847d851bdd52eb8824fbf57c4d2294099fa68e4b9a505401ba3f0f48fec721b",
+    "retrieved_at": "2026-09-04T11:45:17.283234+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-128",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-128.pdf",
+    "title": "Security-Focused Configuration Management",
+    "local_path": "data\\raw\\NIST_SP-800-128.pdf",
+    "format": "pdf",
+    "sha256": "ee97c5be0a5a1c70165bf960c67042c5ed1bcb186aeb592eada60e512ab35a70",
+    "retrieved_at": "2026-09-04T11:45:20.836930+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-171r2",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-171r2.pdf",
+    "title": "Protecting Controlled Unclassified Information",
+    "local_path": "data\\raw\\NIST_SP-800-171r2.pdf",
+    "format": "pdf",
+    "sha256": "298bdbfcf6a4890a564b225c893230a0b32b2e69e3b98dd898aaeb1d544c5e12",
+    "retrieved_at": "2026-09-04T11:45:23.744764+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-63-3",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-3.pdf",
+    "title": "Digital Identity Guidelines",
+    "local_path": "data\\raw\\NIST_SP-800-63-3.pdf",
+    "format": "pdf",
+    "sha256": "915bb812cb705918461e642e84141c6ca2adc2ca0106e1d88f3884c61f07110a",
+    "retrieved_at": "2026-09-04T11:45:27.587720+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-66r2",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-66r2.pdf",
+    "title": "Implementing the HIPAA Security Rule",
+    "local_path": "data\\raw\\NIST_SP-800-66r2.pdf",
+    "format": "pdf",
+    "sha256": "3910c9b29e06d978bf17258d94e851d8d3d786ceb65beb352cc93271f4d3173e",
+    "retrieved_at": "2026-09-04T11:45:31.522239+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-37r2",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf",
+    "title": "Risk Management Framework for Information Systems",
+    "local_path": "data\\raw\\NIST_SP-800-37r2.pdf",
+    "format": "pdf",
+    "sha256": "4f75e1136bb905a654f1bcd9eefefb4108f47597276ee5eec0688f6d96f6a01d",
+    "retrieved_at": "2026-09-04T11:45:34.619283+00:00"
+  },
+  {
+    "company": "NIST",
+    "ticker": "NIST",
+    "form": "NIST_SP-800-213",
+    "doc_type": "standard",
+    "filing_date": "",
+    "source_url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-213.pdf",
+    "title": "IoT Device Cybersecurity Guidance",
+    "local_path": "data\\raw\\NIST_SP-800-213.pdf",
+    "format": "pdf",
+    "sha256": "8f90d1fc02a3436444dca859b2f66e97942f443c07109798aeaee1315a6c60ae",
+    "retrieved_at": "2026-09-04T11:45:38.096199+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -191,7 +1049,7 @@
     "local_path": "data\\raw\\EMAIL_hodge-j_inbox_474.txt",
     "format": "txt",
     "sha256": "98c45fbe31c39aee21c0bf75470bfa73198885828dd266db52ba84f7548460b1",
-    "retrieved_at": "2026-09-04T08:12:50.802293+00:00"
+    "retrieved_at": "2026-09-04T11:45:42.305140+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -203,7 +1061,7 @@
     "local_path": "data\\raw\\EMAIL_blair-l_inbox_262.txt",
     "format": "txt",
     "sha256": "d1cbd655c40605073617ca120712c32a71f223f6015da4e8da1d051020c4ca64",
-    "retrieved_at": "2026-09-04T08:12:52.133420+00:00"
+    "retrieved_at": "2026-09-04T11:45:43.386713+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -215,7 +1073,7 @@
     "local_path": "data\\raw\\EMAIL_bass-e_sent_881.txt",
     "format": "txt",
     "sha256": "f321e3604d402a318884d41690b285242e9b73a2eed13c2e7358313d19021366",
-    "retrieved_at": "2026-09-04T08:12:53.566867+00:00"
+    "retrieved_at": "2026-09-04T11:45:44.467225+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -227,7 +1085,7 @@
     "local_path": "data\\raw\\EMAIL_jones-t_sent_6473.txt",
     "format": "txt",
     "sha256": "98de2205dc62bb9b016f93a444448d0993f7af1ff8e9bcc6db8197ce49a700ce",
-    "retrieved_at": "2026-09-04T08:12:55.068705+00:00"
+    "retrieved_at": "2026-09-04T11:45:45.767369+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -239,7 +1097,7 @@
     "local_path": "data\\raw\\EMAIL_dasovich-j_sent_12183.txt",
     "format": "txt",
     "sha256": "00903fc22cd54dfcb61486670385261b04f480d4181b5018832e444b1a294d7e",
-    "retrieved_at": "2026-09-04T08:12:56.397953+00:00"
+    "retrieved_at": "2026-09-04T11:45:46.815545+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -251,7 +1109,7 @@
     "local_path": "data\\raw\\EMAIL_dasovich-j_inbox_432.txt",
     "format": "txt",
     "sha256": "bd0eb76f29a92706aac90ac515c291b01f835c7fd585ca587a3068dd20ae4339",
-    "retrieved_at": "2026-09-04T08:12:57.745503+00:00"
+    "retrieved_at": "2026-09-04T11:45:48.022094+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -263,7 +1121,7 @@
     "local_path": "data\\raw\\EMAIL_crandell-s_inbox_91.txt",
     "format": "txt",
     "sha256": "8779ff0ce59abe68bc44cc3ed8d8606cff21d86cfcafd7e40fc2666099654848",
-    "retrieved_at": "2026-09-04T08:12:59.142837+00:00"
+    "retrieved_at": "2026-09-04T11:45:49.090859+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -275,7 +1133,7 @@
     "local_path": "data\\raw\\EMAIL_buy-r_inbox_435.txt",
     "format": "txt",
     "sha256": "9ccbe2d46b129583c4629e8acb7c2a8b28841857cc4f6cd0f2a1ac081b55eca3",
-    "retrieved_at": "2026-09-04T08:13:00.542359+00:00"
+    "retrieved_at": "2026-09-04T11:45:50.280794+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -287,7 +1145,7 @@
     "local_path": "data\\raw\\EMAIL_jones-t_sent_6130.txt",
     "format": "txt",
     "sha256": "efb74795376b4c71c970a185c1d4b23363466eb9f328154cd8b6311809d503c0",
-    "retrieved_at": "2026-09-04T08:13:01.851863+00:00"
+    "retrieved_at": "2026-09-04T11:45:51.527509+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -299,7 +1157,7 @@
     "local_path": "data\\raw\\EMAIL_benson-r_inbox_291.txt",
     "format": "txt",
     "sha256": "9a4768505910bb18856bab2d1c2b93d5e4b70b217a7c2b4e0591ac3003f2c0a7",
-    "retrieved_at": "2026-09-04T08:13:03.365195+00:00"
+    "retrieved_at": "2026-09-04T11:45:52.836373+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -311,7 +1169,7 @@
     "local_path": "data\\raw\\EMAIL_jones-t_inbox_150.txt",
     "format": "txt",
     "sha256": "9789db9ec0b2d20109156d7df05c8a17df766e9c65e14b9c298d17342d46e893",
-    "retrieved_at": "2026-09-04T08:13:04.673217+00:00"
+    "retrieved_at": "2026-09-04T11:45:54.070603+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -323,7 +1181,7 @@
     "local_path": "data\\raw\\EMAIL_jones-t_sent_642.txt",
     "format": "txt",
     "sha256": "ef5dcb1b33e6c6e308f5736b21b1f1a16b5ec0b74fb58a79535b19265ef31fe7",
-    "retrieved_at": "2026-09-04T08:13:06.008651+00:00"
+    "retrieved_at": "2026-09-04T11:45:55.270451+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -335,7 +1193,7 @@
     "local_path": "data\\raw\\EMAIL_lay-k_inbox_883.txt",
     "format": "txt",
     "sha256": "f652a23ae4f2173b07bd3ec70e07f721c7f1d34e0a71831315fa72414745e685",
-    "retrieved_at": "2026-09-04T08:13:07.767760+00:00"
+    "retrieved_at": "2026-09-04T11:45:56.364738+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -347,7 +1205,7 @@
     "local_path": "data\\raw\\EMAIL_grigsby-m_sent_160.txt",
     "format": "txt",
     "sha256": "286f8285c8df3871e36f5c0ad037f33b427a072b5cede9197aff1437b0e18977",
-    "retrieved_at": "2026-09-04T08:13:08.945769+00:00"
+    "retrieved_at": "2026-09-04T11:45:57.575763+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -359,7 +1217,7 @@
     "local_path": "data\\raw\\EMAIL_beck-s_sent_755.txt",
     "format": "txt",
     "sha256": "2aeaf9556e32166dafb6f7db1be0f291719355ae5c8d37f9bc493518f1e06593",
-    "retrieved_at": "2026-09-04T08:13:10.236841+00:00"
+    "retrieved_at": "2026-09-04T11:45:58.819159+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -371,7 +1229,7 @@
     "local_path": "data\\raw\\EMAIL_hayslett-r_inbox_80.txt",
     "format": "txt",
     "sha256": "949bb8316d88ae1c5109d2065ad8aef65d4e69629336c9dfebd998a17cded644",
-    "retrieved_at": "2026-09-04T08:13:11.762599+00:00"
+    "retrieved_at": "2026-09-04T11:45:59.934131+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -383,7 +1241,7 @@
     "local_path": "data\\raw\\EMAIL_fischer-m_sent_4.txt",
     "format": "txt",
     "sha256": "e2b4d2410447bf479ee92b785917ccb7effa3d4b1aa9d203facee76fca654a45",
-    "retrieved_at": "2026-09-04T08:13:13.281334+00:00"
+    "retrieved_at": "2026-09-04T11:46:01.168571+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -395,7 +1253,7 @@
     "local_path": "data\\raw\\EMAIL_baughman-d_inbox_275.txt",
     "format": "txt",
     "sha256": "ec019406100559ddf6c02c3c626a24b146885ec5e6ed5b8f47688d243686bb6a",
-    "retrieved_at": "2026-09-04T08:13:14.810851+00:00"
+    "retrieved_at": "2026-09-04T11:46:02.394961+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -407,7 +1265,7 @@
     "local_path": "data\\raw\\EMAIL_baughman-d_inbox_187.txt",
     "format": "txt",
     "sha256": "4e8c5aa832d7914df712bc3d8526b8df014da71871349332a17c4321da246e3e",
-    "retrieved_at": "2026-09-04T08:13:16.210653+00:00"
+    "retrieved_at": "2026-09-04T11:46:03.464487+00:00"
   },
   {
     "company": "Enron Corp. (AESLC corpus)",
@@ -419,66 +1277,6 @@
     "local_path": "data\\raw\\EMAIL_beck-s_sent_983.txt",
     "format": "txt",
     "sha256": "793c4f7b433ed3a42b86ab9567df0d648f6c9f9e687a708d01c5645f7a3d2d37",
-    "retrieved_at": "2026-09-04T08:13:17.746549+00:00"
-  },
-  {
-    "company": "Enron Corp. (AESLC corpus)",
-    "ticker": "EMAIL",
-    "form": "email",
-    "doc_type": "email",
-    "filing_date": "",
-    "source_url": "https://raw.githubusercontent.com/ryanzhumich/AESLC/master/enron_subject_line/dev/crandell-s_inbox_164.subject",
-    "local_path": "data\\raw\\EMAIL_crandell-s_inbox_164.txt",
-    "format": "txt",
-    "sha256": "9a0996e71418325f93595c0d6f8162e65ad2ad61ea84b8dd529b876fa3632a46",
-    "retrieved_at": "2026-09-04T08:13:19.067156+00:00"
-  },
-  {
-    "company": "Enron Corp. (AESLC corpus)",
-    "ticker": "EMAIL",
-    "form": "email",
-    "doc_type": "email",
-    "filing_date": "",
-    "source_url": "https://raw.githubusercontent.com/ryanzhumich/AESLC/master/enron_subject_line/dev/dasovich-j_inbox_143.subject",
-    "local_path": "data\\raw\\EMAIL_dasovich-j_inbox_143.txt",
-    "format": "txt",
-    "sha256": "837892bb969cbbaa2488591ec573fcf1f441deb62d8514e0c3ea51c1fbb5c11f",
-    "retrieved_at": "2026-09-04T08:13:20.229555+00:00"
-  },
-  {
-    "company": "Enron Corp. (AESLC corpus)",
-    "ticker": "EMAIL",
-    "form": "email",
-    "doc_type": "email",
-    "filing_date": "",
-    "source_url": "https://raw.githubusercontent.com/ryanzhumich/AESLC/master/enron_subject_line/dev/germany-c_sent_820.subject",
-    "local_path": "data\\raw\\EMAIL_germany-c_sent_820.txt",
-    "format": "txt",
-    "sha256": "efef4aecf29f5b30d5b8560612195ac267bab14e32fda00a7f1cad80de3c446c",
-    "retrieved_at": "2026-09-04T08:13:21.568836+00:00"
-  },
-  {
-    "company": "Enron Corp. (AESLC corpus)",
-    "ticker": "EMAIL",
-    "form": "email",
-    "doc_type": "email",
-    "filing_date": "",
-    "source_url": "https://raw.githubusercontent.com/ryanzhumich/AESLC/master/enron_subject_line/dev/hernandez-j_inbox_105.subject",
-    "local_path": "data\\raw\\EMAIL_hernandez-j_inbox_105.txt",
-    "format": "txt",
-    "sha256": "76beed736bb0d154e52f12a391c26875837813a619961a3f53ca0cb67a3cb9a2",
-    "retrieved_at": "2026-09-04T08:13:23.107805+00:00"
-  },
-  {
-    "company": "Enron Corp. (AESLC corpus)",
-    "ticker": "EMAIL",
-    "form": "email",
-    "doc_type": "email",
-    "filing_date": "",
-    "source_url": "https://raw.githubusercontent.com/ryanzhumich/AESLC/master/enron_subject_line/dev/bass-e_sent_98.subject",
-    "local_path": "data\\raw\\EMAIL_bass-e_sent_98.txt",
-    "format": "txt",
-    "sha256": "c469694743aaab8f4c7294e0885f69a4a1fe2daf0844c641b0d04487be7bb132",
-    "retrieved_at": "2026-09-04T08:13:24.628430+00:00"
+    "retrieved_at": "2026-09-04T11:46:04.652404+00:00"
   }
 ]
