@@ -1,5 +1,9 @@
 """
-Step 3 — Ingestion: HTML loading, cleaning, and chunking.
+Step 3 — Ingestion: multi-format document loading, cleaning, and chunking.
+
+The corpus spans three file formats (HTML filings and exhibits, PDF
+standards, plain-text emails), so loading dispatches on file type -- see
+``load_document_text`` for what each path extracts and what it loses.
 
 Chunking strategy (documented here so the "why" travels with the code):
 
@@ -26,8 +30,15 @@ not, say, a table-of-contents entry). This is a heuristic, not a parser
 against the filing's actual document schema, so if fewer than 3
 section headers are found, we fall back to chunking the whole document
 as a single "Full Document" section rather than risk over-splitting on
-false-positive header matches. This trade-off (and where it does/doesn't
-hold across the 6 sourced filings) is discussed in the write-up.
+false-positive header matches.
+
+That fallback is also what the non-SEC documents take: NIST publications,
+contract exhibits and emails have no "Item N" headers, so each becomes a
+single section and is chunked by the sliding window alone. For short
+documents (emails, exhibits) that is the right answer. For an 80-page
+NIST PDF it is genuinely coarse -- the document's own numbered headings
+could drive a finer split -- and that limitation is documented in the
+README rather than papered over.
 """
 import json
 import re
@@ -54,24 +65,63 @@ ITEM_HEADER_RE = re.compile(
 ITEM_NUMBER_RE = re.compile(r"item\s+\d+[a-z]?(?:\.\d+)?", re.IGNORECASE)
 
 
-def html_to_text(html: str) -> str:
-    """Strip an SEC filing's HTML down to plain text, one line per block.
+def load_document_text(local_path: Path) -> str:
+    """Extract plain text from a corpus document, dispatching on file type.
 
-    Script/style content is dropped, and blank lines are collapsed while
-    single newlines are preserved -- ``ITEM_HEADER_RE`` anchors on line
-    boundaries, so the line structure has to survive this step.
+    The corpus spans three formats, each needing a different extraction
+    path, and each losing something different in the process:
+
+    - **HTML** (filings, exhibits): parsed with BeautifulSoup, dropping
+      script/style. Blank lines are collapsed but single newlines are kept,
+      because ``ITEM_HEADER_RE`` anchors on line boundaries.
+    - **PDF** (NIST publications): text layer extracted per page with
+      pdfplumber. These PDFs carry a real text layer, so no OCR is needed;
+      a scanned document would come back empty here and would need an OCR
+      stage, which this pipeline does not have.
+    - **Plain text** (emails): read as-is, minus the AESLC corpus's
+      ``@subject``/``@ann*`` trailer. The ``@subject`` line is promoted to
+      the top of the text so the email's subject is embedded alongside its
+      body; the ``@ann*`` lines are alternative subject lines belonging to
+      that dataset's summarization task, not to the email, so they are
+      dropped rather than indexed as if the sender wrote them.
 
     Args:
-        html: Raw filing HTML as fetched from EDGAR.
+        local_path: Path to the document under ``data/raw``.
 
     Returns:
-        Newline-joined text with empty lines removed.
+        Extracted text, or an empty string if the file yields none.
+
+    Raises:
+        ValueError: If the file extension is not a supported format.
     """
-    soup = BeautifulSoup(html, "lxml")
-    for tag in soup(["script", "style"]):
-        tag.decompose()
-    lines = [line.strip() for line in soup.get_text(separator="\n").splitlines()]
-    return "\n".join(line for line in lines if line)
+    suffix = local_path.suffix.lower()
+
+    if suffix in {".htm", ".html"}:
+        soup = BeautifulSoup(
+            local_path.read_bytes().decode("utf-8", errors="ignore"), "lxml"
+        )
+        for tag in soup(["script", "style"]):
+            tag.decompose()
+        lines = [line.strip() for line in soup.get_text(separator="\n").splitlines()]
+        return "\n".join(line for line in lines if line)
+
+    if suffix == ".pdf":
+        import pdfplumber
+
+        with pdfplumber.open(local_path) as pdf:
+            pages = [page.extract_text() or "" for page in pdf.pages]
+        lines = [line.strip() for line in "\n".join(pages).splitlines()]
+        return "\n".join(line for line in lines if line)
+
+    if suffix == ".txt":
+        raw = local_path.read_text(encoding="utf-8", errors="ignore")
+        body, _, trailer = raw.partition("@subject")
+        subject = trailer.split("@ann")[0].strip() if trailer else ""
+        text = f"Subject: {subject}\n{body.strip()}" if subject else body.strip()
+        lines = [line.strip() for line in text.splitlines()]
+        return "\n".join(line for line in lines if line)
+
+    raise ValueError(f"unsupported document format {suffix!r} for {local_path.name}")
 
 
 def split_into_sections(text: str) -> list[tuple[str, str]]:
@@ -176,9 +226,12 @@ def build_all_chunks(verbose: bool = True) -> list[dict]:
     all_chunks: list[dict] = []
 
     for doc_meta in manifest:
-        html = Path(doc_meta["local_path"]).read_bytes().decode("utf-8", errors="ignore")
-        sections = split_into_sections(html_to_text(html))
-        doc_id = f"{doc_meta['ticker']}_{doc_meta['form']}_{doc_meta['filing_date']}"
+        local_path = Path(doc_meta["local_path"])
+        # doc_id comes from the filename stem, which is unique per document.
+        # Composing it from ticker/form/date instead would collide -- every
+        # sampled email shares the same ticker, form and (empty) date.
+        doc_id = local_path.stem
+        sections = split_into_sections(load_document_text(local_path))
 
         doc_chunks: list[dict] = []
         for section_title, section_text in sections:
@@ -190,6 +243,8 @@ def build_all_chunks(verbose: bool = True) -> list[dict]:
                         "ticker": doc_meta["ticker"],
                         "company": doc_meta["company"],
                         "form": doc_meta["form"],
+                        "doc_type": doc_meta["doc_type"],
+                        "format": doc_meta["format"],
                         "filing_date": doc_meta["filing_date"],
                         "source_url": doc_meta["source_url"],
                         "section": section_title,
@@ -202,7 +257,7 @@ def build_all_chunks(verbose: bool = True) -> list[dict]:
         if verbose:
             n_sections = len({c["section"] for c in doc_chunks})
             print(
-                f"  {doc_meta['ticker']} {doc_meta['form']} {doc_meta['filing_date']}: "
+                f"  [{doc_meta['doc_type']:8s}/{doc_meta['format']:4s}] {doc_id}: "
                 f"{n_sections} section(s) -> {len(doc_chunks)} chunks"
             )
         all_chunks.extend(doc_chunks)
