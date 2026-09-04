@@ -83,8 +83,75 @@ class TestEvaluateRetrieval(unittest.TestCase):
         self.assertEqual(result["per_query"][1]["hit_at_k"], 0.0)
 
     def test_passes_k_and_mode_through_to_the_index(self) -> None:
+        from src.evaluate import MRR_DEPTH
+
         evaluate_retrieval(self.index, self.eval_set, k=1, mode="bm25")
-        self.assertEqual(self.index.calls, [("hit", 1, "bm25"), ("miss", 1, "bm25")])
+        # Two searches per question: one at the question's k for
+        # precision/recall, one at a fixed depth for reciprocal rank.
+        self.assertEqual(
+            self.index.calls,
+            [
+                ("hit", 1, "bm25"),
+                ("hit", MRR_DEPTH, "bm25"),
+                ("miss", 1, "bm25"),
+                ("miss", MRR_DEPTH, "bm25"),
+            ],
+        )
+
+
+class TestPerQuestionKAndCeiling(unittest.TestCase):
+    """Precision@k is uninterpretable when fewer than k chunks answer the
+    question, so each question carries its own k and results report how much
+    of the attainable precision was reached."""
+
+    def setUp(self) -> None:
+        self.sizes = {(GOLD_DOC, GOLD_SECTION): 1}
+        self.eval_set = [
+            {
+                "id": "k1a",
+                "query": "pinpoint",
+                "eval_k": 1,
+                "gold_doc_id": GOLD_DOC,
+                "gold_section": GOLD_SECTION,
+            }
+        ]
+        self.index = FakeIndex({"pinpoint": [chunk()]})
+
+    def test_uses_the_question_own_k_not_the_default(self) -> None:
+        evaluate_retrieval(self.index, self.eval_set, k=5, mode="hybrid",
+                           gold_section_sizes=self.sizes)
+        self.assertEqual(self.index.calls[0][1], 1, "must search at the question's k=1")
+
+    def test_one_chunk_answer_scores_full_marks_at_k_equals_one(self) -> None:
+        # The same retrieval scores 0.20 at k=5 purely because four slots
+        # cannot hold anything relevant. At k=1 it is correctly a 1.0.
+        result = evaluate_retrieval(self.index, self.eval_set, k=5, mode="hybrid",
+                                    gold_section_sizes=self.sizes)
+        self.assertEqual(result["mean_precision_at_k"], 1.0)
+        self.assertEqual(result["mean_max_precision_at_k"], 1.0)
+        self.assertEqual(result["precision_attainment"], 1.0)
+
+    def test_ceiling_reflects_a_gold_section_smaller_than_k(self) -> None:
+        eval_set = [dict(self.eval_set[0], eval_k=5)]
+        index = FakeIndex({"pinpoint": [chunk()] + [chunk(section="Other")] * 4})
+        result = evaluate_retrieval(index, eval_set, k=5, mode="hybrid",
+                                    gold_section_sizes=self.sizes)
+        self.assertAlmostEqual(result["mean_max_precision_at_k"], 0.2)
+        self.assertAlmostEqual(result["mean_precision_at_k"], 0.2)
+        self.assertAlmostEqual(result["precision_attainment"], 1.0,
+                               msg="0.2 of a 0.2 ceiling is a perfect result")
+
+    def test_missing_section_sizes_yield_zero_ceiling_not_a_crash(self) -> None:
+        result = evaluate_retrieval(self.index, self.eval_set, k=5, mode="hybrid")
+        self.assertEqual(result["mean_max_precision_at_k"], 0.0)
+        self.assertEqual(result["precision_attainment"], 0.0)
+
+    def test_per_query_rows_carry_k_and_ceiling(self) -> None:
+        row = evaluate_retrieval(self.index, self.eval_set, k=5, mode="hybrid",
+                                 gold_section_sizes=self.sizes)["per_query"][0]
+        self.assertEqual(row["k"], 1)
+        self.assertIn("max_precision_at_k", row)
+        self.assertIn("precision_attainment", row)
 
 
 if __name__ == "__main__":

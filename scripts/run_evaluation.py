@@ -46,14 +46,35 @@ def run_retrieval_comparison(index: RetrievalIndex, eval_set: list[dict]) -> dic
     Returns:
         Metrics keyed by mode name ("dense", "bm25", "hybrid").
     """
-    print(f"\n=== Retrieval comparison (k={K}, n={len(eval_set)} questions) ===")
+    sizes: dict[tuple[str, str], int] = {}
+    for chunk in index.chunk_dicts:
+        key = (chunk["doc_id"], chunk["section"])
+        sizes[key] = sizes.get(key, 0) + 1
+
+    print(f"\n=== Retrieval comparison (n={len(eval_set)} questions, per-question k) ===")
     results = {}
     for mode in ["dense", "bm25", "hybrid"]:
-        metrics = evaluate_retrieval(index, eval_set, k=K, mode=mode)
+        metrics = evaluate_retrieval(index, eval_set, k=K, mode=mode, gold_section_sizes=sizes)
         results[mode] = metrics
         print(
-            f"  {mode:7s}  mean P@{K} = {metrics['mean_precision_at_k']:.3f}   "
-            f"mean R@{K} = {metrics['mean_recall_at_k']:.3f}"
+            f"  {mode:7s}  P@k = {metrics['mean_precision_at_k']:.3f}   "
+            f"R@k = {metrics['mean_recall_at_k']:.3f}   "
+            f"ceiling = {metrics['mean_max_precision_at_k']:.3f}   "
+            f"attainment = {metrics['precision_attainment']:.0%}"
+        )
+
+    # Per-tier breakdown: precision only means something when the tier's k
+    # matches how many chunks actually answer those questions.
+    print(f"\n  by k tier (hybrid):")
+    per = results["hybrid"]["per_query"]
+    for tier in sorted({row["k"] for row in per}):
+        rows = [r for r in per if r["k"] == tier]
+        mp = sum(r["precision_at_k"] for r in rows) / len(rows)
+        mr = sum(r["hit_at_k"] for r in rows) / len(rows)
+        mc = sum(r["max_precision_at_k"] for r in rows) / len(rows)
+        print(
+            f"    k={tier:<3} n={len(rows):<3} P@k={mp:.3f}  R@k={mr:.3f}  "
+            f"ceiling={mc:.3f}  attainment={(mp / mc if mc else 0):.0%}"
         )
     return results
 
