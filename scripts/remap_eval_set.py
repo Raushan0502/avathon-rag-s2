@@ -133,9 +133,14 @@ def main() -> int:
         if same_section:
             match, score = best_matching_chunk(question, same_section)
             if match is not None and score >= MIN_OVERLAP:
+                # Capture before assigning: comparing after the write makes
+                # the check vacuously false and hides real changes.
+                previous = question["gold_chunk_id"]
                 question["gold_chunk_id"] = match["chunk_id"]
-                if match["chunk_id"] != question["gold_chunk_id"]:
+                if match["chunk_id"] != previous:
                     changed += 1
+                    print(f"  {question['id']}  score {score:.2f}  (same section)")
+                    print(f"      chunk   {previous}  ->  {match['chunk_id']}")
                 continue
 
         match, score = best_matching_chunk(question, candidates)

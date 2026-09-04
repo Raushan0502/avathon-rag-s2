@@ -15,7 +15,7 @@
     "reference_answer": "Competition has intensified as competitors have aggressively cut prices and lowered product margins; Apple has only a minority market share in the global smartphone, personal computer, tablet, and wearables markets.",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1A. Risk Factors",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::24"
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::16"
   },
   {
     "id": "q03",
@@ -24,7 +24,7 @@
     "reference_answer": "Many of Apple's suppliers and contract manufacturers are located in areas prone to earthquakes and other natural disasters, and climate change is increasing the frequency and intensity of such events.",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1A. Risk Factors",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::19"
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::12"
   },
   {
     "id": "q04",
@@ -33,7 +33,7 @@
     "reference_answer": "Apple's Head of Corporate Information Security, who leads a dedicated Information Security team responsible for identifying, assessing, and managing cybersecurity risk.",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1C. Cybersecurity",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::69"
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::46"
   },
   {
     "id": "q05",
@@ -42,7 +42,7 @@
     "reference_answer": "Cupertino, California.",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 2. Properties",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::71"
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::48"
   },
   {
     "id": "q06",
@@ -51,7 +51,7 @@
     "reference_answer": "A Digital Markets Act Article 5(4) noncompliance investigation, opened by the European Commission on March 25, 2024, concerning how developers may communicate and promote offers, and conclude contracts, with end users for apps distributed through the App Store.",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 3. Legal Proceedings",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::72"
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::49"
   },
   {
     "id": "q07",
@@ -60,7 +60,7 @@
     "reference_answer": "$416,161 million in fiscal 2025, up from $391,035 million in fiscal 2024 (and $383,285 million in fiscal 2023).",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 8. Financial Statements and Supplementary Data",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::98"
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::80"
   },
   {
     "id": "q08",
@@ -69,7 +69,7 @@
     "reference_answer": "No -- Apple reports \"None.\"",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1B. Unresolved Staff Comments",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::68"
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::45"
   },
   {
     "id": "q09",
@@ -78,7 +78,7 @@
     "reference_answer": "Bringing artificial intelligence into the real world through products and services such as Full Self-Driving (Supervised) and Robotaxi, and developing/commercializing AI robots (including Optimus), alongside its electric vehicle and energy generation/storage business.",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1. BUSINESS",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::3"
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::0"
   },
   {
     "id": "q10",
@@ -87,7 +87,7 @@
     "reference_answer": "A full-size electric pickup truck with a stainless steel exterior.",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1. BUSINESS",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::5"
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::1"
   },
   {
     "id": "q11",
@@ -96,7 +96,7 @@
     "reference_answer": "Automotive, and Energy generation and storage.",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1. BUSINESS",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::4"
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::0"
   },
   {
     "id": "q12",
@@ -105,7 +105,7 @@
     "reference_answer": "1) Preparation for a cybersecurity incident, 2) detection and analysis of a security incident, 3) containment, eradication and recovery, and 4) post-incident analysis.",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1C. CYBERSECURITY",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::112"
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::69"
   },
   {
     "id": "q13",
@@ -114,7 +114,7 @@
     "reference_answer": "Austin, Texas.",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 2. PROPERTIES",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::117"
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::73"
   },
   {
     "id": "q14",
@@ -123,7 +123,7 @@
     "reference_answer": "To Note 13, Commitments and Contingencies, in the consolidated financial statements included elsewhere in the 10-K.",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 3. LEGAL PROCEEDINGS",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::118"
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::76"
   },
   {
     "id": "q15",
@@ -132,7 +132,7 @@
     "reference_answer": "$65,821 million (2025), $72,480 million (2024), and $78,509 million (2023).",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::194"
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::137"
   },
   {
     "id": "q16",
@@ -141,7 +141,7 @@
     "reference_answer": "No -- Tesla reports \"None.\"",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1B. UNRESOLVED STAFF COMMENTS",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::111"
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::68"
   },
   {
     "id": "q17",
@@ -150,7 +150,7 @@
     "reference_answer": "Applying AI and ambient intelligence to drive insights, revolutionize many types of work and business processes, and provide substantive productivity gains using Microsoft 365 Copilot and agents.",
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 1 Note About Forward-Looking Statements",
-    "gold_chunk_id": "MSFT_10-K_2026-07-29::7"
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::4"
   },
   {
     "id": "q18",
@@ -159,7 +159,7 @@
     "reference_answer": "Microsoft 365 Commercial products and cloud services (including Microsoft 365 Copilot), Microsoft 365 Consumer products and cloud services, LinkedIn, and Dynamics products and cloud services.",
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 1 Note About Forward-Looking Statements",
-    "gold_chunk_id": "MSFT_10-K_2026-07-29::9"
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::6"
   },
   {
     "id": "q19",
@@ -168,7 +168,7 @@
     "reference_answer": "Adverse effects on Microsoft's business, operations, financial condition, results of operations, liquidity, and the trading price of its common stock.",
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 1A ITEM 1A. RIS",
-    "gold_chunk_id": "MSFT_10-K_2026-07-29::36"
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::26"
   },
   {
     "id": "q20",
@@ -177,7 +177,7 @@
     "reference_answer": "To Note 14, Contingencies, of the Notes to Financial Statements (Part II, Item 8 of the Form 10-K).",
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "ITEM 3. LEGAL",
-    "gold_chunk_id": "MSFT_10-K_2026-07-29::110"
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::77"
   },
   {
     "id": "q21",
@@ -186,7 +186,7 @@
     "reference_answer": "Total revenue of $331,839 million: $64,696 million from Product, and $267,143 million from Service and other (fiscal year ended June 30, 2026).",
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 8 ITEM 8. FINANCIAL STATE",
-    "gold_chunk_id": "MSFT_10-K_2026-07-29::159"
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::135"
   },
   {
     "id": "q22",
@@ -195,7 +195,7 @@
     "reference_answer": "Kevan Parekh, Senior Vice President and Chief Financial Officer.",
     "gold_doc_id": "AAPL_8-K_2026-07-30",
     "gold_section": "Full Document",
-    "gold_chunk_id": "AAPL_8-K_2026-07-30::3"
+    "gold_chunk_id": "AAPL_8-K_2026-07-30::7"
   },
   {
     "id": "q23",
@@ -204,7 +204,7 @@
     "reference_answer": "Presentation materials (furnished under Regulation FD) describing an updated reportable-segment structure: (1) Agents and Infra and (2) Devices and Consumer.",
     "gold_doc_id": "MSFT_8-K_2026-09-02",
     "gold_section": "Full Document",
-    "gold_chunk_id": "MSFT_8-K_2026-09-02::2"
+    "gold_chunk_id": "MSFT_8-K_2026-09-02::4"
   },
   {
     "id": "q24",
@@ -213,7 +213,7 @@
     "reference_answer": "Item 2.02, Results of Operations and Financial Condition.",
     "gold_doc_id": "TSLA_8-K_2026-07-22",
     "gold_section": "Full Document",
-    "gold_chunk_id": "TSLA_8-K_2026-07-22::2"
+    "gold_chunk_id": "TSLA_8-K_2026-07-22::6"
   },
   {
     "id": "q25",
@@ -222,8 +222,8 @@
     "query": "Under Tesla's Stock Option Award Agreement, how long may an option be exercised after the participant ceases to be a Service Provider because of death or disability?",
     "reference_answer": "Twelve (12) months after the participant ceases to be a Service Provider, and never after the Term/Expiration date.",
     "gold_doc_id": "TSLA_tsla-2025x12x31xex109",
-    "gold_section": "Full Document",
-    "gold_chunk_id": "TSLA_tsla-2025x12x31xex109::1"
+    "gold_section": "Front Matter",
+    "gold_chunk_id": "TSLA_tsla-2025x12x31xex109::0"
   },
   {
     "id": "q26",
@@ -232,7 +232,7 @@
     "query": "Which Tesla equity plan governs the Restricted Stock Unit Agreement, and what happens to terms not defined in that agreement?",
     "reference_answer": "The Tesla, Inc. Amended and Restated 2019 Equity Incentive Plan; terms not otherwise defined in the Award Agreement carry the meanings defined in that Plan.",
     "gold_doc_id": "TSLA_tsla-2025x12x31xex1010",
-    "gold_section": "Full Document",
+    "gold_section": "Front Matter",
     "gold_chunk_id": "TSLA_tsla-2025x12x31xex1010::0"
   },
   {
@@ -242,8 +242,8 @@
     "query": "What is the stated purpose of Microsoft's General Insider Trading Policy?",
     "reference_answer": "To prevent the misuse of material, nonpublic information about Microsoft or other publicly traded companies obtained by virtue of your position at Microsoft.",
     "gold_doc_id": "MSFT_msft-ex19_1",
-    "gold_section": "Full Document",
-    "gold_chunk_id": "MSFT_msft-ex19_1::0"
+    "gold_section": "1. PURPOSE",
+    "gold_chunk_id": "MSFT_msft-ex19_1::1"
   },
   {
     "id": "q28",
@@ -252,8 +252,8 @@
     "query": "Under Microsoft's insider trading policy, which family relationships can give rise to beneficial ownership of shares?",
     "reference_answer": "Shares owned by immediate family members who live with you or use your address as their regular address -- for example a spouse, domestic partner, minor children, college students, parents, grandparents, and grandchildren.",
     "gold_doc_id": "MSFT_msft-ex19_1",
-    "gold_section": "Full Document",
-    "gold_chunk_id": "MSFT_msft-ex19_1::1"
+    "gold_section": "2. SUMMARY",
+    "gold_chunk_id": "MSFT_msft-ex19_1::2"
   },
   {
     "id": "q29",
@@ -262,7 +262,7 @@
     "query": "Who is covered by Microsoft's Executive Compensation Recovery Policy?",
     "reference_answer": "Microsoft's Covered Officers -- the policy explains when Microsoft will be required or authorized to seek recovery of incentive compensation awarded or paid to them.",
     "gold_doc_id": "MSFT_msft-ex97_1",
-    "gold_section": "Full Document",
+    "gold_section": "Front Matter",
     "gold_chunk_id": "MSFT_msft-ex97_1::0"
   },
   {
@@ -272,8 +272,8 @@
     "query": "According to the NIST incident handling guide, why is detecting security breaches still necessary after controls have been implemented?",
     "reference_answer": "Because residual risk inevitably persists after controls are implemented, detection is needed to alert the organization whenever incidents occur, so the impact can be contained and recovered from.",
     "gold_doc_id": "NIST_SP-800-61r2",
-    "gold_section": "Full Document",
-    "gold_chunk_id": "NIST_SP-800-61r2::58"
+    "gold_section": "3. Handling an Incident",
+    "gold_chunk_id": "NIST_SP-800-61r2::47"
   },
   {
     "id": "q31",
@@ -282,8 +282,8 @@
     "query": "What does the GOVERN function of the NIST Cybersecurity Framework 2.0 address?",
     "reference_answer": "Understanding organizational context; establishing cybersecurity strategy and cybersecurity supply chain risk management; roles, responsibilities and authorities; policy; and oversight of cybersecurity strategy.",
     "gold_doc_id": "NIST_CSF-2.0",
-    "gold_section": "Full Document",
-    "gold_chunk_id": "NIST_CSF-2.0::11"
+    "gold_section": "2. Introduction to the CSF Core",
+    "gold_chunk_id": "NIST_CSF-2.0::7"
   },
   {
     "id": "q32",
