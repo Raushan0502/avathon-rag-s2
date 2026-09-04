@@ -98,6 +98,21 @@ ITEM_HEADER_RE = re.compile(
 # of the same section (see split_into_sections).
 ITEM_NUMBER_RE = re.compile(r"item\s+\d+[a-z]?(?:\.\d+)?", re.IGNORECASE)
 
+# Headings in non-SEC documents: "2.1 Events and Incidents" (NIST),
+# "1. PURPOSE" (policies), "Section 5. Termination" and "Appendix A. Scope"
+# (contracts). Anchored to a whole line and capped in length so a numbered
+# list item or a sentence beginning with a figure is not mistaken for a
+# heading.
+# A bare capital must carry its period ("A. Scope"), or a cover page set in
+# spaced capitals matches as heading "C" + "O M P U T E R ...". The title
+# must also end on an alphanumeric, which rejects wrapped address lines
+# such as "100 Bureau Drive (Mail Stop 8930),".
+NUMBERED_HEADING_RE = re.compile(
+    r"(?m)^\s*((?:Section\s+|Appendix\s+|Annex\s+)?"
+    r"(?:\d+(?:\.\d+){0,2}\.?|[A-Z]\.)\s+"
+    r"[A-Z][A-Za-z0-9 ,'&/()-]{2,68}[A-Za-z0-9)])\s*$"
+)
+
 # --- Preprocessing (see normalise_text) ---------------------------------
 # Characters that differ across filers but mean the same thing. NFKC alone
 # leaves curly quotes and dashes untouched, so they are mapped explicitly.
@@ -427,9 +442,58 @@ def split_into_sections(text: str) -> list[tuple[str, str]]:
     headers = sorted(last_by_key.values(), key=lambda m: m.start())
 
     if len(headers) < MIN_SECTIONS_TO_TRUST_SPLIT:
+        return split_on_numbered_headings(text)
+
+    sections = []
+    for i, header in enumerate(headers):
+        end = headers[i + 1].start() if i + 1 < len(headers) else len(text)
+        body = text[header.end() : end].strip()
+        if body:
+            sections.append((re.sub(r"\s+", " ", header.group(1).strip()), body))
+    return sections
+
+
+def split_on_numbered_headings(text: str) -> list[tuple[str, str]]:
+    """Split a non-SEC document on its own numbered or titled headings.
+
+    Only SEC filings have "Item N" headers. Everything else -- NIST
+    publications, contract exhibits, policies -- previously fell through to
+    a single ``"Full Document"`` section, which had a measurable cost: an
+    80-page NIST PDF became one 177-chunk section, and because relevance is
+    judged at ``(doc_id, section)`` granularity, *any* chunk retrieved from
+    that file counted as relevant. Those questions scored a perfect
+    Precision@5 of 1.000 purely because the section was the whole document,
+    inflating the corpus-wide average and making it incomparable across
+    document types.
+
+    These documents do carry structure, just not SEC structure: NIST uses
+    "2.1 Events and Incidents" and "Appendix A.", contracts and policies use
+    "1. PURPOSE" or "Section 5.". A conservative pattern picks those up and
+    falls back to a single section when it finds too few, on the same
+    principle as the Item split: over-splitting on false positives is worse
+    than under-splitting.
+
+    Args:
+        text: Cleaned document text.
+
+    Returns:
+        ``(section_title, section_body)`` pairs, or a single
+        ``("Full Document", text)`` pair when no reliable structure is found.
+    """
+    headers = [
+        match
+        for match in NUMBERED_HEADING_RE.finditer(text)
+        # A heading line should not itself be a table row.
+        if not match.group(1).startswith("|")
+    ]
+    if len(headers) < MIN_SECTIONS_TO_TRUST_SPLIT:
         return [("Full Document", text)]
 
     sections = []
+    preamble = text[: headers[0].start()].strip()
+    if preamble:
+        sections.append(("Front Matter", preamble))
+
     for i, header in enumerate(headers):
         end = headers[i + 1].start() if i + 1 < len(headers) else len(text)
         body = text[header.end() : end].strip()

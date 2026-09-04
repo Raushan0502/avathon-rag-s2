@@ -267,5 +267,64 @@ class TestSplitIntoSections(unittest.TestCase):
         self.assertIn("Page three content.", dict(sections)[item7_sections[0]])
 
 
+class TestNumberedHeadingSections(unittest.TestCase):
+    """Non-SEC documents (NIST, contracts, policies) carry their own
+    structure; before this they all became one "Full Document" section."""
+
+    def test_splits_a_policy_on_its_numbered_clauses(self) -> None:
+        text = (
+            "Insider Trading Policy\n"
+            "1. PURPOSE\nTo prevent misuse of material nonpublic information.\n"
+            "2. SUMMARY\nThis policy prohibits trading on such information.\n"
+            "3. REQUIREMENTS\nYou must preclear all trades."
+        )
+        titles = [title for title, _ in split_into_sections(text)]
+        self.assertIn("1. PURPOSE", titles)
+        self.assertIn("3. REQUIREMENTS", titles)
+
+    def test_splits_a_standard_on_dotted_subsection_numbers(self) -> None:
+        text = (
+            "1.1 Authority\nThis publication was developed by NIST.\n"
+            "1.2 Purpose and Scope\nThe guide assists organizations.\n"
+            "1.3 Audience\nThis document is for incident responders."
+        )
+        self.assertEqual(
+            [t for t, _ in split_into_sections(text)],
+            ["1.1 Authority", "1.2 Purpose and Scope", "1.3 Audience"],
+        )
+
+    def test_text_before_the_first_heading_is_kept_as_front_matter(self) -> None:
+        text = (
+            "Some cover page text.\n"
+            "1. First\nBody one.\n2. Second\nBody two.\n3. Third\nBody three."
+        )
+        sections = dict(split_into_sections(text))
+        self.assertIn("Front Matter", sections)
+        self.assertIn("Some cover page text.", sections["Front Matter"])
+
+    def test_falls_back_to_one_section_when_structure_is_absent(self) -> None:
+        # An email has no headings and should stay whole.
+        text = "Subject: Historical flows\nHoward, per our conversation, these are the meters."
+        self.assertEqual(split_into_sections(text), [("Full Document", text)])
+
+    def test_spaced_capital_cover_titles_are_not_treated_as_headings(self) -> None:
+        # A NIST cover page sets the title in spaced capitals, which matched
+        # as heading "C" followed by "O M P U T E R ..." before the pattern
+        # required a bare capital to carry its period.
+        text = (
+            "C O M P U T E R S E C U R I T Y\n"
+            "1. First\nBody one.\n2. Second\nBody two.\n3. Third\nBody three."
+        )
+        titles = [title for title, _ in split_into_sections(text)]
+        self.assertNotIn("C O M P U T E R S E C U R I T Y", titles)
+
+    def test_table_rows_are_never_treated_as_headings(self) -> None:
+        text = (
+            "| 1. Something | 2 |\n| 2. Another | 3 |\n| 3. Third | 4 |\n"
+            "| 4. Fourth | 5 |\n| 5. Fifth | 6 |"
+        )
+        self.assertEqual(split_into_sections(text), [("Full Document", text)])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -278,14 +278,32 @@ labels end up named after a mid-page running-header artifact rather than
 the section's true title — the chunk *boundaries* are still correct,
 only the section *label* metadata is occasionally imprecise.
 
-**Only the SEC filings have "Item" headers**, so the non-SEC documents
-(NIST PDFs, contract/policy exhibits, emails) all take the
-`"Full Document"` fallback and are chunked by the sliding window alone.
-For emails and short exhibits that is the right answer. For an 80-page
-NIST PDF it is genuinely coarse — the document's own numbered headings
-could drive a finer split — and, as the Evaluation section shows, this
-coarseness **distorts Precision@k** for those documents rather than being
-a merely cosmetic limitation.
+**Non-SEC documents are split on their own structure.** Only filings have
+"Item" headers, so NIST publications, contracts and policies used to fall
+through to a single `"Full Document"` section — and that had a measurable
+cost, not just an aesthetic one. An 80-page NIST PDF became one 177-chunk
+section, and since relevance is judged at `(doc_id, section)` granularity,
+*any* chunk retrieved from that file counted as relevant: those questions
+scored a perfect Precision@5 of 1.000 purely because the section was the
+whole document.
+
+`split_on_numbered_headings` now picks up the structure these documents do
+have — `1.1 Authority` (NIST), `1. PURPOSE` (policies), `Section 5.` /
+`Appendix A.` (contracts) — with the same conservative fallback as the Item
+split: too few headings means one section, because over-splitting on false
+positives is worse than under-splitting.
+
+Result: the NIST incident-handling guide goes from **1 section to 56**, and
+its largest section from **177 chunks to 30**. Microsoft's insider-trading
+policy goes from 1 to 13, correctly named (`1. PURPOSE`, `2. SUMMARY`,
+`3. REQUIREMENTS`). Emails correctly stay whole.
+
+Two rounds of false positives were needed to get there: a cover page set in
+spaced capitals matched as heading `C` followed by `O M P U T E R ...`
+(fixed by requiring a bare capital to carry its period), and one wrapped
+address line still matches. That last one is left as-is and noted rather
+than chased — one artifact in 56 sections is not worth another regex
+epicycle.
 
 > **Rebuild pending.** The corpus was expanded to 100 documents and the
 > extraction/preprocessing stages rewritten *after* the index was last
@@ -527,7 +545,7 @@ propagates into answer-level instability downstream.
 python -m unittest discover -s tests
 ```
 
-119 unit tests across the six `src/` modules, using the standard library's
+125 unit tests across the six `src/` modules, using the standard library's
 `unittest` (no extra dependency to install). They are deliberately
 **offline and fast** (~0.02s total): no network calls, no API keys, and no
 embedding-model download — `embed_texts` is exercised against a stub
