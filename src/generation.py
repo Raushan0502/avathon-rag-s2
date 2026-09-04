@@ -50,87 +50,123 @@ knowledge.
 - Be concise. Do not repeat the question."""
 
 
+MAX_ANSWER_TOKENS = 1024
+
+
 def build_prompt(query: str, retrieved_chunks: list[dict]) -> str:
-    sources = []
-    for i, c in enumerate(retrieved_chunks, start=1):
-        sources.append(
-            f"[{i}] ({c['ticker']} {c['form']}, {c['filing_date']}, section: {c['section']})\n{c['text']}"
-        )
-    sources_block = "\n\n".join(sources)
-    return f"SOURCES:\n{sources_block}\n\nQUESTION: {query}\n\nANSWER:"
+    """Render retrieved chunks and the question into the grounding prompt.
 
+    Sources are numbered from 1 and labelled with their filing provenance,
+    so the model can cite "[2]" and a reader can trace that citation back to
+    a specific section of a specific filing.
 
-def _call_groq(prompt: str) -> str:
-    from groq import Groq
+    Args:
+        query: The user's natural-language question.
+        retrieved_chunks: Top-k chunks from ``RetrievalIndex.search``.
 
-    client = Groq(api_key=GROQ_API_KEY)
-    resp = client.chat.completions.create(
-        model=GROQ_MODEL,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": prompt},
-        ],
-        max_tokens=1024,
-        temperature=0.0,
-    )
-    return resp.choices[0].message.content.strip()
-
-
-def _call_mistral(prompt: str) -> str:
-    from mistralai.client import Mistral
-
-    client = Mistral(api_key=MISTRAL_API_KEY)
-    resp = client.chat.complete(
-        model=MISTRAL_MODEL,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": prompt},
-        ],
-        max_tokens=1024,
-        temperature=0.0,
-    )
-    return resp.choices[0].message.content.strip()
-
-
-def _call_gemini(prompt: str) -> str:
-    from google import genai
-    from google.genai import types
-
-    client = genai.Client(api_key=GEMINI_API_KEY)
-    resp = client.models.generate_content(
-        model=GEMINI_MODEL,
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            system_instruction=SYSTEM_PROMPT,
-            max_output_tokens=1024,
-            temperature=0.0,
-        ),
-    )
-    return resp.text.strip()
-
-
-_PROVIDERS = [
-    ("groq", GROQ_API_KEY, _call_groq),
-    ("mistral", MISTRAL_API_KEY, _call_mistral),
-    ("gemini", GEMINI_API_KEY, _call_gemini),
-]
+    Returns:
+        The user-turn prompt string (the instructions themselves live in
+        ``SYSTEM_PROMPT``).
+    """
+    sources = [
+        f"[{i}] ({c['ticker']} {c['form']}, {c['filing_date']}, section: {c['section']})\n{c['text']}"
+        for i, c in enumerate(retrieved_chunks, start=1)
+    ]
+    return "SOURCES:\n" + "\n\n".join(sources) + f"\n\nQUESTION: {query}\n\nANSWER:"
 
 
 def call_llm(prompt: str) -> tuple[str, str]:
-    """Tries each configured provider in order, returns (provider_name, text).
-    Raises RuntimeError only if every available provider fails."""
+    """Send the prompt to the first provider that answers, in fallback order.
+
+    Providers are tried Groq -> Mistral -> Gemini; ones without a configured
+    key are skipped, and any provider that raises (rate limit, outage,
+    exhausted quota) falls through to the next. The three SDKs are called
+    inline here rather than through per-provider wrappers so the whole
+    fallback chain reads in one place. SDK imports are deferred into each
+    branch so a missing optional SDK only breaks that one provider.
+
+    Args:
+        prompt: The user-turn prompt from ``build_prompt``.
+
+    Returns:
+        ``(provider_name, answer_text)`` -- the name is recorded on every
+        response so a fallback is observable rather than silent.
+
+    Raises:
+        RuntimeError: If no provider is configured, or all of them failed.
+            The message carries each provider's error for diagnosis.
+    """
     errors = []
-    for name, api_key, fn in _PROVIDERS:
+    for name, api_key in [
+        ("groq", GROQ_API_KEY),
+        ("mistral", MISTRAL_API_KEY),
+        ("gemini", GEMINI_API_KEY),
+    ]:
         if not api_key:
             continue
         try:
-            return name, fn(prompt)
-        except Exception as e:
-            errors.append(f"{name}: {e}")
+            if name == "groq":
+                from groq import Groq
+
+                response = Groq(api_key=api_key).chat.completions.create(
+                    model=GROQ_MODEL,
+                    messages=[
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user", "content": prompt},
+                    ],
+                    max_tokens=MAX_ANSWER_TOKENS,
+                    temperature=0.0,
+                )
+                return name, response.choices[0].message.content.strip()
+
+            if name == "mistral":
+                from mistralai.client import Mistral
+
+                response = Mistral(api_key=api_key).chat.complete(
+                    model=MISTRAL_MODEL,
+                    messages=[
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user", "content": prompt},
+                    ],
+                    max_tokens=MAX_ANSWER_TOKENS,
+                    temperature=0.0,
+                )
+                return name, response.choices[0].message.content.strip()
+
+            from google import genai
+            from google.genai import types
+
+            response = genai.Client(api_key=api_key).models.generate_content(
+                model=GEMINI_MODEL,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    system_instruction=SYSTEM_PROMPT,
+                    max_output_tokens=MAX_ANSWER_TOKENS,
+                    temperature=0.0,
+                ),
+            )
+            return name, response.text.strip()
+        except Exception as exc:  # noqa: BLE001 -- any SDK failure should fall through
+            errors.append(f"{name}: {exc}")
+
     raise RuntimeError(f"All LLM providers failed or unconfigured: {errors}")
 
 
 def annotate_faithfulness(answer: str, num_sources: int) -> dict:
+    """Check whether an answer is grounded in its numbered sources.
+
+    Args:
+        answer: The model's generated answer text.
+        num_sources: How many sources were supplied, so citations pointing
+            outside that range (a hallucinated source number) are discarded.
+
+    Returns:
+        Dict with ``citations`` (valid source numbers found),
+        ``has_citation``, ``refused_unsupported`` (the model used the
+        explicit "cannot answer" phrase), and ``faithfulness_flag`` --
+        ``"refused"``, ``"cited"``, or ``"UNGROUNDED"`` for an answer that
+        asserts something while citing nothing.
+    """
     # Models emit citations in more than one bracket style despite the
     # prompt requesting plain "[4]": full-width CJK brackets ("【4】",
     # observed in Step 5 testing), and a browsing-style format with a
@@ -155,6 +191,16 @@ def annotate_faithfulness(answer: str, num_sources: int) -> dict:
 
 
 def generate_answer(query: str, retrieved_chunks: list[dict]) -> dict:
+    """Answer a question from retrieved context, with a faithfulness check.
+
+    Args:
+        query: The user's natural-language question.
+        retrieved_chunks: Top-k chunks from ``RetrievalIndex.search``.
+
+    Returns:
+        Dict with ``query``, ``answer``, ``provider`` (which LLM served it),
+        ``retrieved_chunks`` (the context used), and ``faithfulness``.
+    """
     prompt = build_prompt(query, retrieved_chunks)
     provider, answer = call_llm(prompt)
     faithfulness = annotate_faithfulness(answer, len(retrieved_chunks))
