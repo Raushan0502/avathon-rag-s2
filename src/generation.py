@@ -26,6 +26,7 @@ held-out QA set) is Step 6's job.
 """
 import re
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -51,6 +52,47 @@ knowledge.
 
 
 MAX_ANSWER_TOKENS = 1024
+# Free-tier providers rate-limit and return transient 503s under load, so
+# the whole chain is retried rather than each provider being tried once.
+PROVIDER_ROUNDS = 4
+PROVIDER_BACKOFF_SECONDS = 4.0
+
+_CLIENTS: dict[str, object] = {}
+
+
+def _client(provider: str, api_key: str):
+    """Return a cached SDK client, constructing it on first use.
+
+    Clients are cached rather than built per call for a concrete reason,
+    not just tidiness: constructing a fresh ``google-genai`` client on every
+    request left earlier instances to be garbage-collected, and their
+    cleanup closes an HTTP transport shared with the live client. Over an
+    evaluation run this surfaced as "Cannot send a request, as the client
+    has been closed" -- Gemini failing while working perfectly in a fresh
+    process. Reusing one client per provider also avoids reopening a
+    connection pool on every question.
+
+    Args:
+        provider: ``"groq"``, ``"mistral"`` or ``"gemini"``.
+        api_key: Key for that provider.
+
+    Returns:
+        The cached client instance.
+    """
+    if provider not in _CLIENTS:
+        if provider == "groq":
+            from groq import Groq
+
+            _CLIENTS[provider] = Groq(api_key=api_key)
+        elif provider == "mistral":
+            from mistralai.client import Mistral
+
+            _CLIENTS[provider] = Mistral(api_key=api_key)
+        else:
+            from google import genai
+
+            _CLIENTS[provider] = genai.Client(api_key=api_key)
+    return _CLIENTS[provider]
 
 
 def build_prompt(query: str, retrieved_chunks: list[dict]) -> str:
@@ -96,7 +138,22 @@ def call_llm(prompt: str) -> tuple[str, str]:
         RuntimeError: If no provider is configured, or all of them failed.
             The message carries each provider's error for diagnosis.
     """
-    errors = []
+    errors: list[str] = []
+    for attempt in range(PROVIDER_ROUNDS):
+        if attempt:
+            # Every provider failed this round. Rate limits and "high demand"
+            # 503s are transient, so back off and try the chain again rather
+            # than abandoning a 33-question evaluation to a momentary outage.
+            time.sleep(PROVIDER_BACKOFF_SECONDS * (2 ** (attempt - 1)))
+            errors = []
+        result = _try_providers(prompt, errors)
+        if result is not None:
+            return result
+    raise RuntimeError(f"All LLM providers failed or unconfigured: {errors}")
+
+
+def _try_providers(prompt: str, errors: list[str]) -> tuple[str, str] | None:
+    """One pass down the provider chain; returns None if all of them failed."""
     for name, api_key in [
         ("groq", GROQ_API_KEY),
         ("mistral", MISTRAL_API_KEY),
@@ -106,9 +163,7 @@ def call_llm(prompt: str) -> tuple[str, str]:
             continue
         try:
             if name == "groq":
-                from groq import Groq
-
-                response = Groq(api_key=api_key).chat.completions.create(
+                response = _client("groq", api_key).chat.completions.create(
                     model=GROQ_MODEL,
                     messages=[
                         {"role": "system", "content": SYSTEM_PROMPT},
@@ -120,9 +175,7 @@ def call_llm(prompt: str) -> tuple[str, str]:
                 return name, response.choices[0].message.content.strip()
 
             if name == "mistral":
-                from mistralai.client import Mistral
-
-                response = Mistral(api_key=api_key).chat.complete(
+                response = _client("mistral", api_key).chat.complete(
                     model=MISTRAL_MODEL,
                     messages=[
                         {"role": "system", "content": SYSTEM_PROMPT},
@@ -133,10 +186,9 @@ def call_llm(prompt: str) -> tuple[str, str]:
                 )
                 return name, response.choices[0].message.content.strip()
 
-            from google import genai
             from google.genai import types
 
-            response = genai.Client(api_key=api_key).models.generate_content(
+            response = _client("gemini", api_key).models.generate_content(
                 model=GEMINI_MODEL,
                 contents=prompt,
                 config=types.GenerateContentConfig(
@@ -149,7 +201,7 @@ def call_llm(prompt: str) -> tuple[str, str]:
         except Exception as exc:  # noqa: BLE001 -- any SDK failure should fall through
             errors.append(f"{name}: {exc}")
 
-    raise RuntimeError(f"All LLM providers failed or unconfigured: {errors}")
+    return None
 
 
 def annotate_faithfulness(answer: str, num_sources: int) -> dict:

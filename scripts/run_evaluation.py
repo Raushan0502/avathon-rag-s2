@@ -116,13 +116,24 @@ def main() -> None:
     print("Loading retrieval index...")
     index = RetrievalIndex.load()
 
-    retrieval_results = run_retrieval_comparison(index, eval_set)
-    generation_records = run_generation_trace(index, eval_set)
-
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Retrieval needs no network and is the more expensive half to recompute,
+    # so it is persisted before generation is attempted. An earlier run lost
+    # a completed retrieval comparison because every LLM provider was down
+    # and the crash took the finished work with it.
+    retrieval_results = run_retrieval_comparison(index, eval_set)
     (RESULTS_DIR / "retrieval_eval.json").write_text(
         json.dumps(retrieval_results, indent=2), encoding="utf-8"
     )
+
+    try:
+        generation_records = run_generation_trace(index, eval_set)
+    except Exception as exc:  # noqa: BLE001 -- provider outage must not discard the above
+        print(f"\nGeneration stage failed: {exc}")
+        print(f"Retrieval metrics were still saved to {RESULTS_DIR / 'retrieval_eval.json'}")
+        return
+
     (RESULTS_DIR / "qa_eval_results.json").write_text(
         json.dumps(generation_records, indent=2), encoding="utf-8"
     )
