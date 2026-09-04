@@ -2,8 +2,7 @@
   "summary": {
     "documents": 100,
     "by_status": {
-      "ok": 84,
-      "fail": 16
+      "ok": 100
     },
     "by_doc_type": {
       "report": {
@@ -19,8 +18,7 @@
         "ok": 20
       },
       "email": {
-        "fail": 16,
-        "ok": 4
+        "ok": 20
       }
     },
     "mean_metrics": {
@@ -29,24 +27,7 @@
       "boilerplate_ratio": 0.08821357839775076,
       "table_row_ratio": 0.11457323080773334
     },
-    "failed": [
-      "EMAIL_hodge-j_inbox_474",
-      "EMAIL_bass-e_sent_881",
-      "EMAIL_jones-t_sent_6473",
-      "EMAIL_dasovich-j_sent_12183",
-      "EMAIL_dasovich-j_inbox_432",
-      "EMAIL_crandell-s_inbox_91",
-      "EMAIL_buy-r_inbox_435",
-      "EMAIL_jones-t_sent_6130",
-      "EMAIL_jones-t_inbox_150",
-      "EMAIL_jones-t_sent_642",
-      "EMAIL_grigsby-m_sent_160",
-      "EMAIL_hayslett-r_inbox_80",
-      "EMAIL_fischer-m_sent_4",
-      "EMAIL_baughman-d_inbox_275",
-      "EMAIL_baughman-d_inbox_187",
-      "EMAIL_beck-s_sent_983"
-    ],
+    "failed": [],
     "warned": []
   },
   "documents": [
@@ -1334,10 +1315,8 @@
       "doc_id": "EMAIL_hodge-j_inbox_474",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 231 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 231,
         "lines": 4,
@@ -1368,10 +1347,8 @@
       "doc_id": "EMAIL_bass-e_sent_881",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 198 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 198,
         "lines": 4,
@@ -1386,10 +1363,8 @@
       "doc_id": "EMAIL_jones-t_sent_6473",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 438 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 438,
         "lines": 4,
@@ -1404,10 +1379,8 @@
       "doc_id": "EMAIL_dasovich-j_sent_12183",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 427 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 427,
         "lines": 8,
@@ -1422,10 +1395,8 @@
       "doc_id": "EMAIL_dasovich-j_inbox_432",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 338 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 338,
         "lines": 6,
@@ -1440,10 +1411,8 @@
       "doc_id": "EMAIL_crandell-s_inbox_91",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 178 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 178,
         "lines": 6,
@@ -1458,10 +1427,8 @@
       "doc_id": "EMAIL_buy-r_inbox_435",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 472 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 472,
         "lines": 7,
@@ -1476,10 +1443,8 @@
       "doc_id": "EMAIL_jones-t_sent_6130",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 438 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 438,
         "lines": 5,
@@ -1510,10 +1475,8 @@
       "doc_id": "EMAIL_jones-t_inbox_150",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 345 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 345,
         "lines": 4,
@@ -1528,10 +1491,8 @@
       "doc_id": "EMAIL_jones-t_sent_642",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 229 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 229,
         "lines": 4,
@@ -1562,10 +1523,8 @@
       "doc_id": "EMAIL_grigsby-m_sent_160",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 326 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 326,
         "lines": 5,
@@ -1596,10 +1555,8 @@
       "doc_id": "EMAIL_hayslett-r_inbox_80",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 260 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 260,
         "lines": 5,
@@ -1614,10 +1571,8 @@
       "doc_id": "EMAIL_fischer-m_sent_4",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 414 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 414,
         "lines": 6,
@@ -1632,10 +1587,8 @@
       "doc_id": "EMAIL_baughman-d_inbox_275",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 392 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 392,
         "lines": 6,
@@ -1650,10 +1603,8 @@
       "doc_id": "EMAIL_baughman-d_inbox_187",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 247 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 247,
         "lines": 5,
@@ -1668,10 +1619,8 @@
       "doc_id": "EMAIL_beck-s_sent_983",
       "doc_type": "email",
       "format": "txt",
-      "status": "fail",
-      "issues": [
-        "only 367 chars extracted (no text layer? a scanned document would need OCR)"
-      ],
+      "status": "ok",
+      "issues": [],
       "metrics": {
         "chars": 367,
         "lines": 6,
