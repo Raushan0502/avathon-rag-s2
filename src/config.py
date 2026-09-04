@@ -10,6 +10,9 @@ DATA_RAW_DIR = ROOT_DIR / "data" / "raw"
 DATA_PROCESSED_DIR = ROOT_DIR / "data" / "processed"
 RESULTS_DIR = ROOT_DIR / "results"
 
+MANIFEST_PATH = DATA_RAW_DIR / "manifest.json"
+EVAL_SET_PATH = ROOT_DIR / "data" / "eval" / "qa_eval.json"
+
 EMBEDDING_MODEL_NAME = "BAAI/bge-small-en-v1.5"
 FAISS_INDEX_PATH = DATA_PROCESSED_DIR / "index.faiss"
 CHUNKS_PATH = DATA_PROCESSED_DIR / "chunks.jsonl"
@@ -20,11 +23,3 @@ CHUNKS_PATH = DATA_PROCESSED_DIR / "chunks.jsonl"
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
-
-def require_llm_key() -> None:
-    if not any([GROQ_API_KEY, MISTRAL_API_KEY, GEMINI_API_KEY]):
-        raise RuntimeError(
-            "No LLM provider key set in .env -- need at least one of "
-            "GROQ_API_KEY, MISTRAL_API_KEY, GEMINI_API_KEY"
-        )

@@ -28,17 +28,12 @@ if hasattr(sys.stdout, "reconfigure"):
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.config import DATA_RAW_DIR, RESULTS_DIR
-from src.evaluate import evaluate_retrieval, is_relevant
+from src.config import EVAL_SET_PATH, RESULTS_DIR
+from src.evaluate import evaluate_retrieval, score_retrieval
 from src.generation import generate_answer
 from src.retrieval import RetrievalIndex
 
-EVAL_SET_PATH = DATA_RAW_DIR.parent / "eval" / "qa_eval.json"
 K = 5
-
-
-def load_eval_set() -> list[dict]:
-    return json.loads(EVAL_SET_PATH.read_text(encoding="utf-8"))
 
 
 def run_retrieval_comparison(index: RetrievalIndex, eval_set: list[dict]) -> dict:
@@ -61,7 +56,8 @@ def run_generation_trace(index: RetrievalIndex, eval_set: list[dict]) -> list[di
 
     for item in eval_set:
         retrieved = index.search(item["query"], k=K, mode="hybrid")
-        retrieval_hit = any(is_relevant(c, item["gold_doc_id"], item["gold_section"]) for c in retrieved)
+        _, recall = score_retrieval(retrieved, item["gold_doc_id"], item["gold_section"])
+        retrieval_hit = recall == 1.0
 
         result = generate_answer(item["query"], retrieved)
         flag = result["faithfulness"]["faithfulness_flag"]
@@ -93,7 +89,7 @@ def run_generation_trace(index: RetrievalIndex, eval_set: list[dict]) -> list[di
 
 def main() -> None:
     t0 = time.time()
-    eval_set = load_eval_set()
+    eval_set = json.loads(EVAL_SET_PATH.read_text(encoding="utf-8"))
     print(f"Loaded {len(eval_set)} eval questions from {EVAL_SET_PATH}")
 
     print("Loading retrieval index...")
