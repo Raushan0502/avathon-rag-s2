@@ -19,8 +19,10 @@ if hasattr(sys.stdout, "reconfigure"):
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.config import CHUNKS_PATH, FAISS_INDEX_PATH
-from src.embed_index import build_faiss_index, embed_texts, get_embedder, save_chunks, save_index
+from sentence_transformers import SentenceTransformer
+
+from src.config import CHUNKS_PATH, EMBEDDING_MODEL_NAME, FAISS_INDEX_PATH
+from src.embed_index import build_index, embed_texts, save_artifacts
 from src.ingest import build_all_chunks
 
 SMOKE_TEST_QUERIES = [
@@ -30,56 +32,52 @@ SMOKE_TEST_QUERIES = [
 ]
 
 
-def print_chunk_stats(chunk_dicts: list[dict]) -> None:
-    word_counts = [c["word_count"] for c in chunk_dicts]
-    docs = {c["doc_id"] for c in chunk_dicts}
-    sections = {(c["doc_id"], c["section"]) for c in chunk_dicts}
-    print(f"\nCorpus stats:")
-    print(f"  documents: {len(docs)}")
-    print(f"  sections:  {len(sections)}")
-    print(f"  chunks:    {len(chunk_dicts)}")
-    print(f"  words/chunk: min={min(word_counts)} max={max(word_counts)} "
-          f"avg={sum(word_counts) / len(word_counts):.0f}")
-
-
-def run_smoke_test(embedder, index, chunk_dicts: list[dict]) -> None:
-    print("\nSmoke test -- sample retrievals:")
-    query_vecs = embed_texts(embedder, SMOKE_TEST_QUERIES, is_query=True)
-    scores, indices = index.search(query_vecs, k=3)
-    for query, row_scores, row_indices in zip(SMOKE_TEST_QUERIES, scores, indices):
-        print(f"\n  Q: {query}")
-        for rank, (score, idx) in enumerate(zip(row_scores, row_indices), start=1):
-            c = chunk_dicts[idx]
-            snippet = c["text"][:140].replace("\n", " ")
-            print(f"    {rank}. [{score:.3f}] {c['ticker']} {c['form']} / {c['section']}: {snippet}...")
-
-
 def main() -> None:
-    t0 = time.time()
+    """Chunk the corpus, embed it, build and persist the FAISS index, then
+    smoke-test the result with a few sample retrievals."""
+    started = time.time()
 
     print("Loading + chunking documents...")
     chunk_dicts = build_all_chunks()
-    print_chunk_stats(chunk_dicts)
+    word_counts = [c["word_count"] for c in chunk_dicts]
+    print("\nCorpus stats:")
+    print(f"  documents: {len({c['doc_id'] for c in chunk_dicts})}")
+    print(f"  sections:  {len({(c['doc_id'], c['section']) for c in chunk_dicts})}")
+    print(f"  chunks:    {len(chunk_dicts)}")
+    print(
+        f"  words/chunk: min={min(word_counts)} max={max(word_counts)} "
+        f"avg={sum(word_counts) / len(word_counts):.0f}"
+    )
 
-    print("\nLoading embedding model (BAAI/bge-small-en-v1.5)...")
-    embedder = get_embedder()
+    print(f"\nLoading embedding model ({EMBEDDING_MODEL_NAME})...")
+    embedder = SentenceTransformer(EMBEDDING_MODEL_NAME)
 
     print("Embedding chunks...")
-    texts = [c["text"] for c in chunk_dicts]
-    embeddings = embed_texts(embedder, texts, is_query=False)
+    embeddings = embed_texts(embedder, [c["text"] for c in chunk_dicts], is_query=False)
     print(f"  embeddings shape: {embeddings.shape}")
 
     print("Building FAISS index...")
-    index = build_faiss_index(embeddings)
-
-    save_index(index, FAISS_INDEX_PATH)
-    save_chunks(chunk_dicts, CHUNKS_PATH)
+    index = build_index(embeddings)
+    save_artifacts(index, chunk_dicts)
     print(f"\nSaved index -> {FAISS_INDEX_PATH}")
     print(f"Saved chunks -> {CHUNKS_PATH}")
 
-    run_smoke_test(embedder, index, chunk_dicts)
+    # Smoke test: a broken pipeline (empty index, garbage chunks, mismatched
+    # dims) should fail loudly here rather than silently in Step 4/5.
+    print("\nSmoke test -- sample retrievals:")
+    query_vectors = embed_texts(embedder, SMOKE_TEST_QUERIES, is_query=True)
+    scores, indices = index.search(query_vectors, k=3)
+    for query, row_scores, row_indices in zip(SMOKE_TEST_QUERIES, scores, indices):
+        print(f"\n  Q: {query}")
+        for rank, (score, idx) in enumerate(zip(row_scores, row_indices), start=1):
+            chunk = chunk_dicts[idx]
+            snippet = chunk["text"][:140].replace("\n", " ")
+            print(
+                f"    {rank}. [{score:.3f}] {chunk['ticker']} {chunk['form']} "
+                f"/ {chunk['section']}: {snippet}..."
+            )
 
-    print(f"\nDone in {time.time() - t0:.1f}s")
+    print(f"\nDone in {time.time() - started:.1f}s")
 
 
 if __name__ == "__main__":
