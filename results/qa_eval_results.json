@@ -6,12 +6,11 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1. Business",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple\u2019s\u202fProducts category consists of its hardware lines: the iPhone smartphone line, the Mac personal\u2011computer line, the iPad tablet line, and the Wearables, Home and Accessories segment (which includes smartwatches, wireless headphones, spatial computers, HomePod speakers, Apple\u202fTV, etc.)\u30103\u2020L1-L7\u3011\u30104\u2020L1-L7\u3011",
+    "generated_answer": "Apple\u2019s Products category consists of iPhone, Mac, iPad, Wearables, Home and Accessories\u202f[3].",
     "provider": "groq",
     "faithfulness": {
       "citations": [
-        3,
-        4
+        3
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -57,13 +56,14 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1A. Risk Factors",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple\u2019s 10\u2011K notes that competition in its markets is intense and is driven largely by aggressive price cuts. Competitors frequently lower prices and sell at very low or even loss\u2011making cost structures, which creates \u201caggressive price competition\u201d and puts \u201cdownward pressure on gross margins\u201d for Apple\u2019s products and services\u30101\u2020L1-L4\u3011\u30102\u2020L1-L3\u3011\u30103\u2020L1-L4\u3011.",
+    "generated_answer": "Apple\u2019s filings note that competition in its markets is intense and is characterized by aggressive price cuts that put downward pressure on gross margins. Competitors frequently lower prices\u2014sometimes selling at little or no profit\u2014to win business, which forces Apple to contend with \u201caggressive price competition\u201d and \u201cdownward pressure on gross margins\u201d across its product lines\u30101\u2020L1-L4\u3011\u30102\u2020L1-L3\u3011\u30103\u2020L1-L4\u3011\u30105\u2020L1-L4\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
         1,
         2,
-        3
+        3,
+        5
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -109,7 +109,7 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1A. Risk Factors",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple warns that many of its suppliers and contract\u2011manufacturers operate in regions that are prone to earthquakes and other natural disasters, creating a risk that such events could disrupt manufacturing and product delivery\u30101\u3011.",
+    "generated_answer": "Apple warns that many of its suppliers and contract\u2011manufacturers operate in regions that are prone to earthquakes and other natural disasters, which could disrupt manufacturing and product delivery\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -159,7 +159,7 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1C. Cybersecurity",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple\u2019s cybersecurity risk\u2011management program is led by the company\u2019s Head of Corporate Information Security\u30101\u3011.",
+    "generated_answer": "Apple\u2019s cybersecurity risk\u2011management program is led by the company\u2019s Head of Corporate Information Security\u202f[1].",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -209,7 +209,7 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 2. Properties",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple\u2019s corporate headquarters is located in Cupertino, California\u202f[1][5].",
+    "generated_answer": "Apple\u2019s corporate headquarters is in Cupertino, California\u202f[1][5]",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -260,7 +260,7 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 3. Legal Proceedings",
     "retrieval_hit_at_k": true,
-    "generated_answer": "The Legal\u202fProceedings section notes that the European Commission opened a formal non\u2011compliance investigation under Article\u202f5(4) of the EU Digital Markets Act\u2014examining how developers may communicate and promote offers to end\u2011users for apps distributed through the App Store\u2014and, on June\u202f24\u202f2024, a second investigation under Article\u202f6(4) concerning the Company\u2019s new contractual requirements for third\u2011party app developers and app marketplaces\u30101\u3011.",
+    "generated_answer": "The Legal\u202fProceedings section notes that the European Commission opened a formal non\u2011compliance investigation under Article\u202f5(4) of the EU Digital Markets Act (DMA) into Apple\u2019s App\u202fStore rules on how developers may communicate, promote offers and steer users to alternative distribution channels, and subsequently opened a second investigation under Article\u202f6(4) of the DMA concerning Apple\u2019s new contractual requirements for third\u2011party app developers and app marketplaces\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -310,7 +310,7 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 8. Financial Statements and Supplementary Data",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple reported total net sales of **$416,161\u202fmillion for fiscal 2025**, versus **$391,035\u202fmillion for fiscal 2024**, an increase of roughly $25\u202fbillion year\u2011over\u2011year\u30105\u3011.",
+    "generated_answer": "Apple reported total net sales of **$416,161\u202fmillion** for fiscal year\u202f2025, compared with **$391,035\u202fmillion** for fiscal year\u202f2024, an increase of roughly $25.1\u202fbillion year\u2011over\u2011year\u30105\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -408,7 +408,7 @@
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1. BUSINESS",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla says its mission is \u201cbuilding a world of amazing abundance,\u201d and it is focused on bringing artificial intelligence into the real world through products and services such as Full\u202fSelf\u2011Driving, Robotaxi and AI\u2011powered robots (\u201cBots\u201d) like Optimus\u30101\u3011.",
+    "generated_answer": "Tesla says its focus is on bringing artificial intelligence \u201cinto the real world\u201d through products and services such as Full\u202fSelf\u2011Driving, Robotaxi and AI robots (including Optimus), leveraging its electric\u2011vehicle and energy operations. Its stated mission is \u201cbuilding a world of amazing abundance.\u201d\u30101\u3011",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -458,12 +458,11 @@
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1. BUSINESS",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla\u2019s 10\u2011K describes the Cybertruck as a full\u2011size electric pickup truck with a stainless\u2011steel exterior that combines the utility and strength of a traditional truck with sports\u2011car\u2011like speed\u202f[1]. It also notes that the Cybertruck can be equipped with a three\u2011motor powertrain for even higher performance\u202f[4].",
+    "generated_answer": "Tesla\u2019s 10\u2011K describes the Cybertruck as a full\u2011size electric pickup truck with a stainless\u2011steel exterior that provides the utility and strength of a traditional truck while delivering the speed of a sports car\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
-        1,
-        4
+        1
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -560,7 +559,7 @@
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1C. CYBERSECURITY",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla\u2019s cybersecurity incident response and breach\u2011management process consists of four interconnected stages:  \n\n1. **Preparation for a cybersecurity incident**  \n2. **Detection and analysis of a security incident**  \n3. **Containment, eradication and recovery**  \n4. **Post\u2011incident analysis**  \n\nThese stages are described in Tesla\u2019s 2026 Form\u202f10\u2011K filing\u30101\u2020L1-L4\u3011\u30102\u2020L9-L12\u3011.",
+    "generated_answer": "Tesla\u2019s cybersecurity incident response and breach\u2011management process consists of four interconnected stages:  \n\n1.\u202fPreparation for a cybersecurity incident;  \n2.\u202fDetection and analysis of a security incident;  \n3.\u202fContainment, eradication and recovery;  \n4.\u202fPost\u2011incident analysis\u30101\u2020L1-L4\u3011\u30102\u2020L9-L12\u3011",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -661,7 +660,7 @@
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 3. LEGAL PROCEEDINGS",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla\u2019s 10\u2011K tells readers to see **Note\u202f13, \u201cCommitments and Contingencies,\u201d** to the consolidated financial statements for a description of its material pending legal proceedings\u30103\u3011.",
+    "generated_answer": "Tesla\u2019s 10\u2011K tells readers to see **Note\u202f13, \u201cCommitments and Contingencies,\u201d** in the consolidated financial statements for a description of its material pending legal proceedings\u30103\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -711,7 +710,7 @@
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla\u2019s automotive\u2011sales revenue was:\n\n- **2025:**\u202f$65,821\u202fmillion\u30104\u3011  \n- **2024:**\u202f$72,480\u202fmillion\u30104\u3011  \n- **2023:**\u202f$78,509\u202fmillion\u30104\u3011",
+    "generated_answer": "Tesla\u2019s automotive\u2011sales revenue was\u202f$65,821\u202fmillion in 2025,\u202f$72,480\u202fmillion in 2024, and\u202f$78,509\u202fmillion in 2023\u202f[4].",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -809,7 +808,7 @@
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 1 Note About Forward-Looking Statements",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Microsoft says that Copilot and AI agents are intended to \u201cdrive insights, revolutionize many types of work and business processes, and provide substantive productivity gains\u201d\u202f[1].",
+    "generated_answer": "Microsoft says that Microsoft\u202f365\u202fCopilot and AI agents are intended to \u201cdrive insights, revolutionize many types of work and business processes, and provide substantive productivity gains\u201d\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -859,11 +858,12 @@
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 1 Note About Forward-Looking Statements",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Microsoft\u2019s Productivity and Business Processes segment is made up of four product lines:\n\n1. **Microsoft\u202f365 Commercial products and cloud services** \u2013 including Microsoft\u202f365 Commercial, Enterprise Mobility\u202f+\u202fSecurity, the cloud portion of Windows Commercial, the per\u2011user portion of Power\u202fBI, Exchange, SharePoint, Microsoft\u202fTeams, Microsoft\u202f365 Security and Compliance, Microsoft\u202f365 Copilot, plus Windows Commercial on\u2011premises and Office licensed on\u2011premises\u30101\u3011.  \n2. **Microsoft\u202f365 Consumer products and cloud services** \u2013 including Microsoft\u202f365 Consumer subscriptions, Office licensed on\u2011premises and other consumer services\u30101\u3011.  \n3. **LinkedIn** \u2013 comprising Talent Solutions, Marketing Solutions, Premium Subscriptions and Sales Solutions\u30101\u3011.  \n4. **Dynamics products and cloud services** \u2013 including Dynamics\u202f365 (cloud\u2011based ERP, CRM, Power\u202fApps and Power\u202fAutomate) and on\u2011premises ERP and CRM applications\u30101\u3011.",
+    "generated_answer": "Microsoft\u2019s Productivity and Business Processes segment is built from four product lines:  \n\n- **Microsoft\u202f365 Commercial** products and cloud services (including Microsoft\u202f365 Commercial cloud, Enterprise Mobility\u202f+\u202fSecurity, the cloud portion of Windows Commercial, Power\u202fBI, Exchange, SharePoint, Teams, Security &\u202fCompliance, and Copilot)\u202f[1]  \n- **Microsoft\u202f365 Consumer** products and cloud services\u202f[1]  \n- **LinkedIn** (Talent Solutions, Marketing Solutions, Premium Subscriptions, and Sales Solutions)\u202f[1]  \n- **Dynamics** products and cloud services (Dynamics\u202f365, on\u2011premises and cloud\u2011based ERP and CRM applications, Power\u202fApps, Power\u202fAutomate)\u202f[1][4]",
     "provider": "groq",
     "faithfulness": {
       "citations": [
-        1
+        1,
+        4
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -909,7 +909,7 @@
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 1A ITEM 1A. RIS",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Microsoft\u2019s Risk Factors warn that the identified risks could \u201cadversely affect our\u202fbusiness,\u202foperations,\u202ffinancial condition,\u202fand\u202fresults of operations\u201d\u30101\u2020L1-L3\u3011\u30103\u2020L1-L3\u3011.",
+    "generated_answer": "Microsoft\u2019s Risk Factors warn that the identified risks could \u201cadversely affect our **business**, **operations**, **financial condition**, and **results of operations**\u201d\u30101\u2020L1-L3\u3011\u30103\u2020L1-L3\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -960,7 +960,7 @@
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "ITEM 3. LEGAL",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Microsoft\u2019s 10\u2011K tells readers to see **Note\u202f14 \u2013 Contingencies of the Notes to Financial Statements (Part\u202fII, Item\u202f8 of the Form\u202f10\u2011K)** for information about the legal proceedings in which the company is involved\u30104\u3011.",
+    "generated_answer": "Microsoft\u2019s 10\u2011K tells readers to see **Note\u202f14 \u2013 Contingencies of the Notes to Financial Statements (Part\u202fII, Item\u202f8)** for information about the legal proceedings in which the company is involved\u30104\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -1010,13 +1010,16 @@
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 8 ITEM 8. FINANCIAL STATE",
     "retrieval_hit_at_k": true,
-    "generated_answer": "I cannot answer this from the provided documents.",
+    "generated_answer": "- **Total FY\u202f2026 revenue:**\u202f$331,839\u202fmillion (\u2248\u202f$331.8\u202fbillion)\u30105\u2020L1-L4\u3011  \n- **Breakdown by product\u2011 and service\u2011related offerings (FY\u202f2026):**  \n\n| Category | Revenue (in\u202f$\u202fmillions) |\n|----------|------------------------|\n| Server products and cloud services | 129,425\u30101\u2020L1-L3\u3011 |\n| Microsoft\u202f365 Commercial products and cloud services | 101,997\u30101\u2020L1-L3\u3011 |\n| XBOX | 21,790\u30101\u2020L1-L3\u3011 |\n| LinkedIn | 19,817\u30101\u2020L1-L3\u3011 |\n| Windows and Devices | 17,084\u30101\u2020L1-L3\u3011 |\n| Search advertising | 15,176\u30101\u2020L1-L3\u3011 |\n| Microsoft\u202f365 Consumer products and cloud services | 9,175\u30101\u2020L1-L3\u3011 |\n| Dynamics products and cloud services | 9,006\u30101\u2020L1-L3\u3011 |\n| Enterprise and partner services | 8,260\u30101\u2020L1-L3\u3011 |\n| Other | 109\u30101\u2020L1-L3\u3011 |\n\nThese line items together sum to the total FY\u202f2026 revenue of $331,839\u202fmillion.",
     "provider": "groq",
     "faithfulness": {
-      "citations": [],
-      "has_citation": false,
-      "refused_unsupported": true,
-      "faithfulness_flag": "refused"
+      "citations": [
+        1,
+        5
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
     },
     "retrieved_context": [
       {
@@ -1058,7 +1061,7 @@
     "gold_doc_id": "AAPL_8-K_2026-07-30",
     "gold_section": "Full Document",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple\u2019s July\u202f30,\u202f2026 Form\u202f8\u2011K was signed on the company\u2019s behalf by\u202fKevan\u202fParekh, who serves as Senior Vice President and Chief Financial Officer\u30101\u3011.",
+    "generated_answer": "Apple\u2019s July\u202f30\u202f2026 Form\u202f8\u2011K was signed on the company\u2019s behalf by\u202fKevan\u202fParekh, who serves as Senior Vice President and Chief Financial Officer\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -1158,7 +1161,7 @@
     "gold_doc_id": "TSLA_8-K_2026-07-22",
     "gold_section": "Full Document",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla\u2019s July\u202f22,\u202f2026 filing is made under Item\u202f2.02 of Form\u202f8\u2011K \u2013 \u201cResults of Operations and Financial Condition.\u201d\u30104\u3011",
+    "generated_answer": "Tesla\u2019s July\u202f22,\u202f2026 Form\u202f8\u2011K filing is made under **Item\u202f2.02 \u2013 Results of Operations and Financial Condition**\u30104\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [

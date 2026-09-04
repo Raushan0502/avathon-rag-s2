@@ -222,7 +222,7 @@ finding relevant sections that *either single retriever alone missed*,
 without diluting precision.
 
 **End-to-end faithfulness** (hybrid retrieval → generation, all 24
-questions, `results/qa_eval_results.json`): **21 cited, 3 refused, 0
+questions, `results/qa_eval_results.json`): **22 cited, 2 refused, 0
 ungrounded.** Getting to 0 ungrounded took a second real fix, not just
 the Step 5 one: 4 of the 24 answers were initially misflagged
 `UNGROUNDED` because the model cited using a browsing-style format
@@ -236,23 +236,61 @@ quietly patched, since misreading the model's own citation format is
 exactly the kind of silent detector gap the "how do you detect
 hallucination" write-up question is really asking about.
 
-The remaining **3 refusals are all legitimate, not bugs**:
-- q08 / q16 ("Does \[company\] report unresolved staff comments?") —
-  gold answer is a single word, "None." Such a terse, low-signal section
-  is hard for both dense and sparse retrieval to rank highly against a
-  full question; it didn't make the top 5, and the model correctly
-  refused rather than guess.
-- q21 (MSFT total revenue) — retrieval *did* hit the right section
-  (`Item 8`), but not the right sub-table: MSFT's Item 8 is a single
-  giant section (a consequence of the Step 3 chunking limitation —
-  running-header artifacts collapse many distinct sub-statements under
-  one label) containing dozens of unrelated tables, and k=5 wasn't
-  enough to consistently surface the one with the revenue breakdown. The
-  model again correctly refused rather than fabricate a number. This is
-  a genuine, understood retrieval-precision gap — not deep-dived further
-  given the 48-hour budget, but the fact that refusal (not
-  hallucination) is what happens when it's hit is itself evidence the
-  hallucination mitigation is working as designed.
+The remaining **2 refusals are legitimate, not bugs** — q08 / q16 ("Does
+\[company\] report unresolved staff comments?"), whose gold answer is the
+single word "None." Such a terse, low-signal section is hard for both
+dense and sparse retrieval to rank highly against a full-sentence
+question; it didn't make the top 5, and the model correctly refused
+rather than guess.
+
+**One borderline case worth naming: q21 (MSFT total revenue).** Across
+repeated runs this question flips between answering-with-citation and
+refusing, even though retrieval is deterministic and hits the right
+section (`Item 8`) every time. The cause is that retrieval hits the right
+*section* but not reliably the right *sub-table*: MSFT's Item 8 is one
+giant section (a consequence of the Step 3 chunking limitation — running
+header artifacts collapse many distinct financial statements under one
+label) holding dozens of unrelated tables, so at k=5 the specific
+revenue-breakdown chunk sits right at the edge of the retrieved window.
+Whether the model can answer therefore depends on borderline context, and
+its refusal threshold is not perfectly stable run to run. Both outcomes
+are acceptable behaviour — it either cites correctly or declines, and in
+no run does it fabricate a revenue figure — but it is an honest caveat
+that the headline faithfulness split moves by one question between runs,
+and a concrete illustration of how a coarse section boundary upstream
+propagates into answer-level instability downstream.
+
+## Tests
+
+```bash
+python -m unittest discover -s tests
+```
+
+57 unit tests across the five `src/` modules, using the standard library's
+`unittest` (no extra dependency to install). They are deliberately
+**offline and fast** (~0.02s total): no network calls, no API keys, and no
+embedding-model download — `embed_texts` is exercised against a stub
+encoder, and retrieval tests assemble a `RetrievalIndex` by hand from a
+3-vector FAISS index and a real BM25 index over three short strings.
+
+What they pin down, beyond the happy path:
+- **Chunking** — every word survives windowing, no window exceeds the size
+  limit, and overlap actually repeats the right words.
+- **Section splitting** — the two real failure modes found while building
+  this: table-of-contents entries must not create duplicate sections, and
+  repeated running page-headers (`Item 7` reprinted on every MD&A page)
+  must collapse into one section rather than one per page.
+- **Faithfulness detection** — all three citation formats seen live
+  (`[1]`, `【1】`, `【1†L1-L4】`) count as grounded; a citation to a source
+  number that was never supplied does *not*, since that is itself a
+  hallucination.
+- **Retrieval** — RRF ranks a chunk found by *both* retrievers above one
+  that merely tops a single list; an unknown mode raises rather than
+  silently defaulting; `search()` returns copies so results can't mutate
+  the loaded corpus.
+- **Metrics** — the same section label in a *different* filing is not
+  relevant (every 10-K has an "Item 2. Properties"), and empty retrieval
+  scores 0.0 rather than dividing by zero.
 
 ## Repository structure
 
@@ -262,8 +300,8 @@ avathon-rag-s2/
 │   ├── raw/            # sourced source documents (gitignored; see Step 2)
 │   └── processed/      # cleaned/chunked intermediates (gitignored)
 ├── src/                # pipeline modules (ingestion, retrieval, generation, evaluation)
-├── scripts/            # one-off / setup / data-sourcing scripts
-├── tests/              # test scripts run at each step checkpoint
+├── scripts/            # runnable pipeline stages (see Setup)
+├── tests/              # unit tests, one module per src/ module
 ├── results/            # evaluation outputs, metrics, comparison tables
 ├── write-up/           # technical write-up source (final PDF submitted separately)
 ├── requirements.txt
@@ -285,6 +323,7 @@ python scripts/build_index.py   # ingest -> chunk -> embed -> FAISS index (see I
 python scripts/compare_retrieval.py  # dense vs hybrid qualitative smoke test (see Hybrid retrieval below)
 python scripts/demo_qa.py       # end-to-end Q&A demo -> results/qa_demo.json (see Generation below)
 python scripts/run_evaluation.py  # full eval: retrieval P@k/R@k + faithfulness (see Evaluation below)
+python -m unittest discover -s tests   # unit tests (offline, no API keys needed)
 ```
 
 `torch` is installed separately first from PyTorch's CPU-only wheel index —
