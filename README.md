@@ -101,131 +101,156 @@ Evaluation).
   higher than raw accuracy (Algorithm Selection & Alternative Analysis is
   30% of the score — the single highest-weighted rubric dimension).
 - **Deliverables required for submission:** this GitHub repo, a 5-minute
-  walkthrough video, and a 1–2 page technical write-up (PDF). The write-up's
-  source is the [Technical write-up](#technical-write-up) section below — the
-  submitted PDF is rendered from it, so the two cannot drift. The video is
-  tracked outside this repo and linked here once produced.
+  walkthrough video, and a 1–2 page technical write-up (PDF).
+  - **Write-up:** [`write-up/technical-writeup.pdf`](write-up/technical-writeup.pdf) —
+    rendered from the [Technical write-up](#technical-write-up) section below by
+    `scripts/render_writeup.py`, so the two cannot drift.
+  - **Walkthrough video:** _<!-- PASTE UNLISTED YOUTUBE / DRIVE LINK HERE BEFORE SUBMITTING -->_
+    (script: [`write-up/video-script.md`](write-up/video-script.md))
 
 ## Technical write-up
 
-The brief requires a written justification addressing four things explicitly.
-This is that justification. Every figure quoted here is regenerable from the
-repository — `python scripts/report_metrics.py` prints all of them from the
-artifacts in `results/`.
+Every figure below regenerates with `python scripts/report_metrics.py`, which
+reads them from `results/` rather than from prose.
 
-**System, in one line:** 100 real SEC EDGAR / NIST / email documents across
-three formats → 9,409 token-budgeted chunks → `bge-small` embeddings → FAISS
-`IndexFlatIP` → dense retrieval → cited, refusal-capable generation, evaluated
-on 45 held-out questions.
+### 1. Problem & Domain
 
-**1. Chunking strategy, and what is lost at chunk boundaries.**
-Token-budgeted, structure-preserving chunking with contextual enrichment:
-split on the document's own headings first, then pack blocks to a **360-token
-budget with 60-token overlap**, never splitting a table row, prepending a
-`document › section` header to each chunk's embed text. Rejected: fixed-size
-character windows (cut mid-sentence and mid-table, and lose the header context
-needed to tell twenty different "Item 7"s apart); one-chunk-per-section (10-K
-Item 7 far exceeds any context window); embedding-based semantic splitting
-(cost scales with corpus, and the gain is unproven on filings that already
-carry explicit headings). *What is genuinely lost:* (a) **long-range
-coreference** — a chunk opening "These amounts exclude…" loses its antecedent;
-overlap and the section header mitigate but do not remove this; (b)
-**cross-section reasoning** — a question needing Item 7 *and* Item 8 requires
-two chunks retrieved together, which nothing in the chunker guarantees. That is
-the dominant residual error mode. The budget is enforced, not assumed: an
-earlier build silently truncated 80 chunks past the encoder's 512-token limit;
-an explicit oversize split plus a 60-token header reserve brought that to **0**.
+A compliance officer or in-house counsel needs a specific fact out of a corpus
+that is large, constantly changing, and legally consequential — *does our
+insider-trading policy cover a spouse's holdings?* Today that is manual: open
+the filing, use the table of contents, read. The answer must be **grounded and
+citable**: in a regulated setting a fabricated disclosure is worse than none.
 
-**2. Embedding model choice.** `BAAI/bge-small-en-v1.5` (384-dim), chosen by
-measurement against `bge-large-en-v1.5` (1024-dim) on the same eval set:
+**The dataset is real, not synthetic** — 100 public documents from the SEC
+EDGAR API, NIST, and the public Enron/AESLC email corpus, spanning the four
+content types S2 names across **three file formats**:
 
-| Model | Dim | MRR | Recall@k | P@k | Attainment | Query ms |
-|---|---|---|---|---|---|---|
-| **bge-small** | 384 | **0.948** | 0.978 | 0.554 | 75% | **64** |
-| bge-large | 1024 | 0.940 | 0.978 | **0.604** | **82%** | 531 |
+| Type | n | Format | Source |
+|---|---|---|---|
+| Reports — 10-K / 8-K | 20 | HTML | SEC EDGAR |
+| Contracts — EX-10 exhibits | 20 | HTML | SEC EDGAR |
+| Policies — EX-19 / EX-97 exhibits | 20 | HTML | SEC EDGAR |
+| Standards — NIST publications | 20 | PDF | NIST |
+| Email — business correspondence | 20 | TXT | AESLC / Enron |
 
-**The result is a genuine trade, not a clean win.** bge-large is *better* at
-filling the top-k with relevant chunks (precision 0.604 vs 0.554, attainment
-82% vs 75%), *marginally worse* at placing the single best chunk first (MRR
-−0.008, which on 45 questions is roughly two chunks shifting one rank — noise),
-and identical on recall. So capacity does buy something here; it buys
-precision, not ranking.
+Twelve issuers across seven industries, so questions span genuinely different
+business content rather than near-duplicate filings; each document is pinned in
+a manifest by `source_url` and `sha256`. The formats were chosen to force real
+extraction problems — HTML financial tables, PDF layouts, email headers —
+rather than one clean source.
 
-It ships anyway as **bge-small, on cost**: 1024 dims cost **8.3× more per
-query** (531 ms vs 64 ms — a permanent runtime tax, not a one-off) and ~1.3 s
-per chunk to embed, which extrapolates to roughly **3.3 hours** to index the
-full 9,409-chunk corpus on this CPU against minutes for bge-small. On a
-GPU-backed deployment where query latency is amortised, **bge-large would be
-the defensible pick** — the precision gain is real. On a CPU-only 48-hour
-budget it is not.
+**Why Track D, not the others.** RAG fits because the requirement is
+*auditability*: retrieval returns a passage, the answer cites it, a reader
+follows it back. Fine-tuning (B) bakes a snapshot into weights and cannot cite
+a source — and practically needs a GPU I do not have plus training cycles
+measured in hours, which inside 48 hours means one or two shots with no room to
+be wrong. Optimisation (C) has no decision variable or constraint set here.
+Agents (A) add non-deterministic control flow — the hardest thing to debug
+under time pressure — around a capability that is still retrieval.
 
-Caveat, stated because it bounds the claim: this comparison ran on a
-**200-chunk subset** (every gold chunk plus deterministic distractors), not
-the full corpus, because a full-corpus bge-large pass ran 10.7 hours and was
-abandoned. The easier candidate pool inflates both models (MRR 0.948 here vs
-0.781 full-corpus) and may compress the gap between them. It is sound as a
-*relative* comparison and should not be read as absolute performance.
+### 2. Approach & Algorithm Decisions
 
-Both models are used asymmetrically (query-instruction prefix on queries, none
-on passages) per the model card.
+`extract → normalise → validate → chunk → embed → index → retrieve → generate`
 
-**3. How fusion compares to a single retriever — quantitatively.**
+**Chunking — token-budgeted, structure-preserving; 360 tokens, 60 overlap.**
+Split on the document's own headings, never split a table row, prepend a
+`document › section` header to the embed text. *Rejected:* fixed-size windows
+(cut mid-table, and lose the context needed to tell twenty different "Item 7"s
+apart); one-chunk-per-section (10-K Item 7 exceeds any context window);
+semantic splitting (cost scales with corpus, gain unproven on filings that
+already carry headings). *Lost at boundaries:* long-range coreference — a chunk
+opening "These amounts exclude…" loses its antecedent — and cross-section
+reasoning, where a question needing Item 7 *and* Item 8 needs two chunks
+retrieved together. The budget is enforced: an earlier build silently truncated
+80 chunks past the encoder's 512-token limit; an oversize split brought that
+to **0**.
 
-| Mode | P@k | Recall@k | MRR | Attainment |
+**Vector store — FAISS `IndexFlatIP`.** Exact cosine, benchmarked against
+`IVFFlat` (40× faster, recall 1.000), `HNSW` (204×, recall 0.547 untuned) and
+`IVFPQ` (155×, 30× less memory). At 9,409 chunks exact search costs 8.67 ms, so
+approximation buys speed I do not need and costs recall I do. Flat wins *here*;
+at 10M chunks it would not.
+
+**Embedding — `bge-small-en-v1.5` (384d), compared empirically against
+`bge-large` (1024d) rather than chosen by leaderboard position:**
+
+| Model | MRR | R@k | P@k | Attainment | Query |
+|---|---|---|---|---|---|
+| **bge-small** | **0.948** | 0.978 | 0.554 | 75% | **64 ms** |
+| bge-large | 0.940 | 0.978 | **0.604** | **82%** | 531 ms |
+
+A genuine trade: large is *better on precision*, marginally worse on MRR
+(−0.008, roughly noise), and costs **8.3× more per query** plus ~3.3 h to index
+this corpus on CPU. Small ships **on cost, not on quality** — on GPU I would
+take large. Caveat: run on a 200-chunk subset (all golds plus distractors),
+because a full bge-large pass ran 10.7 h and was abandoned; sound as a
+*relative* comparison, not as absolute performance.
+
+**Retrieval — dense, BM25, and Reciprocal Rank Fusion (k=60), measured:**
+
+| Mode | P@k | R@k | MRR | Attainment |
 |---|---|---|---|---|
 | **dense** | **0.378** | **0.889** | **0.781** | **50.2%** |
 | bm25 | 0.208 | 0.733 | 0.555 | 27.6% |
-| hybrid (RRF, k=60) | 0.300 | 0.867 | 0.735 | 39.9% |
+| hybrid (RRF) | 0.300 | 0.867 | 0.735 | 39.9% |
 
-**Hybrid did not beat dense**, which is the opposite of the expected result and
-of what an earlier draft of this project asserted before the numbers were in.
-The cause is **corpus-wide IDF dilution**: as the corpus grew 6 → 100
-documents, the terms that discriminate in filings ("revenue", "Item 7",
-"Company") appear everywhere, BM25's IDF flattens, and fusing a weaker ranker
-into a stronger one drags the stronger one down. RRF is kept behind a flag
-because it is the right default on a lexically diverse corpus, but **dense is
-the shipped mode here** because that is what the measurement supports.
-Precision is also structurally capped — a third of questions have single-chunk
-gold sections, so P@5 cannot exceed 0.2 for them — which is why **attainment**
-(P@k ÷ ceiling 0.752) and **MRR** are the honest headline metrics, and why
-questions are tiered by k = 1/5/10/20.
+**Hybrid lost to dense** — the opposite of the expected result, and of what an
+earlier draft of this README asserted before the numbers were in. The cause is
+**corpus-wide IDF dilution**: as the corpus grew 6 → 100 documents, the terms
+that discriminate in filings ("revenue", "Item 7", "Company") appeared
+everywhere, BM25's IDF flattened, and equal-weight RRF dragged the stronger
+ranker down. RRF is kept behind a flag as the right default on a lexically
+diverse corpus; dense ships here because that is what the measurement supports.
 
-**4. Hallucination prevention and detection.** Three layers, because
-prevention alone is not verifiable. *Prevention:* the prompt constrains the
-model to retrieved context, requires a bracketed citation per claim, and
-explicitly permits refusal. *Detection:* every answer is parsed for citation
-markers and annotated `cited` / `refused` / `UNGROUNDED` — **41 cited, 4
-refused, 0 UNGROUNDED** on 45 questions, where the refusals are correct
-behaviour because retrieval genuinely missed (hit@k = 40/45). *Correctness,
-measured separately:* **cited ≠ correct** — grounding says an answer pointed at
-context, not that it is right. Accuracy is therefore scored independently by a
-deterministic lexical key-fact scorer and by an LLM judge, because they
-disagree informatively, and disagreement is where a human should look:
+### 3. Results & Error Analysis
 
-| Answer accuracy (41 answered, 4 refused) | Value |
-|---|---|
-| Mean lexical key-fact recall | 0.567 |
-| Lexical accuracy (≥60% of reference key facts) | 48.8% |
-| **LLM judge — CORRECT** | **58.5%** (24/41) |
-| LLM judge — CORRECT + PARTIAL | 85.4% (35/41) |
-| LLM judge — WRONG | 6 |
+45 held-out questions, tiered by k = 1/5/10/20 to match real answer-set size.
+Precision is **structurally capped** — a third have single-chunk gold sections,
+so P@5 cannot exceed 0.2 for them — hence attainment (P@k ÷ ceiling 0.752) and
+MRR as headline metrics rather than raw precision.
 
-The two scorers disagree by ~10 points because the lexical one punishes
-paraphrase — "repeatedly slashing prices" against a reference of "aggressively
-cut prices" is correct and scores badly. Reporting both, rather than the
-flattering one, is the point.
+**Hallucination prevention and detection.** The prompt constrains the model to
+retrieved context, requires a bracketed citation per claim, and permits
+refusal. Every answer is parsed and annotated: **41 cited, 4 refused, 0
+UNGROUNDED**. The refusals are correct behaviour — retrieval genuinely missed
+(hit@k 40/45) and the model declined rather than inventing.
 
-**Known limitations, stated rather than hidden.** (i) The **6 WRONG answers are
-all grounded** — they cite real retrieved context and are still incorrect,
-which is why faithfulness alone is an insufficient safety metric and why the
-judge exists. (ii) The `k=1` tier scores **P@k 0.000 with MRR 0.278** — golds
-sit at ranks 2–3, and for `k1c` the rank-1 result is a *different* Apple RSU
-exhibit whose clause text is verbatim-identical to the gold, so no retriever
-could separate them; that is a corpus property, not a ranking failure.
-(iii) Cross-section questions remain unsolved (§1). (iv) The single highest-value
-next step is **not** a bigger embedding model but a **cross-encoder reranker** —
-recall is already 0.889 while precision is 0.378, meaning the right chunk is
-usually retrieved but not ranked first, which is exactly what reranking fixes.
+**But cited ≠ correct**, the central finding. Grounding says an answer pointed
+at context, not that it is right, so correctness is scored separately: lexical
+key-fact recall **0.567**, lexical accuracy **48.8%**, LLM judge **58.5%
+CORRECT**, 85.4% CORRECT+PARTIAL. **All 6 WRONG answers are properly
+grounded** — they cite real context and are still incorrect. Faithfulness alone
+is therefore an insufficient safety metric.
+
+**Where it fails.** (i) The `k=1` tier scores P@k 0.000 against MRR 0.278 —
+golds sit at ranks 2–3, and for `k1c` the rank-1 hit is a *different* Apple RSU
+exhibit whose clause is verbatim-identical to the gold; no retriever can
+separate them, a corpus property rather than a ranking fault. (ii)
+Cross-section questions remain unsolved. (iii) The scorers disagree by ~10
+points because the lexical one punishes paraphrase.
+
+### 4. Production & Limitations
+
+**Production — 1,000 concurrent queries.** The bottleneck is **not** FAISS:
+exact search is 8.67 ms and the 14 MB index sits in RAM on one node. It is
+(a) query embedding at 148 ms p50 single-threaded on CPU (~7 queries/s/core),
+and (b) the LLM call. At 1,000 concurrent the encoder moves behind a GPU
+batching service (millisecond-scale, ~100× headroom), with the index replicated
+read-only behind a load balancer — it is stateless, so replication is
+horizontal. Generation is the real constraint and is rate-limited: p50 is
+1,557 ms paced but 7,296 ms sustained on free tier, a 4.7× gap that is quota,
+not inference, so production needs paid throughput plus a semantic cache.
+**Knowledge freshness** is already handled: embeddings are content-addressed on
+`(model, sha256(text))`, so re-indexing embeds only changed chunks.
+
+**Limitation before deployment: retrieval precision, via reranking.** Recall is
+0.889 while precision is 0.378 — the right chunk is usually retrieved but not
+ranked first, and the 6 grounded-but-wrong answers trace to weakly ranked
+context. The fix is a cross-encoder reranker over the top-50, scoring query and
+passage *jointly* rather than comparing independent vectors. Deliberately not
+implemented: on CPU it adds several hundred ms to a 168 ms retrieval path, so
+it only pays once the GPU tier above exists. A bigger embedding model is *not*
+the answer — measured, and it does not pay.
 
 ## Data source (Step 2)
 
