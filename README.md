@@ -1,5 +1,42 @@
 # Avathon AI Intelligence Challenge — Track D (RAG) × Scenario S2
 
+Natural-language Q&A over 100 real enterprise documents, where every answer
+carries a citation you can check. Built for the Avathon AI/ML Hiring Challenge —
+**Track D (RAG / LLM Knowledge Systems) × Scenario S2**.
+
+**Submission deliverables**
+
+| | |
+|---|---|
+| Technical write-up (PDF) | [`write-up/technical-writeup.pdf`](write-up/technical-writeup.pdf) — also inline as [Technical write-up](#technical-write-up) |
+| Walkthrough video | _link pending — see [Assignment brief](#assignment-brief)_ |
+| Reproduce every number | `python scripts/report_metrics.py` |
+
+**Start here**
+
+- **Reviewers short on time:** [Technical write-up](#technical-write-up) is the
+  whole argument in two pages — problem, decisions, results, limitations.
+- **Running it:** [Setup](#setup-step-1) has the full end-to-end runbook.
+- **Headline results:** [Evaluation](#evaluation-step-6) and
+  [Answer accuracy — grounding is not correctness](#answer-accuracy--grounding-is-not-correctness).
+
+**Contents** — [Problem & track choice](#the-problem-and-why-rag-is-the-right-tool-for-it) ·
+[Assignment brief](#assignment-brief) ·
+[Technical write-up](#technical-write-up) ·
+[Data source](#data-source-step-2) ·
+[Ingestion & chunking](#ingestion--chunking-step-3) ·
+[Hybrid retrieval](#hybrid-retrieval-step-4) ·
+[Generation](#generation-step-5) ·
+[Evaluation](#evaluation-step-6) ·
+[Answer accuracy](#answer-accuracy--grounding-is-not-correctness) ·
+[Performance](#performance--where-the-time-actually-goes) ·
+[Tests](#tests) ·
+[Repository structure](#repository-structure) ·
+[Setup & runbook](#setup-step-1) ·
+[Reproducibility notes](#notes-on-reproducibility)
+
+---
+
 ## The problem, and why RAG is the right tool for it
 
 **The business problem.** A financial analyst, compliance officer or
@@ -1033,7 +1070,7 @@ python -m venv .venv
 .venv\Scripts\activate          # Windows
 pip install --index-url https://download.pytorch.org/whl/cpu torch --no-deps
 pip install -r requirements.txt
-copy .env.example .env          # then fill in ANTHROPIC_API_KEY or OPENAI_API_KEY
+copy .env.example .env          # then fill in GROQ / MISTRAL / GEMINI key (any one is enough)
 python scripts/check_setup.py   # sanity check: env + folder layout
 python scripts/fetch_corpus.py  # sources 100 documents into data/raw/ (see Data source below)
 python scripts/validate_corpus.py    # extraction-quality gate; exits non-zero on failure
@@ -1044,6 +1081,8 @@ python scripts/run_evaluation.py  # full eval: retrieval P@k/R@k + faithfulness 
 python scripts/score_answers.py --judge  # answer correctness vs gold references
 python scripts/benchmark_pipeline.py --with-llm  # stage-by-stage latency
 python scripts/compare_embeddings.py     # embedding-model comparison
+python scripts/report_metrics.py         # print every documented metric from results/
+python scripts/render_writeup.py         # rebuild write-up/technical-writeup.pdf
 python -m unittest discover -s tests   # unit tests (offline, no API keys needed)
 ```
 

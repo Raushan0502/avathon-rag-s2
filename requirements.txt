@@ -1,3 +1,4 @@
+# Python 3.12.10 (developed and verified on 3.12; 3.11+ expected to work)
 # torch must be installed from the CPU wheel index first (see README setup
 # instructions) -- plain PyPI does not host the +cpu build referenced below.
 torch==2.14.0+cpu
