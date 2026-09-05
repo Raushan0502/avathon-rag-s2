@@ -36,8 +36,33 @@ from sentence_transformers import SentenceTransformer
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.config import CHUNKS_PATH, FAISS_INDEX_PATH
+from src.embed_cache import embed_cached
 
 QUERY_INSTRUCTION = "Represent this sentence for searching relevant passages: "
+
+
+def embed_corpus(
+    model: SentenceTransformer, model_name: str, texts: list[str]
+) -> np.ndarray:
+    """Embed corpus chunks, reusing anything already cached for this model.
+
+    Queries are never cached -- each is embedded once and thrown away -- so
+    only the corpus path goes through the cache. See ``src/embed_cache`` for
+    why this exists: embedding is the only expensive stage, and without a
+    cache every index experiment or model comparison re-pays it in full.
+
+    Args:
+        model: Loaded embedding model.
+        model_name: Model id, part of the cache key so vectors from
+            different models can never be mixed.
+        texts: Chunk texts (already context-prefixed).
+
+    Returns:
+        Normalized float32 embeddings aligned with ``texts``.
+    """
+    return embed_cached(
+        model, model_name, texts, lambda m, batch: embed_texts(m, batch, is_query=False)
+    )
 
 
 def embed_texts(

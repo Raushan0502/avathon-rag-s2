@@ -226,3 +226,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Embedding cache: derived, regenerable, and large.
+data/processed/embed_cache/

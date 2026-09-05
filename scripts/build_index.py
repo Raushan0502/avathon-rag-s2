@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from sentence_transformers import SentenceTransformer
 
 from src.config import CHUNKS_PATH, EMBEDDING_MODEL_NAME, FAISS_INDEX_PATH
-from src.embed_index import build_index, embed_texts, save_artifacts
+from src.embed_index import build_index, embed_corpus, embed_texts, save_artifacts
 from src.ingest import build_all_chunks
 
 SMOKE_TEST_QUERIES = [
