@@ -1,0 +1,1635 @@
+{
+  "summary": {
+    "documents": 100,
+    "by_status": {
+      "ok": 100
+    },
+    "by_doc_type": {
+      "report": {
+        "ok": 20
+      },
+      "contract": {
+        "ok": 20
+      },
+      "policy": {
+        "ok": 20
+      },
+      "standard": {
+        "ok": 20
+      },
+      "email": {
+        "ok": 20
+      }
+    },
+    "mean_metrics": {
+      "yield_ratio": 0.37428588520970324,
+      "alpha_ratio": 0.7994931936438152,
+      "boilerplate_ratio": 0.08821357839775076,
+      "table_row_ratio": 0.11457323080773334
+    },
+    "failed": [],
+    "warned": []
+  },
+  "documents": [
+    {
+      "doc_id": "AAPL_10-K_2025-10-31",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 217609,
+        "lines": 1493,
+        "yield_ratio": 0.14314422763200826,
+        "alpha_ratio": 0.7791313778382328,
+        "boilerplate_ratio": 0.2277294038847957,
+        "table_row_ratio": 0.41527126590756863,
+        "mean_words_per_line": 23.65773610180844
+      }
+    },
+    {
+      "doc_id": "AAPL_a10-kexhibit10199282024",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 25599,
+        "lines": 133,
+        "yield_ratio": 0.44951534733441034,
+        "alpha_ratio": 0.8133520840657839,
+        "boilerplate_ratio": 0.15037593984962405,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 31.50375939849624
+      }
+    },
+    {
+      "doc_id": "AAPL_a10-kexhibit10209282024",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 32357,
+        "lines": 179,
+        "yield_ratio": 0.433792280570042,
+        "alpha_ratio": 0.8113236703031802,
+        "boilerplate_ratio": 0.16759776536312848,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 29.69832402234637
+      }
+    },
+    {
+      "doc_id": "AAPL_a10-kexhibit10219282024",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 26692,
+        "lines": 146,
+        "yield_ratio": 0.4386884707042485,
+        "alpha_ratio": 0.8123407762625505,
+        "boilerplate_ratio": 0.1917808219178082,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 29.84931506849315
+      }
+    },
+    {
+      "doc_id": "AAPL_a10-kexhibit10229282024",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 32075,
+        "lines": 185,
+        "yield_ratio": 0.42630249867091974,
+        "alpha_ratio": 0.8106625097427903,
+        "boilerplate_ratio": 0.1837837837837838,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 28.437837837837836
+      }
+    },
+    {
+      "doc_id": "AAPL_a10-kexhibit1919282024",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 13847,
+        "lines": 81,
+        "yield_ratio": 0.3139339802303437,
+        "alpha_ratio": 0.819672131147541,
+        "boilerplate_ratio": 0.04938271604938271,
+        "table_row_ratio": 0.07407407407407407,
+        "mean_words_per_line": 26.395061728395063
+      }
+    },
+    {
+      "doc_id": "AAPL_a10-kexhibit97109282024",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 7661,
+        "lines": 28,
+        "yield_ratio": 0.565178900774622,
+        "alpha_ratio": 0.8246965148152983,
+        "boilerplate_ratio": 0.07142857142857142,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 40.535714285714285
+      }
+    },
+    {
+      "doc_id": "AAPL_8-K_2026-07-30",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 3741,
+        "lines": 66,
+        "yield_ratio": 0.09754889178617993,
+        "alpha_ratio": 0.7473937449879712,
+        "boilerplate_ratio": 0.06060606060606061,
+        "table_row_ratio": 0.3181818181818182,
+        "mean_words_per_line": 9.93939393939394
+      }
+    },
+    {
+      "doc_id": "AAPL_ef20060722_ex10-1",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 38961,
+        "lines": 376,
+        "yield_ratio": 0.5221674216634948,
+        "alpha_ratio": 0.8087574754241421,
+        "boilerplate_ratio": 0.05053191489361702,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 17.07712765957447
+      }
+    },
+    {
+      "doc_id": "AAPL_ef20065677_ex10-2",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 17246,
+        "lines": 179,
+        "yield_ratio": 0.4833520179372197,
+        "alpha_ratio": 0.808767250376899,
+        "boilerplate_ratio": 0.0782122905027933,
+        "table_row_ratio": 0.0335195530726257,
+        "mean_words_per_line": 15.955307262569832
+      }
+    },
+    {
+      "doc_id": "MSFT_10-K_2026-07-29",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 349464,
+        "lines": 2371,
+        "yield_ratio": 0.04070397289569939,
+        "alpha_ratio": 0.7658328182588192,
+        "boilerplate_ratio": 0.20539856600590467,
+        "table_row_ratio": 0.42218473218051455,
+        "mean_words_per_line": 24.786587937579082
+      }
+    },
+    {
+      "doc_id": "MSFT_msft-ex19_1",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 8007,
+        "lines": 71,
+        "yield_ratio": 0.21862116040955631,
+        "alpha_ratio": 0.8239040839265642,
+        "boilerplate_ratio": 0.09859154929577464,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 17.0
+      }
+    },
+    {
+      "doc_id": "MSFT_msft-ex19_2",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 9862,
+        "lines": 72,
+        "yield_ratio": 0.26297965387589667,
+        "alpha_ratio": 0.8135266680186575,
+        "boilerplate_ratio": 0.08333333333333333,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 21.875
+      }
+    },
+    {
+      "doc_id": "MSFT_msft-ex19_3",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 17081,
+        "lines": 101,
+        "yield_ratio": 0.3196653815922446,
+        "alpha_ratio": 0.8197412329488906,
+        "boilerplate_ratio": 0.21782178217821782,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 26.03960396039604
+      }
+    },
+    {
+      "doc_id": "MSFT_msft-ex97_1",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 15612,
+        "lines": 73,
+        "yield_ratio": 0.36660796054948924,
+        "alpha_ratio": 0.8248142454522163,
+        "boilerplate_ratio": 0.0410958904109589,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 32.36986301369863
+      }
+    },
+    {
+      "doc_id": "MSFT_msft-ex10_7",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 69281,
+        "lines": 243,
+        "yield_ratio": 0.342454784065801,
+        "alpha_ratio": 0.8167029921623533,
+        "boilerplate_ratio": 0.0205761316872428,
+        "table_row_ratio": 0.02880658436213992,
+        "mean_words_per_line": 44.97942386831276
+      }
+    },
+    {
+      "doc_id": "MSFT_msft-ex10_8",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 87873,
+        "lines": 327,
+        "yield_ratio": 0.30097925379422313,
+        "alpha_ratio": 0.8174638398597976,
+        "boilerplate_ratio": 0.05504587155963303,
+        "table_row_ratio": 0.045871559633027525,
+        "mean_words_per_line": 42.308868501529055
+      }
+    },
+    {
+      "doc_id": "MSFT_msft-ex10_5",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 51985,
+        "lines": 575,
+        "yield_ratio": 0.19385163833254404,
+        "alpha_ratio": 0.8137924401269597,
+        "boilerplate_ratio": 0.08347826086956522,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 14.746086956521738
+      }
+    },
+    {
+      "doc_id": "MSFT_8-K_2026-09-02",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 4205,
+        "lines": 66,
+        "yield_ratio": 0.14723904898630905,
+        "alpha_ratio": 0.7838287752675387,
+        "boilerplate_ratio": 0.13636363636363635,
+        "table_row_ratio": 0.2727272727272727,
+        "mean_words_per_line": 9.984848484848484
+      }
+    },
+    {
+      "doc_id": "TSLA_10-K_2026-01-29",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 415065,
+        "lines": 2316,
+        "yield_ratio": 0.17355633153518105,
+        "alpha_ratio": 0.7924855143170347,
+        "boilerplate_ratio": 0.20898100172711573,
+        "table_row_ratio": 0.37219343696027635,
+        "mean_words_per_line": 28.860535405872195
+      }
+    },
+    {
+      "doc_id": "TSLA_tsla-2025x12x31xex109",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 21737,
+        "lines": 131,
+        "yield_ratio": 0.37253423366295907,
+        "alpha_ratio": 0.8112895063716244,
+        "boilerplate_ratio": 0.1297709923664122,
+        "table_row_ratio": 0.030534351145038167,
+        "mean_words_per_line": 27.12213740458015
+      }
+    },
+    {
+      "doc_id": "TSLA_tsla-2025x12x31xex1010",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 20991,
+        "lines": 95,
+        "yield_ratio": 0.4383902092644418,
+        "alpha_ratio": 0.8185412795960173,
+        "boilerplate_ratio": 0.08421052631578947,
+        "table_row_ratio": 0.042105263157894736,
+        "mean_words_per_line": 35.50526315789474
+      }
+    },
+    {
+      "doc_id": "TSLA_tsla-2024x12x31xex19",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 44445,
+        "lines": 291,
+        "yield_ratio": 0.3105544492191594,
+        "alpha_ratio": 0.8222297221284733,
+        "boilerplate_ratio": 0.061855670103092786,
+        "table_row_ratio": 0.1958762886597938,
+        "mean_words_per_line": 23.608247422680414
+      }
+    },
+    {
+      "doc_id": "TSLA_tsla-2023x12x31xex97",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 15437,
+        "lines": 95,
+        "yield_ratio": 0.36402867518747345,
+        "alpha_ratio": 0.8186823864740559,
+        "boilerplate_ratio": 0.08421052631578947,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 25.473684210526315
+      }
+    },
+    {
+      "doc_id": "TSLA_8-K_2026-07-22",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 3394,
+        "lines": 69,
+        "yield_ratio": 0.12344062556828514,
+        "alpha_ratio": 0.7578078962875663,
+        "boilerplate_ratio": 0.15942028985507245,
+        "table_row_ratio": 0.2753623188405797,
+        "mean_words_per_line": 8.420289855072463
+      }
+    },
+    {
+      "doc_id": "TSLA_tm2530590d1_ex10-1",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 64011,
+        "lines": 241,
+        "yield_ratio": 0.48913018560828936,
+        "alpha_ratio": 0.8080798612738436,
+        "boilerplate_ratio": 0.008298755186721992,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 43.58091286307054
+      }
+    },
+    {
+      "doc_id": "TSLA_tm2530590d1_ex10-2",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 60661,
+        "lines": 731,
+        "yield_ratio": 0.4625385061152286,
+        "alpha_ratio": 0.8072732068380013,
+        "boilerplate_ratio": 0.06429548563611491,
+        "table_row_ratio": 0.057455540355677154,
+        "mean_words_per_line": 13.428180574555403
+      }
+    },
+    {
+      "doc_id": "TSLA_tm2530590d1_ex10-3",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 15125,
+        "lines": 203,
+        "yield_ratio": 0.5706255187504716,
+        "alpha_ratio": 0.8132231404958677,
+        "boilerplate_ratio": 0.04926108374384237,
+        "table_row_ratio": 0.034482758620689655,
+        "mean_words_per_line": 12.098522167487685
+      }
+    },
+    {
+      "doc_id": "AMZN_10-K_2026-02-06",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 296006,
+        "lines": 2025,
+        "yield_ratio": 0.15038341914159226,
+        "alpha_ratio": 0.7849671966108795,
+        "boilerplate_ratio": 0.21876543209876542,
+        "table_row_ratio": 0.38320987654320987,
+        "mean_words_per_line": 23.417283950617286
+      }
+    },
+    {
+      "doc_id": "AMZN_amzn-20241231xex191",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 12094,
+        "lines": 76,
+        "yield_ratio": 0.3737099066806749,
+        "alpha_ratio": 0.825946750454771,
+        "boilerplate_ratio": 0.05263157894736842,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 24.263157894736842
+      }
+    },
+    {
+      "doc_id": "AMZN_amzn-20231231xex107",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 28817,
+        "lines": 170,
+        "yield_ratio": 0.4100488068642657,
+        "alpha_ratio": 0.8033452475969046,
+        "boilerplate_ratio": 0.20588235294117646,
+        "table_row_ratio": 0.03529411764705882,
+        "mean_words_per_line": 27.8
+      }
+    },
+    {
+      "doc_id": "AMZN_amzn-20231231xex971",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 3018,
+        "lines": 9,
+        "yield_ratio": 0.6818798011748758,
+        "alpha_ratio": 0.8243870112657389,
+        "boilerplate_ratio": 0.2222222222222222,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 52.0
+      }
+    },
+    {
+      "doc_id": "AMZN_8-K_2026-07-30",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 4194,
+        "lines": 81,
+        "yield_ratio": 0.08875626944320995,
+        "alpha_ratio": 0.7381974248927039,
+        "boilerplate_ratio": 0.16049382716049382,
+        "table_row_ratio": 0.4691358024691358,
+        "mean_words_per_line": 9.123456790123457
+      }
+    },
+    {
+      "doc_id": "AMZN_tm2613616d4_ex10-1",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 281981,
+        "lines": 3839,
+        "yield_ratio": 0.4708724083573795,
+        "alpha_ratio": 0.8053485873161667,
+        "boilerplate_ratio": 0.10940349049231571,
+        "table_row_ratio": 0.07397759833289919,
+        "mean_words_per_line": 12.065902578796562
+      }
+    },
+    {
+      "doc_id": "GOOGL_10-K_2026-02-05",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 358296,
+        "lines": 2498,
+        "yield_ratio": 0.13693718208950204,
+        "alpha_ratio": 0.7808097215709916,
+        "boilerplate_ratio": 0.21297037630104082,
+        "table_row_ratio": 0.4011208967173739,
+        "mean_words_per_line": 23.695356285028023
+      }
+    },
+    {
+      "doc_id": "GOOGL_googexhibit1901q42024",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 8624,
+        "lines": 62,
+        "yield_ratio": 0.3749402199904352,
+        "alpha_ratio": 0.828965677179963,
+        "boilerplate_ratio": 0.03225806451612903,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 20.387096774193548
+      }
+    },
+    {
+      "doc_id": "GOOGL_googexhibit1002q42023",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 4920,
+        "lines": 32,
+        "yield_ratio": 0.4175152749490835,
+        "alpha_ratio": 0.8115853658536586,
+        "boilerplate_ratio": 0.1875,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 24.84375
+      }
+    },
+    {
+      "doc_id": "GOOGL_googexhibit9701q42023",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 21400,
+        "lines": 130,
+        "yield_ratio": 0.42455263262310045,
+        "alpha_ratio": 0.8220093457943926,
+        "boilerplate_ratio": 0.25384615384615383,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 25.56153846153846
+      }
+    },
+    {
+      "doc_id": "GOOGL_8-K_2026-08-10",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 8044,
+        "lines": 119,
+        "yield_ratio": 0.10589226475699015,
+        "alpha_ratio": 0.7514917951268025,
+        "boilerplate_ratio": 0.1092436974789916,
+        "table_row_ratio": 0.453781512605042,
+        "mean_words_per_line": 11.571428571428571
+      }
+    },
+    {
+      "doc_id": "GOOGL_d57679dex1001",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 40193,
+        "lines": 262,
+        "yield_ratio": 0.4900629145532579,
+        "alpha_ratio": 0.8106884283332919,
+        "boilerplate_ratio": 0.03816793893129771,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 25.35496183206107
+      }
+    },
+    {
+      "doc_id": "GOOGL_d36818dex101",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 116271,
+        "lines": 838,
+        "yield_ratio": 0.5291322887607571,
+        "alpha_ratio": 0.8008961821950443,
+        "boilerplate_ratio": 0.08711217183770883,
+        "table_row_ratio": 0.1718377088305489,
+        "mean_words_per_line": 22.249403341288783
+      }
+    },
+    {
+      "doc_id": "GOOGL_d36818dex102",
+      "doc_type": "contract",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 116342,
+        "lines": 842,
+        "yield_ratio": 0.5310868056823577,
+        "alpha_ratio": 0.8004332055491568,
+        "boilerplate_ratio": 0.07482185273159145,
+        "table_row_ratio": 0.18052256532066507,
+        "mean_words_per_line": 22.182897862232778
+      }
+    },
+    {
+      "doc_id": "META_10-K_2026-01-29",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 528327,
+        "lines": 2442,
+        "yield_ratio": 0.22275830083271847,
+        "alpha_ratio": 0.7986171443064617,
+        "boilerplate_ratio": 0.251023751023751,
+        "table_row_ratio": 0.3271908271908272,
+        "mean_words_per_line": 34.90745290745291
+      }
+    },
+    {
+      "doc_id": "META_meta-12312024x10kexhibit191",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 24347,
+        "lines": 124,
+        "yield_ratio": 0.45603026840734984,
+        "alpha_ratio": 0.8181295436809464,
+        "boilerplate_ratio": 0.0967741935483871,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 30.862903225806452
+      }
+    },
+    {
+      "doc_id": "META_meta-12312024x10kexhibit192",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 17307,
+        "lines": 95,
+        "yield_ratio": 0.4520451339915374,
+        "alpha_ratio": 0.8093834864505691,
+        "boilerplate_ratio": 0.17894736842105263,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 29.08421052631579
+      }
+    },
+    {
+      "doc_id": "META_8-K_2026-07-29",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 4159,
+        "lines": 66,
+        "yield_ratio": 0.14725251380824245,
+        "alpha_ratio": 0.7542678528492426,
+        "boilerplate_ratio": 0.16666666666666666,
+        "table_row_ratio": 0.36363636363636365,
+        "mean_words_per_line": 10.727272727272727
+      }
+    },
+    {
+      "doc_id": "NVDA_10-K_2026-02-25",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 349913,
+        "lines": 1991,
+        "yield_ratio": 0.177817946393362,
+        "alpha_ratio": 0.7932143132721562,
+        "boilerplate_ratio": 0.19588146659969866,
+        "table_row_ratio": 0.38874937217478656,
+        "mean_words_per_line": 28.248618784530386
+      }
+    },
+    {
+      "doc_id": "NVDA_nvda-2026xex191",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 6982,
+        "lines": 64,
+        "yield_ratio": 0.3407515861395803,
+        "alpha_ratio": 0.8205385276425093,
+        "boilerplate_ratio": 0.15625,
+        "table_row_ratio": 0.03125,
+        "mean_words_per_line": 16.453125
+      }
+    },
+    {
+      "doc_id": "NVDA_nvda-2025xex191",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 6973,
+        "lines": 62,
+        "yield_ratio": 0.31183757434819553,
+        "alpha_ratio": 0.8201634877384196,
+        "boilerplate_ratio": 0.12903225806451613,
+        "table_row_ratio": 0.03225806451612903,
+        "mean_words_per_line": 16.967741935483872
+      }
+    },
+    {
+      "doc_id": "NVDA_compensationrecoverypolicy",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 15523,
+        "lines": 76,
+        "yield_ratio": 0.30254541202151713,
+        "alpha_ratio": 0.8200090188752174,
+        "boilerplate_ratio": 0.07894736842105263,
+        "table_row_ratio": 0.3157894736842105,
+        "mean_words_per_line": 32.0
+      }
+    },
+    {
+      "doc_id": "NVDA_8-K_2026-09-03",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 8204,
+        "lines": 78,
+        "yield_ratio": 0.2811418388677564,
+        "alpha_ratio": 0.8048512920526573,
+        "boilerplate_ratio": 0.1282051282051282,
+        "table_row_ratio": 0.19230769230769232,
+        "mean_words_per_line": 15.948717948717949
+      }
+    },
+    {
+      "doc_id": "JPM_10-K_2026-02-13",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 1278087,
+        "lines": 9725,
+        "yield_ratio": 0.09886708967245737,
+        "alpha_ratio": 0.7430855645977151,
+        "boilerplate_ratio": 0.17408740359897173,
+        "table_row_ratio": 0.4632390745501285,
+        "mean_words_per_line": 23.202365038560412
+      }
+    },
+    {
+      "doc_id": "JPM_corp10k2025exhibit19",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 15814,
+        "lines": 103,
+        "yield_ratio": 0.3033628114868883,
+        "alpha_ratio": 0.8138358416592892,
+        "boilerplate_ratio": 0.04854368932038835,
+        "table_row_ratio": 0.24271844660194175,
+        "mean_words_per_line": 24.29126213592233
+      }
+    },
+    {
+      "doc_id": "JPM_corp10k2025exhibit97",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 11064,
+        "lines": 70,
+        "yield_ratio": 0.3097771306977265,
+        "alpha_ratio": 0.8204085321764281,
+        "boilerplate_ratio": 0.08571428571428572,
+        "table_row_ratio": 0.17142857142857143,
+        "mean_words_per_line": 23.82857142857143
+      }
+    },
+    {
+      "doc_id": "JPM_8-K_2026-07-23",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 6545,
+        "lines": 95,
+        "yield_ratio": 0.14110469127285272,
+        "alpha_ratio": 0.786707410236822,
+        "boilerplate_ratio": 0.14736842105263157,
+        "table_row_ratio": 0.3263157894736842,
+        "mean_words_per_line": 10.273684210526316
+      }
+    },
+    {
+      "doc_id": "WMT_10-K_2026-03-13",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 378096,
+        "lines": 2310,
+        "yield_ratio": 0.1626932406073888,
+        "alpha_ratio": 0.785808366129237,
+        "boilerplate_ratio": 0.22554112554112554,
+        "table_row_ratio": 0.43116883116883115,
+        "mean_words_per_line": 26.493073593073593
+      }
+    },
+    {
+      "doc_id": "WMT_wmtexhibit19fy26",
+      "doc_type": "policy",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 31498,
+        "lines": 133,
+        "yield_ratio": 0.5350069640248667,
+        "alpha_ratio": 0.818877389040574,
+        "boilerplate_ratio": 0.18796992481203006,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 36.92481203007519
+      }
+    },
+    {
+      "doc_id": "WMT_8-K_2026-08-20",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 4867,
+        "lines": 65,
+        "yield_ratio": 0.13235614054171652,
+        "alpha_ratio": 0.7610437641257448,
+        "boilerplate_ratio": 0.06153846153846154,
+        "table_row_ratio": 0.36923076923076925,
+        "mean_words_per_line": 12.76923076923077
+      }
+    },
+    {
+      "doc_id": "JNJ_10-K_2026-02-11",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 438146,
+        "lines": 3089,
+        "yield_ratio": 0.11836706796301154,
+        "alpha_ratio": 0.7777042355744432,
+        "boilerplate_ratio": 0.16898672709614762,
+        "table_row_ratio": 0.4613143412107478,
+        "mean_words_per_line": 23.3745548721269
+      }
+    },
+    {
+      "doc_id": "JNJ_8-K_2026-08-04",
+      "doc_type": "report",
+      "format": "htm",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 3936,
+        "lines": 73,
+        "yield_ratio": 0.08961952685625811,
+        "alpha_ratio": 0.7545731707317073,
+        "boilerplate_ratio": 0.0958904109589041,
+        "table_row_ratio": 0.410958904109589,
+        "mean_words_per_line": 9.150684931506849
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-61r2",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 214803,
+        "lines": 2494,
+        "yield_ratio": 0.12313346208281814,
+        "alpha_ratio": 0.8212734459015936,
+        "boilerplate_ratio": 0.01764234161988773,
+        "table_row_ratio": 0.05292702485966319,
+        "mean_words_per_line": 12.660785886126703
+      }
+    },
+    {
+      "doc_id": "NIST_CSF-2.0",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 64107,
+        "lines": 823,
+        "yield_ratio": 0.042207368957466726,
+        "alpha_ratio": 0.8278659116789118,
+        "boilerplate_ratio": 0.010935601458080195,
+        "table_row_ratio": 0.040097205346294046,
+        "mean_words_per_line": 10.837181044957473
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-150",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 116945,
+        "lines": 1354,
+        "yield_ratio": 0.22953480657995198,
+        "alpha_ratio": 0.8291077002009491,
+        "boilerplate_ratio": 0.04357459379615953,
+        "table_row_ratio": 0.029542097488921712,
+        "mean_words_per_line": 12.101181683899556
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-181r1",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 50702,
+        "lines": 713,
+        "yield_ratio": 0.0977176975766196,
+        "alpha_ratio": 0.8238531024417183,
+        "boilerplate_ratio": 0.03506311360448808,
+        "table_row_ratio": 0.021037868162692847,
+        "mean_words_per_line": 10.423562412342216
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-40r4",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 66441,
+        "lines": 873,
+        "yield_ratio": 0.11802417291950887,
+        "alpha_ratio": 0.8254541623395193,
+        "boilerplate_ratio": 0.044673539518900345,
+        "table_row_ratio": 0.008018327605956471,
+        "mean_words_per_line": 10.895761741122566
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-46r2",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 161192,
+        "lines": 1778,
+        "yield_ratio": 0.2763510930296749,
+        "alpha_ratio": 0.8252766886694128,
+        "boilerplate_ratio": 0.019122609673790775,
+        "table_row_ratio": 0.03768278965129359,
+        "mean_words_per_line": 13.259842519685039
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-124r1",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 80257,
+        "lines": 1003,
+        "yield_ratio": 0.13695219633392602,
+        "alpha_ratio": 0.8220715950010591,
+        "boilerplate_ratio": 0.054835493519441676,
+        "table_row_ratio": 0.024925224327018942,
+        "mean_words_per_line": 11.352941176470589
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-88r1",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 151767,
+        "lines": 1542,
+        "yield_ratio": 0.21239134967805498,
+        "alpha_ratio": 0.8141427319509511,
+        "boilerplate_ratio": 0.055771725032425425,
+        "table_row_ratio": 0.11543450064850844,
+        "mean_words_per_line": 14.80869001297017
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-218",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 147818,
+        "lines": 1787,
+        "yield_ratio": 0.19978348162094145,
+        "alpha_ratio": 0.7343760570431206,
+        "boilerplate_ratio": 0.1085618354784555,
+        "table_row_ratio": 0.4208170117515389,
+        "mean_words_per_line": 13.933967543368775
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-184",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 133196,
+        "lines": 1546,
+        "yield_ratio": 0.15823193078451894,
+        "alpha_ratio": 0.8248746208594853,
+        "boilerplate_ratio": 0.07567917205692108,
+        "table_row_ratio": 0.0258732212160414,
+        "mean_words_per_line": 12.564683053040104
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-209",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 196214,
+        "lines": 2627,
+        "yield_ratio": 0.23152422217187735,
+        "alpha_ratio": 0.8128981622106476,
+        "boilerplate_ratio": 0.02169775409212029,
+        "table_row_ratio": 0.019413779977160258,
+        "mean_words_per_line": 10.882755995432051
+      }
+    },
+    {
+      "doc_id": "NIST_CSWP-04162018",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 124082,
+        "lines": 1217,
+        "yield_ratio": 0.11674767740976381,
+        "alpha_ratio": 0.7818700536741832,
+        "boilerplate_ratio": 0.08463434675431389,
+        "table_row_ratio": 0.19638455217748563,
+        "mean_words_per_line": 14.599835661462613
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-210",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 67404,
+        "lines": 857,
+        "yield_ratio": 0.05225906241641178,
+        "alpha_ratio": 0.8048335410361402,
+        "boilerplate_ratio": 0.03733955659276546,
+        "table_row_ratio": 0.049008168028004666,
+        "mean_words_per_line": 11.68728121353559
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-172",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 205750,
+        "lines": 2882,
+        "yield_ratio": 0.15799880972950142,
+        "alpha_ratio": 0.74571567436209,
+        "boilerplate_ratio": 0.10305343511450382,
+        "table_row_ratio": 0.22692574600971546,
+        "mean_words_per_line": 10.829285218598196
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-128",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 265055,
+        "lines": 3551,
+        "yield_ratio": 0.17337953211630894,
+        "alpha_ratio": 0.7775593744694498,
+        "boilerplate_ratio": 0.10504083356800901,
+        "table_row_ratio": 0.07096592509152351,
+        "mean_words_per_line": 10.378766544635313
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-171r2",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 287634,
+        "lines": 3962,
+        "yield_ratio": 0.18687604358193052,
+        "alpha_ratio": 0.7386018342755029,
+        "boilerplate_ratio": 0.1226653205451792,
+        "table_row_ratio": 0.3008581524482585,
+        "mean_words_per_line": 11.283695103483089
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-63-3",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 139390,
+        "lines": 1914,
+        "yield_ratio": 0.08715862507096997,
+        "alpha_ratio": 0.8131142836645383,
+        "boilerplate_ratio": 0.030303030303030304,
+        "table_row_ratio": 0.10083594566353186,
+        "mean_words_per_line": 11.009926854754442
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-66r2",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 293453,
+        "lines": 2673,
+        "yield_ratio": 0.1804545353919719,
+        "alpha_ratio": 0.7914862005159259,
+        "boilerplate_ratio": 0.11410400299289188,
+        "table_row_ratio": 0.31350542461653574,
+        "mean_words_per_line": 17.078563411896745
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-37r2",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 571153,
+        "lines": 7217,
+        "yield_ratio": 0.2515730112886822,
+        "alpha_ratio": 0.7993724973868648,
+        "boilerplate_ratio": 0.13717611195787724,
+        "table_row_ratio": 0.08798669807399197,
+        "mean_words_per_line": 10.86878204239989
+      }
+    },
+    {
+      "doc_id": "NIST_SP-800-213",
+      "doc_type": "standard",
+      "format": "pdf",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 114737,
+        "lines": 1409,
+        "yield_ratio": 0.048071174347404384,
+        "alpha_ratio": 0.8267603301463347,
+        "boilerplate_ratio": 0.0333569907735983,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 11.702625975869411
+      }
+    },
+    {
+      "doc_id": "EMAIL_hodge-j_inbox_474",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 231,
+        "lines": 4,
+        "yield_ratio": 0.752442996742671,
+        "alpha_ratio": 0.8095238095238095,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 9.5
+      }
+    },
+    {
+      "doc_id": "EMAIL_blair-l_inbox_262",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 1063,
+        "lines": 11,
+        "yield_ratio": 0.9155900086132644,
+        "alpha_ratio": 0.80620884289746,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 17.363636363636363
+      }
+    },
+    {
+      "doc_id": "EMAIL_bass-e_sent_881",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 198,
+        "lines": 4,
+        "yield_ratio": 0.5657142857142857,
+        "alpha_ratio": 0.7878787878787878,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 8.0
+      }
+    },
+    {
+      "doc_id": "EMAIL_jones-t_sent_6473",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 438,
+        "lines": 4,
+        "yield_ratio": 0.79491833030853,
+        "alpha_ratio": 0.7990867579908676,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 19.25
+      }
+    },
+    {
+      "doc_id": "EMAIL_dasovich-j_sent_12183",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 427,
+        "lines": 8,
+        "yield_ratio": 0.7707581227436823,
+        "alpha_ratio": 0.7587822014051522,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 9.375
+      }
+    },
+    {
+      "doc_id": "EMAIL_dasovich-j_inbox_432",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 338,
+        "lines": 6,
+        "yield_ratio": 0.6954732510288066,
+        "alpha_ratio": 0.8076923076923077,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 9.166666666666666
+      }
+    },
+    {
+      "doc_id": "EMAIL_crandell-s_inbox_91",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 178,
+        "lines": 6,
+        "yield_ratio": 0.6496350364963503,
+        "alpha_ratio": 0.7415730337078652,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 5.666666666666667
+      }
+    },
+    {
+      "doc_id": "EMAIL_buy-r_inbox_435",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 472,
+        "lines": 7,
+        "yield_ratio": 0.7919463087248322,
+        "alpha_ratio": 0.8050847457627118,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 11.714285714285714
+      }
+    },
+    {
+      "doc_id": "EMAIL_jones-t_sent_6130",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 438,
+        "lines": 5,
+        "yield_ratio": 0.8007312614259597,
+        "alpha_ratio": 0.7945205479452054,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 15.4
+      }
+    },
+    {
+      "doc_id": "EMAIL_benson-r_inbox_291",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 780,
+        "lines": 9,
+        "yield_ratio": 0.8599779492833517,
+        "alpha_ratio": 0.8179487179487179,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 13.444444444444445
+      }
+    },
+    {
+      "doc_id": "EMAIL_jones-t_inbox_150",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 345,
+        "lines": 4,
+        "yield_ratio": 0.6845238095238095,
+        "alpha_ratio": 0.8202898550724638,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 13.5
+      }
+    },
+    {
+      "doc_id": "EMAIL_jones-t_sent_642",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 229,
+        "lines": 4,
+        "yield_ratio": 0.6343490304709142,
+        "alpha_ratio": 0.8209606986899564,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 9.5
+      }
+    },
+    {
+      "doc_id": "EMAIL_lay-k_inbox_883",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 592,
+        "lines": 8,
+        "yield_ratio": 0.869309838472834,
+        "alpha_ratio": 0.785472972972973,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 14.0
+      }
+    },
+    {
+      "doc_id": "EMAIL_grigsby-m_sent_160",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 326,
+        "lines": 5,
+        "yield_ratio": 0.8029556650246306,
+        "alpha_ratio": 0.8067484662576687,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 10.4
+      }
+    },
+    {
+      "doc_id": "EMAIL_beck-s_sent_755",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 546,
+        "lines": 9,
+        "yield_ratio": 0.8598425196850393,
+        "alpha_ratio": 0.7948717948717948,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 11.11111111111111
+      }
+    },
+    {
+      "doc_id": "EMAIL_hayslett-r_inbox_80",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 260,
+        "lines": 5,
+        "yield_ratio": 0.7046070460704607,
+        "alpha_ratio": 0.7807692307692308,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 9.4
+      }
+    },
+    {
+      "doc_id": "EMAIL_fischer-m_sent_4",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 414,
+        "lines": 6,
+        "yield_ratio": 0.7624309392265194,
+        "alpha_ratio": 0.7898550724637681,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 12.5
+      }
+    },
+    {
+      "doc_id": "EMAIL_baughman-d_inbox_275",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 392,
+        "lines": 6,
+        "yield_ratio": 0.832271762208068,
+        "alpha_ratio": 0.7704081632653061,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 12.333333333333334
+      }
+    },
+    {
+      "doc_id": "EMAIL_baughman-d_inbox_187",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 247,
+        "lines": 5,
+        "yield_ratio": 0.6842105263157895,
+        "alpha_ratio": 0.7489878542510121,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 9.6
+      }
+    },
+    {
+      "doc_id": "EMAIL_beck-s_sent_983",
+      "doc_type": "email",
+      "format": "txt",
+      "status": "ok",
+      "issues": [],
+      "metrics": {
+        "chars": 367,
+        "lines": 6,
+        "yield_ratio": 0.7758985200845666,
+        "alpha_ratio": 0.8065395095367848,
+        "boilerplate_ratio": 0.0,
+        "table_row_ratio": 0.0,
+        "mean_words_per_line": 10.666666666666666
+      }
+    }
+  ]
+}

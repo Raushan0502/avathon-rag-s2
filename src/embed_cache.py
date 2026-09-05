@@ -1,0 +1,110 @@
+"""
+Content-addressed embedding cache, so text is never embedded twice.
+
+Embedding is the expensive, irreversible stage of this pipeline: ~19
+minutes for the corpus with bge-small and ~165 with bge-large, all of it
+CPU. Everything downstream -- building a FAISS index, switching Flat to
+HNSW, re-running the evaluation, comparing retrieval modes -- is seconds.
+Coupling them meant any experiment paid the full embedding cost again,
+which is what made a second embedding model look unaffordable.
+
+The cache is keyed by ``(model, sha256(text))``, which gives exactly the
+invalidation behaviour wanted:
+
+- **Re-running anything** with the same model and text is free.
+- **Adding documents** embeds only the new chunks.
+- **Changing chunking** re-embeds only the chunks whose text actually
+  changed; untouched sections are reused.
+- **Changing model** is a clean miss -- vectors from different models are
+  not comparable, and keying on the model name makes that impossible to
+  get wrong by accident.
+
+Storage is a matrix plus a hash->row map per model, rather than one file
+per vector: appending is a concatenate, and lookup is a dict hit. The
+cache is a derived artifact and is gitignored -- deleting it costs time,
+never correctness.
+"""
+import hashlib
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.config import DATA_PROCESSED_DIR
+
+CACHE_DIR = DATA_PROCESSED_DIR / "embed_cache"
+
+
+def slug(model_name: str) -> str:
+    """Filesystem-safe name for a model id (``BAAI/bge-small`` -> ``BAAI__bge-small``)."""
+    return model_name.replace("/", "__")
+
+
+def text_key(text: str) -> str:
+    """Content hash used as the cache key for one piece of text."""
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def load_cache(model_name: str) -> tuple[dict[str, int], np.ndarray | None]:
+    """Load one model's cached vectors."""
+    name = slug(model_name)
+    keys_path, matrix_path = CACHE_DIR / f"{name}.json", CACHE_DIR / f"{name}.npy"
+    if not keys_path.exists() or not matrix_path.exists():
+        return {}, None
+    return json.loads(keys_path.read_text(encoding="utf-8")), np.load(matrix_path)
+
+
+def save_cache(model_name: str, key_to_row: dict[str, int], matrix: np.ndarray) -> None:
+    """Persist one model's cache, replacing any previous version."""
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    name = slug(model_name)
+    np.save(CACHE_DIR / f"{name}.npy", matrix)
+    (CACHE_DIR / f"{name}.json").write_text(json.dumps(key_to_row), encoding="utf-8")
+
+
+def embed_cached(
+    model,
+    model_name: str,
+    texts: list[str],
+    encode_fn,
+    batch_size: int = 64,
+    on_progress=None,
+) -> np.ndarray:
+    """Embed texts, reusing cached vectors and embedding only the misses."""
+    key_to_row, matrix = load_cache(model_name)
+    keys = [text_key(text) for text in texts]
+
+    # Deduplicate within this batch as well as against the cache: a repeated
+    # boilerplate paragraph should cost one forward pass, not many.
+    missing = list(dict.fromkeys(k for k in keys if k not in key_to_row))
+    by_key = dict(zip(keys, texts))
+    # Embed and persist in batches. A single all-or-nothing pass means a long
+    # run has no durable output until it finishes -- a 10-hour bge-large run
+    # was killed here having written nothing and shown no progress.
+    for start in range(0, len(missing), batch_size):
+        batch = missing[start : start + batch_size]
+        fresh = encode_fn(model, [by_key[k] for k in batch])
+        matrix = fresh if matrix is None else np.vstack([matrix, fresh])
+        for offset, key in enumerate(batch):
+            key_to_row[key] = len(matrix) - len(batch) + offset
+        save_cache(model_name, key_to_row, matrix)
+        if on_progress:
+            on_progress(min(start + batch_size, len(missing)), len(missing))
+
+    return np.vstack([matrix[key_to_row[k]] for k in keys]).astype("float32")
+
+
+def cache_stats(model_name: str, texts: list[str]) -> dict:
+    """Report how much of a batch is already cached, without embedding."""
+    key_to_row, _ = load_cache(model_name)
+    keys = {text_key(text) for text in texts}
+    cached = sum(1 for key in keys if key in key_to_row)
+    return {
+        "total": len(texts),
+        "unique": len(keys),
+        "cached": cached,
+        "to_embed": len(keys) - cached,
+        "hit_rate": cached / len(keys) if keys else 0.0,
+    }

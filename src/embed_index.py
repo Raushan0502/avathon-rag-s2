@@ -1,0 +1,102 @@
+"""
+Step 3 — Embedding & FAISS indexing.
+
+Embedding model: BAAI/bge-small-en-v1.5 (33M params, 384-dim, CPU-friendly,
+512-token context). Chosen over larger BGE/E5 variants because this corpus
+is small (a handful of filings) and runs entirely on CPU with no GPU
+budget available for this track -- bge-small consistently ranks near the
+top of the MTEB retrieval leaderboard for its size class, giving most of
+the retrieval quality of larger models at a fraction of the embedding
+latency. The alternative considered and rejected was OpenAI's
+text-embedding-3-small: better quality, but it would make every
+ingestion run depend on a paid API call, which is unnecessary for a
+retrieval component that isn't the generation step this track's cost
+lives in.
+
+BGE models are trained asymmetrically: queries should be prefixed with an
+instruction, passages should not. That prefix is applied here for queries
+only (see `embed_texts(..., is_query=True)`).
+
+Vector store: FAISS, `IndexFlatIP` (exact inner-product search over
+L2-normalized vectors, i.e. exact cosine similarity) -- chosen over an
+approximate index (IVF/HNSW) because the corpus is on the order of
+hundreds of chunks, where exact search is already sub-millisecond and
+approximate indexing would only add tuning surface (nlist/nprobe, M/efSearch)
+for no measurable benefit. This choice does not scale to a
+production-sized corpus; see the write-up for where the switch to an
+approximate index would become necessary.
+"""
+import json
+import sys
+from pathlib import Path
+
+import faiss
+import numpy as np
+from sentence_transformers import SentenceTransformer
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.config import CHUNKS_PATH, FAISS_INDEX_PATH
+from src.embed_cache import embed_cached
+
+QUERY_INSTRUCTION = "Represent this sentence for searching relevant passages: "
+
+
+def embed_corpus(
+    model: SentenceTransformer, model_name: str, texts: list[str]
+) -> np.ndarray:
+    """Embed corpus chunks, reusing anything already cached for this model."""
+    return embed_cached(
+        model, model_name, texts, lambda m, batch: embed_texts(m, batch, is_query=False)
+    )
+
+
+def embed_texts(
+    model: SentenceTransformer, texts: list[str], is_query: bool = False
+) -> np.ndarray:
+    """Embed texts into L2-normalized float32 vectors."""
+    inputs = [QUERY_INSTRUCTION + text for text in texts] if is_query else texts
+    embeddings = model.encode(
+        inputs,
+        batch_size=32,
+        show_progress_bar=False,
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+    )
+    return embeddings.astype("float32")
+
+
+def build_index(embeddings: np.ndarray) -> faiss.Index:
+    """Build an exact-search FAISS index over normalized embeddings."""
+    index = faiss.IndexFlatIP(embeddings.shape[1])
+    index.add(embeddings)
+    return index
+
+
+def save_artifacts(
+    index: faiss.Index,
+    chunk_dicts: list[dict],
+    index_path: Path = FAISS_INDEX_PATH,
+    chunks_path: Path = CHUNKS_PATH,
+) -> None:
+    """Persist the FAISS index and its parallel chunk metadata to disk."""
+    index_path.parent.mkdir(parents=True, exist_ok=True)
+    chunks_path.parent.mkdir(parents=True, exist_ok=True)
+    faiss.write_index(index, str(index_path))
+    with chunks_path.open("w", encoding="utf-8") as f:
+        for chunk in chunk_dicts:
+            f.write(json.dumps(chunk) + "\n")
+
+
+def load_artifacts(
+    index_path: Path = FAISS_INDEX_PATH, chunks_path: Path = CHUNKS_PATH
+) -> tuple[faiss.Index, list[dict]]:
+    """Load the FAISS index and chunk metadata written by
+    ``save_artifacts``."""
+    if not index_path.exists() or not chunks_path.exists():
+        raise FileNotFoundError(
+            f"Missing index artifacts ({index_path}, {chunks_path}). "
+            "Run: python scripts/build_index.py"
+        )
+    with chunks_path.open("r", encoding="utf-8") as f:
+        chunk_dicts = [json.loads(line) for line in f]
+    return faiss.read_index(str(index_path)), chunk_dicts
