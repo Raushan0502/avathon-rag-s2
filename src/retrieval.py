@@ -42,22 +42,7 @@ VALID_MODES = ("dense", "bm25", "hybrid")
 def reciprocal_rank_fusion(
     rank_lists: list[list[int]], k_rrf: int = RRF_K
 ) -> list[tuple[int, float]]:
-    """Fuse several ranked ID lists into one, by rank position only.
-
-    Each list contributes ``1 / (k_rrf + rank)`` to every ID it ranks, so an
-    item ranked highly by either retriever scores well, and an item ranked
-    by both scores best. Raw scores are deliberately ignored -- dense cosine
-    similarities and BM25 scores are on incomparable scales, and rank is the
-    common currency that avoids having to calibrate between them.
-
-    Args:
-        rank_lists: One list of chunk indices per retriever, best-first.
-        k_rrf: Smoothing constant; the standard 60 keeps any single
-            retriever's top hit from dominating the fused ranking.
-
-    Returns:
-        ``(chunk_index, fused_score)`` pairs sorted best-first.
-    """
+    """Fuse several ranked ID lists into one, by rank position only."""
     fused: dict[int, float] = {}
     for ranked_ids in rank_lists:
         for rank, chunk_idx in enumerate(ranked_ids):
@@ -87,15 +72,7 @@ class RetrievalIndex:
 
     @classmethod
     def load(cls) -> "RetrievalIndex":
-        """Load persisted artifacts and rebuild the in-memory BM25 index.
-
-        The FAISS index and chunk metadata are read from disk (written by
-        ``scripts/build_index.py``); the BM25 index is cheap to rebuild from
-        the chunk text, so it is not persisted separately.
-
-        Returns:
-            A ready-to-query ``RetrievalIndex``.
-        """
+        """Load persisted artifacts and rebuild the in-memory BM25 index."""
         faiss_index, chunk_dicts = load_artifacts()
         return cls(
             embedder=SentenceTransformer(EMBEDDING_MODEL_NAME),
@@ -109,27 +86,7 @@ class RetrievalIndex:
     def search(
         self, query: str, k: int = 5, mode: str = "hybrid", candidate_pool: int = 20
     ) -> list[dict]:
-        """Retrieve the top-k chunks for a query under the given mode.
-
-        Args:
-            query: Natural-language question.
-            k: Number of chunks to return.
-            mode: ``"dense"`` (FAISS cosine similarity), ``"bm25"`` (sparse
-                keyword match), or ``"hybrid"`` (both, fused with RRF).
-            candidate_pool: How many candidates each retriever contributes
-                to fusion in hybrid mode. Larger than ``k`` on purpose, so
-                fusion can promote a chunk that one retriever ranked outside
-                its own top-k.
-
-        Returns:
-            Chunk dicts (copies, with ``score`` and ``retrieval_mode`` added)
-            ordered best-first. ``score`` is a cosine similarity for dense, a
-            BM25 score for bm25, and a fused RRF score for hybrid -- the
-            scales are not comparable across modes.
-
-        Raises:
-            ValueError: If ``mode`` is not one of ``VALID_MODES``.
-        """
+        """Retrieve the top-k chunks for a query under the given mode."""
         if mode not in VALID_MODES:
             raise ValueError(f"unknown retrieval mode {mode!r}; expected one of {VALID_MODES}")
 

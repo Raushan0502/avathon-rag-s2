@@ -37,15 +37,7 @@ K = 5
 
 
 def run_retrieval_comparison(index: RetrievalIndex, eval_set: list[dict]) -> dict:
-    """Score every eval question under each retrieval mode.
-
-    Args:
-        index: Loaded retrieval index.
-        eval_set: Questions from ``data/eval/qa_eval.json``.
-
-    Returns:
-        Metrics keyed by mode name ("dense", "bm25", "hybrid").
-    """
+    """Score every eval question under each retrieval mode."""
     sizes: dict[tuple[str, str], int] = {}
     for chunk in index.chunk_dicts:
         key = (chunk["doc_id"], chunk["section"])
@@ -80,17 +72,8 @@ def run_retrieval_comparison(index: RetrievalIndex, eval_set: list[dict]) -> dic
 
 
 def run_generation_trace(index: RetrievalIndex, eval_set: list[dict]) -> list[dict]:
-    """Answer every eval question with hybrid retrieval and record the trace.
-
-    Args:
-        index: Loaded retrieval index.
-        eval_set: Questions from ``data/eval/qa_eval.json``.
-
-    Returns:
-        One record per question: the generated answer, which provider served
-        it, its faithfulness annotation, whether retrieval found the gold
-        section, and the retrieved context.
-    """
+    """Answer every eval question with hybrid retrieval and record the
+    trace."""
     print(f"\n=== End-to-end generation + faithfulness (hybrid, k={K}) ===")
     records = []
     faithfulness_counts = {"cited": 0, "refused": 0, "UNGROUNDED": 0}

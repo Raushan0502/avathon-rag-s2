@@ -56,29 +56,13 @@ VERDICT:"""
 
 
 def key_terms(text: str) -> set[str]:
-    """Load-bearing tokens of an answer: figures, names, distinctive words.
-
-    Args:
-        text: An answer.
-
-    Returns:
-        Lowercased tokens longer than two characters, stopwords removed, so
-        scoring is driven by "416,161" and "cupertino" rather than filler.
-    """
+    """Load-bearing tokens of an answer: figures, names, distinctive words."""
     return {t for t in TOKEN_RE.findall(text.lower()) if len(t) > 2 and t not in STOPWORDS}
 
 
 def key_fact_recall(generated: str, reference: str) -> float:
-    """Fraction of the reference answer's key terms present in the generated one.
-
-    Args:
-        generated: The model's answer.
-        reference: The gold answer.
-
-    Returns:
-        0.0-1.0. A refusal scores 0.0. An empty reference scores 0.0 rather
-        than dividing by zero.
-    """
+    """Fraction of the reference answer's key terms present in the generated
+    one."""
     wanted = key_terms(reference)
     if not wanted:
         return 0.0
@@ -86,19 +70,7 @@ def key_fact_recall(generated: str, reference: str) -> float:
 
 
 def score_answers(records: list[dict], use_judge: bool = False) -> dict:
-    """Score generated answers for correctness, not just grounding.
-
-    Args:
-        records: Per-question results carrying ``generated_answer`` and
-            ``reference_answer``.
-        use_judge: Also run the LLM judge (one API call per question).
-
-    Returns:
-        Aggregate scores plus a ``per_query`` list. ``refused`` counts
-        answers that declined; those are excluded from the accuracy rate,
-        because declining when context is missing is correct behaviour and
-        should not be scored as a wrong answer.
-    """
+    """Score generated answers for correctness, not just grounding."""
     per_query, verdicts = [], {}
     for record in records:
         generated = record.get("generated_answer", "")
@@ -136,16 +108,7 @@ def score_answers(records: list[dict], use_judge: bool = False) -> dict:
 
 
 def judge_answer(generated: str, reference: str) -> tuple[str, str]:
-    """Ask an LLM whether the generated answer matches the reference.
-
-    Args:
-        generated: The model's answer.
-        reference: The gold answer.
-
-    Returns:
-        ``(verdict, raw_reply)`` where verdict is CORRECT, PARTIAL, WRONG,
-        REFUSED, or UNPARSED when the reply matches none of them.
-    """
+    """Ask an LLM whether the generated answer matches the reference."""
     _, reply = call_llm(JUDGE_PROMPT.format(reference=reference, candidate=generated))
     upper = reply.strip().upper()
     for verdict in ("CORRECT", "PARTIAL", "WRONG", "REFUSED"):

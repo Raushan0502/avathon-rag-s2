@@ -43,29 +43,12 @@ def slug(model_name: str) -> str:
 
 
 def text_key(text: str) -> str:
-    """Content hash used as the cache key for one piece of text.
-
-    Args:
-        text: The exact string that will be embedded, including any
-            contextual prefix -- the prefix changes the vector, so it must
-            change the key too.
-
-    Returns:
-        Hex SHA-256 digest.
-    """
+    """Content hash used as the cache key for one piece of text."""
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
 def load_cache(model_name: str) -> tuple[dict[str, int], np.ndarray | None]:
-    """Load one model's cached vectors.
-
-    Args:
-        model_name: Embedding model id.
-
-    Returns:
-        ``(key_to_row, matrix)``. Both are empty/None when no cache exists
-        yet, so a first run behaves like a cold start rather than failing.
-    """
+    """Load one model's cached vectors."""
     name = slug(model_name)
     keys_path, matrix_path = CACHE_DIR / f"{name}.json", CACHE_DIR / f"{name}.npy"
     if not keys_path.exists() or not matrix_path.exists():
@@ -74,13 +57,7 @@ def load_cache(model_name: str) -> tuple[dict[str, int], np.ndarray | None]:
 
 
 def save_cache(model_name: str, key_to_row: dict[str, int], matrix: np.ndarray) -> None:
-    """Persist one model's cache, replacing any previous version.
-
-    Args:
-        model_name: Embedding model id.
-        key_to_row: Content hash -> row index in ``matrix``.
-        matrix: Embedding matrix, one row per cached text.
-    """
+    """Persist one model's cache, replacing any previous version."""
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     name = slug(model_name)
     np.save(CACHE_DIR / f"{name}.npy", matrix)
@@ -95,23 +72,7 @@ def embed_cached(
     batch_size: int = 64,
     on_progress=None,
 ) -> np.ndarray:
-    """Embed texts, reusing cached vectors and embedding only the misses.
-
-    Args:
-        model: Loaded embedding model, passed through to ``encode_fn``.
-        model_name: Model id, used as part of the cache key.
-        texts: Texts to embed, in the order the result should follow.
-        encode_fn: ``(model, texts) -> np.ndarray`` doing the real work for
-            cache misses. Injected so this module stays independent of how
-            encoding is configured.
-        batch_size: Texts embedded and persisted per batch, so progress
-            survives interruption instead of being lost.
-        on_progress: Optional ``(done, total)`` callback after each batch.
-
-    Returns:
-        Array of shape ``(len(texts), dim)`` aligned with ``texts``.
-        Duplicate texts are embedded once and reused.
-    """
+    """Embed texts, reusing cached vectors and embedding only the misses."""
     key_to_row, matrix = load_cache(model_name)
     keys = [text_key(text) for text in texts]
 
@@ -136,15 +97,7 @@ def embed_cached(
 
 
 def cache_stats(model_name: str, texts: list[str]) -> dict:
-    """Report how much of a batch is already cached, without embedding.
-
-    Args:
-        model_name: Embedding model id.
-        texts: Texts that would be embedded.
-
-    Returns:
-        Dict with ``total``, ``cached``, ``to_embed`` and ``hit_rate``.
-    """
+    """Report how much of a batch is already cached, without embedding."""
     key_to_row, _ = load_cache(model_name)
     keys = {text_key(text) for text in texts}
     cached = sum(1 for key in keys if key in key_to_row)

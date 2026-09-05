@@ -48,21 +48,7 @@ GENERATION_PAUSE_SECONDS = 20.0
 
 
 def timed(fn, queries: list[str], warmup: int = WARMUP, pause_seconds: float = 0.0) -> dict:
-    """Time a single-argument callable across queries, after warming up.
-
-    Args:
-        fn: Callable taking one query string.
-        queries: Queries to time.
-        warmup: Untimed calls first, so model loading and cache warming do
-            not land in the measurements.
-        pause_seconds: Sleep between timed calls, untimed. Used to stay under
-            a provider's rate limit so the measurement reflects inference
-            speed rather than this pipeline's own retry backoff.
-
-    Returns:
-        Dict of p50/p95/mean/min/max in milliseconds, plus queries-per-second
-        implied by the median.
-    """
+    """Time a single-argument callable across queries, after warming up."""
     for query in queries[:warmup]:
         fn(query)
 

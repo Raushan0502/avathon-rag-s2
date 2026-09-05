@@ -60,20 +60,8 @@ SAMPLE_SEED = 42
 
 
 def select_chunks(chunks: list[dict], eval_set: list[dict], limit: int) -> list[dict]:
-    """Take a subset that keeps every gold chunk, plus deterministic distractors.
-
-    A comparison is only meaningful if each question's answer is still in the
-    corpus, so gold chunks are never dropped. The remainder are sampled with a
-    fixed seed so re-runs and the cache stay aligned.
-
-    Args:
-        chunks: All corpus chunks.
-        eval_set: Evaluation questions.
-        limit: Target subset size; gold chunks alone may exceed it.
-
-    Returns:
-        Chunks in their original corpus order.
-    """
+    """Take a subset that keeps every gold chunk, plus deterministic
+    distractors."""
     gold_sections = {(q["gold_doc_id"], q["gold_section"]) for q in eval_set}
     keep_index = {
         i for i, c in enumerate(chunks) if (c["doc_id"], c["section"]) in gold_sections
@@ -85,17 +73,7 @@ def select_chunks(chunks: list[dict], eval_set: list[dict], limit: int) -> list[
 
 
 def evaluate_model(spec: dict, chunks: list[dict], eval_set: list[dict], sizes: dict) -> dict:
-    """Embed the corpus with one model, index it, and score the eval set.
-
-    Args:
-        spec: Model entry from ``MODELS``.
-        chunks: Corpus chunks, identical across models.
-        eval_set: The 45 evaluation questions.
-        sizes: Chunk count per ``(doc_id, section)``, for precision ceilings.
-
-    Returns:
-        Metrics plus embedding and query timings for this model.
-    """
+    """Embed the corpus with one model, index it, and score the eval set."""
     name = spec["name"]
     texts = [c.get("embed_text") or c["text"] for c in chunks]
     before = cache_stats(name, texts)

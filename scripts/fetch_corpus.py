@@ -145,23 +145,8 @@ EMAIL_SAMPLE_SEED = 42
 
 
 def sec_get(url: str, attempts: int = MAX_ATTEMPTS) -> requests.Response:
-    """GET an EDGAR URL with the required User-Agent, retrying transient errors.
-
-    EDGAR intermittently returns 503 under sustained crawling. Fetching a
-    ~100-document corpus makes hundreds of requests, so a single transient
-    failure must not abort the run: this retries with exponential backoff
-    and only gives up after ``attempts`` tries.
-
-    Args:
-        url: Full EDGAR API or Archives URL.
-        attempts: Maximum tries before giving up.
-
-    Returns:
-        The successful response.
-
-    Raises:
-        requests.RequestException: If every attempt failed.
-    """
+    """GET an EDGAR URL with the required User-Agent, retrying transient
+    errors."""
     last_error: Exception | None = None
     for attempt in range(attempts):
         try:
@@ -177,20 +162,7 @@ def sec_get(url: str, attempts: int = MAX_ATTEMPTS) -> requests.Response:
 
 
 def find_recent_filings(submissions: dict, form_type: str, limit: int = 1) -> list[dict]:
-    """Find the most recent filings of a given form type, newest first.
-
-    EDGAR returns the recent-filings index as parallel arrays in reverse
-    chronological order, so matches come out newest-first naturally.
-
-    Args:
-        submissions: Parsed ``data.sec.gov/submissions/CIK*.json`` payload.
-        form_type: Form to look for, e.g. ``"10-K"`` or ``"8-K"``.
-        limit: Maximum filings to return.
-
-    Returns:
-        Up to ``limit`` dicts with ``filingDate``, ``accessionNumber`` and
-        ``primaryDocument``; empty if the company filed none of that type.
-    """
+    """Find the most recent filings of a given form type, newest first."""
     recent = submissions["filings"]["recent"]
     matches = []
     for i, form in enumerate(recent["form"]):
@@ -208,20 +180,7 @@ def find_recent_filings(submissions: dict, form_type: str, limit: int = 1) -> li
 
 
 def find_exhibits(base_url: str, accession: str) -> list[tuple[str, str, str]]:
-    """List a filing's contract/policy exhibits using EDGAR's Type column.
-
-    The filing's index page carries an authoritative document-type table.
-    Reading that is far more reliable than pattern-matching filenames,
-    which differ per filer.
-
-    Args:
-        base_url: ``https://www.sec.gov/Archives/edgar/data/<cik>``.
-        accession: Accession number with dashes removed.
-
-    Returns:
-        ``(exhibit_type, doc_type, filename)`` triples for exhibits whose
-        type is in ``EXHIBIT_TYPES`` -- e.g. ``("EX-10.9", "contract", ...)``.
-    """
+    """List a filing's contract/policy exhibits using EDGAR's Type column."""
     dashed = f"{accession[:10]}-{accession[10:12]}-{accession[12:]}"
     page = sec_get(f"{base_url}/{accession}/{dashed}-index.htm")
     soup = BeautifulSoup(page.text, "lxml")
@@ -243,17 +202,7 @@ def find_exhibits(base_url: str, accession: str) -> list[tuple[str, str, str]]:
 
 
 def save_document(content: bytes, local_path: Path, **metadata) -> dict:
-    """Write one fetched document to data/raw/ and build its manifest entry.
-
-    Args:
-        content: Raw bytes as fetched.
-        local_path: Destination inside ``data/raw``.
-        **metadata: Provenance fields (company, ticker, form, doc_type,
-            source_url, ...) merged into the manifest entry.
-
-    Returns:
-        The manifest entry, including the file's SHA-256 and fetch timestamp.
-    """
+    """Write one fetched document to data/raw/ and build its manifest entry."""
     local_path.write_bytes(content)
     return {
         **metadata,
@@ -266,17 +215,7 @@ def save_document(content: bytes, local_path: Path, **metadata) -> dict:
 
 def fetch_sec_documents() -> list[dict]:
     """Fetch each company's latest 10-K and 8-K, plus their contract and
-    policy exhibits.
-
-    Exhibits are discovered from the 10-K's own filing index rather than
-    hardcoded, since exhibit numbering changes year to year; only the
-    families in ``EXHIBIT_TYPES`` are kept. A company with no matching
-    exhibits (Apple incorporates most of its by reference) simply
-    contributes none.
-
-    Returns:
-        Manifest entries for every SEC document fetched.
-    """
+    policy exhibits."""
     entries: list[dict] = []
     seen_documents: set[str] = set()
     for company in COMPANIES:
@@ -370,17 +309,7 @@ def fetch_sec_documents() -> list[dict]:
 
 
 def fetch_nist_pdfs(limit: int = TARGET_PER_TYPE) -> list[dict]:
-    """Fetch public-domain NIST security publications (the PDF documents).
-
-    Args:
-        limit: How many publications to take from ``NIST_PDFS``, in listed
-            order (smallest-first after the two the eval set depends on).
-
-    Returns:
-        Manifest entries for each NIST PDF that downloaded successfully.
-        A publication that 404s is skipped with a warning rather than
-        aborting the whole corpus fetch.
-    """
+    """Fetch public-domain NIST security publications (the PDF documents)."""
     entries = []
     for slug, path, title in NIST_PDFS[:limit]:
         url = f"https://nvlpubs.nist.gov/nistpubs/{path}.pdf"
@@ -410,14 +339,7 @@ def fetch_nist_pdfs(limit: int = TARGET_PER_TYPE) -> list[dict]:
 
 
 def fetch_emails() -> list[dict]:
-    """Fetch a deterministic sample of AESLC business emails (plain text).
-
-    The sample is drawn with a fixed seed so re-running reproduces the same
-    emails, keeping the corpus (and therefore the evaluation) stable.
-
-    Returns:
-        Manifest entries for each sampled email.
-    """
+    """Fetch a deterministic sample of AESLC business emails (plain text)."""
     listing = requests.get(AESLC_LISTING, timeout=60)
     listing.raise_for_status()
     files = sorted(item["name"] for item in listing.json())
@@ -448,19 +370,7 @@ def fetch_emails() -> list[dict]:
 
 
 def cap_per_type(entries: list[dict], limit: int = TARGET_PER_TYPE) -> list[dict]:
-    """Keep at most ``limit`` documents of each doc_type, in fetch order.
-
-    Fetch order matters: the companies and publications the evaluation set
-    is authored against are listed first, so capping never drops a document
-    a gold answer depends on.
-
-    Args:
-        entries: All fetched manifest entries.
-        limit: Maximum documents to retain per doc_type.
-
-    Returns:
-        The retained entries, original order preserved.
-    """
+    """Keep at most ``limit`` documents of each doc_type, in fetch order."""
     kept: list[dict] = []
     counts: dict[str, int] = {}
     for entry in entries:

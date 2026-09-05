@@ -29,11 +29,7 @@ QUERIES = [
 
 
 def main() -> None:
-    """Print dense-only vs hybrid top-3 results side by side for each query.
-
-    The overlap count is the signal to watch: consistently 3/3 would mean
-    BM25 contributes nothing beyond dense retrieval and fusion is dead weight.
-    """
+    """Print dense-only vs hybrid top-3 results side by side for each query."""
     print("Loading retrieval index (embedder + FAISS + BM25)...")
     index = RetrievalIndex.load()
 

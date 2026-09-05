@@ -51,18 +51,7 @@ WORD_RE = re.compile(r"[A-Za-z0-9]")
 
 
 def measure_document(text: str, source_bytes: int) -> dict:
-    """Compute extraction-quality metrics for one preprocessed document.
-
-    Args:
-        text: The document's text after extraction and normalisation.
-        source_bytes: Size of the original file on disk, for the yield ratio.
-
-    Returns:
-        Dict of metrics: ``chars``, ``lines``, ``yield_ratio``,
-        ``alpha_ratio``, ``boilerplate_ratio``, ``table_row_ratio`` and
-        ``mean_words_per_line``. A document with no text scores zero on
-        every ratio rather than raising.
-    """
+    """Compute extraction-quality metrics for one preprocessed document."""
     lines = [line for line in text.splitlines() if line.strip()]
     if not text or not lines:
         return {
@@ -92,20 +81,7 @@ def measure_document(text: str, source_bytes: int) -> dict:
 
 
 def check_document(metrics: dict, doc_type: str = "") -> tuple[str, list[str]]:
-    """Grade one document's metrics against the extraction thresholds.
-
-    Args:
-        metrics: Output of ``measure_document``.
-        doc_type: Document type from the manifest, used to pick the minimum
-            usable text length -- emails are legitimately far shorter than
-            filings, so a single flat floor misgrades them.
-
-    Returns:
-        ``(status, issues)`` where status is ``"ok"``, ``"warn"`` or
-        ``"fail"``. Only an unusable document -- too little text, or
-        effectively no text for its file size -- fails; everything else is
-        a warning worth a human glance.
-    """
+    """Grade one document's metrics against the extraction thresholds."""
     issues = []
     status = "ok"
     min_chars = MIN_CHARS_BY_TYPE.get(doc_type, MIN_CHARS_DEFAULT)
@@ -144,16 +120,7 @@ def check_document(metrics: dict, doc_type: str = "") -> tuple[str, list[str]]:
 
 
 def summarise(reports: list[dict]) -> dict:
-    """Aggregate per-document reports into a corpus-level summary.
-
-    Args:
-        reports: Per-document dicts carrying ``status``, ``doc_type`` and
-            ``metrics``.
-
-    Returns:
-        Counts by status, counts by document type, the failing and warning
-        document ids, and mean metrics across the corpus.
-    """
+    """Aggregate per-document reports into a corpus-level summary."""
     by_status: dict[str, int] = {}
     by_type: dict[str, dict[str, int]] = {}
     for report in reports:

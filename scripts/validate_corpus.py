@@ -20,16 +20,13 @@ if hasattr(sys.stdout, "reconfigure"):
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.config import MANIFEST_PATH, RESULTS_DIR, ROOT_DIR
-from src.ingest import load_document_text, normalise_text
+from src.extract import load_document_text
+from src.preprocess import normalise_text
 from src.validate import check_document, measure_document, summarise
 
 
 def main() -> int:
-    """Validate extraction for every manifest document.
-
-    Returns:
-        Process exit code: 1 if any document failed validation, else 0.
-    """
+    """Validate extraction for every manifest document."""
     started = time.time()
     manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     print(f"Validating extraction for {len(manifest)} documents...\n")

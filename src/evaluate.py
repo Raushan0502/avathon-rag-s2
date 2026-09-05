@@ -36,21 +36,7 @@ MRR_DEPTH = 20
 
 
 def reciprocal_rank(retrieved: list[dict], gold_doc_id: str, gold_section: str) -> float:
-    """Reciprocal of the rank at which the gold section first appears.
-
-    Precision@k is a blunt instrument for known-item questions: a question
-    answered by exactly one chunk scores 0.0 at k=1 whether the gold sat at
-    rank 2 or rank 500. Reciprocal rank distinguishes those -- rank 2 scores
-    0.5, rank 3 scores 0.33 -- which is what "how close did it get?" needs.
-
-    Args:
-        retrieved: Ranked chunk dicts, best first.
-        gold_doc_id: Document holding the answer.
-        gold_section: Section within that document.
-
-    Returns:
-        ``1 / rank`` for the first relevant hit, or 0.0 if none is present.
-    """
+    """Reciprocal of the rank at which the gold section first appears."""
     for rank, chunk in enumerate(retrieved, start=1):
         if chunk["doc_id"] == gold_doc_id and chunk["section"] == gold_section:
             return 1.0 / rank
@@ -58,24 +44,7 @@ def reciprocal_rank(retrieved: list[dict], gold_doc_id: str, gold_section: str) 
 
 
 def score_retrieval(retrieved: list[dict], gold_doc_id: str, gold_section: str) -> tuple[float, float]:
-    """Score one query's retrieved chunks against its single gold section.
-
-    A retrieved chunk counts as relevant when both its ``doc_id`` and
-    ``section`` match the gold pair (see module docstring for why relevance
-    is judged at section rather than chunk granularity).
-
-    Args:
-        retrieved: Top-k chunk dicts returned by ``RetrievalIndex.search``.
-        gold_doc_id: ``doc_id`` of the document the answer comes from.
-        gold_section: Section label within that document.
-
-    Returns:
-        ``(precision_at_k, recall_at_k)``. Precision is the fraction of the
-        top-k slots filled by the gold section; recall is 1.0 if the gold
-        section appears anywhere in the top-k and 0.0 otherwise (a binary
-        hit rate, since exactly one section is known-relevant per query).
-        An empty ``retrieved`` list scores ``(0.0, 0.0)``.
-    """
+    """Score one query's retrieved chunks against its single gold section."""
     if not retrieved:
         return 0.0, 0.0
     hits = sum(
@@ -91,30 +60,8 @@ def evaluate_retrieval(
     mode: str,
     gold_section_sizes: dict[tuple[str, str], int] | None = None,
 ) -> dict:
-    """Run every eval question through one retrieval mode and aggregate scores.
-
-    Precision@k is only interpretable when at least k chunks in the corpus
-    genuinely answer the question. "Where is Apple headquartered?" is
-    answered by exactly one chunk, so at k=5 it can never score above 0.20
-    however good retrieval is -- the other four slots have nothing correct
-    to hold. Questions therefore carry their own ``eval_k``, sized to their
-    real answer set, and results report attainment against the achievable
-    ceiling alongside the raw figure.
-
-    Args:
-        index: A ``RetrievalIndex`` (anything exposing ``search(query, k, mode)``).
-        eval_set: Questions loaded from ``data/eval/qa_eval.json``.
-        k: Default retrieval depth for questions without their own ``eval_k``.
-        mode: Retrieval mode -- ``"dense"``, ``"bm25"``, or ``"hybrid"``.
-        gold_section_sizes: Chunk count per ``(doc_id, section)``, used to
-            compute each question's precision ceiling. Ceilings are reported
-            as zero when omitted.
-
-    Returns:
-        Dict with the mode, k, ``mean_precision_at_k``, ``mean_recall_at_k``,
-        ``mean_max_precision_at_k``, ``precision_attainment``, and a
-        ``per_query`` list of per-question scores.
-    """
+    """Run every eval question through one retrieval mode and aggregate
+    scores."""
     gold_section_sizes = gold_section_sizes or {}
     precisions, recalls, ceilings, rrs, per_query = [], [], [], [], []
     for item in eval_set:

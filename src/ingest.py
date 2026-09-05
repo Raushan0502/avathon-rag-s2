@@ -61,21 +61,27 @@ README rather than papered over.
 import json
 import re
 import sys
-import unicodedata
 from pathlib import Path
 
-import pdfplumber
-from bs4 import BeautifulSoup, NavigableString
 from transformers import AutoTokenizer
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.config import EMBEDDING_MODEL_NAME, MANIFEST_PATH
+from src.extract import load_document_text
+from src.preprocess import normalise_text
 
 # Chunk budget in *tokens*, measured with the embedding model's own
 # tokenizer. bge-small truncates at 512 and does so silently, so the budget
 # leaves headroom for the query instruction prefix and any contextual
 # header prepended before embedding.
-CHUNK_MAX_TOKENS = 400
+# Budget for the chunk body. build_embed_text prepends a provenance header
+# ("Apple Inc. | 10-K | Item 1A. Risk Factors") *after* chunking, so the
+# embedded string is longer than the chunk. CONTEXT_HEADER_RESERVE holds
+# back room for it; without that reserve, glossary sections tokenising at
+# ~3 tokens/word overshot the model's hard 512 limit and were silently
+# truncated.
+CHUNK_MAX_TOKENS = 360
+CONTEXT_HEADER_RESERVE = 60
 CHUNK_OVERLAP_TOKENS = 60
 FALLBACK_TOKENS_PER_WORD = 1.6  # only used if the tokenizer cannot be loaded
 MIN_SECTIONS_TO_TRUST_SPLIT = 3
@@ -115,322 +121,8 @@ NUMBERED_HEADING_RE = re.compile(
     r"[A-Z][A-Za-z0-9 ,'&/()-]{2,68}[A-Za-z0-9)])\s*$"
 )
 
-# --- Preprocessing (see normalise_text) ---------------------------------
-# Characters that differ across filers but mean the same thing. NFKC alone
-# leaves curly quotes and dashes untouched, so they are mapped explicitly.
-PUNCTUATION_MAP = str.maketrans(
-    {
-        # Quotes
-        "‘": "'", "’": "'", "‚": "'", "‛": "'",
-        '“': '"', '”': '"', '„': '"', '‟': '"',
-        # Dashes. NFKC runs first and folds some of these into each other
-        # (U+2011 becomes U+2010), so the whole range is mapped rather than
-        # only the characters seen in the raw source.
-        "‐": "-", "‑": "-", "‒": "-", "–": "-",
-        "—": "-", "―": "-", "−": "-",
-        # Spaces and invisibles
-        " ": " ", " ": " ", " ": " ",
-        "​": "", "﻿": "", "­": "",
-    }
-)
-CONTROL_CHAR_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
-# A word split across a line break by a PDF text layer: "informa-\ntion".
-DEHYPHENATE_RE = re.compile(r"([A-Za-z]{2,})-\n([a-z]{2,})")
-# Table-of-contents filler: "Events and Incidents ......... 6".
-DOT_LEADER_RE = re.compile(r"\.{4,}\s*\d*\s*$")
-# A line that is nothing but a page number.
-PAGE_NUMBER_RE = re.compile(r"(?:page\s*)?\d{1,4}", re.IGNORECASE)
-# Page furniture must be short and frequent; a long repeated line is more
-# likely to be genuine repeated prose (e.g. a standard risk disclaimer).
-# Furniture also has to be long enough to *be* furniture. Without a floor,
-# "None." -- which is the real content of 10-K Items 1B, 4 and 9B, and so
-# repeats several times per filing -- matches the short-and-frequent
-# signature and gets deleted, taking whole sections with it.
-MIN_BOILERPLATE_LEN = 15
-MAX_BOILERPLATE_LEN = 80
-# Digit masking (below) makes any two sentences differing only by a number
-# look identical, so a length limit alone would delete real prose. Page
-# furniture is label-shaped -- few words -- while body text is not.
-MAX_BOILERPLATE_WORDS = 10
-MIN_BOILERPLATE_REPEATS = 5
-DIGIT_RE = re.compile(r"\d+")
-
-
-def normalise_text(text: str) -> str:
-    """Clean raw extracted text before it is split into sections and chunks.
-
-    Extraction output is not yet fit to embed: it carries page furniture,
-    table-of-contents filler, words broken across line ends, and characters
-    that vary by source encoding. Each pass below targets one defect
-    observed in this corpus, in an order that matters -- unicode is
-    normalised first so later pattern matching sees consistent characters,
-    and de-hyphenation runs before repeated-line detection so a rejoined
-    word is not mistaken for boilerplate.
-
-    Passes:
-      1. **Unicode/NFKC + control characters** -- smart quotes, non-breaking
-         hyphens and NBSP become their ASCII equivalents, so the same word
-         embeds identically regardless of which filer produced it.
-      2. **De-hyphenation** -- PDF text layers break words at line ends
-         ("informa-\\ninformation"); rejoining them stops one word being
-         embedded as two fragments.
-      3. **Dot-leader / page-number stripping** -- table-of-contents lines
-         ("Events and Incidents ....... 6") carry no meaning but occupy
-         whole chunks.
-      4. **Repeated-line removal** -- headers and footers reprinted on every
-         page ("Apple Inc. | 2025 Form 10-K | 17"). A line is treated as
-         furniture only when it recurs often *and* is short, so a genuinely
-         repeated sentence of prose survives.
-      5. **Whitespace collapse** -- trailing spaces and blank runs.
-
-    Table rows (lines starting with "|") are passed through untouched by the
-    line-level passes, so the structure recovered in ``render_table`` is not
-    dismantled here.
-
-    Args:
-        text: Raw text from ``load_document_text``.
-
-    Returns:
-        Cleaned text, one logical line per line, with no blank lines.
-    """
-    text = unicodedata.normalize("NFKC", text)
-    text = text.translate(PUNCTUATION_MAP)
-    text = CONTROL_CHAR_RE.sub("", text)
-    text = DEHYPHENATE_RE.sub(r"\1\2", text)
-
-    lines = [line.strip() for line in text.splitlines()]
-    lines = [re.sub(r"[ \t]{2,}", " ", line) for line in lines]
-
-    # Count short lines to find page furniture. Long lines are excluded up
-    # front: a repeated long sentence is far more likely to be real content.
-    # Digits are masked before counting, because a running footer carries the
-    # page number ("Apple Inc. | 2025 Form 10-K | 17") and so is never twice
-    # the same string -- exact matching misses it entirely.
-    def is_furniture_candidate(line: str) -> bool:
-        return (
-            bool(line)
-            and not line.startswith("|")
-            and MIN_BOILERPLATE_LEN <= len(line) <= MAX_BOILERPLATE_LEN
-            and len(line.split()) <= MAX_BOILERPLATE_WORDS
-        )
-
-    counts: dict[str, int] = {}
-    for line in lines:
-        if is_furniture_candidate(line):
-            template = DIGIT_RE.sub("#", line)
-            counts[template] = counts.get(template, 0) + 1
-    boilerplate = {line for line, n in counts.items() if n >= MIN_BOILERPLATE_REPEATS}
-
-    kept = []
-    for line in lines:
-        if not line:
-            continue
-        if line.startswith("|"):  # rendered table row -- leave alone
-            kept.append(line)
-            continue
-        if is_furniture_candidate(line) and DIGIT_RE.sub("#", line) in boilerplate:
-            continue
-        if DOT_LEADER_RE.search(line):
-            continue
-        if PAGE_NUMBER_RE.fullmatch(line):
-            continue
-        kept.append(line)
-    return "\n".join(kept)
-
-
-def render_table(rows: list[list[str]]) -> str:
-    """Render a table as a Markdown pipe table, or plain text if it isn't one.
-
-    Financial filings answer questions like "what were net sales in FY2024?"
-    only if a figure stays attached to its row label and column header.
-    Flattening a table to running text destroys that: three fiscal years
-    collapse into an unlabelled number sequence. Markdown pipe rows keep the
-    association, are compact, and are a format LLMs read reliably.
-
-    HTML filings also use ``<table>`` heavily for pure layout, so anything
-    without at least 2 rows and 2 populated columns is emitted as plain
-    lines instead of being dressed up as a data table.
-
-    Args:
-        rows: Table cells as a list of rows; cells may be None or blank.
-
-    Returns:
-        A Markdown table (header row, separator, body rows), or newline-joined
-        text for layout tables, or an empty string if there is no content.
-    """
-    cleaned = []
-    for row in rows:
-        cells = [re.sub(r"\s+", " ", (cell or "").strip()) for cell in row]
-        # Merge symbol-only cells into their neighbour, per row. Filings put
-        # the currency mark and percent sign in their own cells, and only on
-        # some rows -- so this has to be row-local, not column-wide. Doing it
-        # here also de-skews the table: a row carrying a lone "$" has one
-        # more cell than its neighbours, and collapsing it restores alignment.
-        merged: list[str] = []
-        for cell in cells:
-            if cell == "%" and merged:
-                merged[-1] = f"{merged[-1]}%"
-            elif cell == "$":
-                merged.append("$")  # attached to the next value below
-            elif merged and merged[-1] == "$":
-                merged[-1] = f"${cell}"
-            else:
-                merged.append(cell)
-        if any(merged):
-            cleaned.append(merged)
-    if not cleaned:
-        return ""
-
-    width = max(len(row) for row in cleaned)
-    cleaned = [row + [""] * (width - len(row)) for row in cleaned]
-
-    # Drop columns that are empty throughout -- filings are full of spacer
-    # columns, and the merge above empties more of them.
-    keep = [i for i in range(width) if any(row[i] for row in cleaned)]
-    cleaned = [[row[i] for i in keep] for row in cleaned]
-    if not cleaned or not keep:
-        return ""
-
-    if len(cleaned) < 2 or len(keep) < 2:
-        return "\n".join(" ".join(cell for cell in row if cell) for row in cleaned)
-
-    header, *body = cleaned
-    lines = ["| " + " | ".join(header) + " |", "| " + " | ".join("---" for _ in header) + " |"]
-    lines += ["| " + " | ".join(row) + " |" for row in body]
-    return "\n".join(lines)
-
-
-def load_document_text(local_path: Path) -> str:
-    """Extract text from a corpus document, dispatching on file type.
-
-    The corpus spans three formats, each needing a different extraction
-    path, and each losing something different in the process:
-
-    - **HTML** (filings, exhibits): parsed with BeautifulSoup, dropping
-      script/style. ``<table>`` elements are rendered to Markdown *in place*
-      before the surrounding text is flattened, so tabular figures keep
-      their row/column association (see ``render_table``). Blank lines are
-      collapsed but single newlines are kept, because ``ITEM_HEADER_RE``
-      anchors on line boundaries.
-    - **PDF** (NIST publications): tables are located first and extracted
-      structurally, then the page's remaining prose is read with those table
-      regions filtered out, so table content is not duplicated between the
-      two. These PDFs carry a real text layer, so no OCR is needed.
-    - **Plain text** (emails): read as-is, minus the AESLC corpus's
-      ``@subject``/``@ann*`` trailer. The ``@subject`` line is promoted to
-      the top of the text so the email's subject is embedded alongside its
-      body; the ``@ann*`` lines are alternative subject lines belonging to
-      that dataset's summarization task, not to the email, so they are
-      dropped rather than indexed as if the sender wrote them.
-
-    **Images are not extracted.** HTML ``<img>`` elements are discarded by
-    ``get_text`` (including any alt text), and PDF extraction reads only the
-    text layer, so charts, figures and any scanned page contribute nothing.
-    A scanned document therefore yields little or no text *without raising* --
-    supporting it would require an OCR stage (e.g. Tesseract or a document-AI
-    service) that this pipeline deliberately does not have. The validation
-    step is what surfaces such documents rather than letting them index
-    silently.
-
-    Args:
-        local_path: Path to the document under ``data/raw``.
-
-    Returns:
-        Extracted text, or an empty string if the file yields none.
-
-    Raises:
-        ValueError: If the file extension is not a supported format.
-    """
-    suffix = local_path.suffix.lower()
-
-    if suffix in {".htm", ".html"}:
-        soup = BeautifulSoup(
-            local_path.read_bytes().decode("utf-8", errors="ignore"), "lxml"
-        )
-        for tag in soup(["script", "style"]):
-            tag.decompose()
-        # Replace each table with its rendered form in document order, so the
-        # table stays where it appeared relative to the surrounding prose.
-        for table in soup.find_all("table"):
-            rows = []
-            for row in table.find_all("tr"):
-                cells: list[str] = []
-                for cell in row.find_all(["td", "th"]):
-                    # Expand colspan so a cell lands in the column it spans
-                    # from; without this, rows are ragged and figures drift
-                    # out from under their header.
-                    try:
-                        span = max(1, int(cell.get("colspan", 1)))
-                    except (TypeError, ValueError):
-                        span = 1
-                    cells.append(cell.get_text(" ", strip=True))
-                    cells.extend([""] * (span - 1))
-                rows.append(cells)
-            table.replace_with(NavigableString(f"\n{render_table(rows)}\n"))
-        lines = [line.strip() for line in soup.get_text(separator="\n").splitlines()]
-        return "\n".join(line for line in lines if line)
-
-    if suffix == ".pdf":
-        blocks = []
-        with pdfplumber.open(local_path) as pdf:
-            for page in pdf.pages:
-                tables = page.find_tables()
-                # Read prose with the table regions masked out, so figures
-                # inside tables are not emitted twice in two different shapes.
-                boxes = [table.bbox for table in tables]
-                page_text = page.filter(
-                    lambda obj: not any(
-                        box[0] <= (obj["x0"] + obj["x1"]) / 2 <= box[2]
-                        and box[1] <= (obj["top"] + obj["bottom"]) / 2 <= box[3]
-                        for box in boxes
-                    )
-                ).extract_text() or ""
-                blocks.append(page_text)
-                blocks.extend(render_table(table.extract()) for table in tables)
-
-        lines = [line.strip() for line in "\n".join(blocks).splitlines()]
-        return "\n".join(line for line in lines if line)
-
-    if suffix == ".txt":
-        raw = local_path.read_text(encoding="utf-8", errors="ignore")
-        body, _, trailer = raw.partition("@subject")
-        subject = trailer.split("@ann")[0].strip() if trailer else ""
-        text = f"Subject: {subject}\n{body.strip()}" if subject else body.strip()
-        lines = [line.strip() for line in text.splitlines()]
-        return "\n".join(line for line in lines if line)
-
-    raise ValueError(f"unsupported document format {suffix!r} for {local_path.name}")
-
-
 def split_into_sections(text: str) -> list[tuple[str, str]]:
-    """Split filing text on its numbered "Item" headers.
-
-    Two kinds of false positives inflate a naive header match list, and both
-    are corrected here:
-
-    1. The table of contents lists every Item once near the top of the
-       document, before the real sections.
-    2. Printed-page running headers (e.g. "Item 7" reprinted at the top of
-       every page of a long MD&A section) get flattened by HTML->text
-       extraction into what looks like a fresh "Item 7 <next-page's-first-
-       words>" header once per page -- so one real section can produce a
-       dozen+ spurious matches sharing its item number.
-
-    The fix runs in two passes over the raw matches: collapse consecutive
-    matches sharing an item number down to the *first* of that run (the
-    section's real heading, since the run only starts once the heading has
-    been passed), then keep the *last* surviving candidate per item number
-    (the real section, since it always follows the TOC entry).
-
-    Args:
-        text: Cleaned filing text from ``html_to_text``.
-
-    Returns:
-        ``(section_title, section_body)`` pairs in document order. If fewer
-        than ``MIN_SECTIONS_TO_TRUST_SPLIT`` headers survive, returns a
-        single ``("Full Document", text)`` pair rather than risk
-        over-splitting on false-positive matches.
-    """
+    """Split filing text on its numbered "Item" headers."""
     def item_key(title: str) -> str:
         match = ITEM_NUMBER_RE.match(title.strip())
         return re.sub(r"\s+", " ", match.group(0).lower()) if match else title.strip().lower()
@@ -459,32 +151,7 @@ def split_into_sections(text: str) -> list[tuple[str, str]]:
 
 
 def split_on_numbered_headings(text: str) -> list[tuple[str, str]]:
-    """Split a non-SEC document on its own numbered or titled headings.
-
-    Only SEC filings have "Item N" headers. Everything else -- NIST
-    publications, contract exhibits, policies -- previously fell through to
-    a single ``"Full Document"`` section, which had a measurable cost: an
-    80-page NIST PDF became one 177-chunk section, and because relevance is
-    judged at ``(doc_id, section)`` granularity, *any* chunk retrieved from
-    that file counted as relevant. Those questions scored a perfect
-    Precision@5 of 1.000 purely because the section was the whole document,
-    inflating the corpus-wide average and making it incomparable across
-    document types.
-
-    These documents do carry structure, just not SEC structure: NIST uses
-    "2.1 Events and Incidents" and "Appendix A.", contracts and policies use
-    "1. PURPOSE" or "Section 5.". A conservative pattern picks those up and
-    falls back to a single section when it finds too few, on the same
-    principle as the Item split: over-splitting on false positives is worse
-    than under-splitting.
-
-    Args:
-        text: Cleaned document text.
-
-    Returns:
-        ``(section_title, section_body)`` pairs, or a single
-        ``("Full Document", text)`` pair when no reliable structure is found.
-    """
+    """Split a non-SEC document on its own numbered or titled headings."""
     headers = [
         match
         for match in NUMBERED_HEADING_RE.finditer(text)
@@ -508,25 +175,7 @@ def split_on_numbered_headings(text: str) -> list[tuple[str, str]]:
 
 
 def count_tokens(text: str) -> int:
-    """Count tokens the way the embedding model will actually count them.
-
-    Sizing chunks in words is a proxy for the limit that is really enforced.
-    The model truncates at 512 *tokens* and does so silently -- no error,
-    the tail is simply discarded -- and the words-to-tokens ratio is not
-    constant: prose runs near 1.3, while a financial table where "416,161"
-    costs several tokens runs far higher. Measuring directly removes the
-    guesswork.
-
-    The tokenizer is loaded once and cached; if it is unavailable (offline,
-    no model cache) the function falls back to a conservative word-based
-    estimate rather than failing the whole ingest.
-
-    Args:
-        text: Text to measure.
-
-    Returns:
-        Token count under the embedding model's tokenizer, or an estimate.
-    """
+    """Count tokens the way the embedding model will actually count them."""
     tokenizer = get_tokenizer()
     if tokenizer is None:
         return int(len(text.split()) * FALLBACK_TOKENS_PER_WORD) + 1
@@ -550,18 +199,7 @@ def get_tokenizer() -> object | None:
 
 
 def split_blocks(text: str) -> list[tuple[str, str]]:
-    """Split text into table and prose blocks, preserving order.
-
-    Chunking has to know where tables are: a table split across a boundary
-    loses its header row, which puts the figures back in exactly the
-    unlabelled state that rendering them was meant to fix.
-
-    Args:
-        text: Normalised document or section text.
-
-    Returns:
-        ``(kind, block_text)`` pairs where kind is ``"table"`` or ``"prose"``.
-    """
+    """Split text into table and prose blocks, preserving order."""
     blocks: list[tuple[str, str]] = []
     current: list[str] = []
     current_kind = "prose"
@@ -580,21 +218,7 @@ def split_blocks(text: str) -> list[tuple[str, str]]:
 
 
 def chunk_table(table: str, max_tokens: int = CHUNK_MAX_TOKENS) -> list[str]:
-    """Split a rendered table, repeating the header row in every part.
-
-    A table that fits stays whole. One that does not is split on row
-    boundaries -- never mid-row -- and each part is re-prefixed with the
-    header and separator rows, so every chunk remains self-describing:
-    "| Line item 15 | 1500 |" is meaningless without the "| 2025 |" header
-    that gives the column its year.
-
-    Args:
-        table: Markdown table text, header row first.
-        max_tokens: Token budget per chunk.
-
-    Returns:
-        One or more table strings, each carrying the header.
-    """
+    """Split a rendered table, repeating the header row in every part."""
     if count_tokens(table) <= max_tokens:
         return [table]
 
@@ -620,26 +244,7 @@ def chunk_table(table: str, max_tokens: int = CHUNK_MAX_TOKENS) -> list[str]:
 
 
 def split_oversized(unit: str, max_tokens: int) -> list[str]:
-    """Hard-split a single unit that no structural boundary can break up.
-
-    Sentence and row boundaries usually bound a chunk, but not always: a
-    legal definition can run for hundreds of words without a sentence
-    terminator, and a table row can be enormous on its own. Such a unit was
-    previously emitted whole, and the embedding model then **silently
-    truncated it at 512 tokens** -- discarding the tail with no error, which
-    is precisely the failure token budgeting exists to prevent. 80 of 8,146
-    chunks were affected, the worst at 3,374 tokens.
-
-    Splitting on whitespace loses the structural guarantee, so this is a
-    last resort applied only when a unit already exceeds the budget alone.
-
-    Args:
-        unit: A single sentence or table row too large for one chunk.
-        max_tokens: Token budget per chunk.
-
-    Returns:
-        Word-aligned pieces, each within budget.
-    """
+    """Hard-split a single unit that no structural boundary can break up."""
     if count_tokens(unit) <= max_tokens:
         return [unit]
 
@@ -658,21 +263,7 @@ def split_oversized(unit: str, max_tokens: int) -> list[str]:
 def chunk_prose(
     text: str, max_tokens: int = CHUNK_MAX_TOKENS, overlap_tokens: int = CHUNK_OVERLAP_TOKENS
 ) -> list[str]:
-    """Split prose on sentence boundaries, with token-sized overlap.
-
-    Packing whole sentences means a chunk never opens mid-clause, which the
-    previous fixed word-window did routinely. Overlap is carried as whole
-    trailing sentences rather than a fixed word count, so the repeated span
-    is always readable.
-
-    Args:
-        text: Prose block.
-        max_tokens: Token budget per chunk.
-        overlap_tokens: Approximate tokens of trailing context to repeat.
-
-    Returns:
-        Chunk strings in order; empty list for blank input.
-    """
+    """Split prose on sentence boundaries, with token-sized overlap."""
     sentences = [s for s in SENTENCE_SPLIT_RE.split(text.strip()) if s.strip()]
     if not sentences:
         return []
@@ -706,30 +297,7 @@ def chunk_prose(
 
 
 def build_embed_text(doc_meta: dict, section_title: str, chunk_text: str) -> str:
-    """Prefix a chunk with its document and section context, for embedding.
-
-    A chunk is embedded in isolation, having lost every clue about where it
-    came from. "Competition is intense and margins are under pressure"
-    could be any issuer in any year, so it embeds no closer to "Apple
-    competition risk" than to any other company's near-identical wording --
-    and the corpus is full of near-identical wording, because filings are
-    written from common templates. Prefixing the provenance puts the
-    issuer, form and section into the vector itself.
-
-    Only the embedding input carries this prefix. The stored ``text`` stays
-    clean, because that is what gets shown to the model as quotable context
-    and to a reader as a citation; the prompt already states provenance
-    separately, so duplicating it there would waste context.
-
-    Args:
-        doc_meta: Manifest entry for the document.
-        section_title: Section the chunk came from.
-        chunk_text: The chunk itself.
-
-    Returns:
-        ``"<company> | <form> | <section>\\n<chunk>"``, with empty fields
-        omitted so non-SEC documents do not gain blank separators.
-    """
+    """Prefix a chunk with its document and section context, for embedding."""
     parts = [
         doc_meta.get("company", ""),
         doc_meta.get("form", ""),
@@ -740,19 +308,7 @@ def build_embed_text(doc_meta: dict, section_title: str, chunk_text: str) -> str
 
 
 def chunk_section(text: str, max_tokens: int = CHUNK_MAX_TOKENS) -> list[str]:
-    """Chunk one section, keeping tables intact and prose sentence-aligned.
-
-    Blocks are chunked by kind and never merged across kinds, so a table is
-    not glued onto the end of a paragraph and split by a word counter that
-    cannot see it.
-
-    Args:
-        text: Section body, post-normalisation.
-        max_tokens: Token budget per chunk.
-
-    Returns:
-        Chunk strings in document order.
-    """
+    """Chunk one section, keeping tables intact and prose sentence-aligned."""
     chunks: list[str] = []
     for kind, body in split_blocks(text):
         if kind == "table":
@@ -763,20 +319,7 @@ def chunk_section(text: str, max_tokens: int = CHUNK_MAX_TOKENS) -> list[str]:
 
 
 def build_all_chunks(verbose: bool = True) -> list[dict]:
-    """Build the full chunk set for every document listed in the manifest.
-
-    Reads each filing named by ``data/raw/manifest.json``, cleans its HTML,
-    splits it into Item sections, and slides a word window within each
-    section, attaching the filing's provenance metadata to every chunk.
-
-    Args:
-        verbose: Print a per-document section/chunk count while running.
-
-    Returns:
-        Chunk dicts with keys: ``chunk_id``, ``doc_id``, ``ticker``,
-        ``company``, ``form``, ``filing_date``, ``source_url``, ``section``,
-        ``chunk_index``, ``word_count``, ``text``.
-    """
+    """Build the full chunk set for every document listed in the manifest."""
     manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     all_chunks: list[dict] = []
 

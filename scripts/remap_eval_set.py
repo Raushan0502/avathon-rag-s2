@@ -51,16 +51,7 @@ STRONG_OVERLAP = 0.75
 
 
 def salient_terms(text: str) -> set[str]:
-    """Extract the terms worth matching on from a reference answer.
-
-    Args:
-        text: A gold reference answer.
-
-    Returns:
-        Lowercased tokens with stopwords and very short tokens removed, so
-        scoring is driven by distinctive words and figures ("416,161",
-        "cupertino") rather than filler shared by every chunk.
-    """
+    """Extract the terms worth matching on from a reference answer."""
     return {
         token
         for token in TOKEN_RE.findall(text.lower())
@@ -69,19 +60,7 @@ def salient_terms(text: str) -> set[str]:
 
 
 def best_matching_chunk(question: dict, chunks: list[dict]) -> tuple[dict | None, float]:
-    """Find the chunk in the question's gold document that best matches it.
-
-    Scoring is the fraction of the reference answer's salient terms present
-    in the chunk. The question text is included at a lower weight, since a
-    question often shares wording with the passage that answers it.
-
-    Args:
-        question: An eval-set entry.
-        chunks: All chunks for that question's ``gold_doc_id``.
-
-    Returns:
-        ``(chunk, score)`` for the best candidate, or ``(None, 0.0)``.
-    """
+    """Find the chunk in the question's gold document that best matches it."""
     answer_terms = salient_terms(question["reference_answer"])
     question_terms = salient_terms(question["query"])
     if not answer_terms:
@@ -101,11 +80,7 @@ def best_matching_chunk(question: dict, chunks: list[dict]) -> tuple[dict | None
 
 
 def main() -> int:
-    """Report, and optionally apply, the gold-reference remapping.
-
-    Returns:
-        Exit code: 1 if any question could not be confidently remapped.
-    """
+    """Report, and optionally apply, the gold-reference remapping."""
     write = "--write" in sys.argv
     eval_set = json.loads(EVAL_SET_PATH.read_text(encoding="utf-8"))
     chunks = [json.loads(line) for line in CHUNKS_PATH.read_text(encoding="utf-8").splitlines()]

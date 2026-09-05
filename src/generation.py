@@ -69,24 +69,7 @@ _CLIENTS: dict[str, object] = {}
 
 
 def get_client(provider: str, api_key: str) -> object:
-    """Return a cached SDK client, constructing it on first use.
-
-    Clients are cached rather than built per call for a concrete reason,
-    not just tidiness: constructing a fresh ``google-genai`` client on every
-    request left earlier instances to be garbage-collected, and their
-    cleanup closes an HTTP transport shared with the live client. Over an
-    evaluation run this surfaced as "Cannot send a request, as the client
-    has been closed" -- Gemini failing while working perfectly in a fresh
-    process. Reusing one client per provider also avoids reopening a
-    connection pool on every question.
-
-    Args:
-        provider: ``"groq"``, ``"mistral"`` or ``"gemini"``.
-        api_key: Key for that provider.
-
-    Returns:
-        The cached client instance.
-    """
+    """Return a cached SDK client, constructing it on first use."""
     if provider not in _CLIENTS:
         builders = {"groq": Groq, "mistral": Mistral, "gemini": genai.Client}
         _CLIENTS[provider] = builders[provider](api_key=api_key)
@@ -94,20 +77,7 @@ def get_client(provider: str, api_key: str) -> object:
 
 
 def build_prompt(query: str, retrieved_chunks: list[dict]) -> str:
-    """Render retrieved chunks and the question into the grounding prompt.
-
-    Sources are numbered from 1 and labelled with their filing provenance,
-    so the model can cite "[2]" and a reader can trace that citation back to
-    a specific section of a specific filing.
-
-    Args:
-        query: The user's natural-language question.
-        retrieved_chunks: Top-k chunks from ``RetrievalIndex.search``.
-
-    Returns:
-        The user-turn prompt string (the instructions themselves live in
-        ``SYSTEM_PROMPT``).
-    """
+    """Render retrieved chunks and the question into the grounding prompt."""
     sources = [
         f"[{i}] ({c['ticker']} {c['form']}, {c['filing_date']}, section: {c['section']})\n{c['text']}"
         for i, c in enumerate(retrieved_chunks, start=1)
@@ -116,25 +86,8 @@ def build_prompt(query: str, retrieved_chunks: list[dict]) -> str:
 
 
 def call_llm(prompt: str) -> tuple[str, str]:
-    """Send the prompt to the first provider that answers, in fallback order.
-
-    Providers are tried Groq -> Mistral -> Gemini; ones without a configured
-    key are skipped, and any provider that raises (rate limit, outage,
-    exhausted quota) falls through to the next. The three SDKs are called
-    inline here rather than through per-provider wrappers so the whole
-    fallback chain reads in one place. SDK imports are deferred into each
-
-    Args:
-        prompt: The user-turn prompt from ``build_prompt``.
-
-    Returns:
-        ``(provider_name, answer_text)`` -- the name is recorded on every
-        response so a fallback is observable rather than silent.
-
-    Raises:
-        RuntimeError: If no provider is configured, or all of them failed.
-            The message carries each provider's error for diagnosis.
-    """
+    """Send the prompt to the first provider that answers, in fallback
+    order."""
     errors: list[str] = []
     for attempt in range(PROVIDER_ROUNDS):
         if attempt:
@@ -200,20 +153,7 @@ def try_providers(prompt: str, errors: list[str]) -> tuple[str, str] | None:
 
 
 def annotate_faithfulness(answer: str, num_sources: int) -> dict:
-    """Check whether an answer is grounded in its numbered sources.
-
-    Args:
-        answer: The model's generated answer text.
-        num_sources: How many sources were supplied, so citations pointing
-            outside that range (a hallucinated source number) are discarded.
-
-    Returns:
-        Dict with ``citations`` (valid source numbers found),
-        ``has_citation``, ``refused_unsupported`` (the model used the
-        explicit "cannot answer" phrase), and ``faithfulness_flag`` --
-        ``"refused"``, ``"cited"``, or ``"UNGROUNDED"`` for an answer that
-        asserts something while citing nothing.
-    """
+    """Check whether an answer is grounded in its numbered sources."""
     # Models emit citations in more than one bracket style despite the
     # prompt requesting plain "[4]": full-width CJK brackets ("【4】",
     # observed in Step 5 testing), and a browsing-style format with a
@@ -238,16 +178,7 @@ def annotate_faithfulness(answer: str, num_sources: int) -> dict:
 
 
 def generate_answer(query: str, retrieved_chunks: list[dict]) -> dict:
-    """Answer a question from retrieved context, with a faithfulness check.
-
-    Args:
-        query: The user's natural-language question.
-        retrieved_chunks: Top-k chunks from ``RetrievalIndex.search``.
-
-    Returns:
-        Dict with ``query``, ``answer``, ``provider`` (which LLM served it),
-        ``retrieved_chunks`` (the context used), and ``faithfulness``.
-    """
+    """Answer a question from retrieved context, with a faithfulness check."""
     prompt = build_prompt(query, retrieved_chunks)
     provider, answer = call_llm(prompt)
     faithfulness = annotate_faithfulness(answer, len(retrieved_chunks))

@@ -30,11 +30,7 @@ from src.config import RESULTS_DIR
 
 
 def main() -> int:
-    """Score the saved evaluation answers and write the accuracy report.
-
-    Returns:
-        Process exit code: 1 if the evaluation results are missing.
-    """
+    """Score the saved evaluation answers and write the accuracy report."""
     source = RESULTS_DIR / "qa_eval_results.json"
     if not source.exists():
         print(f"Missing {source}. Run: python scripts/run_evaluation.py")

@@ -10,10 +10,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from src.extract import load_document_text, render_table
+from src.preprocess import normalise_text
 from src.ingest import (
-    load_document_text,
-    normalise_text,
-    render_table,
     split_into_sections,
 )
 
