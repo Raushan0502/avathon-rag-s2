@@ -157,8 +157,10 @@ ENV/
 env.bak/
 venv.bak/
 
-# Project-specific: raw sourced documents and generated indexes are
-# reproducible from scripts/ (see README) and are not committed.
+# Project-specific: raw sourced documents and generated indexes are not
+# committed (size). NOTE: fetch_corpus.py re-discovers the newest filings,
+# so it does NOT reproduce this exact corpus -- data/raw/manifest.json pins
+# the snapshot (source_url + sha256) instead. See README > Reproducibility.
 data/raw/*
 !data/raw/.gitkeep
 !data/raw/manifest.json

@@ -1054,3 +1054,18 @@ full pipeline is verified working end-to-end.
 - All dependency versions are pinned in `requirements.txt` as they're
   introduced.
 - Random seeds are fixed wherever sampling occurs (documented per script).
+- Every metric quoted in this README regenerates with
+  `python scripts/report_metrics.py`, which reads them from `results/`
+  rather than from prose.
+- **The corpus is a pinned snapshot, and `results/` is tied to it.**
+  `data/raw/` and the built index are not committed (size). `fetch_corpus.py`
+  re-discovers filings from the EDGAR API and keeps the *newest* of each form,
+  so re-running it after any issuer files again yields a **different** corpus —
+  and the 45 gold references, which point at specific documents and sections,
+  would no longer resolve against it. `data/raw/manifest.json` **is** committed
+  and pins every document's exact `source_url`, `sha256` and retrieval
+  timestamp, so the exact snapshot is identifiable and verifiable even though
+  it is not redistributable from this repo. Treat `results/` as the record of
+  the run against that manifest. A `--from-manifest` replay mode that
+  re-downloads the pinned URLs and checks the hashes is the clean fix and is
+  **identified but not implemented**.
