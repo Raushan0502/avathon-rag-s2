@@ -96,13 +96,13 @@ class TestCheckDocument(unittest.TestCase):
 class TestSummarise(unittest.TestCase):
     def setUp(self) -> None:
         self.reports = [
-            {"doc_id": "a", "doc_type": "report", "status": "ok", "metrics": self._m()},
-            {"doc_id": "b", "doc_type": "report", "status": "warn", "metrics": self._m()},
-            {"doc_id": "c", "doc_type": "email", "status": "fail", "metrics": self._m()},
+            {"doc_id": "a", "doc_type": "report", "status": "ok", "metrics": self.make_metrics()},
+            {"doc_id": "b", "doc_type": "report", "status": "warn", "metrics": self.make_metrics()},
+            {"doc_id": "c", "doc_type": "email", "status": "fail", "metrics": self.make_metrics()},
         ]
 
     @staticmethod
-    def _m() -> dict:
+    def make_metrics() -> dict:
         return {
             "yield_ratio": 0.1,
             "alpha_ratio": 0.8,

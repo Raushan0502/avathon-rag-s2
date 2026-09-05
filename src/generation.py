@@ -29,12 +29,20 @@ import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from src.config import GEMINI_API_KEY, GROQ_API_KEY, MISTRAL_API_KEY
+from google import genai
+from google.genai import types
+from groq import Groq
+from mistralai.client import Mistral
 
-GROQ_MODEL = "openai/gpt-oss-120b"
-MISTRAL_MODEL = "mistral-small-latest"
-GEMINI_MODEL = "gemini-flash-latest"
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.config import (
+    GEMINI_API_KEY,
+    GEMINI_MODEL,
+    GROQ_API_KEY,
+    GROQ_MODEL,
+    MISTRAL_API_KEY,
+    MISTRAL_MODEL,
+)
 
 CANNOT_ANSWER_PHRASE = "I cannot answer this from the provided documents."
 
@@ -60,7 +68,7 @@ PROVIDER_BACKOFF_SECONDS = 4.0
 _CLIENTS: dict[str, object] = {}
 
 
-def _client(provider: str, api_key: str):
+def get_client(provider: str, api_key: str):
     """Return a cached SDK client, constructing it on first use.
 
     Clients are cached rather than built per call for a concrete reason,
@@ -80,18 +88,8 @@ def _client(provider: str, api_key: str):
         The cached client instance.
     """
     if provider not in _CLIENTS:
-        if provider == "groq":
-            from groq import Groq
-
-            _CLIENTS[provider] = Groq(api_key=api_key)
-        elif provider == "mistral":
-            from mistralai.client import Mistral
-
-            _CLIENTS[provider] = Mistral(api_key=api_key)
-        else:
-            from google import genai
-
-            _CLIENTS[provider] = genai.Client(api_key=api_key)
+        builders = {"groq": Groq, "mistral": Mistral, "gemini": genai.Client}
+        _CLIENTS[provider] = builders[provider](api_key=api_key)
     return _CLIENTS[provider]
 
 
@@ -125,7 +123,6 @@ def call_llm(prompt: str) -> tuple[str, str]:
     exhausted quota) falls through to the next. The three SDKs are called
     inline here rather than through per-provider wrappers so the whole
     fallback chain reads in one place. SDK imports are deferred into each
-    branch so a missing optional SDK only breaks that one provider.
 
     Args:
         prompt: The user-turn prompt from ``build_prompt``.
@@ -146,13 +143,13 @@ def call_llm(prompt: str) -> tuple[str, str]:
             # than abandoning a 33-question evaluation to a momentary outage.
             time.sleep(PROVIDER_BACKOFF_SECONDS * (2 ** (attempt - 1)))
             errors = []
-        result = _try_providers(prompt, errors)
+        result = try_providers(prompt, errors)
         if result is not None:
             return result
     raise RuntimeError(f"All LLM providers failed or unconfigured: {errors}")
 
 
-def _try_providers(prompt: str, errors: list[str]) -> tuple[str, str] | None:
+def try_providers(prompt: str, errors: list[str]) -> tuple[str, str] | None:
     """One pass down the provider chain; returns None if all of them failed."""
     for name, api_key in [
         ("groq", GROQ_API_KEY),
@@ -163,7 +160,7 @@ def _try_providers(prompt: str, errors: list[str]) -> tuple[str, str] | None:
             continue
         try:
             if name == "groq":
-                response = _client("groq", api_key).chat.completions.create(
+                response = get_client("groq", api_key).chat.completions.create(
                     model=GROQ_MODEL,
                     messages=[
                         {"role": "system", "content": SYSTEM_PROMPT},
@@ -175,7 +172,7 @@ def _try_providers(prompt: str, errors: list[str]) -> tuple[str, str] | None:
                 return name, response.choices[0].message.content.strip()
 
             if name == "mistral":
-                response = _client("mistral", api_key).chat.complete(
+                response = get_client("mistral", api_key).chat.complete(
                     model=MISTRAL_MODEL,
                     messages=[
                         {"role": "system", "content": SYSTEM_PROMPT},
@@ -186,9 +183,7 @@ def _try_providers(prompt: str, errors: list[str]) -> tuple[str, str] | None:
                 )
                 return name, response.choices[0].message.content.strip()
 
-            from google.genai import types
-
-            response = _client("gemini", api_key).models.generate_content(
+            response = get_client("gemini", api_key).models.generate_content(
                 model=GEMINI_MODEL,
                 contents=prompt,
                 config=types.GenerateContentConfig(

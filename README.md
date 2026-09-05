@@ -1,5 +1,51 @@
 # Avathon AI Intelligence Challenge — Track D (RAG) × Scenario S2
 
+## The problem, and why RAG is the right tool for it
+
+**The business problem.** A financial analyst, compliance officer or
+in-house counsel needs a specific fact out of a corpus that is large,
+constantly changing, and legally consequential: *what did this issuer
+disclose about supply-chain risk?*, *which note covers legal
+proceedings?*, *does our insider-trading policy cover a spouse's
+holdings?* Today that is manual retrieval — open the filing, use the
+table of contents, read. A single 10-K here runs 184 chunks; the corpus
+runs 8,146. The task is not summarisation or classification. It is
+**finding the right passage and answering from it without inventing
+anything**, because a fabricated disclosure is worse than no answer at
+all in a regulated setting.
+
+That shape — large corpus, changing content, an auditable answer required
+— is what determines the track.
+
+**Why Track D (RAG) and not the others:**
+
+- **Not Track B (fine-tuning).** The knowledge here changes every filing
+  season. Fine-tuning bakes a snapshot into weights, so every 10-K or
+  8-K would mean retraining, and the model still could not cite a source.
+  This corpus grew 6 → 100 documents mid-project; a RAG index absorbed
+  that by re-indexing, where a fine-tune would have meant a new training
+  run. Fine-tuning teaches *behaviour*; the need here is *recall of
+  specific text*.
+- **Not Track C (optimisation).** There is no decision variable, objective
+  function or constraint set. Forcing an optimiser onto document Q&A would
+  be a solution in search of a problem.
+- **Not Track A (agents).** A multi-agent orchestration adds latency, cost
+  and failure surface, and the underlying capability it would coordinate
+  is still retrieval. Agents are the right answer when a task needs
+  planning and tool use across steps; "find the passage, answer from it"
+  needs one retrieval and one generation.
+- **Track D fits because the requirement is auditability.** Retrieval
+  returns a passage, the answer cites it, and a reader can follow the
+  citation back to a specific section of a specific filing — which is
+  exactly what the compliance use case demands, and what a parametric
+  model cannot offer.
+
+**What this system replaces:** the manual "open the filing and search"
+loop, with a grounded answer plus its source. **What it must never do:**
+answer confidently when the corpus does not support it — which is why
+refusal behaviour is measured here as carefully as accuracy (see
+Evaluation).
+
 ## Assignment brief
 
 - **Event:** Avathon AI/ML Hiring Challenge — Technical Assessment
@@ -318,11 +364,45 @@ context) — chosen over a hosted embeddings API so ingestion has no cost
 or external dependency; over larger local models for CPU-only latency on
 this corpus size. Full trade-off discussion in `src/embed_index.py`.
 
-**Vector store:** FAISS `IndexFlatIP` (exact cosine similarity, via
-L2-normalized vectors) — exact search is sub-millisecond at this corpus
-scale (hundreds of chunks), so an approximate index (IVF/HNSW) would only
-add tuning surface with no measurable benefit here; where that trade-off
-flips is discussed in the write-up.
+**Vector store:** FAISS `IndexFlatIP` — exact cosine similarity over
+L2-normalized vectors. "Flat" means no algorithm at all: the index *is*
+the matrix, and search is `vectors @ query` followed by a sort.
+
+**The alternatives were benchmarked, not assumed.** Four FAISS index types
+over 200k clustered 384-dim vectors (clustered, because random vectors have
+no neighbourhood structure for an approximate index to exploit — a first
+run with Gaussian noise reported a misleading recall of 0.09):
+
+| Index | ms/query | speedup | recall@10 | RAM |
+|---|---:|---:|---:|---:|
+| **`IndexFlatIP`** (chosen) | 8.67 | 1.0× | **1.000** | 307 MB |
+| `IVFFlat` | 0.22 | **40×** | 1.000 | 307 MB |
+| `HNSW` | 0.04 | 204× | 0.547¹ | 461 MB |
+| `IVFPQ` | 0.06 | 155× | 0.457¹ | **10 MB** |
+
+¹ untuned `efSearch` / PQ codebook — which is itself the point: approximate
+indexes are knobs, Flat has none.
+
+**Why Flat wins *here*:** at 8,146 chunks exact search is 0.24 ms/query, so
+40× faster is 40× of nothing. Flat also needs no training, cannot drift
+from its data, and gives the exact ground truth an approximate index would
+be *measured against*. Against numpy, FAISS bought only ~3× (0.24 ms vs
+0.82) — at this scale a plain matrix multiply would genuinely suffice; FAISS
+is chosen for the migration path, since `IndexFlatIP` → `IndexIVFFlat` is a
+one-line change while outgrowing hand-rolled numpy is a rewrite.
+
+**Where it flips:** ~100k vectors, where Flat crosses ~10 ms/query. At
+1M, Flat needs 1.5 GB and ~70 ms; `IVFPQ` would hold the same corpus in
+~50 MB. Nothing about the current choice survives that scale, and that is
+a documented ceiling rather than an oversight.
+
+**One sharp edge, demonstrated:** a flat index has no ID layer — position
+*is* identity. `remove_ids(1)` slides the last vector into slot 1, so every
+`chunks.jsonl` lookup after a deletion silently resolves to the wrong text.
+This index therefore supports **append and full rebuild, but not delete**.
+Fixing it properly means `IndexIDMap` (stable ids decoupled from position);
+the embedding cache below already removes the *other* reason rebuilds were
+expensive.
 
 `data/processed/index.faiss` and `data/processed/chunks.jsonl` are
 gitignored and regenerated by `python scripts/build_index.py` — this

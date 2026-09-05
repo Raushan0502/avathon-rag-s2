@@ -64,7 +64,9 @@ import sys
 import unicodedata
 from pathlib import Path
 
+import pdfplumber
 from bs4 import BeautifulSoup, NavigableString
+from transformers import AutoTokenizer
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.config import EMBEDDING_MODEL_NAME, MANIFEST_PATH
@@ -369,8 +371,6 @@ def load_document_text(local_path: Path) -> str:
         return "\n".join(line for line in lines if line)
 
     if suffix == ".pdf":
-        import pdfplumber
-
         blocks = []
         with pdfplumber.open(local_path) as pdf:
             for page in pdf.pages:
@@ -527,19 +527,17 @@ def count_tokens(text: str) -> int:
     Returns:
         Token count under the embedding model's tokenizer, or an estimate.
     """
-    tokenizer = _get_tokenizer()
+    tokenizer = get_tokenizer()
     if tokenizer is None:
         return int(len(text.split()) * FALLBACK_TOKENS_PER_WORD) + 1
     return len(tokenizer.encode(text, add_special_tokens=False))
 
 
-def _get_tokenizer():
+def get_tokenizer():
     """Load and cache the embedding model's tokenizer, or None if unavailable."""
     global _TOKENIZER
     if _TOKENIZER is _UNSET:
         try:
-            from transformers import AutoTokenizer
-
             _TOKENIZER = AutoTokenizer.from_pretrained(EMBEDDING_MODEL_NAME)
             # Used purely as a counter here, never as model input. Without
             # this it warns on every over-length string -- but measuring an

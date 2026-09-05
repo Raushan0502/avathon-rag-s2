@@ -37,7 +37,7 @@ from src.config import DATA_PROCESSED_DIR
 CACHE_DIR = DATA_PROCESSED_DIR / "embed_cache"
 
 
-def _slug(model_name: str) -> str:
+def slug(model_name: str) -> str:
     """Filesystem-safe name for a model id (``BAAI/bge-small`` -> ``BAAI__bge-small``)."""
     return model_name.replace("/", "__")
 
@@ -66,8 +66,8 @@ def load_cache(model_name: str) -> tuple[dict[str, int], np.ndarray | None]:
         ``(key_to_row, matrix)``. Both are empty/None when no cache exists
         yet, so a first run behaves like a cold start rather than failing.
     """
-    slug = _slug(model_name)
-    keys_path, matrix_path = CACHE_DIR / f"{slug}.json", CACHE_DIR / f"{slug}.npy"
+    name = slug(model_name)
+    keys_path, matrix_path = CACHE_DIR / f"{name}.json", CACHE_DIR / f"{name}.npy"
     if not keys_path.exists() or not matrix_path.exists():
         return {}, None
     return json.loads(keys_path.read_text(encoding="utf-8")), np.load(matrix_path)
@@ -82,9 +82,9 @@ def save_cache(model_name: str, key_to_row: dict[str, int], matrix: np.ndarray) 
         matrix: Embedding matrix, one row per cached text.
     """
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    slug = _slug(model_name)
-    np.save(CACHE_DIR / f"{slug}.npy", matrix)
-    (CACHE_DIR / f"{slug}.json").write_text(json.dumps(key_to_row), encoding="utf-8")
+    name = slug(model_name)
+    np.save(CACHE_DIR / f"{name}.npy", matrix)
+    (CACHE_DIR / f"{name}.json").write_text(json.dumps(key_to_row), encoding="utf-8")
 
 
 def embed_cached(model, model_name: str, texts: list[str], encode_fn) -> np.ndarray:
