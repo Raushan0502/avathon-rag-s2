@@ -896,12 +896,20 @@ retrieval.
 python -m unittest discover -s tests
 ```
 
-139 unit tests across the six `src/` modules, using the standard library's
-`unittest` (no extra dependency to install). They are deliberately
-**offline and fast** (~0.02s total): no network calls, no API keys, and no
-embedding-model download — `embed_texts` is exercised against a stub
-encoder, and retrieval tests assemble a `RetrievalIndex` by hand from a
-3-vector FAISS index and a real BM25 index over three short strings.
+170 unit tests across the `src/` modules, using the standard library's
+`unittest` (no extra dependency to install — there is no pytest here).
+They need **no network and no API keys** at run time: `embed_texts` is
+exercised against a stub encoder, and retrieval tests assemble a
+`RetrievalIndex` by hand from a 3-vector FAISS index and a real BM25 index
+over three short strings.
+
+One honest caveat. The suite used to run in ~0.02s; it now takes **~59s**,
+because token-budgeted chunking calls `count_tokens()`, which loads the
+real `bge-small` tokenizer via `AutoTokenizer.from_pretrained()`. That is
+downloaded once and cached by `transformers` thereafter, so only the very
+first run needs the network — but it does mean the tests are no longer
+strictly offline on a cold machine. Injecting a stub tokenizer would
+restore that; it is listed as known-and-not-done rather than papered over.
 
 What they pin down, beyond the happy path:
 - **Multi-format loading** — HTML tag stripping, the email `@subject` /
