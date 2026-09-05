@@ -229,3 +229,4 @@ __marimo__/
 
 # Embedding cache: derived, regenerable, and large.
 data/processed/embed_cache/
+write-up/*.html

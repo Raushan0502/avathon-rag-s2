@@ -109,9 +109,14 @@ Evaluation).
 ## Technical write-up
 
 The brief requires a written justification addressing four things explicitly.
-This is that justification, in full; the sections below expand each point with
-the supporting detail. The submitted PDF is generated from this section, so
-there is one source of truth rather than two that can drift.
+This is that justification. Every figure quoted here is regenerable from the
+repository — `python scripts/report_metrics.py` prints all of them from the
+artifacts in `results/`.
+
+**System, in one line:** 100 real SEC EDGAR / NIST / email documents across
+three formats → 9,409 token-budgeted chunks → `bge-small` embeddings → FAISS
+`IndexFlatIP` → dense retrieval → cited, refusal-capable generation, evaluated
+on 45 held-out questions.
 
 **1. Chunking strategy, and what is lost at chunk boundaries.**
 Token-budgeted, structure-preserving chunking with contextual enrichment:
@@ -193,9 +198,34 @@ markers and annotated `cited` / `refused` / `UNGROUNDED` — **41 cited, 4
 refused, 0 UNGROUNDED** on 45 questions, where the refusals are correct
 behaviour because retrieval genuinely missed (hit@k = 40/45). *Correctness,
 measured separately:* **cited ≠ correct** — grounding says an answer pointed at
-context, not that it is right. Accuracy is scored independently by a
+context, not that it is right. Accuracy is therefore scored independently by a
 deterministic lexical key-fact scorer and by an LLM judge, because they
-disagree informatively, and disagreement is where a human should look.
+disagree informatively, and disagreement is where a human should look:
+
+| Answer accuracy (41 answered, 4 refused) | Value |
+|---|---|
+| Mean lexical key-fact recall | 0.567 |
+| Lexical accuracy (≥60% of reference key facts) | 48.8% |
+| **LLM judge — CORRECT** | **58.5%** (24/41) |
+| LLM judge — CORRECT + PARTIAL | 85.4% (35/41) |
+| LLM judge — WRONG | 6 |
+
+The two scorers disagree by ~10 points because the lexical one punishes
+paraphrase — "repeatedly slashing prices" against a reference of "aggressively
+cut prices" is correct and scores badly. Reporting both, rather than the
+flattering one, is the point.
+
+**Known limitations, stated rather than hidden.** (i) The **6 WRONG answers are
+all grounded** — they cite real retrieved context and are still incorrect,
+which is why faithfulness alone is an insufficient safety metric and why the
+judge exists. (ii) The `k=1` tier scores **P@k 0.000 with MRR 0.278** — golds
+sit at ranks 2–3, and for `k1c` the rank-1 result is a *different* Apple RSU
+exhibit whose clause text is verbatim-identical to the gold, so no retriever
+could separate them; that is a corpus property, not a ranking failure.
+(iii) Cross-section questions remain unsolved (§1). (iv) The single highest-value
+next step is **not** a bigger embedding model but a **cross-encoder reranker** —
+recall is already 0.889 while precision is 0.378, meaning the right chunk is
+usually retrieved but not ranked first, which is exactly what reranking fixes.
 
 ## Data source (Step 2)
 
