@@ -1,0 +1,101 @@
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden;
+         font-family:"Arial Black","Arial Bold",Arial,sans-serif;
+         background:#0A0F1C; color:#fff; position:relative; }
+
+  /* subtle depth */
+  .glow { position:absolute; width:900px; height:900px; border-radius:50%;
+          background:radial-gradient(circle,#1B3A6B 0%,rgba(10,15,28,0) 62%);
+          top:-330px; right:-260px; }
+  .grid { position:absolute; inset:0;
+          background-image:linear-gradient(#ffffff08 1px,transparent 1px),
+                           linear-gradient(90deg,#ffffff08 1px,transparent 1px);
+          background-size:64px 64px; }
+
+  .wrap { position:relative; padding:46px 60px 54px; height:100%;
+          display:flex; flex-direction:column; justify-content:center; }
+
+  .tag { position:absolute; top:46px; left:60px; font-size:21px; letter-spacing:3.4px; color:#7FB2FF;
+         font-family:Arial,sans-serif; font-weight:700; }
+
+  .head { margin-top:20px; line-height:0.92; letter-spacing:-3px; }
+  .l1 { font-size:118px; color:#fff; }
+  .l2 { font-size:118px; color:#FFB020; }
+  .neq { color:#FF4D4D; }
+
+  .rule { width:120px; height:7px; background:#FFB020; margin:24px 0 20px; }
+
+  .sub { font-size:33px; line-height:1.28; color:#E6ECF7;
+         font-family:Arial,sans-serif; font-weight:700; max-width:790px;
+         letter-spacing:-0.3px; }
+  .sub b { color:#FFB020; }
+
+  .foot { margin-top:36px; display:flex; align-items:center; gap:16px;
+          font-family:Arial,sans-serif; }
+  .pill { font-size:20px; font-weight:700; letter-spacing:0.4px;
+          padding:10px 18px; border-radius:999px;
+          background:#16233D; color:#C7D7F5; border:1.5px solid #2C4670; }
+  .pill.hot { background:#FFB020; color:#141414; border-color:#FFB020; }
+
+  /* right-hand evidence card */
+  .card { position:absolute; right:58px; top:236px; width:322px;
+          background:#111B2E; border:1.5px solid #2C4670; border-radius:16px;
+          padding:20px 22px; font-family:Arial,sans-serif;
+          box-shadow:0 24px 60px #00000070; }
+  .card h4 { font-size:17px; color:#8FA8CE; letter-spacing:1.6px;
+             font-weight:700; margin-bottom:16px; }
+  .row { display:flex; align-items:center; gap:11px; margin-bottom:13px; }
+  .nm { font-size:20px; width:72px; color:#E6ECF7; font-weight:700; }
+  .bar { height:19px; border-radius:4px; }
+  .val { font-size:19px; color:#fff; font-weight:700; }
+  .win { color:#4ADE80; }
+  .note { font-size:16px; color:#8FA8CE; margin-top:6px; line-height:1.35;
+          font-weight:700; }
+</style>
+
+<div class="glow"></div>
+<div class="grid"></div>
+
+<div class="wrap">
+  <div class="tag">AVATHON AI CHALLENGE &nbsp;·&nbsp; TRACK D &nbsp;·&nbsp; RAG</div>
+
+  <div class="head">
+    <div class="l1">CITED</div>
+    <div class="l2"><span class="neq">&ne;</span> CORRECT</div>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="sub">
+    41 of 45 answers cited their source.<br>
+    <b>Six were still wrong.</b>
+  </div>
+
+  <div class="foot">
+    <div class="pill hot">100 REAL DOCUMENTS</div>
+    <div class="pill">3 FORMATS</div>
+    <div class="pill">45-QUESTION EVAL</div>
+  </div>
+</div>
+
+<div class="card">
+  <h4>RETRIEVAL &nbsp;MRR</h4>
+  <div class="row">
+    <div class="nm">Dense</div>
+    <div class="bar" style="width:150px;background:#4ADE80"></div>
+    <div class="val win">.781</div>
+  </div>
+  <div class="row">
+    <div class="nm">Hybrid</div>
+    <div class="bar" style="width:141px;background:#3B6FB8"></div>
+    <div class="val">.735</div>
+  </div>
+  <div class="row">
+    <div class="nm">BM25</div>
+    <div class="bar" style="width:107px;background:#2C4670"></div>
+    <div class="val">.555</div>
+  </div>
+  <div class="note">Hybrid lost.<br>The expected result was wrong.</div>
+</div>
