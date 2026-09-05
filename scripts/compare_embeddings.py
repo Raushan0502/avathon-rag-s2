@@ -22,6 +22,7 @@ Usage:
     python scripts/compare_embeddings.py
 """
 import json
+import random
 import sys
 import time
 from pathlib import Path
@@ -49,6 +50,38 @@ MODELS = [
     {"name": "BAAI/bge-large-en-v1.5", "label": "bge-large", "dim": 1024},
 ]
 MODE = "dense"  # isolate the embedding model; BM25 is identical across runs
+# Subset size, overridable with --chunks N. Every gold chunk is always
+# included; the remainder are distractors sampled deterministically. Small
+# by default because a full-corpus bge-large pass took over ten hours on
+# CPU and had to be abandoned.
+DEFAULT_CHUNKS = 200
+EMBED_BATCH = 32
+SAMPLE_SEED = 42
+
+
+def select_chunks(chunks: list[dict], eval_set: list[dict], limit: int) -> list[dict]:
+    """Take a subset that keeps every gold chunk, plus deterministic distractors.
+
+    A comparison is only meaningful if each question's answer is still in the
+    corpus, so gold chunks are never dropped. The remainder are sampled with a
+    fixed seed so re-runs and the cache stay aligned.
+
+    Args:
+        chunks: All corpus chunks.
+        eval_set: Evaluation questions.
+        limit: Target subset size; gold chunks alone may exceed it.
+
+    Returns:
+        Chunks in their original corpus order.
+    """
+    gold_sections = {(q["gold_doc_id"], q["gold_section"]) for q in eval_set}
+    keep_index = {
+        i for i, c in enumerate(chunks) if (c["doc_id"], c["section"]) in gold_sections
+    }
+    distractors = [i for i in range(len(chunks)) if i not in keep_index]
+    room = max(0, limit - len(keep_index))
+    keep_index |= set(random.Random(SAMPLE_SEED).sample(distractors, min(room, len(distractors))))
+    return [chunks[i] for i in sorted(keep_index)]
 
 
 def evaluate_model(spec: dict, chunks: list[dict], eval_set: list[dict], sizes: dict) -> dict:
@@ -72,8 +105,21 @@ def evaluate_model(spec: dict, chunks: list[dict], eval_set: list[dict], sizes: 
 
     model = SentenceTransformer(name)
     started = time.perf_counter()
+
+    def report(done: int, total: int) -> None:
+        elapsed = time.perf_counter() - started
+        rate = done / elapsed if elapsed else 0
+        remaining = (total - done) / rate if rate else 0
+        print(f"      {done:>5}/{total} vectors  {elapsed:6.0f}s elapsed  "
+              f"{rate:5.1f}/s  ~{remaining / 60:4.1f} min left", flush=True)
+
     vectors = embed_cached(
-        model, name, texts, lambda m, batch: embed_texts(m, batch, is_query=False)
+        model,
+        name,
+        texts,
+        lambda m, batch: embed_texts(m, batch, is_query=False),
+        batch_size=EMBED_BATCH,
+        on_progress=report,
     )
     embed_seconds = time.perf_counter() - started
     print(f"    embedded in {embed_seconds / 60:.1f} min  -> {vectors.shape}")
@@ -106,14 +152,20 @@ def evaluate_model(spec: dict, chunks: list[dict], eval_set: list[dict], sizes: 
 
 def main() -> None:
     """Compare every candidate model and save the results table."""
-    chunks = [json.loads(line) for line in CHUNKS_PATH.read_text(encoding="utf-8").splitlines()]
+    limit = DEFAULT_CHUNKS
+    if "--chunks" in sys.argv:
+        limit = int(sys.argv[sys.argv.index("--chunks") + 1])
+    all_chunks = [json.loads(line) for line in CHUNKS_PATH.read_text(encoding="utf-8").splitlines()]
     eval_set = json.loads(EVAL_SET_PATH.read_text(encoding="utf-8"))
+    chunks = select_chunks(all_chunks, eval_set, limit)
+    print(f"subset: {len(chunks):,} of {len(all_chunks):,} chunks "
+          f"(all gold chunks retained; --chunks N to widen)")
     sizes: dict[tuple[str, str], int] = {}
     for chunk in chunks:
         key = (chunk["doc_id"], chunk["section"])
         sizes[key] = sizes.get(key, 0) + 1
 
-    print(f"{len(chunks):,} chunks | {len(eval_set)} questions | mode={MODE}")
+    print(f"{len(eval_set)} questions | mode={MODE}\n")
     results = [evaluate_model(spec, chunks, eval_set, sizes) for spec in MODELS]
 
     print(f"\n{'model':<24}{'dim':>6}{'MRR':>8}{'R@k':>8}{'P@k':>8}{'attain':>8}"

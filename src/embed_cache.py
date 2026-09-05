@@ -87,7 +87,14 @@ def save_cache(model_name: str, key_to_row: dict[str, int], matrix: np.ndarray) 
     (CACHE_DIR / f"{name}.json").write_text(json.dumps(key_to_row), encoding="utf-8")
 
 
-def embed_cached(model, model_name: str, texts: list[str], encode_fn) -> np.ndarray:
+def embed_cached(
+    model,
+    model_name: str,
+    texts: list[str],
+    encode_fn,
+    batch_size: int = 64,
+    on_progress=None,
+) -> np.ndarray:
     """Embed texts, reusing cached vectors and embedding only the misses.
 
     Args:
@@ -97,6 +104,9 @@ def embed_cached(model, model_name: str, texts: list[str], encode_fn) -> np.ndar
         encode_fn: ``(model, texts) -> np.ndarray`` doing the real work for
             cache misses. Injected so this module stays independent of how
             encoding is configured.
+        batch_size: Texts embedded and persisted per batch, so progress
+            survives interruption instead of being lost.
+        on_progress: Optional ``(done, total)`` callback after each batch.
 
     Returns:
         Array of shape ``(len(texts), dim)`` aligned with ``texts``.
@@ -108,13 +118,19 @@ def embed_cached(model, model_name: str, texts: list[str], encode_fn) -> np.ndar
     # Deduplicate within this batch as well as against the cache: a repeated
     # boilerplate paragraph should cost one forward pass, not many.
     missing = list(dict.fromkeys(k for k in keys if k not in key_to_row))
-    if missing:
-        by_key = dict(zip(keys, texts))
-        fresh = encode_fn(model, [by_key[k] for k in missing])
+    by_key = dict(zip(keys, texts))
+    # Embed and persist in batches. A single all-or-nothing pass means a long
+    # run has no durable output until it finishes -- a 10-hour bge-large run
+    # was killed here having written nothing and shown no progress.
+    for start in range(0, len(missing), batch_size):
+        batch = missing[start : start + batch_size]
+        fresh = encode_fn(model, [by_key[k] for k in batch])
         matrix = fresh if matrix is None else np.vstack([matrix, fresh])
-        for offset, key in enumerate(missing):
-            key_to_row[key] = len(matrix) - len(missing) + offset
+        for offset, key in enumerate(batch):
+            key_to_row[key] = len(matrix) - len(batch) + offset
         save_cache(model_name, key_to_row, matrix)
+        if on_progress:
+            on_progress(min(start + batch_size, len(missing)), len(missing))
 
     return np.vstack([matrix[key_to_row[k]] for k in keys]).astype("float32")
 

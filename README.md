@@ -614,6 +614,75 @@ Catching mis-grounding needs answer-vs-reference comparison — an LLM judge
 or entailment scoring against the gold answer — which this pipeline does
 not have. Identified, not implemented.
 
+## Keeping the index current without full re-embedding
+
+Embedding is the only expensive stage — everything downstream (building
+the FAISS index, switching Flat to HNSW, re-running the evaluation) takes
+seconds. Coupling them meant every experiment re-paid the full embedding
+cost, which is what made a second embedding model look unaffordable.
+
+`src/embed_cache.py` is a content-addressed cache keyed by
+`(model, sha256(text))`. That key gives exactly the invalidation
+behaviour wanted:
+
+| Change | Cost |
+|---|---|
+| Re-run evaluation, rebuild the index, retune retrieval | **free** |
+| Add new documents | only the new chunks |
+| Change chunking | only chunks whose text actually changed |
+| Change embedding model | full cost — correctly, since vectors from different models are not comparable |
+
+The model name is part of the key deliberately: silently reusing another
+model's vectors would produce meaningless similarities with no error, so
+that mistake is made structurally impossible. The contextual prefix is
+inside the hashed text for the same reason — it changes the vector, so it
+must change the key.
+
+**Embedding and persisting happen per batch, not all at once.** This was
+learned the hard way: an all-or-nothing pass over the full corpus with
+`bge-large` ran for **10.7 hours on CPU and was killed having written
+nothing** — no durable output, no progress signal, nothing resumable.
+Batched checkpointing means an interrupted run resumes from the cache,
+and `on_progress` reports throughput and an ETA per batch.
+
+This is the concrete answer to Track D's *"how do you keep the index
+current as the corpus grows without full re-embedding?"* — with the
+caveat that the FAISS layer still only supports **append and full
+rebuild, not delete** (see the vector-store section).
+
+## Keeping the evaluation set honest across pipeline changes
+
+Gold references are `(gold_doc_id, gold_section, gold_chunk_id)`. Chunk
+ids embed a positional index and section labels come from the splitter,
+so **both move whenever ingestion changes**. Left stale they silently
+corrupt every metric: a question whose gold chunk no longer exists scores
+zero regardless of how well retrieval actually performed.
+
+`scripts/remap_eval_set.py` re-points all 45 references by **content**
+rather than trusting stale indices — matching each reference answer's
+distinctive terms (figures like `416,161` identify a passage far better
+than words do) against the chunks of its own gold document.
+
+Two safety properties, both earned rather than assumed:
+
+- **It only searches within a question's existing `gold_doc_id`**, so a
+  weak match can land on the wrong passage of the right document, never
+  on a different document.
+- **It refuses to move a reference across sections on a weak score**, and
+  `--write` aborts while any question is unresolved. Default is a dry run.
+
+Both guards exist because the first version lacked them and tried to move
+Tesla's *"unresolved staff comments"* answer — whose reference is the
+single word "None." — into an unrelated paragraph about workplace
+conduct. Chasing that proved the preprocessing was deleting `"None."` as
+page furniture, which had removed whole sections from the corpus.
+
+The tool also had a bug worth recording: it assigned `gold_chunk_id`
+*before* comparing against it, making the check vacuously false. It
+reported "6 remapped, 26 unchanged" when the truth was **29 remapped** —
+23 references were being silently rewritten and reported as untouched, in
+a tool whose entire purpose is preventing silent mutation.
+
 ## Answer accuracy — grounding is not correctness
 
 Faithfulness says an answer *cited* something. It does not say the answer
