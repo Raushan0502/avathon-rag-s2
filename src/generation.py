@@ -68,7 +68,7 @@ PROVIDER_BACKOFF_SECONDS = 4.0
 _CLIENTS: dict[str, object] = {}
 
 
-def get_client(provider: str, api_key: str):
+def get_client(provider: str, api_key: str) -> object:
     """Return a cached SDK client, constructing it on first use.
 
     Clients are cached rather than built per call for a concrete reason,

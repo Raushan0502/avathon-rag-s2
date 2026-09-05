@@ -863,6 +863,9 @@ python scripts/build_index.py   # ingest -> chunk -> embed -> FAISS index (see I
 python scripts/compare_retrieval.py  # dense vs hybrid qualitative smoke test (see Hybrid retrieval below)
 python scripts/demo_qa.py       # end-to-end Q&A demo -> results/qa_demo.json (see Generation below)
 python scripts/run_evaluation.py  # full eval: retrieval P@k/R@k + faithfulness (see Evaluation below)
+python scripts/score_answers.py --judge  # answer correctness vs gold references
+python scripts/benchmark_pipeline.py --with-llm  # stage-by-stage latency
+python scripts/compare_embeddings.py     # embedding-model comparison
 python -m unittest discover -s tests   # unit tests (offline, no API keys needed)
 ```
 

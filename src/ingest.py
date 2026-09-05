@@ -533,7 +533,7 @@ def count_tokens(text: str) -> int:
     return len(tokenizer.encode(text, add_special_tokens=False))
 
 
-def get_tokenizer():
+def get_tokenizer() -> object | None:
     """Load and cache the embedding model's tokenizer, or None if unavailable."""
     global _TOKENIZER
     if _TOKENIZER is _UNSET:
