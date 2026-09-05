@@ -5,6 +5,38 @@ Structured to the brief's mandated segments and timings:
 you ruled out → (1:30) Results and what didn't work → (0:30) What you'd do with
 more time.**
 
+## How this maps to the write-up
+
+**This video is the spoken version of the write-up — same order, same claims,
+same evidence.** The brief's video segments and the brief's write-up sections
+line up almost one-to-one, so if you can talk through the PDF top to bottom,
+you have already given the talk. Read the PDF once before recording and you do
+not need to memorise anything else.
+
+| Write-up section (PDF) | Video segment | Time | On screen |
+|---|---|---|---|
+| **1. Problem & Domain** | 1 — Problem and approach choice | 1:00 | README dataset table |
+| **2. Approach & Algorithm Decisions** | 2 — Decisions and what I ruled out | 2:00 | Embedding table, then retrieval table |
+| **3. Results & Error Analysis** | 3 — Results and what didn't work | 1:30 | `report_metrics.py` output, then live `demo_qa.py` |
+| **4. Production & Limitations** | 4 — What I'd do with more time | 0:30 | Nothing — just talk |
+
+Two deliberate differences, so you are not thrown if you notice them:
+
+- **Numbers are rounded for speech.** The PDF says recall 0.547, 8.67 ms,
+  9,409 chunks; say "0.55", "8 milliseconds", "9,400". Rounding aloud is
+  normal — just never round *in the direction that flatters you*.
+- **The video drops the second-tier metrics.** Lexical accuracy (48.8%) and
+  key-fact recall (0.567) are in the PDF but not the script; in 90 seconds the
+  judge figures (58.5% / 85.4%) carry the point on their own. If a reviewer
+  asks how you scored correctness, the answer is "two independent scorers, a
+  lexical one and an LLM judge, and I report both because they disagree by
+  about ten points."
+
+**The three claims that must survive intact in both**, because they are the
+submission's actual argument: the dataset is real and multi-format; **hybrid
+lost to dense** and you know why; **cited ≠ correct**, with six grounded-but-
+wrong answers to prove it.
+
 Two rules from the brief that shape this script:
 - **Do NOT narrate code line by line.** Show *outputs and tables*, not source
   files. There is no point in this script where you open a `.py` file.
