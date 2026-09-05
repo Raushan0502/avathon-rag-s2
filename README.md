@@ -8,8 +8,8 @@ constantly changing, and legally consequential: *what did this issuer
 disclose about supply-chain risk?*, *which note covers legal
 proceedings?*, *does our insider-trading policy cover a spouse's
 holdings?* Today that is manual retrieval — open the filing, use the
-table of contents, read. A single 10-K here runs 184 chunks; the corpus
-runs 8,146. The task is not summarisation or classification. It is
+table of contents, read. A single 10-K here runs over 200 chunks; the corpus
+runs 9,409. The task is not summarisation or classification. It is
 **finding the right passage and answering from it without inventing
 anything**, because a fabricated disclosure is worse than no answer at
 all in a regulated setting.
@@ -134,23 +134,43 @@ an explicit oversize split plus a 60-token header reserve brought that to **0**.
 **2. Embedding model choice.** `BAAI/bge-small-en-v1.5` (384-dim), chosen by
 measurement against `bge-large-en-v1.5` (1024-dim) on the same eval set:
 
-| Model | Dim | MRR | Recall@k | P@k | Attainment |
-|---|---|---|---|---|---|
-| **bge-small** | 384 | **0.948** | 0.978 | 0.554 | 0.752 |
-| bge-large | 1024 | 0.940 | 0.978 | 0.554 | 0.752 |
+| Model | Dim | MRR | Recall@k | P@k | Attainment | Query ms |
+|---|---|---|---|---|---|---|
+| **bge-small** | 384 | **0.948** | 0.978 | 0.554 | 75% | **64** |
+| bge-large | 1024 | 0.940 | 0.978 | **0.604** | **82%** | 531 |
 
-bge-large costs ~**8.3× more to embed on CPU and lost** by 0.008 MRR. On this
-corpus the bottleneck is not encoder capacity, so the small model ships. Both
-are used asymmetrically (query-instruction prefix on queries, none on
-passages) per the model card.
+**The result is a genuine trade, not a clean win.** bge-large is *better* at
+filling the top-k with relevant chunks (precision 0.604 vs 0.554, attainment
+82% vs 75%), *marginally worse* at placing the single best chunk first (MRR
+−0.008, which on 45 questions is roughly two chunks shifting one rank — noise),
+and identical on recall. So capacity does buy something here; it buys
+precision, not ranking.
+
+It ships anyway as **bge-small, on cost**: 1024 dims cost **8.3× more per
+query** (531 ms vs 64 ms — a permanent runtime tax, not a one-off) and ~1.3 s
+per chunk to embed, which extrapolates to roughly **3.3 hours** to index the
+full 9,409-chunk corpus on this CPU against minutes for bge-small. On a
+GPU-backed deployment where query latency is amortised, **bge-large would be
+the defensible pick** — the precision gain is real. On a CPU-only 48-hour
+budget it is not.
+
+Caveat, stated because it bounds the claim: this comparison ran on a
+**200-chunk subset** (every gold chunk plus deterministic distractors), not
+the full corpus, because a full-corpus bge-large pass ran 10.7 hours and was
+abandoned. The easier candidate pool inflates both models (MRR 0.948 here vs
+0.781 full-corpus) and may compress the gap between them. It is sound as a
+*relative* comparison and should not be read as absolute performance.
+
+Both models are used asymmetrically (query-instruction prefix on queries, none
+on passages) per the model card.
 
 **3. How fusion compares to a single retriever — quantitatively.**
 
 | Mode | P@k | Recall@k | MRR | Attainment |
 |---|---|---|---|---|
-| **dense** | **0.349** | **0.867** | **0.762** | **47.3%** |
-| bm25 | 0.218 | 0.733 | 0.554 | 29.5% |
-| hybrid (RRF, k=60) | 0.290 | 0.867 | 0.727 | 39.3% |
+| **dense** | **0.378** | **0.889** | **0.781** | **50.2%** |
+| bm25 | 0.208 | 0.733 | 0.555 | 27.6% |
+| hybrid (RRF, k=60) | 0.300 | 0.867 | 0.735 | 39.9% |
 
 **Hybrid did not beat dense**, which is the opposite of the expected result and
 of what an earlier draft of this project asserted before the numbers were in.
@@ -162,7 +182,7 @@ because it is the right default on a lexically diverse corpus, but **dense is
 the shipped mode here** because that is what the measurement supports.
 Precision is also structurally capped — a third of questions have single-chunk
 gold sections, so P@5 cannot exceed 0.2 for them — which is why **attainment**
-(P@k ÷ ceiling 0.738) and **MRR** are the honest headline metrics, and why
+(P@k ÷ ceiling 0.752) and **MRR** are the honest headline metrics, and why
 questions are tiered by k = 1/5/10/20.
 
 **4. Hallucination prevention and detection.** Three layers, because
@@ -446,7 +466,7 @@ address line still matches. That last one is left as-is and noted rather
 than chased — one artifact in 56 sections is not worth another regex
 epicycle.
 
-Result on the current corpus: **8,146 chunks across 100 documents.**
+Result on the current corpus: **9,409 chunks across 100 documents** (1,558 sections).
 
 A built-in smoke test in `build_index.py` embeds 3 hand-written queries
 and prints top-3 FAISS results after every rebuild — verified on this
@@ -477,7 +497,7 @@ Two caveats stated rather than buried. This ran on a **720-chunk subset**
 (every gold section retained, distractors sampled with a fixed seed)
 because a full-corpus bge-large pass ran **10.7 hours on CPU and was
 abandoned** — so the absolute figures are inflated by having fewer
-distractors (MRR 0.948 here vs 0.762 on the full corpus), and it is the
+distractors (MRR 0.948 here vs 0.781 on the full corpus), and it is the
 *relative* comparison that carries. Widening is `--chunks N`, and the
 cache means nothing already embedded is re-paid.
 
@@ -500,7 +520,7 @@ run with Gaussian noise reported a misleading recall of 0.09):
 ¹ untuned `efSearch` / PQ codebook — which is itself the point: approximate
 indexes are knobs, Flat has none.
 
-**Why Flat wins *here*:** at 8,146 chunks exact search is 0.24 ms/query, so
+**Why Flat wins *here*:** at 9,409 chunks exact search is 0.24 ms/query, so
 40× faster is 40× of nothing. Flat also needs no training, cannot drift
 from its data, and gives the exact ground truth an approximate index would
 be *measured against*. Against numpy, FAISS bought only ~3× (0.24 ms vs
@@ -552,8 +572,8 @@ component rather than lifted by a complementary one.
 The mechanism is BM25's own statistics. **IDF is computed corpus-wide**,
 so adding 20 NIST security publications and nine more issuers made terms
 like "incident", "controls", "risk" and "net sales" far less
-discriminative. BM25's MRR fell from competitive to 0.554 while dense
-held at 0.762, and RRF — which weights the two retrievers equally by rank
+discriminative. BM25's MRR fell from competitive to 0.555 while dense
+held at 0.781, and RRF — which weights the two retrievers equally by rank
 position — has no way to discount the degraded one.
 
 That is a genuinely more useful result than the original: it shows the
@@ -653,9 +673,9 @@ all-or-nothing and cannot distinguish a gold at rank 2 from one at rank
 
 | Mode | P@k | ceiling | attainment | R@k | **MRR** |
 |--------|------:|------:|------:|------:|------:|
-| **Dense** | **0.349** | 0.738 | **47%** | **0.867** | **0.762** |
-| BM25 | 0.218 | 0.738 | 30% | 0.733 | 0.554 |
-| Hybrid (RRF) | 0.290 | 0.738 | 39% | 0.867 | 0.727 |
+| **Dense** | **0.378** | 0.752 | **50%** | **0.889** | **0.781** |
+| BM25 | 0.208 | 0.752 | 28% | 0.733 | 0.555 |
+| Hybrid (RRF) | 0.300 | 0.752 | 40% | 0.867 | 0.735 |
 
 **Dense wins on every metric.** See Step 4 above for why hybrid lost once
 the corpus grew — BM25's corpus-wide IDF degraded, and equal-weight RRF
@@ -666,9 +686,9 @@ cannot compensate.
 | Tier | n | P@k | ceiling | attainment | R@k | MRR |
 |---|---:|---:|---:|---:|---:|---:|
 | k=1 | 3 | 0.000 | 1.000 | 0% | 0.000 | 0.278 |
-| k=5 | 36 | 0.328 | 0.678 | 48% | 0.917 | 0.756 |
-| k=10 | 3 | 0.267 | 0.967 | 28% | 1.000 | 0.556 |
-| k=20 | 3 | 0.150 | 0.967 | 16% | 1.000 | 1.000 |
+| k=5 | 36 | 0.339 | 0.694 | 49% | 0.917 | 0.786 |
+| k=10 | 3 | 0.300 | 0.967 | 31% | 1.000 | 0.486 |
+| k=20 | 3 | 0.133 | 0.983 | 14% | 1.000 | 0.833 |
 
 Two things this exposes that a single blended number hid:
 
@@ -811,9 +831,9 @@ signals (`results/answer_accuracy.json`):
 |---|---:|
 | Refused (excluded — declining without context is correct) | 4 |
 | Answered | 41 |
-| Lexical key-fact recall | 0.534 |
-| **Lexical accuracy** (≥60% of reference key facts present) | **39.0%** |
-| **LLM judge — CORRECT** | **56.1%** (23/41) |
+| Lexical key-fact recall | 0.567 |
+| **Lexical accuracy** (≥60% of reference key facts present) | **48.8%** |
+| **LLM judge — CORRECT** | **58.5%** (24/41) |
 | LLM judge — CORRECT + PARTIAL | 85.4% (35/41) |
 | LLM judge — WRONG | 6 |
 

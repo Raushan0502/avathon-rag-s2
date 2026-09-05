@@ -6,10 +6,11 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1. Business",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple\u2019s\u202fProducts category consists of the following product lines:\n\n- **iPhone** \u2013 the company\u2019s line of iOS\u2011based smartphones (e.g., iPhone\u202f17\u202fPro, iPhone\u202fAir, iPhone\u202f17, iPhone\u202f16, iPhone\u202f16e)\u30102\u3011  \n- **Mac** \u2013 its macOS\u2011based personal computers, including MacBook\u202fAir, MacBook\u202fPro, iMac, Mac\u202fmini, Mac\u202fStudio and Mac\u202fPro\u30102\u3011  \n- **iPad** \u2013 its iPadOS\u2011based tablets, such as iPad\u202fPro, iPad\u202fAir, iPad and iPad\u202fmini\u30102\u3011  \n- **Wearables, Home and Accessories** \u2013 wearables (Apple\u202fWatch\u202fSeries\u202f11, Apple\u202fWatch\u202fSE\u202f3, Apple\u202fWatch\u202fUltra\u202f3, AirPods, AirPods\u202fPro, AirPods\u202fMax, Beats), home devices (Apple\u202fTV\u202f4K, HomePod, HomePod\u202fmini) and Apple\u2011branded or third\u2011party accessories\u30102\u3011.",
+    "generated_answer": "Apple\u2019s\u202fProducts category consists of its hardware lines, including:\n\n* **iPhone** \u2013 the company\u2019s line of iOS\u2011based smartphones\u202f[2]  \n* **Mac** \u2013 personal computers running macOS, such as MacBook\u202fAir, MacBook\u202fPro, iMac, Mac\u202fmini, Mac\u202fStudio and Mac\u202fPro\u202f[2]  \n* **iPad** \u2013 tablets running iPadOS, including iPad\u202fPro, iPad\u202fAir, iPad and iPad\u202fmini\u202f[2]  \n* **Wearables, Home and Accessories** \u2013  \n  * **Wearables**: Apple\u202fWatch (Series\u202f11, SE\u202f3, Ultra\u202f3), AirPods (standard, Pro, Max) and Beats headphones\u202f[2]  \n  * **Home**: Apple\u202fTV\u202f4K, HomePod and HomePod\u202fmini\u202f[1][2]  \n  * **Accessories**: Apple\u2011branded and third\u2011party accessories\u202f[2]  \n* **Apple\u202fVision\u202fPro** \u2013 the spatial computer based on visionOS\u202f[2]",
     "provider": "groq",
     "faithfulness": {
       "citations": [
+        1,
         2
       ],
       "has_citation": true,
@@ -27,25 +28,25 @@
         "chunk_id": "AAPL_10-K_2025-10-31::0",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 1. Business",
-        "score": 0.032018442622950824
+        "score": 0.032266458495966696
       },
       {
-        "chunk_id": "META_10-K_2026-01-29::28",
+        "chunk_id": "META_10-K_2026-01-29::35",
         "doc_id": "META_10-K_2026-01-29",
         "section": "Item 1A. Risk Factors",
         "score": 0.016129032258064516
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::57",
+        "chunk_id": "AAPL_10-K_2025-10-31::63",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
         "score": 0.015873015873015872
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::23",
+        "chunk_id": "AAPL_10-K_2025-10-31::86",
         "doc_id": "AAPL_10-K_2025-10-31",
-        "section": "Item 1A. Risk Factors",
-        "score": 0.015873015873015872
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "score": 0.015625
       }
     ]
   },
@@ -56,12 +57,13 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1A. Risk Factors",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple\u2019s filings note that competition in its markets has been especially fierce, with rivals repeatedly slashing prices.\u202fThis aggressive pricing pressure has driven down product margins and created downward pressure on the company\u2019s gross margins across its smartphone, PC, tablet and wearables businesses\u30101\u2020L1-L3\u3011\u30105\u2020L2-L4\u3011.",
+    "generated_answer": "Apple\u2019s filing notes that competition in its markets is highly aggressive, with rivals frequently cutting prices. This intense price competition creates downward pressure on Apple\u2019s gross margins and contributes to volatility in pricing and profitability across its product lines\u30101\u3011\u30103\u3011\u30104\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
         1,
-        5
+        3,
+        4
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -69,34 +71,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::15",
+        "chunk_id": "AAPL_10-K_2025-10-31::18",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 1A. Risk Factors",
-        "score": 0.032266458495966696
-      },
-      {
-        "chunk_id": "AAPL_10-K_2025-10-31::16",
-        "doc_id": "AAPL_10-K_2025-10-31",
-        "section": "Item 1A. Risk Factors",
-        "score": 0.032018442622950824
+        "score": 0.03252247488101534
       },
       {
         "chunk_id": "AAPL_10-K_2025-10-31::4",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 1. Business",
-        "score": 0.031009615384615385
+        "score": 0.03200204813108039
       },
       {
         "chunk_id": "AAPL_10-K_2025-10-31::3",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 1. Business",
-        "score": 0.0304147465437788
+        "score": 0.03177805800756621
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::14",
+        "chunk_id": "AAPL_10-K_2025-10-31::44",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 1A. Risk Factors",
-        "score": 0.029273504273504274
+        "score": 0.03036576949620428
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::17",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.029437229437229435
       }
     ]
   },
@@ -107,11 +109,11 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1A. Risk Factors",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple warns that natural\u2011disaster events\u2014especially those heightened by climate change\u2014could interrupt the operations of its suppliers and contract manufacturers, making it difficult or impossible for the Company to manufacture and deliver products\u30101\u3011.",
+    "generated_answer": "Apple warns that many of its suppliers and contract\u2011manufacturers operate in locations that are prone to earthquakes and other natural disasters, which could disrupt manufacturing and delivery of its products\u30102\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
-        1
+        2
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -119,34 +121,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::13",
+        "chunk_id": "AAPL_10-K_2025-10-31::12",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 1A. Risk Factors",
-        "score": 0.03177805800756621
+        "score": 0.031754032258064516
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::10",
+        "chunk_id": "AAPL_10-K_2025-10-31::14",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 1A. Risk Factors",
-        "score": 0.02946236559139785
+        "score": 0.03047794966520434
       },
       {
-        "chunk_id": "GOOGL_10-K_2026-02-05::27",
+        "chunk_id": "AAPL_10-K_2025-10-31::11",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.029437229437229435
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::15",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.02921395544346364
+      },
+      {
+        "chunk_id": "GOOGL_10-K_2026-02-05::30",
         "doc_id": "GOOGL_10-K_2026-02-05",
         "section": "ITEM 1A. RISK FACTORS",
-        "score": 0.02877846790890269
-      },
-      {
-        "chunk_id": "NVDA_10-K_2026-02-25::42",
-        "doc_id": "NVDA_10-K_2026-02-25",
-        "section": "Item 1A. Risk Factors",
-        "score": 0.01639344262295082
-      },
-      {
-        "chunk_id": "AAPL_10-K_2025-10-31::34",
-        "doc_id": "AAPL_10-K_2025-10-31",
-        "section": "Item 1A. Risk Factors",
-        "score": 0.016129032258064516
+        "score": 0.027745885954841176
       }
     ]
   },
@@ -157,7 +159,7 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1C. Cybersecurity",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple\u2019s cybersecurity risk\u2011management program is led by its\u202fHead of Corporate Information Security, who heads the dedicated Information Security team and oversees the company\u2019s security policies, risk assessments and incident response efforts\u30101\u3011.",
+    "generated_answer": "Apple\u2019s cybersecurity risk\u2011management program is led by its Head of Corporate Information Security, who heads the dedicated Information Security team and oversees the company\u2019s security policies, controls and incident response efforts\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -169,34 +171,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::46",
+        "chunk_id": "AAPL_10-K_2025-10-31::51",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 1C. Cybersecurity",
         "score": 0.03177805800756621
       },
       {
-        "chunk_id": "GOOGL_10-K_2026-02-05::64",
+        "chunk_id": "GOOGL_10-K_2026-02-05::68",
         "doc_id": "GOOGL_10-K_2026-02-05",
         "section": "ITEM 1C. CYBERSECURITY",
-        "score": 0.030798389007344232
+        "score": 0.03057889822595705
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::73",
-        "doc_id": "MSFT_10-K_2026-07-29",
-        "section": "ITEM 1B. UNRESOLVE",
-        "score": 0.030330882352941176
-      },
-      {
-        "chunk_id": "JPM_10-K_2026-02-13::485",
-        "doc_id": "JPM_10-K_2026-02-13",
-        "section": "Item 15. Exhibits, Financial Statement Schedules.",
-        "score": 0.029857397504456328
-      },
-      {
-        "chunk_id": "META_10-K_2026-01-29::122",
+        "chunk_id": "META_10-K_2026-01-29::146",
         "doc_id": "META_10-K_2026-01-29",
         "section": "Item 1C. Cybersecurity",
-        "score": 0.029030910609857977
+        "score": 0.030117753623188408
+      },
+      {
+        "chunk_id": "JPM_10-K_2026-02-13::548",
+        "doc_id": "JPM_10-K_2026-02-13",
+        "section": "Item 15. Exhibits, Financial Statement Schedules.",
+        "score": 0.029850746268656716
+      },
+      {
+        "chunk_id": "META_10-K_2026-01-29::143",
+        "doc_id": "META_10-K_2026-01-29",
+        "section": "Item 1C. Cybersecurity",
+        "score": 0.027402402402402402
       }
     ]
   },
@@ -219,34 +221,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::48",
+        "chunk_id": "AAPL_10-K_2025-10-31::53",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 2. Properties",
         "score": 0.03278688524590164
       },
       {
-        "chunk_id": "GOOGL_10-K_2026-02-05::66",
+        "chunk_id": "GOOGL_10-K_2026-02-05::70",
         "doc_id": "GOOGL_10-K_2026-02-05",
         "section": "ITEM 2. PROPERTIES",
-        "score": 0.031054405392392875
+        "score": 0.03128054740957967
       },
       {
-        "chunk_id": "META_10-K_2026-01-29::124",
+        "chunk_id": "META_10-K_2026-01-29::148",
         "doc_id": "META_10-K_2026-01-29",
         "section": "Item 2. Properties",
         "score": 0.029957522915269395
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::74",
+        "chunk_id": "AAPL_10-K_2025-10-31::0",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1. Business",
+        "score": 0.027046783625730993
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::82",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "ITEM 1B. UNRESOLVE",
         "score": 0.016129032258064516
-      },
-      {
-        "chunk_id": "AAPL_8-K_2026-07-30::1",
-        "doc_id": "AAPL_8-K_2026-07-30",
-        "section": "Full Document",
-        "score": 0.015873015873015872
       }
     ]
   },
@@ -257,7 +259,7 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 3. Legal Proceedings",
     "retrieval_hit_at_k": true,
-    "generated_answer": "The Legal\u202fProceedings section describes the European Commission\u2019s formal non\u2011compliance investigations under the EU Digital Markets Act.  The Commission opened an Article\u202f5(4) investigation into Apple\u2019s rules governing how developers may communicate, promote offers and contract with end\u2011users through the App\u202fStore, and later opened an additional Article\u202f6(4) investigation into Apple\u2019s new contractual requirements for third\u2011party app developers and app marketplaces\u30101\u3011.",
+    "generated_answer": "The Legal\u202fProceedings section describes that the European Commission opened a formal non\u2011compliance investigation under Article\u202f5(4) of the EU Digital Markets Act (DMA) \u2013 examining how developers may communicate, promote offers and contract with end\u2011users for apps distributed through the App Store \u2013 and, on June\u202f24\u202f2024, a second formal investigation under Article\u202f6(4) of the DMA concerning the Company\u2019s new contractual requirements for third\u2011party app developers and app marketplaces\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -269,34 +271,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::49",
+        "chunk_id": "AAPL_10-K_2025-10-31::54",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 3. Legal Proceedings",
         "score": 0.03278688524590164
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::35",
+        "chunk_id": "AAPL_10-K_2025-10-31::39",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 1A. Risk Factors",
         "score": 0.03200204813108039
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::36",
+        "chunk_id": "AAPL_10-K_2025-10-31::40",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 1A. Risk Factors",
-        "score": 0.03125763125763126
+        "score": 0.031754032258064516
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::34",
-        "doc_id": "AAPL_10-K_2025-10-31",
-        "section": "Item 1A. Risk Factors",
-        "score": 0.029418126757516764
-      },
-      {
-        "chunk_id": "AAPL_10-K_2025-10-31::51",
+        "chunk_id": "AAPL_10-K_2025-10-31::56",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 3. Legal Proceedings",
-        "score": 0.02919863597612958
+        "score": 0.028790389395194696
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::42",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.02631578947368421
       }
     ]
   },
@@ -317,31 +319,31 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::57",
+        "chunk_id": "AAPL_10-K_2025-10-31::63",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
         "score": 0.028958333333333336
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::63",
+        "chunk_id": "AAPL_10-K_2025-10-31::69",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
         "score": 0.01639344262295082
       },
       {
-        "chunk_id": "WMT_10-K_2026-03-13::50",
+        "chunk_id": "WMT_10-K_2026-03-13::54",
         "doc_id": "WMT_10-K_2026-03-13",
         "section": "Item 1A. Risk Factors",
         "score": 0.01639344262295082
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::61",
+        "chunk_id": "AAPL_10-K_2025-10-31::67",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
         "score": 0.016129032258064516
       },
       {
-        "chunk_id": "WMT_10-K_2026-03-13::47",
+        "chunk_id": "WMT_10-K_2026-03-13::51",
         "doc_id": "WMT_10-K_2026-03-13",
         "section": "Item 1A. Risk Factors",
         "score": 0.016129032258064516
@@ -355,7 +357,57 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1B. Unresolved Staff Comments",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple reports that there are no unresolved staff comments from the SEC in its 10\u2011K.\u202f[2]",
+    "generated_answer": "Apple reports that there are no unresolved staff comments from the SEC in its 10\u2011K filing\u30104\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        4
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::8",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1. Business",
+        "score": 0.030679156908665108
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::9",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1. Business",
+        "score": 0.027777777777777776
+      },
+      {
+        "chunk_id": "NVDA_10-K_2026-02-25::32",
+        "doc_id": "NVDA_10-K_2026-02-25",
+        "section": "Item 1. Business",
+        "score": 0.026356857985087564
+      },
+      {
+        "chunk_id": "AAPL_10-K_2025-10-31::50",
+        "doc_id": "AAPL_10-K_2025-10-31",
+        "section": "Item 1B. Unresolved Staff Comments",
+        "score": 0.01639344262295082
+      },
+      {
+        "chunk_id": "GOOGL_10-K_2026-02-05::67",
+        "doc_id": "GOOGL_10-K_2026-02-05",
+        "section": "ITEM 1B. UNRESOLVED STAFF COMMENTS",
+        "score": 0.016129032258064516
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "query": "What is Tesla's stated mission or focus in the Overview section of its 10-K?",
+    "reference_answer": "Bringing artificial intelligence into the real world through products and services such as Full Self-Driving (Supervised) and Robotaxi, and developing/commercializing AI robots (including Optimus), alongside its electric vehicle and energy generation/storage business.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 1. BUSINESS",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Tesla says its focus is \u201cbringing artificial intelligence (\u201cAI\u201d) into the real world, through products and services like Full\u202fSelf\u2011Driving (\u201cFSD\u201d), Robotaxi and AI robots (including Optimus), leveraging its electric\u2011vehicle and energy businesses\u201d and that its mission is \u201cbuilding a world of amazing abundance\u201d\u30102\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -367,55 +419,11 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::8",
-        "doc_id": "AAPL_10-K_2025-10-31",
-        "section": "Item 1. Business",
-        "score": 0.03252247488101534
+        "chunk_id": "TSLA_10-K_2026-01-29::26",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.031054405392392875
       },
-      {
-        "chunk_id": "AAPL_10-K_2025-10-31::45",
-        "doc_id": "AAPL_10-K_2025-10-31",
-        "section": "Item 1B. Unresolved Staff Comments",
-        "score": 0.01639344262295082
-      },
-      {
-        "chunk_id": "JPM_10-K_2026-02-13::142",
-        "doc_id": "JPM_10-K_2026-02-13",
-        "section": "Item 15. Exhibits, Financial Statement Schedules.",
-        "score": 0.016129032258064516
-      },
-      {
-        "chunk_id": "GOOGL_10-K_2026-02-05::63",
-        "doc_id": "GOOGL_10-K_2026-02-05",
-        "section": "ITEM 1B. UNRESOLVED STAFF COMMENTS",
-        "score": 0.015873015873015872
-      },
-      {
-        "chunk_id": "JPM_10-K_2026-02-13::145",
-        "doc_id": "JPM_10-K_2026-02-13",
-        "section": "Item 15. Exhibits, Financial Statement Schedules.",
-        "score": 0.015873015873015872
-      }
-    ]
-  },
-  {
-    "id": "q09",
-    "query": "What is Tesla's stated mission or focus in the Overview section of its 10-K?",
-    "reference_answer": "Bringing artificial intelligence into the real world through products and services such as Full Self-Driving (Supervised) and Robotaxi, and developing/commercializing AI robots (including Optimus), alongside its electric vehicle and energy generation/storage business.",
-    "gold_doc_id": "TSLA_10-K_2026-01-29",
-    "gold_section": "ITEM 1. BUSINESS",
-    "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla says it is \u201cfocused on bringing artificial intelligence (\u201cAI\u201d) into the real world, through products and services like Full\u202fSelf\u2011Driving, Robotaxi and AI robots (including Optimus), leveraging its electric\u2011vehicle and energy\u2011generation and storage operations\u201d and that its mission is \u201cbuilding a world of amazing abundance\u201d\u30101\u3011.",
-    "provider": "groq",
-    "faithfulness": {
-      "citations": [
-        1
-      ],
-      "has_citation": true,
-      "refused_unsupported": false,
-      "faithfulness_flag": "cited"
-    },
-    "retrieved_context": [
       {
         "chunk_id": "TSLA_10-K_2026-01-29::0",
         "doc_id": "TSLA_10-K_2026-01-29",
@@ -423,25 +431,19 @@
         "score": 0.01639344262295082
       },
       {
-        "chunk_id": "JPM_10-K_2026-02-13::145",
+        "chunk_id": "JPM_10-K_2026-02-13::168",
         "doc_id": "JPM_10-K_2026-02-13",
         "section": "Item 15. Exhibits, Financial Statement Schedules.",
         "score": 0.01639344262295082
       },
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::79",
+        "chunk_id": "TSLA_10-K_2026-01-29::90",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
         "score": 0.016129032258064516
       },
       {
-        "chunk_id": "JPM_10-K_2026-02-13::1",
-        "doc_id": "JPM_10-K_2026-02-13",
-        "section": "Item 1. Business.",
-        "score": 0.016129032258064516
-      },
-      {
-        "chunk_id": "TSLA_10-K_2026-01-29::329",
+        "chunk_id": "TSLA_10-K_2026-01-29::362",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 16. FORM 10-K SUMMARY",
         "score": 0.015873015873015872
@@ -455,11 +457,11 @@
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1. BUSINESS",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla describes the Cybertruck as a full\u2011size electric pickup truck with a stainless\u2011steel exterior that combines the utility and strength of a truck with the speed of a sports car\u30101\u3011.",
+    "generated_answer": "Tesla\u2019s 10\u2011K describes the Cybertruck as a full\u2011size electric pickup truck with a stainless\u2011steel exterior that provides the utility and strength of a truck while delivering sports\u2011car\u2011like speed\u30102\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
-        1
+        2
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -467,34 +469,34 @@
     },
     "retrieved_context": [
       {
+        "chunk_id": "TSLA_tm2530590d1_ex10-2::20",
+        "doc_id": "TSLA_tm2530590d1_ex10-2",
+        "section": "1 Million Robotaxis in Commercial Operation",
+        "score": 0.03252247488101534
+      },
+      {
         "chunk_id": "TSLA_10-K_2026-01-29::1",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 1. BUSINESS",
-        "score": 0.03047794966520434
+        "score": 0.031099324975891997
       },
       {
-        "chunk_id": "TSLA_tm2530590d1_ex10-2::18",
-        "doc_id": "TSLA_tm2530590d1_ex10-2",
-        "section": "1 Million Robotaxis in Commercial Operation",
-        "score": 0.029910714285714284
-      },
-      {
-        "chunk_id": "TSLA_10-K_2026-01-29::324",
+        "chunk_id": "TSLA_10-K_2026-01-29::357",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES",
-        "score": 0.02946912242686891
+        "score": 0.016129032258064516
       },
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::22",
+        "chunk_id": "TSLA_10-K_2026-01-29::249",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.015873015873015872
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::26",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 1. BUSINESS",
-        "score": 0.01639344262295082
-      },
-      {
-        "chunk_id": "TSLA_10-K_2026-01-29::43",
-        "doc_id": "TSLA_10-K_2026-01-29",
-        "section": "ITEM 1A. RISK FACTORS",
-        "score": 0.016129032258064516
+        "score": 0.015873015873015872
       }
     ]
   },
@@ -505,12 +507,12 @@
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1. BUSINESS",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla operates two reportable segments: (i) automotive and (ii) energy generation and storage\u30102\u2020L9-L12\u3011\u30103\u2020L13-L17\u3011",
+    "generated_answer": "Tesla operates two reportable segments: (i) automotive and (ii) energy generation and storage\u30102\u2020L1-L4\u3011\u30104\u2020L1-L4\u3011",
     "provider": "groq",
     "faithfulness": {
       "citations": [
         2,
-        3
+        4
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -518,34 +520,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::295",
+        "chunk_id": "TSLA_10-K_2026-01-29::326",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
-        "score": 0.03009207275993712
+        "score": 0.02889344262295082
       },
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::294",
+        "chunk_id": "TSLA_10-K_2026-01-29::325",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
-        "score": 0.029437229437229435
+        "score": 0.028577260665441927
+      },
+      {
+        "chunk_id": "NVDA_10-K_2026-02-25::131",
+        "doc_id": "NVDA_10-K_2026-02-25",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "score": 0.01639344262295082
       },
       {
         "chunk_id": "TSLA_10-K_2026-01-29::0",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 1. BUSINESS",
-        "score": 0.028629032258064516
+        "score": 0.016129032258064516
       },
       {
-        "chunk_id": "WMT_10-K_2026-03-13::197",
-        "doc_id": "WMT_10-K_2026-03-13",
-        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
-        "score": 0.02803921568627451
-      },
-      {
-        "chunk_id": "NVDA_10-K_2026-02-25::115",
-        "doc_id": "NVDA_10-K_2026-02-25",
-        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
-        "score": 0.01639344262295082
+        "chunk_id": "MSFT_10-K_2026-07-29::5",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.016129032258064516
       }
     ]
   },
@@ -556,7 +558,7 @@
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1C. CYBERSECURITY",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla\u2019s incident response and breach\u2011management process consists of four interconnected stages:  \n\n1.\u202fPreparation for a cybersecurity incident  \n2.\u202fDetection and analysis of a security incident  \n3.\u202fContainment, eradication and recovery  \n4.\u202fPost\u2011incident analysis\u30101\u3011",
+    "generated_answer": "Tesla\u2019s cybersecurity incident response and breach management process consists of four overarching, interconnected stages:  \n\n1.\u202fPreparation for a cybersecurity incident.  \n2.\u202fDetection and analysis of a security incident.  \n3.\u202fContainment, eradication and recovery.  \n4.\u202fPost\u2011incident analysis.\u202f[1]",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -568,34 +570,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::69",
+        "chunk_id": "TSLA_10-K_2026-01-29::80",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 1C. CYBERSECURITY",
         "score": 0.03278688524590164
       },
       {
-        "chunk_id": "NIST_SP-800-209::118",
+        "chunk_id": "NIST_SP-800-209::124",
         "doc_id": "NIST_SP-800-209",
         "section": "4.5 Preparation for Data Incident Response and Cyber Recovery",
-        "score": 0.0293236301369863
+        "score": 0.028438886647841874
       },
       {
-        "chunk_id": "JNJ_10-K_2026-02-11::44",
-        "doc_id": "JNJ_10-K_2026-02-11",
-        "section": "Item 1C. Cybersecurity",
+        "chunk_id": "NIST_SP-800-61r2::10",
+        "doc_id": "NIST_SP-800-61r2",
+        "section": "100 Bureau Drive (Mail Stop 8930), Gaithersburg, MD 20899-8930",
         "score": 0.02821939586645469
       },
       {
-        "chunk_id": "NIST_SP-800-66r2::100",
-        "doc_id": "NIST_SP-800-66r2",
-        "section": "5.1. Administrative Safeguards",
-        "score": 0.027972027972027972
+        "chunk_id": "JNJ_10-K_2026-02-11::51",
+        "doc_id": "JNJ_10-K_2026-02-11",
+        "section": "Item 1C. Cybersecurity",
+        "score": 0.027071520029266508
       },
       {
-        "chunk_id": "NIST_SP-800-184::56",
-        "doc_id": "NIST_SP-800-184",
-        "section": "6.2.1 Initiation",
-        "score": 0.027912386121341344
+        "chunk_id": "TSLA_10-K_2026-01-29::81",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1C. CYBERSECURITY",
+        "score": 0.016129032258064516
       }
     ]
   },
@@ -606,57 +608,7 @@
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 2. PROPERTIES",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla is headquartered in Austin, Texas\u202f[3]",
-    "provider": "groq",
-    "faithfulness": {
-      "citations": [
-        3
-      ],
-      "has_citation": true,
-      "refused_unsupported": false,
-      "faithfulness_flag": "cited"
-    },
-    "retrieved_context": [
-      {
-        "chunk_id": "TSLA_10-K_2026-01-29::22",
-        "doc_id": "TSLA_10-K_2026-01-29",
-        "section": "ITEM 1. BUSINESS",
-        "score": 0.02928692699490662
-      },
-      {
-        "chunk_id": "TSLA_10-K_2026-01-29::43",
-        "doc_id": "TSLA_10-K_2026-01-29",
-        "section": "ITEM 1A. RISK FACTORS",
-        "score": 0.026171741361614778
-      },
-      {
-        "chunk_id": "TSLA_10-K_2026-01-29::73",
-        "doc_id": "TSLA_10-K_2026-01-29",
-        "section": "ITEM 2. PROPERTIES",
-        "score": 0.01639344262295082
-      },
-      {
-        "chunk_id": "TSLA_tsla-2025x12x31xex109::23",
-        "doc_id": "TSLA_tsla-2025x12x31xex109",
-        "section": "21. Governing Law",
-        "score": 0.01639344262295082
-      },
-      {
-        "chunk_id": "TSLA_10-K_2026-01-29::74",
-        "doc_id": "TSLA_10-K_2026-01-29",
-        "section": "ITEM 2. PROPERTIES",
-        "score": 0.016129032258064516
-      }
-    ]
-  },
-  {
-    "id": "q14",
-    "query": "Where does Tesla's 10-K direct readers for details on its material pending legal proceedings?",
-    "reference_answer": "To Note 13, Commitments and Contingencies, in the consolidated financial statements included elsewhere in the 10-K.",
-    "gold_doc_id": "TSLA_10-K_2026-01-29",
-    "gold_section": "ITEM 3. LEGAL PROCEEDINGS",
-    "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla\u2019s 10\u2011K tells readers to see Note\u202f13, \u201cCommitments and Contingencies,\u201d to the consolidated financial statements for a description of its material pending legal proceedings\u30101\u3011.",
+    "generated_answer": "Tesla is headquartered in Austin, Texas\u202f[1].",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -668,34 +620,84 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::76",
+        "chunk_id": "TSLA_10-K_2026-01-29::84",
         "doc_id": "TSLA_10-K_2026-01-29",
-        "section": "ITEM 3. LEGAL PROCEEDINGS",
-        "score": 0.03252247488101534
-      },
-      {
-        "chunk_id": "GOOGL_10-K_2026-02-05::67",
-        "doc_id": "GOOGL_10-K_2026-02-05",
-        "section": "ITEM 3. LEGAL PROCEEDINGS",
+        "section": "ITEM 2. PROPERTIES",
         "score": 0.01639344262295082
       },
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::23",
+        "chunk_id": "TSLA_10-K_2026-01-29::26",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.01639344262295082
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::85",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 2. PROPERTIES",
+        "score": 0.016129032258064516
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::8",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 1. BUSINESS",
         "score": 0.016129032258064516
       },
       {
-        "chunk_id": "TSLA_tm2530590d1_ex10-2::0",
-        "doc_id": "TSLA_tm2530590d1_ex10-2",
-        "section": "Front Matter",
+        "chunk_id": "TSLA_8-K_2026-07-22::1",
+        "doc_id": "TSLA_8-K_2026-07-22",
+        "section": "Full Document",
         "score": 0.015873015873015872
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "query": "Where does Tesla's 10-K direct readers for details on its material pending legal proceedings?",
+    "reference_answer": "To Note 13, Commitments and Contingencies, in the consolidated financial statements included elsewhere in the 10-K.",
+    "gold_doc_id": "TSLA_10-K_2026-01-29",
+    "gold_section": "ITEM 3. LEGAL PROCEEDINGS",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Tesla\u2019s 10\u2011K tells readers to see Note\u202f13, \u201cCommitments and Contingencies,\u201d to the consolidated financial statements included elsewhere in the Annual Report on Form\u202f10\u2011K for a description of its material pending legal proceedings\u30101\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::87",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 3. LEGAL PROCEEDINGS",
+        "score": 0.03252247488101534
       },
       {
-        "chunk_id": "JPM_10-K_2026-02-13::1076",
-        "doc_id": "JPM_10-K_2026-02-13",
-        "section": "Item 15. Exhibits, Financial Statement Schedules.",
-        "score": 0.015873015873015872
+        "chunk_id": "TSLA_10-K_2026-01-29::318",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.03125763125763126
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::26",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 1. BUSINESS",
+        "score": 0.03021353930031804
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::321",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.026500526500526502
+      },
+      {
+        "chunk_id": "GOOGL_10-K_2026-02-05::71",
+        "doc_id": "GOOGL_10-K_2026-02-05",
+        "section": "ITEM 3. LEGAL PROCEEDINGS",
+        "score": 0.01639344262295082
       }
     ]
   },
@@ -706,11 +708,11 @@
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla\u2019s automotive sales revenues were:\n\n- **2025:**\u202f$65.821\u202fbillion\u30105\u3011  \n- **2024:**\u202f$72.480\u202fbillion\u30105\u3011  \n- **2023:**\u202f$78.509\u202fbillion\u30105\u3011",
+    "generated_answer": "Tesla\u2019s automotive sales revenues were:\n\n- **2025:**\u202f$65,821\u202fmillion  \n- **2024:**\u202f$72,480\u202fmillion  \n- **2023:**\u202f$78,509\u202fmillion\u30104\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
-        5
+        4
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -718,34 +720,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::297",
+        "chunk_id": "TSLA_10-K_2026-01-29::328",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
         "score": 0.03278688524590164
       },
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::167",
+        "chunk_id": "TSLA_10-K_2026-01-29::187",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
-        "score": 0.03200204813108039
+        "score": 0.031754032258064516
       },
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::162",
+        "chunk_id": "TSLA_10-K_2026-01-29::180",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
-        "score": 0.03036576949620428
+        "score": 0.029877369007803793
       },
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::161",
+        "chunk_id": "TSLA_10-K_2026-01-29::174",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
-        "score": 0.03007688828584351
+        "score": 0.0288981288981289
       },
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::155",
+        "chunk_id": "TSLA_10-K_2026-01-29::113",
         "doc_id": "TSLA_10-K_2026-01-29",
-        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
-        "score": 0.029138513513513514
+        "section": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
+        "score": 0.028850145288501453
       }
     ]
   },
@@ -756,7 +758,7 @@
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1B. UNRESOLVED STAFF COMMENTS",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla reports that there are no unresolved staff comments in its 10\u2011K.\u202f[3]",
+    "generated_answer": "Tesla reports that there are no unresolved staff comments from the SEC in its 10\u2011K.\u202f[3]",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -768,34 +770,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::23",
+        "chunk_id": "TSLA_10-K_2026-01-29::26",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 1. BUSINESS",
-        "score": 0.032266458495966696
+        "score": 0.03252247488101534
       },
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::311",
+        "chunk_id": "TSLA_10-K_2026-01-29::343",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 10. DIRECTORS, EXECUTIVE OFFICERS AND CORPORATE GOVERNANCE",
         "score": 0.03007688828584351
       },
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::68",
+        "chunk_id": "TSLA_10-K_2026-01-29::79",
         "doc_id": "TSLA_10-K_2026-01-29",
         "section": "ITEM 1B. UNRESOLVED STAFF COMMENTS",
         "score": 0.01639344262295082
       },
       {
-        "chunk_id": "JPM_10-K_2026-02-13::86",
-        "doc_id": "JPM_10-K_2026-02-13",
-        "section": "Item 1B. Unresolved Staff Comments.",
-        "score": 0.016129032258064516
-      },
-      {
-        "chunk_id": "JPM_10-K_2026-02-13::142",
+        "chunk_id": "JPM_10-K_2026-02-13::165",
         "doc_id": "JPM_10-K_2026-02-13",
         "section": "Item 15. Exhibits, Financial Statement Schedules.",
         "score": 0.016129032258064516
+      },
+      {
+        "chunk_id": "JPM_10-K_2026-02-13::101",
+        "doc_id": "JPM_10-K_2026-02-13",
+        "section": "Item 1B. Unresolved Staff Comments.",
+        "score": 0.015873015873015872
       }
     ]
   },
@@ -806,7 +808,7 @@
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 1 Note About Forward-Looking Statements",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Microsoft says its Copilot and AI agents are intended to \u201cdrive insights, revolutionize many types of work and business processes, and provide substantive productivity gains\u201d as part of its AI\u2011and\u2011ambient\u2011intelligence strategy\u30101\u3011.",
+    "generated_answer": "Microsoft says its Microsoft\u202f365\u202fCopilot and AI agents are intended to \u201cdrive insights, revolutionize many types of work and business processes, and provide substantive productivity gains\u201d\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -824,28 +826,28 @@
         "score": 0.03278688524590164
       },
       {
-        "chunk_id": "GOOGL_10-K_2026-02-05::7",
+        "chunk_id": "GOOGL_10-K_2026-02-05::8",
         "doc_id": "GOOGL_10-K_2026-02-05",
         "section": "ITEM 1. BUSINESS",
         "score": 0.03125763125763126
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::10",
-        "doc_id": "MSFT_10-K_2026-07-29",
-        "section": "Item 1 Note About Forward-Looking Statements",
-        "score": 0.030621785881252923
-      },
-      {
         "chunk_id": "MSFT_10-K_2026-07-29::1",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 1 Note About Forward-Looking Statements",
-        "score": 0.029138513513513514
+        "score": 0.029877369007803793
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::84",
+        "chunk_id": "NVDA_10-K_2026-02-25::4",
+        "doc_id": "NVDA_10-K_2026-02-25",
+        "section": "Item 1. Business",
+        "score": 0.028629032258064516
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::91",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 7 ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS OF",
-        "score": 0.028404512489927477
+        "score": 0.02862400327131466
       }
     ]
   },
@@ -856,7 +858,7 @@
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 1 Note About Forward-Looking Statements",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Microsoft\u2019s Productivity and Business Processes segment is comprised of four product lines:\n\n1. **Microsoft\u202f365 Commercial products and cloud services** \u2013 the cloud portion (Microsoft\u202f365 Commercial, Enterprise Mobility\u202f+\u202fSecurity, the cloud portion of Windows Commercial, per\u2011user Power\u202fBI, Exchange, SharePoint, Teams, Microsoft\u202f365 Security & Compliance, Microsoft\u202f365\u202fCopilot) and the on\u2011premises portion (Windows Commercial on\u2011premises and Office licensed on\u2011premises)\u30101\u2020L1-L9\u3011.  \n\n2. **Microsoft\u202f365 Consumer products and cloud services** \u2013 Microsoft\u202f365 Consumer subscriptions, Office licensed on\u2011premises and other consumer services\u30101\u2020L10-L12\u3011.  \n\n3. **LinkedIn** \u2013 including Talent Solutions, Marketing Solutions, Premium Subscriptions and Sales Solutions\u30101\u2020L13-L14\u3011.  \n\n4. **Dynamics products and cloud services** \u2013 Dynamics\u202f365 (cloud\u2011based ERP, CRM, Power\u202fApps, Power\u202fAutomate) and on\u2011premises ERP and CRM applications\u30101\u2020L15-L16\u3011.",
+    "generated_answer": "Microsoft\u2019s Productivity and Business Processes segment is comprised of four product\u2011line groups:\n\n1. **Microsoft\u202f365 Commercial products and cloud services** \u2013 the cloud portion includes Microsoft\u202f365 Commercial, Enterprise Mobility\u202f+\u202fSecurity, the cloud portion of Windows Commercial, the per\u2011user portion of Power\u202fBI, Exchange, SharePoint, Microsoft\u202fTeams, Microsoft\u202f365 Security and Compliance, and Microsoft\u202f365\u202fCopilot; the on\u2011premises portion includes Windows Commercial on\u2011premises and Office licensed on\u2011premises\u30101\u2020L2-L9\u3011.  \n\n2. **Microsoft\u202f365 Consumer products and cloud services** \u2013 Microsoft\u202f365 Consumer subscriptions, Office licensed on\u2011premises and other consumer services\u30101\u2020L10-L12\u3011.  \n\n3. **LinkedIn** \u2013 Talent Solutions, Marketing Solutions, Premium Subscriptions and Sales Solutions\u30101\u2020L13-L14\u3011.  \n\n4. **Dynamics products and cloud services** \u2013 Dynamics\u202f365 (cloud\u2011based ERP, CRM, Power\u202fApps, Power\u202fAutomate) and on\u2011premises ERP and CRM applications\u30101\u2020L15-L16\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -871,31 +873,31 @@
         "chunk_id": "MSFT_10-K_2026-07-29::6",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 1 Note About Forward-Looking Statements",
-        "score": 0.03252247488101534
+        "score": 0.03278688524590164
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::5",
-        "doc_id": "MSFT_10-K_2026-07-29",
-        "section": "Item 1 Note About Forward-Looking Statements",
-        "score": 0.032018442622950824
-      },
-      {
-        "chunk_id": "MSFT_10-K_2026-07-29::275",
+        "chunk_id": "MSFT_10-K_2026-07-29::296",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 8 ITEM 8. FINANCIAL STATE",
         "score": 0.03200204813108039
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::90",
+        "chunk_id": "MSFT_10-K_2026-07-29::5",
+        "doc_id": "MSFT_10-K_2026-07-29",
+        "section": "Item 1 Note About Forward-Looking Statements",
+        "score": 0.031754032258064516
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::98",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 7 ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS OF",
         "score": 0.03057889822595705
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::274",
+        "chunk_id": "MSFT_10-K_2026-07-29::295",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 8 ITEM 8. FINANCIAL STATE",
-        "score": 0.030536130536130537
+        "score": 0.030303030303030304
       }
     ]
   },
@@ -906,11 +908,11 @@
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 1A ITEM 1A. RIS",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Microsoft\u2019s Risk Factors warn that various risks could affect the company in several ways, including:\n\n- The ability to sell to and collect from customers\u30102\u3011  \n- Increases in operating costs and other disruptions to its operations and business\u2011continuity plans\u30102\u3011  \n- Supply\u2011chain disruptions and uncertainty about customers\u2019 technology\u2011investment timing and budgets\u30102\u3011  \n- Changes to operating strategies, access to national, regional and global markets, hiring and overall profitability\u30102\u3011  \n- Adverse effects on its results of operations, financial condition and overall business performance\u30102\u3011  \n- Heightened security risks and other regulatory or geopolitical impacts that could further harm the business\u30102\u3011",
+    "generated_answer": "Microsoft\u2019s Risk Factors warn that the identified risks could affect a range of areas, including\u202fits\u202fresults of operations, overall business and day\u2011to\u2011day operations, financial condition and financial results, security\u2011related risks, the cost and availability of goods and services (such as energy for powering and cooling hardware), and broader operational, economic and geopolitical exposures\u202f[4].",
     "provider": "groq",
     "faithfulness": {
       "citations": [
-        2
+        4
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -918,31 +920,31 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "AMZN_10-K_2026-02-06::10",
+        "chunk_id": "AMZN_10-K_2026-02-06::11",
         "doc_id": "AMZN_10-K_2026-02-06",
         "section": "Item 1A. Risk Factors",
-        "score": 0.03225806451612903
+        "score": 0.029877369007803793
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::66",
+        "chunk_id": "NVDA_10-K_2026-02-25::33",
+        "doc_id": "NVDA_10-K_2026-02-25",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.02877846790890269
+      },
+      {
+        "chunk_id": "NVDA_10-K_2026-02-25::35",
+        "doc_id": "NVDA_10-K_2026-02-25",
+        "section": "Item 1A. Risk Factors",
+        "score": 0.028258706467661692
+      },
+      {
+        "chunk_id": "MSFT_10-K_2026-07-29::73",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 1A ITEM 1A. RIS",
-        "score": 0.02919863597612958
+        "score": 0.027799227799227798
       },
       {
-        "chunk_id": "NVDA_10-K_2026-02-25::28",
-        "doc_id": "NVDA_10-K_2026-02-25",
-        "section": "Item 1A. Risk Factors",
-        "score": 0.028850145288501453
-      },
-      {
-        "chunk_id": "NVDA_10-K_2026-02-25::30",
-        "doc_id": "NVDA_10-K_2026-02-25",
-        "section": "Item 1A. Risk Factors",
-        "score": 0.027417840375586856
-      },
-      {
-        "chunk_id": "META_10-K_2026-01-29::15",
+        "chunk_id": "META_10-K_2026-01-29::17",
         "doc_id": "META_10-K_2026-01-29",
         "section": "Item 1A. Risk Factors",
         "score": 0.01639344262295082
@@ -956,7 +958,7 @@
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "ITEM 3. LEGAL",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Microsoft\u2019s 10\u2011K tells readers to see **Note\u202f14\u202f\u2013\u202fContingencies of the Notes to Financial Statements** (located in Part\u202fII, Item\u202f8 of the Form\u202f10\u2011K) for details on its legal proceedings\u30101\u3011.",
+    "generated_answer": "Microsoft\u2019s 10\u2011K tells readers to see Note\u202f14\u202f\u2013\u202fContingencies of the Notes to the Financial Statements (located in Part\u202fII, Item\u202f8 of the Form\u202f10\u2011K) for information on its legal proceedings\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -968,31 +970,31 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::77",
+        "chunk_id": "MSFT_10-K_2026-07-29::84",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "ITEM 3. LEGAL",
-        "score": 0.0315136476426799
+        "score": 0.031754032258064516
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::24",
+        "chunk_id": "MSFT_10-K_2026-07-29::25",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 1 Note About Forward-Looking Statements",
-        "score": 0.03131881575727918
+        "score": 0.031544957774465976
       },
       {
-        "chunk_id": "JPM_10-K_2026-02-13::145",
+        "chunk_id": "JPM_10-K_2026-02-13::168",
         "doc_id": "JPM_10-K_2026-02-13",
         "section": "Item 15. Exhibits, Financial Statement Schedules.",
         "score": 0.01639344262295082
       },
       {
-        "chunk_id": "GOOGL_10-K_2026-02-05::67",
+        "chunk_id": "GOOGL_10-K_2026-02-05::71",
         "doc_id": "GOOGL_10-K_2026-02-05",
         "section": "ITEM 3. LEGAL PROCEEDINGS",
         "score": 0.016129032258064516
       },
       {
-        "chunk_id": "MSFT_msft-ex10_8::7",
+        "chunk_id": "MSFT_msft-ex10_8::9",
         "doc_id": "MSFT_msft-ex10_8",
         "section": "4. Indemnification Procedures",
         "score": 0.015873015873015872
@@ -1006,44 +1008,46 @@
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 8 ITEM 8. FINANCIAL STATE",
     "retrieval_hit_at_k": true,
-    "generated_answer": "I cannot answer this from the provided documents.",
+    "generated_answer": "Microsoft\u2019s fiscal\u20112026 revenue was:\n\n- **Product revenue:**\u202f$64,696\u202fmillion\u30103\u3011  \n- **Service and other revenue:**\u202f$267,143\u202fmillion\u30103\u3011  \n- **Total revenue:**\u202f$331,839\u202fmillion\u30103\u3011",
     "provider": "groq",
     "faithfulness": {
-      "citations": [],
-      "has_citation": false,
-      "refused_unsupported": true,
-      "faithfulness_flag": "refused"
+      "citations": [
+        3
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
     },
     "retrieved_context": [
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::85",
+        "chunk_id": "MSFT_10-K_2026-07-29::92",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 7 ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS OF",
-        "score": 0.03278688524590164
+        "score": 0.032266458495966696
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::247",
+        "chunk_id": "MSFT_10-K_2026-07-29::266",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 8 ITEM 8. FINANCIAL STATE",
-        "score": 0.027222222222222224
+        "score": 0.027526395173453996
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::284",
+        "chunk_id": "MSFT_10-K_2026-07-29::144",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 8 ITEM 8. FINANCIAL STATE",
-        "score": 0.02632034632034632
+        "score": 0.026992753623188405
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::211",
+        "chunk_id": "MSFT_10-K_2026-07-29::305",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 8 ITEM 8. FINANCIAL STATE",
-        "score": 0.016129032258064516
+        "score": 0.026742734890354787
       },
       {
-        "chunk_id": "NVDA_10-K_2026-02-25::256",
+        "chunk_id": "NVDA_10-K_2026-02-25::136",
         "doc_id": "NVDA_10-K_2026-02-25",
-        "section": "Item 15. Exhibits and Financial Statement Schedules",
-        "score": 0.016129032258064516
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "score": 0.01639344262295082
       }
     ]
   },
@@ -1054,7 +1058,7 @@
     "gold_doc_id": "AAPL_8-K_2026-07-30",
     "gold_section": "Full Document",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple\u2019s Form\u202f8\u2011K was signed on the company\u2019s behalf by\u202fKevan\u202fParekh, who serves as Apple\u2019s Senior Vice President and Chief Financial Officer\u30104\u3011.",
+    "generated_answer": "Apple\u2019s Form\u202f8\u2011K was signed on its behalf by\u202fKevan\u202fParekh, who serves as Apple\u2019s Senior Vice President and Chief Financial Officer\u30104\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -1081,7 +1085,7 @@
         "chunk_id": "AAPL_8-K_2026-07-30::4",
         "doc_id": "AAPL_8-K_2026-07-30",
         "section": "Full Document",
-        "score": 0.026875901875901876
+        "score": 0.026500526500526502
       },
       {
         "chunk_id": "AAPL_8-K_2026-07-30::7",
@@ -1090,7 +1094,7 @@
         "score": 0.01639344262295082
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::329",
+        "chunk_id": "MSFT_10-K_2026-07-29::352",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 16 ITEM 16. FORM",
         "score": 0.01639344262295082
@@ -1104,11 +1108,11 @@
     "gold_doc_id": "MSFT_8-K_2026-09-02",
     "gold_section": "Full Document",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Microsoft\u2019s September\u202f2,\u202f2026 Form\u202f8\u2011K states that a copy of the \u201cFY27\u202fSegments and Investor Metrics\u201d presentation materials posted to its Investor Relations website was furnished as Exhibit\u202f99.1 to the report\u30103\u3011.",
+    "generated_answer": "The filing states that a copy of the presentation materials was furnished as Exhibit\u202f99.1 to the report\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
-        3
+        1
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -1116,34 +1120,34 @@
     },
     "retrieved_context": [
       {
+        "chunk_id": "MSFT_8-K_2026-09-02::5",
+        "doc_id": "MSFT_8-K_2026-09-02",
+        "section": "Full Document",
+        "score": 0.03225806451612903
+      },
+      {
         "chunk_id": "WMT_8-K_2026-08-20::6",
         "doc_id": "WMT_8-K_2026-08-20",
         "section": "Full Document",
-        "score": 0.030886196246139225
+        "score": 0.03047794966520434
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::306",
+        "chunk_id": "MSFT_10-K_2026-07-29::328",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 15 PART IV",
-        "score": 0.030303030303030304
+        "score": 0.03007688828584351
       },
       {
-        "chunk_id": "MSFT_8-K_2026-09-02::4",
-        "doc_id": "MSFT_8-K_2026-09-02",
+        "chunk_id": "JNJ_8-K_2026-08-04::8",
+        "doc_id": "JNJ_8-K_2026-08-04",
         "section": "Full Document",
-        "score": 0.02964254577157803
+        "score": 0.028594771241830064
       },
       {
-        "chunk_id": "MSFT_10-K_2026-07-29::315",
+        "chunk_id": "MSFT_10-K_2026-07-29::338",
         "doc_id": "MSFT_10-K_2026-07-29",
         "section": "Item 15 PART IV",
-        "score": 0.0288981288981289
-      },
-      {
-        "chunk_id": "MSFT_10-K_2026-07-29::312",
-        "doc_id": "MSFT_10-K_2026-07-29",
-        "section": "Item 15 PART IV",
-        "score": 0.028782894736842105
+        "score": 0.028484848484848488
       }
     ]
   },
@@ -1154,7 +1158,7 @@
     "gold_doc_id": "TSLA_8-K_2026-07-22",
     "gold_section": "Full Document",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Tesla\u2019s July\u202f22,\u202f2026 filing reports under Item\u202f2.02 \u2013 Results of Operations and Financial Condition\u30102\u3011.",
+    "generated_answer": "Tesla\u2019s July\u202f22,\u202f2026 filing is made under Item\u202f2.02 \u2013 Results of Operations and Financial Condition\u30102\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -1175,25 +1179,25 @@
         "chunk_id": "TSLA_8-K_2026-07-22::6",
         "doc_id": "TSLA_8-K_2026-07-22",
         "section": "Full Document",
-        "score": 0.030017921146953404
-      },
-      {
-        "chunk_id": "TSLA_10-K_2026-01-29::320",
-        "doc_id": "TSLA_10-K_2026-01-29",
-        "section": "ITEM 15. EXHIBITS AND FINANCIAL STATEMENT SCHEDULES",
-        "score": 0.02803921568627451
-      },
-      {
-        "chunk_id": "TSLA_8-K_2026-07-22::7",
-        "doc_id": "TSLA_8-K_2026-07-22",
-        "section": "Full Document",
-        "score": 0.02581612258494337
+        "score": 0.02886002886002886
       },
       {
         "chunk_id": "TSLA_8-K_2026-07-22::10",
         "doc_id": "TSLA_8-K_2026-07-22",
         "section": "Full Document",
         "score": 0.01639344262295082
+      },
+      {
+        "chunk_id": "WMT_8-K_2026-08-20::5",
+        "doc_id": "WMT_8-K_2026-08-20",
+        "section": "Full Document",
+        "score": 0.016129032258064516
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::231",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
+        "score": 0.015873015873015872
       }
     ]
   },
@@ -1204,12 +1208,12 @@
     "gold_doc_id": "TSLA_tsla-2025x12x31xex109",
     "gold_section": "Front Matter",
     "retrieval_hit_at_k": true,
-    "generated_answer": "The option may be exercised for twelve (12) months after the participant\u2019s termination as a Service Provider when the termination is due to death or disability\u30101\u2020L4-L7\u3011\u30103\u2020L9-L12\u3011",
+    "generated_answer": "The option may be exercised for twelve (12) months after the participant\u2019s termination due to death or disability\u30101\u2020L1-L4\u3011\u30102\u2020L9-L12\u3011",
     "provider": "groq",
     "faithfulness": {
       "citations": [
         1,
-        3
+        2
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -1217,16 +1221,10 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "TSLA_tm2530590d1_ex10-1::19",
+        "chunk_id": "TSLA_tm2530590d1_ex10-1::21",
         "doc_id": "TSLA_tm2530590d1_ex10-1",
         "section": "Full Document",
         "score": 0.03252247488101534
-      },
-      {
-        "chunk_id": "TSLA_tm2530590d1_ex10-1::18",
-        "doc_id": "TSLA_tm2530590d1_ex10-1",
-        "section": "Full Document",
-        "score": 0.03200204813108039
       },
       {
         "chunk_id": "TSLA_tsla-2025x12x31xex109::0",
@@ -1235,10 +1233,16 @@
         "score": 0.03177805800756621
       },
       {
-        "chunk_id": "TSLA_tm2530590d1_ex10-2::25",
+        "chunk_id": "TSLA_tm2530590d1_ex10-1::20",
+        "doc_id": "TSLA_tm2530590d1_ex10-1",
+        "section": "Full Document",
+        "score": 0.03149801587301587
+      },
+      {
+        "chunk_id": "TSLA_tm2530590d1_ex10-2::27",
         "doc_id": "TSLA_tm2530590d1_ex10-2",
         "section": "B. Termination Without Cause, Disability or Death",
-        "score": 0.030798389007344232
+        "score": 0.03128054740957967
       },
       {
         "chunk_id": "TSLA_tsla-2025x12x31xex109::1",
@@ -1255,12 +1259,11 @@
     "gold_doc_id": "TSLA_tsla-2025x12x31xex1010",
     "gold_section": "Front Matter",
     "retrieval_hit_at_k": true,
-    "generated_answer": "The Restricted Stock Unit Agreement is governed by Tesla\u2019s **Amended and Restated 2019 Equity Incentive Plan**.\u202fUnless a term is specifically defined in the RSU Agreement, its meaning is taken from the Plan \u2013 the same definitions apply in the RSU Agreement as in the Plan\u202f[1].\u202fIf any conflict arises between the two documents, the Plan\u2019s terms prevail\u202f[5].",
+    "generated_answer": "The Restricted Stock Unit Agreement is governed by Tesla\u2019s **Amended and Restated 2019 Equity Incentive Plan**.\u202fThe agreement states that, unless a term is specifically defined in the RSU Agreement itself, the definition from the Plan applies to that term\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
-        1,
-        5
+        1
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -1274,22 +1277,22 @@
         "score": 0.03278688524590164
       },
       {
+        "chunk_id": "TSLA_tm2530590d1_ex10-1::24",
+        "doc_id": "TSLA_tm2530590d1_ex10-1",
+        "section": "Full Document",
+        "score": 0.03149801587301587
+      },
+      {
         "chunk_id": "TSLA_tm2530590d1_ex10-2::4",
         "doc_id": "TSLA_tm2530590d1_ex10-2",
         "section": "2025 CEO PERFORMANCE-BASED",
-        "score": 0.031746031746031744
-      },
-      {
-        "chunk_id": "TSLA_tm2530590d1_ex10-1::21",
-        "doc_id": "TSLA_tm2530590d1_ex10-1",
-        "section": "Full Document",
-        "score": 0.028169014084507043
+        "score": 0.03149801587301587
       },
       {
         "chunk_id": "TSLA_tsla-2025x12x31xex109::0",
         "doc_id": "TSLA_tsla-2025x12x31xex109",
         "section": "Front Matter",
-        "score": 0.027443609022556388
+        "score": 0.02715098147128967
       },
       {
         "chunk_id": "TSLA_tsla-2025x12x31xex1010::4",
@@ -1334,16 +1337,16 @@
         "score": 0.02946236559139785
       },
       {
-        "chunk_id": "MSFT_msft-ex19_1::2",
-        "doc_id": "MSFT_msft-ex19_1",
-        "section": "2. SUMMARY",
-        "score": 0.028814262023217248
-      },
-      {
         "chunk_id": "MSFT_msft-ex19_3::5",
         "doc_id": "MSFT_msft-ex19_3",
         "section": "D. Prohibition on Pledging",
         "score": 0.028309409888357256
+      },
+      {
+        "chunk_id": "MSFT_msft-ex19_3::6",
+        "doc_id": "MSFT_msft-ex19_3",
+        "section": "2. Trading Window and Blackout Periods",
+        "score": 0.027205882352941177
       }
     ]
   },
@@ -1354,13 +1357,12 @@
     "gold_doc_id": "MSFT_msft-ex19_1",
     "gold_section": "2. SUMMARY",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Microsoft\u2019s policy treats shares owned by an insider\u2019s immediate family members\u2014those who live with the insider or use the insider\u2019s address\u2014as \u201cbeneficially owned.\u201d\u202fThe family relationships listed include the\u202fspouse,\u202fdomestic partner,\u202fminor children,\u202fcollege\u2011age children,\u202fparents,\u202fgrandparents,\u202fgrandchildren,\u202fsiblings\u202fand\u202fin\u2011laws\u30101\u3011\u30102\u3011\u30103\u3011.",
+    "generated_answer": "Microsoft\u2019s policy treats shares owned by an insider\u2019s immediate family members who live with the insider or use the insider\u2019s address as \u201cbeneficially owned.\u201d\u202fThe family relationships listed include\u202fspouse, domestic partner, minor children, college\u2011age children, parents, grandparents, grandchildren, siblings and in\u2011laws\u30101\u2020L1-L4\u3011\u30102\u2020L1-L4\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
         1,
-        2,
-        3
+        2
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -1368,21 +1370,21 @@
     },
     "retrieved_context": [
       {
+        "chunk_id": "MSFT_msft-ex19_1::3",
+        "doc_id": "MSFT_msft-ex19_1",
+        "section": "2. SUMMARY",
+        "score": 0.03252247488101534
+      },
+      {
         "chunk_id": "MSFT_msft-ex19_2::3",
         "doc_id": "MSFT_msft-ex19_2",
         "section": "A. Application of the Policy",
-        "score": 0.03278688524590164
+        "score": 0.03252247488101534
       },
       {
         "chunk_id": "MSFT_msft-ex19_3::17",
         "doc_id": "MSFT_msft-ex19_3",
         "section": "6. Covered Persons",
-        "score": 0.03225806451612903
-      },
-      {
-        "chunk_id": "MSFT_msft-ex19_1::2",
-        "doc_id": "MSFT_msft-ex19_1",
-        "section": "2. SUMMARY",
         "score": 0.031746031746031744
       },
       {
@@ -1392,10 +1394,10 @@
         "score": 0.030776515151515152
       },
       {
-        "chunk_id": "MSFT_msft-ex19_3::7",
-        "doc_id": "MSFT_msft-ex19_3",
-        "section": "A. Potential Section 16(b) Liability",
-        "score": 0.02900988017658188
+        "chunk_id": "MSFT_msft-ex19_1::2",
+        "doc_id": "MSFT_msft-ex19_1",
+        "section": "2. SUMMARY",
+        "score": 0.02964426877470356
       }
     ]
   },
@@ -1406,7 +1408,7 @@
     "gold_doc_id": "MSFT_msft-ex97_1",
     "gold_section": "Front Matter",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Microsoft\u2019s Executive Compensation Recovery Policy applies to the company\u2019s \u201cCovered Officers\u201d \u2013 the executives designated as Covered Officers under the policy\u202f[1].",
+    "generated_answer": "Microsoft\u2019s Executive Compensation Recovery Policy applies to the company\u2019s \u201cCovered Officers\u201d \u2013 the officers who are designated as covered under the policy and who receive incentive compensation during the applicable period\u202f[1].",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -1427,25 +1429,25 @@
         "chunk_id": "MSFT_msft-ex97_1::1",
         "doc_id": "MSFT_msft-ex97_1",
         "section": "2. Legal and Compliance Violations",
-        "score": 0.03125763125763126
-      },
-      {
-        "chunk_id": "MSFT_10-K_2026-07-29::325",
-        "doc_id": "MSFT_10-K_2026-07-29",
-        "section": "Item 15 PART IV",
-        "score": 0.030621785881252923
+        "score": 0.031054405392392875
       },
       {
         "chunk_id": "AAPL_a10-kexhibit97109282024::1",
         "doc_id": "AAPL_a10-kexhibit97109282024",
         "section": "A. Introduction",
-        "score": 0.03047794966520434
+        "score": 0.03028233151183971
       },
       {
-        "chunk_id": "AAPL_a10-kexhibit97109282024::5",
-        "doc_id": "AAPL_a10-kexhibit97109282024",
-        "section": "D. Section 10D-1 Recovery",
-        "score": 0.029437229437229435
+        "chunk_id": "MSFT_msft-ex97_1::7",
+        "doc_id": "MSFT_msft-ex97_1",
+        "section": "9. Effectiveness",
+        "score": 0.029411764705882353
+      },
+      {
+        "chunk_id": "NVDA_compensationrecoverypolicy::2",
+        "doc_id": "NVDA_compensationrecoverypolicy",
+        "section": "Full Document",
+        "score": 0.029206349206349208
       }
     ]
   },
@@ -1456,11 +1458,12 @@
     "gold_doc_id": "NIST_SP-800-61r2",
     "gold_section": "3. Handling an Incident",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Detecting security breaches remains essential because, even after controls are put in place, some residual risk inevitably remains; detection is needed to alert the organization whenever an incident occurs despite those controls\u202f[1].",
+    "generated_answer": "Detecting security breaches remains necessary because controls cannot eliminate all risk\u2014residual risk persists after controls are applied, so detection is needed to alert the organization whenever an incident occurs and to enable a response\u202f[2].\u202fAdditionally, preventive activities can reduce but not prevent every incident, making detection essential for handling those that do occur\u202f[1].",
     "provider": "groq",
     "faithfulness": {
       "citations": [
-        1
+        1,
+        2
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -1468,34 +1471,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "NIST_SP-800-61r2::47",
+        "chunk_id": "NIST_SP-800-61r2::10",
         "doc_id": "NIST_SP-800-61r2",
-        "section": "3. Handling an Incident",
-        "score": 0.03047794966520434
+        "section": "100 Bureau Drive (Mail Stop 8930), Gaithersburg, MD 20899-8930",
+        "score": 0.03131881575727918
       },
       {
-        "chunk_id": "NIST_SP-800-61r2::13",
+        "chunk_id": "NIST_SP-800-61r2::52",
         "doc_id": "NIST_SP-800-61r2",
-        "section": "1.2 Purpose and Scope",
+        "section": "3. Handling an Incident",
         "score": 0.03028233151183971
       },
       {
-        "chunk_id": "NIST_SP-800-61r2::18",
+        "chunk_id": "NIST_SP-800-61r2::16",
+        "doc_id": "NIST_SP-800-61r2",
+        "section": "1.2 Purpose and Scope",
+        "score": 0.029957522915269395
+      },
+      {
+        "chunk_id": "NIST_SP-800-61r2::21",
         "doc_id": "NIST_SP-800-61r2",
         "section": "2.2 Need for Incident Response",
-        "score": 0.028958333333333336
+        "score": 0.028782894736842105
       },
       {
-        "chunk_id": "NIST_SP-800-128::136",
-        "doc_id": "NIST_SP-800-128",
-        "section": "3.3.3 CONDUCT SECURITY IMPACT ANALYSIS",
-        "score": 0.02813852813852814
-      },
-      {
-        "chunk_id": "NIST_SP-800-61r2::133",
+        "chunk_id": "NIST_SP-800-61r2::14",
         "doc_id": "NIST_SP-800-61r2",
-        "section": "4.4 Recommendations",
-        "score": 0.026334026334026334
+        "section": "100 Bureau Drive (Mail Stop 8930), Gaithersburg, MD 20899-8930",
+        "score": 0.028371628371628373
       }
     ]
   },
@@ -1519,31 +1522,31 @@
         "chunk_id": "NIST_CSF-2.0::0",
         "doc_id": "NIST_CSF-2.0",
         "section": "Front Matter",
-        "score": 0.03128054740957967
+        "score": 0.03200204813108039
       },
       {
         "chunk_id": "NIST_CSF-2.0::1",
         "doc_id": "NIST_CSF-2.0",
         "section": "Front Matter",
-        "score": 0.03125763125763126
+        "score": 0.031024531024531024
       },
       {
-        "chunk_id": "NIST_SP-800-37r2::240",
+        "chunk_id": "NIST_SP-800-37r2::272",
         "doc_id": "NIST_SP-800-37r2",
         "section": "3.7 MONITOR",
-        "score": 0.03125
-      },
-      {
-        "chunk_id": "NIST_SP-800-37r2::241",
-        "doc_id": "NIST_SP-800-37r2",
-        "section": "3.7 MONITOR",
-        "score": 0.029631255487269532
+        "score": 0.030776515151515152
       },
       {
         "chunk_id": "NIST_CSWP-04162018::5",
         "doc_id": "NIST_CSWP-04162018",
         "section": "Front Matter",
-        "score": 0.029437229437229435
+        "score": 0.03076923076923077
+      },
+      {
+        "chunk_id": "NIST_CSWP-04162018::4",
+        "doc_id": "NIST_CSWP-04162018",
+        "section": "Front Matter",
+        "score": 0.029211087420042643
       }
     ]
   },
@@ -1575,12 +1578,12 @@
         "chunk_id": "EMAIL_blair-l_inbox_262::0",
         "doc_id": "EMAIL_blair-l_inbox_262",
         "section": "Full Document",
-        "score": 0.030090497737556562
+        "score": 0.030309988518943745
       },
       {
-        "chunk_id": "NVDA_10-K_2026-02-25::104",
-        "doc_id": "NVDA_10-K_2026-02-25",
-        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "chunk_id": "GOOGL_d36818dex101::6",
+        "doc_id": "GOOGL_d36818dex101",
+        "section": "1600 Amphitheatre Parkway",
         "score": 0.016129032258064516
       },
       {
@@ -1590,9 +1593,9 @@
         "score": 0.016129032258064516
       },
       {
-        "chunk_id": "TSLA_10-K_2026-01-29::57",
+        "chunk_id": "TSLA_10-K_2026-01-29::13",
         "doc_id": "TSLA_10-K_2026-01-29",
-        "section": "ITEM 1A. RISK FACTORS",
+        "section": "ITEM 1. BUSINESS",
         "score": 0.015873015873015872
       }
     ]
@@ -1604,7 +1607,7 @@
     "gold_doc_id": "EMAIL_bass-e_sent_881",
     "gold_section": "Full Document",
     "retrieval_hit_at_k": true,
-    "generated_answer": "The request listed the following meter numbers:\u202f#1008,\u202f#1007,\u202f#1358,\u202f#1009, and\u202f#1175, and asked for historical flow information going back\u202f2\u202fyears\u30101\u3011.",
+    "generated_answer": "The request listed meters\u202f#1008,\u202f#1007,\u202f#1358,\u202f#1009 and\u202f#1175, and asked for historical flow data going back two\u202fyears\u30101\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -1622,25 +1625,25 @@
         "score": 0.03278688524590164
       },
       {
-        "chunk_id": "NIST_SP-800-61r2::68",
+        "chunk_id": "NIST_SP-800-61r2::74",
         "doc_id": "NIST_SP-800-61r2",
         "section": "3.2.4 Incident Analysis",
         "score": 0.029211087420042643
       },
       {
-        "chunk_id": "NIST_SP-800-128::188",
+        "chunk_id": "NIST_SP-800-128::215",
         "doc_id": "NIST_SP-800-128",
         "section": "2.2.5 Schedules and Resource Requirements",
         "score": 0.016129032258064516
       },
       {
-        "chunk_id": "NIST_SP-800-66r2::104",
-        "doc_id": "NIST_SP-800-66r2",
-        "section": "5.1. Administrative Safeguards",
+        "chunk_id": "GOOGL_10-K_2026-02-05::91",
+        "doc_id": "GOOGL_10-K_2026-02-05",
+        "section": "ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
         "score": 0.016129032258064516
       },
       {
-        "chunk_id": "NIST_SP-800-128::189",
+        "chunk_id": "NIST_SP-800-128::216",
         "doc_id": "NIST_SP-800-128",
         "section": "2.4 SecCM RETENTION, ARCHIVING, STORAGE AND DISPOSAL",
         "score": 0.015873015873015872
@@ -1654,7 +1657,7 @@
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 9. Changes in and Disagreements with Accountants on Accounting and Financial Disclosure",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Apple reports that there were no changes in or disagreements with its accountants on accounting and financial disclosure\u202f[3].",
+    "generated_answer": "Apple reports no changes in or disagreements with its accountants on accounting and financial disclosure\u202f[3].",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -1666,33 +1669,33 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::150",
+        "chunk_id": "AAPL_10-K_2025-10-31::167",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 8. Financial Statements and Supplementary Data",
-        "score": 0.028814262023217248
+        "score": 0.029571646010002173
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::153",
+        "chunk_id": "AAPL_10-K_2025-10-31::163",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 8. Financial Statements and Supplementary Data",
-        "score": 0.028612012987012988
+        "score": 0.029083245521601686
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::156",
+        "chunk_id": "AAPL_10-K_2025-10-31::171",
         "doc_id": "AAPL_10-K_2025-10-31",
         "section": "Item 9. Changes in and Disagreements with Accountants on Accounting and Financial Disclosure",
         "score": 0.01639344262295082
       },
       {
-        "chunk_id": "AMZN_10-K_2026-02-06::225",
+        "chunk_id": "AMZN_10-K_2026-02-06::251",
         "doc_id": "AMZN_10-K_2026-02-06",
         "section": "Item 9A. Controls and Procedures",
         "score": 0.01639344262295082
       },
       {
-        "chunk_id": "AAPL_10-K_2025-10-31::159",
-        "doc_id": "AAPL_10-K_2025-10-31",
-        "section": "Item 9A. Controls and Procedures",
+        "chunk_id": "META_10-K_2026-01-29::399",
+        "doc_id": "META_10-K_2026-01-29",
+        "section": "Item 9. Changes in and Disagreements with Accountants on Accounting and Financial Disclosure",
         "score": 0.016129032258064516
       }
     ]
@@ -1704,15 +1707,13 @@
     "gold_doc_id": "NIST_CSF-2.0",
     "gold_section": "3. Introduction to CSF Profiles and Tiers",
     "retrieval_hit_at_k": false,
-    "generated_answer": "Section\u202f3 of the NIST Cybersecurity Framework\u202f2.0 defines how the Framework is used to\u202fcommunicate cybersecurity requirements with stakeholders\u202fand to guide\u202fbuying decisions\u202f\u2014\u202fparticularly for managing cyber\u2011supply\u2011chain risk\u30103\u3011.",
+    "generated_answer": "I cannot answer this from the provided documents.",
     "provider": "groq",
     "faithfulness": {
-      "citations": [
-        3
-      ],
-      "has_citation": true,
-      "refused_unsupported": false,
-      "faithfulness_flag": "cited"
+      "citations": [],
+      "has_citation": false,
+      "refused_unsupported": true,
+      "faithfulness_flag": "refused"
     },
     "retrieved_context": [
       {
@@ -1722,28 +1723,28 @@
         "score": 0.03252247488101534
       },
       {
-        "chunk_id": "NIST_CSF-2.0::1",
-        "doc_id": "NIST_CSF-2.0",
-        "section": "Front Matter",
-        "score": 0.031024531024531024
-      },
-      {
         "chunk_id": "NIST_CSWP-04162018::1",
         "doc_id": "NIST_CSWP-04162018",
         "section": "Front Matter",
-        "score": 0.029709507042253523
+        "score": 0.03007688828584351
       },
       {
-        "chunk_id": "NIST_CSWP-04162018::2",
+        "chunk_id": "NIST_CSWP-04162018::5",
         "doc_id": "NIST_CSWP-04162018",
         "section": "Front Matter",
-        "score": 0.029631255487269532
+        "score": 0.029957522915269395
       },
       {
-        "chunk_id": "NIST_SP-800-37r2::240",
+        "chunk_id": "NIST_SP-800-37r2::272",
         "doc_id": "NIST_SP-800-37r2",
         "section": "3.7 MONITOR",
-        "score": 0.02886002886002886
+        "score": 0.02928692699490662
+      },
+      {
+        "chunk_id": "NIST_CSF-2.0::4",
+        "doc_id": "NIST_CSF-2.0",
+        "section": "1. Cybersecurity Framework (CSF) Overview",
+        "score": 0.028958333333333336
       }
     ]
   },
@@ -1754,7 +1755,7 @@
     "gold_doc_id": "AAPL_a10-kexhibit10199282024",
     "gold_section": "1. General",
     "retrieval_hit_at_k": true,
-    "generated_answer": "The General clause states that the Terms and Conditions apply to a particular restricted stock unit award (the \u201cAward\u201d) granted by Apple\u202fInc.\u202f[2][3]",
+    "generated_answer": "The General clause says that the Terms and Conditions of Restricted Stock Unit Award apply to a particular restricted stock unit award (the \u201cAward\u201d) granted by Apple\u202fInc.\u202f[2][3]",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -1805,7 +1806,266 @@
     "gold_doc_id": "META_10-K_2026-01-29",
     "gold_section": "Item 1C. Cybersecurity",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Meta manages cybersecurity risk through a formal information\u2011security program that includes policies, controls and a risk\u2011management framework grounded in applicable laws, regulations, industry standards and recognized practices.  The company continuously evaluates threat intelligence, first\u2011 and third\u2011party vulnerabilities, regulatory developments and observed incidents, and it regularly conducts risk assessments to gauge the maturity and effectiveness of its systems and to identify remediation opportunities\u30102\u3011.  Dedicated cybersecurity teams monitor prevention, detection, mitigation and remediation of incidents, report to the chief information security officer, and the CISO updates the Audit &\u202fPrivacy Committee on the program, risks, incidents and mitigation strategies\u30104\u3011.  \n\nMeta acknowledges that it experiences cybersecurity incidents of varying degrees, but notes that in 2025 it did not identify any threats that have materially affected\u2014or are reasonably likely to materially affect\u2014its business strategy, results of operations or financial condition, while also stating it cannot eliminate all risks or guarantee that no undetected incidents have occurred\u30104\u3011.",
+    "generated_answer": "Meta manages cybersecurity risk through a comprehensive information\u2011security program that includes policies and controls designed to mitigate threats\u202f[1].  It applies a risk\u2011management framework that is grounded in applicable laws and regulations and informed by industry standards and recognized practices\u202f[1][3].  To identify and assess risks, Meta evaluates threat\u2011intelligence feeds, first\u2011 and third\u2011party vulnerabilities, evolving regulatory requirements and observed cybersecurity incidents\u202f[3], and it conducts regular risk\u2011assessment reviews of the maturity and effectiveness of its systems and processes\u202f[3].  The company also engages third\u2011party security experts and consultants for assessments and benchmarking, runs a Bug Bounty program that invites independent researchers to report vulnerabilities, and maintains a separate privacy\u2011risk program that is reviewed by an independent third\u2011party assessor\u202f[3].  An internal audit function provides independent assurance on the overall cybersecurity and privacy programs\u202f[3].  The Chief Information Security Officer (CISO) sits on senior management and regularly reports the cybersecurity program, risks, incidents and mitigation strategies to the Audit &\u202fPrivacy Committee\u202f[5].  \n\nMeta acknowledges that it \u201cregularly experience[s] cybersecurity incidents of varying degrees\u201d\u202f[1] but states that, in 2025, it did not identify any threats that have materially affected\u2014or are reasonably likely to materially affect\u2014its business strategy, results of operations, or financial condition\u202f[5].  Nonetheless, the company notes it cannot eliminate all risks or guarantee that no undetected incidents have occurred\u202f[5].",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1,
+        3,
+        5
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "META_10-K_2026-01-29::143",
+        "doc_id": "META_10-K_2026-01-29",
+        "section": "Item 1C. Cybersecurity",
+        "score": 0.01639344262295082
+      },
+      {
+        "chunk_id": "META_meta-12312024x10kexhibit191::2",
+        "doc_id": "META_meta-12312024x10kexhibit191",
+        "section": "I. Background and Purpose",
+        "score": 0.01639344262295082
+      },
+      {
+        "chunk_id": "META_10-K_2026-01-29::144",
+        "doc_id": "META_10-K_2026-01-29",
+        "section": "Item 1C. Cybersecurity",
+        "score": 0.016129032258064516
+      },
+      {
+        "chunk_id": "META_10-K_2026-01-29::0",
+        "doc_id": "META_10-K_2026-01-29",
+        "section": "Item 1. Business",
+        "score": 0.016129032258064516
+      },
+      {
+        "chunk_id": "META_10-K_2026-01-29::147",
+        "doc_id": "META_10-K_2026-01-29",
+        "section": "Item 1C. Cybersecurity",
+        "score": 0.015873015873015872
+      }
+    ]
+  },
+  {
+    "id": "k5b",
+    "query": "What facilities does Amazon operate and how much leased and owned square footage do they cover?",
+    "reference_answer": "As of December 31, 2025 Amazon operated office space, physical stores, and fulfilment/data-centre facilities across North America and internationally, reported as leased and owned square footage in thousands.",
+    "gold_doc_id": "AMZN_10-K_2026-02-06",
+    "gold_section": "Item 2. Properties",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Amazon\u2019s facilities include office space, physical stores, fulfillment centers, data\u2011center sites and other locations in both North America and International markets.  \n\n**By facility type (Amazon 10\u2011K, Item\u202f2 \u2013 Properties)**  \n- Office space: 31,028\u202fsq\u202fft leased and 9,160\u202fsq\u202fft owned in North America; 26,495\u202fsq\u202fft leased and 1,802\u202fsq\u202fft owned internationally.  \n- Physical stores: 23,932\u202fsq\u202fft leased and 706\u202fsq\u202fft owned in North America; 148\u202fsq\u202fft leased internationally.  \n- Fulfillment, data\u2011centers and other: 474,128\u202fsq\u202fft leased and 45,803\u202fsq\u202fft owned in North America; 185,814\u202fsq\u202fft leased and 20,660\u202fsq\u202fft owned internationally.  \n- **Total**: 741,545\u202fsq\u202fft leased and 78,131\u202fsq\u202fft owned across all locations\u30101\u3011.  \n\n**By operating segment (Amazon 10\u2011K, Item\u202f2 \u2013 Properties)**  \n- North America: 481,153\u202fsq\u202fft leased, 25,437\u202fsq\u202fft owned.  \n- International: 174,499\u202fsq\u202fft leased, 13,263\u202fsq\u202fft owned.  \n- AWS: 28,370\u202fsq\u202fft leased, 28,469\u202fsq\u202fft owned.  \n- **Overall segment total**: 684,022\u202fsq\u202fft leased and 67,169\u202fsq\u202fft owned\u30102\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1,
+        2
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AMZN_10-K_2026-02-06::52",
+        "doc_id": "AMZN_10-K_2026-02-06",
+        "section": "Item 2. Properties",
+        "score": 0.03278688524590164
+      },
+      {
+        "chunk_id": "AMZN_10-K_2026-02-06::54",
+        "doc_id": "AMZN_10-K_2026-02-06",
+        "section": "Item 2. Properties",
+        "score": 0.03200204813108039
+      },
+      {
+        "chunk_id": "NVDA_10-K_2026-02-25::109",
+        "doc_id": "NVDA_10-K_2026-02-25",
+        "section": "Item 2. Properties",
+        "score": 0.029437229437229435
+      },
+      {
+        "chunk_id": "META_10-K_2026-01-29::148",
+        "doc_id": "META_10-K_2026-01-29",
+        "section": "Item 2. Properties",
+        "score": 0.029273504273504274
+      },
+      {
+        "chunk_id": "TSLA_10-K_2026-01-29::84",
+        "doc_id": "TSLA_10-K_2026-01-29",
+        "section": "ITEM 2. PROPERTIES",
+        "score": 0.02919863597612958
+      }
+    ]
+  },
+  {
+    "id": "k5c",
+    "query": "How does the NIST Cybersecurity Framework help integrate cybersecurity with an organisation's other risk management programs?",
+    "reference_answer": "Organisations face many types of ICT risk (privacy, supply chain, AI) and may integrate them at a high level; the CSF helps translate cybersecurity terminology and gives executives input to integrate governance and risk strategies.",
+    "gold_doc_id": "NIST_CSF-2.0",
+    "gold_section": "5.2. Improving Integration with Other Risk Management Programs",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "The NIST Cybersecurity Framework (CSF) supplies a common taxonomy and language that lets organizations translate cybersecurity\u2011risk concepts into the broader risk\u2011management terminology that executives and enterprise\u2011risk managers use, making it easier to align governance and risk strategies across the enterprise\u30101\u3011.  It also bundles a set of NIST resources\u2014such as the CSF\u202f2.0\u202fEnterprise Risk Management Quick\u2011Start Guide and the IR\u202f8286 series (Integrating Cybersecurity and Enterprise Risk Management, Identifying and Estimating Cybersecurity Risk, Prioritizing Cybersecurity Risk, Staging Cybersecurity Risks, and Using Business Impact Analysis)\u2014that explicitly describe how cybersecurity risk management can be woven into an organization\u2019s ERM portfolio\u30101\u3011.  In addition, the CSF can be linked with existing ICT\u2011risk programs and NIST risk\u2011management frameworks (e.g., SP\u202f800\u201137 RMF and SP\u202f800\u201130 risk\u2011assessment guide), allowing cybersecurity activities to be coordinated with other risk\u2011management processes and to inform prioritization of investments and responses\u30101\u3011.  By doing so, the CSF helps executives receive integrated risk inputs, supports the integration of cybersecurity with enterprise\u2011wide risk\u2011management programs, and enables organizations to use their current risk processes while identifying opportunities to strengthen overall risk governance\u30105\u3011.",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1,
+        5
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "NIST_CSF-2.0::24",
+        "doc_id": "NIST_CSF-2.0",
+        "section": "5.2. Improving Integration with Other Risk Management Programs",
+        "score": 0.03252247488101534
+      },
+      {
+        "chunk_id": "NIST_CSF-2.0::0",
+        "doc_id": "NIST_CSF-2.0",
+        "section": "Front Matter",
+        "score": 0.030017921146953404
+      },
+      {
+        "chunk_id": "NIST_CSWP-04162018::15",
+        "doc_id": "NIST_CSWP-04162018",
+        "section": "1.0 Framework Introduction",
+        "score": 0.029418126757516764
+      },
+      {
+        "chunk_id": "NIST_CSWP-04162018::19",
+        "doc_id": "NIST_CSWP-04162018",
+        "section": "1.2 Risk Management and the Cybersecurity Framework",
+        "score": 0.029236022193768675
+      },
+      {
+        "chunk_id": "NIST_CSWP-04162018::16",
+        "doc_id": "NIST_CSWP-04162018",
+        "section": "1.0 Framework Introduction",
+        "score": 0.029051670471052088
+      }
+    ]
+  },
+  {
+    "id": "k10a",
+    "query": "What does Amazon offer its customers, and what is included in the Amazon Prime membership?",
+    "reference_answer": "Amazon seeks to offer low prices, fast and free delivery, easy-to-use functionality and timely customer service, plus subscription services such as Amazon Prime, which includes fast free shipping.",
+    "gold_doc_id": "AMZN_10-K_2026-02-06",
+    "gold_section": "Item 1. Business",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Amazon provides customers with a broad set of offerings that include\u202fonline and physical retail stores, a wide selection of consumer products, its own electronic devices (e.g., Kindle, Echo, Fire TV), streaming and other media content, and a range of services such as third\u2011party seller programs, advertising, and cloud computing through AWS.  It emphasizes low prices, fast and free delivery, easy\u2011to\u2011use functionality, and timely customer service\u202f[3].\n\nThe Amazon\u202fPrime\u202fmembership is a subscription that gives members\u202ffast, free shipping on tens of millions of items\u202fand access to a suite of digital content, including\u202faward\u2011winning movies and series, live sports, digital video, audiobooks, digital music, e\u2011books, and other non\u2011AWS subscription services\u202f[4][1].",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1,
+        3,
+        4
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "AMZN_10-K_2026-02-06::130",
+        "doc_id": "AMZN_10-K_2026-02-06",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "score": 0.0315136476426799
+      },
+      {
+        "chunk_id": "AMZN_10-K_2026-02-06::83",
+        "doc_id": "AMZN_10-K_2026-02-06",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "score": 0.03131881575727918
+      },
+      {
+        "chunk_id": "AMZN_10-K_2026-02-06::1",
+        "doc_id": "AMZN_10-K_2026-02-06",
+        "section": "Item 1. Business",
+        "score": 0.030886196246139225
+      },
+      {
+        "chunk_id": "AMZN_10-K_2026-02-06::131",
+        "doc_id": "AMZN_10-K_2026-02-06",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "score": 0.029827662395050816
+      },
+      {
+        "chunk_id": "AMZN_10-K_2026-02-06::239",
+        "doc_id": "AMZN_10-K_2026-02-06",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "score": 0.029206349206349208
+      }
+    ]
+  },
+  {
+    "id": "k10b",
+    "query": "How should organisations handle sensitive and personally identifiable information when sharing incident data?",
+    "reference_answer": "Information such as PII and CUI requires protection by regulation, law or contract; policies should identify incident data likely to contain PII and describe safeguards for the privacy risks of sharing it.",
+    "gold_doc_id": "NIST_SP-800-150",
+    "gold_section": "3.4.1 Information Sensitivity and Privacy",
+    "retrieval_hit_at_k": false,
+    "generated_answer": "Organizations should protect any sensitive or personally identifiable information (PII) before sharing incident data by\u202f\n\n*\u202fImplementing security\u2011 and privacy\u2011focused controls and handling procedures that prevent unauthorized disclosure or modification of CUI and PII\u202f[1].  \n*\u202fReviewing and sanitizing the data \u2013 scrubbing or redacting sensitive elements while preserving technical indicators \u2013 so that only the necessary information is shared\u202f[2][3].  \n*\u202fDesignating who is allowed to see each piece of incident information and enforcing those designations throughout the sharing process\u202f[3].  \n*\u202fIncluding in their procedures a plan for addressing any leakage of sensitive data and preserving the provenance of the information (who provided it, how it was collected, transformed, or processed)\u202f[2].  \n*\u202fBalancing the benefits of sharing with the drawbacks of exposing sensitive data, sharing only the information needed with the appropriate parties and avoiding disclosure of details that could create security or liability risks\u202f[4].",
+    "provider": "groq",
+    "faithfulness": {
+      "citations": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "has_citation": true,
+      "refused_unsupported": false,
+      "faithfulness_flag": "cited"
+    },
+    "retrieved_context": [
+      {
+        "chunk_id": "NIST_SP-800-150::9",
+        "doc_id": "NIST_SP-800-150",
+        "section": "100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930",
+        "score": 0.0315136476426799
+      },
+      {
+        "chunk_id": "NIST_SP-800-150::53",
+        "doc_id": "NIST_SP-800-150",
+        "section": "3.4.3 Cyber Threat Information Sharing and Tracking Procedures",
+        "score": 0.03128054740957967
+      },
+      {
+        "chunk_id": "NIST_SP-800-61r2::127",
+        "doc_id": "NIST_SP-800-61r2",
+        "section": "4.2.3 Security Considerations",
+        "score": 0.031009615384615385
+      },
+      {
+        "chunk_id": "NIST_SP-800-61r2::133",
+        "doc_id": "NIST_SP-800-61r2",
+        "section": "4.4 Recommendations",
+        "score": 0.029386529386529386
+      },
+      {
+        "chunk_id": "NIST_SP-800-61r2::145",
+        "doc_id": "NIST_SP-800-61r2",
+        "section": "4.4 Recommendations",
+        "score": 0.027777777777777776
+      }
+    ]
+  },
+  {
+    "id": "k10c",
+    "query": "How many retail units does Walmart operate and what is their square footage?",
+    "reference_answer": "As of January 31, 2026 Walmart reports retail unit counts and square footage for Walmart U.S., Sam's Club U.S. and Walmart International, including 3,566 Supercenters averaging around 179,000 square feet.",
+    "gold_doc_id": "WMT_10-K_2026-03-13",
+    "gold_section": "ITEM 2. PROPERTIES",
+    "retrieval_hit_at_k": true,
+    "generated_answer": "Walmart operates **10,955 retail units** in total, encompassing its U.S. stores, Sam\u2019s Club locations and international outlets\u30104\u2020L9-L12\u3011.  The combined gross square\u2011footage of these units is **1,056,829\u202f(thousand) square feet**, i.e., about **1.057\u202fbillion square feet**\u30102\u2020L2-L4\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
@@ -1818,274 +2078,16 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "WMT_10-K_2026-03-13::3",
+        "chunk_id": "WMT_10-K_2026-03-13::9",
         "doc_id": "WMT_10-K_2026-03-13",
-        "section": "ITEM 1C. CYBERSECURITY",
-        "score": 0.026153846153846153
-      },
-      {
-        "chunk_id": "META_10-K_2026-01-29::120",
-        "doc_id": "META_10-K_2026-01-29",
-        "section": "Item 1C. Cybersecurity",
-        "score": 0.01639344262295082
-      },
-      {
-        "chunk_id": "META_meta-12312024x10kexhibit191::2",
-        "doc_id": "META_meta-12312024x10kexhibit191",
-        "section": "I. Background and Purpose",
-        "score": 0.01639344262295082
-      },
-      {
-        "chunk_id": "META_10-K_2026-01-29::123",
-        "doc_id": "META_10-K_2026-01-29",
-        "section": "Item 1C. Cybersecurity",
-        "score": 0.016129032258064516
-      },
-      {
-        "chunk_id": "NIST_CSF-2.0::4",
-        "doc_id": "NIST_CSF-2.0",
-        "section": "1. Cybersecurity Framework (CSF) Overview",
-        "score": 0.016129032258064516
-      }
-    ]
-  },
-  {
-    "id": "k5b",
-    "query": "What facilities does Amazon operate and how much leased and owned square footage do they cover?",
-    "reference_answer": "As of December 31, 2025 Amazon operated office space, physical stores, and fulfilment/data-centre facilities across North America and internationally, reported as leased and owned square footage in thousands.",
-    "gold_doc_id": "AMZN_10-K_2026-02-06",
-    "gold_section": "Item 2. Properties",
-    "retrieval_hit_at_k": true,
-    "generated_answer": "Amazon\u2019s facilities include office space, physical stores, fulfillment centers, data\u2011center sites and other locations in both North America and International markets\u30101\u3011.  \n\n**Total square footage (all facility types)**  \n- Leased:\u202f741,545\u202fsq\u202fft  \n- Owned:\u202f78,131\u202fsq\u202fft\u30101\u3011  \n\n**By segment**  \n- North America \u2013 leased\u202f481,153\u202fsq\u202fft; owned\u202f25,437\u202fsq\u202fft\u30102\u3011  \n- International \u2013 leased\u202f174,499\u202fsq\u202fft; owned\u202f13,263\u202fsq\u202fft\u30102\u3011  \n- AWS \u2013 leased\u202f28,370\u202fsq\u202fft; owned\u202f28,469\u202fsq\u202fft\u30102\u3011",
-    "provider": "groq",
-    "faithfulness": {
-      "citations": [
-        1,
-        2
-      ],
-      "has_citation": true,
-      "refused_unsupported": false,
-      "faithfulness_flag": "cited"
-    },
-    "retrieved_context": [
-      {
-        "chunk_id": "AMZN_10-K_2026-02-06::45",
-        "doc_id": "AMZN_10-K_2026-02-06",
-        "section": "Item 2. Properties",
+        "section": "ITEM 2. PROPERTIES",
         "score": 0.03252247488101534
       },
       {
-        "chunk_id": "AMZN_10-K_2026-02-06::47",
-        "doc_id": "AMZN_10-K_2026-02-06",
-        "section": "Item 2. Properties",
-        "score": 0.03200204813108039
-      },
-      {
-        "chunk_id": "MSFT_10-K_2026-07-29::75",
-        "doc_id": "MSFT_10-K_2026-07-29",
-        "section": "ITEM 1B. UNRESOLVE",
-        "score": 0.031544957774465976
-      },
-      {
-        "chunk_id": "NVDA_10-K_2026-02-25::94",
-        "doc_id": "NVDA_10-K_2026-02-25",
-        "section": "Item 2. Properties",
-        "score": 0.029236022193768675
-      },
-      {
-        "chunk_id": "META_10-K_2026-01-29::124",
-        "doc_id": "META_10-K_2026-01-29",
-        "section": "Item 2. Properties",
-        "score": 0.029083245521601686
-      }
-    ]
-  },
-  {
-    "id": "k5c",
-    "query": "How does the NIST Cybersecurity Framework help integrate cybersecurity with an organisation's other risk management programs?",
-    "reference_answer": "Organisations face many types of ICT risk (privacy, supply chain, AI) and may integrate them at a high level; the CSF helps translate cybersecurity terminology and gives executives input to integrate governance and risk strategies.",
-    "gold_doc_id": "NIST_CSF-2.0",
-    "gold_section": "5.2. Improving Integration with Other Risk Management Programs",
-    "retrieval_hit_at_k": true,
-    "generated_answer": "The CSF gives organizations a common language that translates cybersecurity\u2011specific terms into the broader risk\u2011management vocabulary that executives and boards use, making it easier to align governance and risk strategies across the enterprise\u202f[1].\u202fIt also bundles a set of \u201cquick\u2011start\u201d and guidance documents (the Enterprise Risk Management Quick\u2011Start Guide, IR\u202f8286 series, SP\u202f800\u2011221 series, etc.) that explicitly describe how cybersecurity risk management fits within an enterprise\u2011wide risk\u2011management program\u202f[1].\u202fBecause the framework can be overlaid on existing NIST risk\u2011management processes\u2014such as the Risk Management Framework (SP\u202f800\u201137) and the NIST risk\u2011assessment guide (SP\u202f800\u201130)\u2014organizations can integrate cybersecurity activities into their overall ICT and enterprise risk portfolios\u202f[1].\u202fFinally, the CSF is intended for risk managers, executives, and other decision\u2011makers, so it can be used to inform and prioritize cybersecurity decisions alongside other risk\u2011management activities\u202f[2].",
-    "provider": "groq",
-    "faithfulness": {
-      "citations": [
-        1,
-        2
-      ],
-      "has_citation": true,
-      "refused_unsupported": false,
-      "faithfulness_flag": "cited"
-    },
-    "retrieved_context": [
-      {
-        "chunk_id": "NIST_CSF-2.0::22",
-        "doc_id": "NIST_CSF-2.0",
-        "section": "5.2. Improving Integration with Other Risk Management Programs",
-        "score": 0.03278688524590164
-      },
-      {
-        "chunk_id": "NIST_CSF-2.0::0",
-        "doc_id": "NIST_CSF-2.0",
-        "section": "Front Matter",
-        "score": 0.03021353930031804
-      },
-      {
-        "chunk_id": "NIST_CSWP-04162018::14",
-        "doc_id": "NIST_CSWP-04162018",
-        "section": "1.0 Framework Introduction",
-        "score": 0.03007688828584351
-      },
-      {
-        "chunk_id": "NIST_CSWP-04162018::18",
-        "doc_id": "NIST_CSWP-04162018",
-        "section": "1.2 Risk Management and the Cybersecurity Framework",
-        "score": 0.02976190476190476
-      },
-      {
-        "chunk_id": "NIST_CSWP-04162018::5",
-        "doc_id": "NIST_CSWP-04162018",
-        "section": "Front Matter",
-        "score": 0.028985507246376812
-      }
-    ]
-  },
-  {
-    "id": "k10a",
-    "query": "What does Amazon offer its customers, and what is included in the Amazon Prime membership?",
-    "reference_answer": "Amazon seeks to offer low prices, fast and free delivery, easy-to-use functionality and timely customer service, plus subscription services such as Amazon Prime, which includes fast free shipping.",
-    "gold_doc_id": "AMZN_10-K_2026-02-06",
-    "gold_section": "Item 1. Business",
-    "retrieval_hit_at_k": true,
-    "generated_answer": "Amazon markets itself as a low\u2011price, fast\u2011delivery, easy\u2011to\u2011use, customer\u2011service\u2011focused retailer that sells consumer products through online and physical stores, offers digital media, devices, and a variety of services such as third\u2011party seller programs and advertising\u202f[2][5].  \n\nThe Amazon\u202fPrime membership is a subscription that gives customers fast, free shipping on tens of millions of items and provides access to a suite of entertainment and content benefits, including award\u2011winning movies and series, live sports, digital video, audiobooks, digital music, e\u2011books and other non\u2011AWS subscription services\u202f[1][2].",
-    "provider": "groq",
-    "faithfulness": {
-      "citations": [
-        1,
-        2,
-        5
-      ],
-      "has_citation": true,
-      "refused_unsupported": false,
-      "faithfulness_flag": "cited"
-    },
-    "retrieved_context": [
-      {
-        "chunk_id": "AMZN_10-K_2026-02-06::114",
-        "doc_id": "AMZN_10-K_2026-02-06",
-        "section": "Item 8. Financial Statements and Supplementary Data",
-        "score": 0.032018442622950824
-      },
-      {
-        "chunk_id": "AMZN_10-K_2026-02-06::1",
-        "doc_id": "AMZN_10-K_2026-02-06",
-        "section": "Item 1. Business",
-        "score": 0.031544957774465976
-      },
-      {
-        "chunk_id": "AMZN_10-K_2026-02-06::71",
-        "doc_id": "AMZN_10-K_2026-02-06",
-        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
-        "score": 0.03055037313432836
-      },
-      {
-        "chunk_id": "AMZN_10-K_2026-02-06::213",
-        "doc_id": "AMZN_10-K_2026-02-06",
-        "section": "Item 8. Financial Statements and Supplementary Data",
-        "score": 0.02964254577157803
-      },
-      {
-        "chunk_id": "AMZN_10-K_2026-02-06::0",
-        "doc_id": "AMZN_10-K_2026-02-06",
-        "section": "Item 1. Business",
-        "score": 0.029437229437229435
-      }
-    ]
-  },
-  {
-    "id": "k10b",
-    "query": "How should organisations handle sensitive and personally identifiable information when sharing incident data?",
-    "reference_answer": "Information such as PII and CUI requires protection by regulation, law or contract; policies should identify incident data likely to contain PII and describe safeguards for the privacy risks of sharing it.",
-    "gold_doc_id": "NIST_SP-800-150",
-    "gold_section": "3.4.1 Information Sensitivity and Privacy",
-    "retrieval_hit_at_k": false,
-    "generated_answer": "Organizations should\u202f\n\n*\u202fIdentify and label any sensitive or personally identifiable information (PII) in incident data and apply appropriate handling designations\u202f[1][3].  \n*\u202fSanitize or scrub that data before it is shared, removing or redacting the sensitive elements while preserving the technical indicators\u202f[2][1].  \n*\u202fRestrict access to the incident data to only those parties who are authorized to see the sensitive portions, using granular sharing controls\u202f[2][5].  \n*\u202fShare only the information that is necessary for the intended audience and purpose, balancing the benefits of sharing with the risk of exposing sensitive details\u202f[4][1].  \n*\u202fImplement secure, automated workflows and standardized formats to transmit the data, ensuring that privacy and security protections are maintained throughout the exchange\u202f[3][4].  \n*\u202fDevelop a plan for handling any accidental leakage of sensitive or PII, including procedures for reporting and remediation\u202f[1][3].",
-    "provider": "groq",
-    "faithfulness": {
-      "citations": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "has_citation": true,
-      "refused_unsupported": false,
-      "faithfulness_flag": "cited"
-    },
-    "retrieved_context": [
-      {
-        "chunk_id": "NIST_SP-800-150::51",
-        "doc_id": "NIST_SP-800-150",
-        "section": "3.4.3 Cyber Threat Information Sharing and Tracking Procedures",
-        "score": 0.03128054740957967
-      },
-      {
-        "chunk_id": "NIST_SP-800-61r2::117",
-        "doc_id": "NIST_SP-800-61r2",
-        "section": "4.2.3 Security Considerations",
-        "score": 0.03125
-      },
-      {
-        "chunk_id": "NIST_SP-800-150::8",
-        "doc_id": "NIST_SP-800-150",
-        "section": "100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930",
-        "score": 0.031099324975891997
-      },
-      {
-        "chunk_id": "NIST_SP-800-61r2::122",
-        "doc_id": "NIST_SP-800-61r2",
-        "section": "4.4 Recommendations",
-        "score": 0.029906956136464335
-      },
-      {
-        "chunk_id": "NIST_SP-800-61r2::104",
-        "doc_id": "NIST_SP-800-61r2",
-        "section": "3.6 Recommendations",
-        "score": 0.02886002886002886
-      }
-    ]
-  },
-  {
-    "id": "k10c",
-    "query": "How many retail units does Walmart operate and what is their square footage?",
-    "reference_answer": "As of January 31, 2026 Walmart reports retail unit counts and square footage for Walmart U.S., Sam's Club U.S. and Walmart International, including 3,566 Supercenters averaging around 179,000 square feet.",
-    "gold_doc_id": "WMT_10-K_2026-03-13",
-    "gold_section": "ITEM 2. PROPERTIES",
-    "retrieval_hit_at_k": true,
-    "generated_answer": "Walmart operates **10,955 retail units** in total, encompassing Walmart\u202fU.S., Sam\u2019s Club\u202fU.S., and Walmart International. The combined retail\u2011unit selling area is **1,056,829\u202f(thousand) square feet**\u30103\u3011. (Break\u2011down: Walmart\u202fU.S. \u2013 4,611 units, 698,708\u202fk\u202fsf; Sam\u2019s\u202fClub\u202fU.S. \u2013 601 units, 80,502\u202fk\u202fsf; Walmart International \u2013 5,743 units, 277,619\u202fk\u202fsf\u30103\u3011).",
-    "provider": "groq",
-    "faithfulness": {
-      "citations": [
-        3
-      ],
-      "has_citation": true,
-      "refused_unsupported": false,
-      "faithfulness_flag": "cited"
-    },
-    "retrieved_context": [
-      {
-        "chunk_id": "WMT_10-K_2026-03-13::7",
+        "chunk_id": "WMT_10-K_2026-03-13::8",
         "doc_id": "WMT_10-K_2026-03-13",
         "section": "ITEM 2. PROPERTIES",
-        "score": 0.03278688524590164
-      },
-      {
-        "chunk_id": "WMT_10-K_2026-03-13::5",
-        "doc_id": "WMT_10-K_2026-03-13",
-        "section": "ITEM 2. PROPERTIES",
-        "score": 0.0315136476426799
+        "score": 0.03131881575727918
       },
       {
         "chunk_id": "WMT_10-K_2026-03-13::6",
@@ -2094,16 +2096,16 @@
         "score": 0.03128054740957967
       },
       {
-        "chunk_id": "WMT_10-K_2026-03-13::8",
+        "chunk_id": "WMT_10-K_2026-03-13::10",
         "doc_id": "WMT_10-K_2026-03-13",
         "section": "ITEM 2. PROPERTIES",
         "score": 0.03125763125763126
       },
       {
-        "chunk_id": "WMT_10-K_2026-03-13::110",
+        "chunk_id": "WMT_10-K_2026-03-13::7",
         "doc_id": "WMT_10-K_2026-03-13",
-        "section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
-        "score": 0.02964426877470356
+        "section": "ITEM 2. PROPERTIES",
+        "score": 0.030776515151515152
       }
     ]
   },
@@ -2114,12 +2116,13 @@
     "gold_doc_id": "META_10-K_2026-01-29",
     "gold_section": "Item 3. Legal Proceedings",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Meta is confronting a wide range of legal proceedings and regulatory matters worldwide. In the United States, it is involved in numerous lawsuits in which plaintiffs are trying to limit the application of Section\u202f230 of the Communications Decency Act and are asserting product\u2011liability and breach\u2011of\u2011contract theories\u202f[1]. Outside the United States, Meta is subject to new regulatory regimes such as the Digital Services Act, Digital Markets Act, EU AI Act, the UK Digital Markets, Competition and Consumer Act, and the GDPR, and is under investigations and inquiries regarding compliance with those statutes\u202f[1]. The company is also defending private litigation and class or mass actions in Europe that allege failures to comply with data\u2011privacy and other regulatory requirements\u202f[1][5].  \n\nMeta is being sued and investigated for alleged contributions to societal harms, including impacts on mental and physical health, child and adult sexual exploitation, illegal drug activity, fraud, unlawful discrimination, and other large\u2011scale harms\u202f[1]. In addition, it faces significant tax, competition, antitrust, stockholder, commercial, consumer, intellectual\u2011property and privacy litigation and investigations\u202f[1].  \n\nSpecifically, the Irish Data Protection Commission has issued an administrative fine of \u20ac1.2\u202fbillion, along with corrective orders, and Meta has accrued substantial loss contingencies for related GDPR inquiries\u202f[3]. The company is also responding to law\u2011enforcement and regulatory requests in Brazil, Russia and other European countries, some of which have resulted in fines and penalties that Meta intends to contest\u202f[5].",
+    "generated_answer": "Meta is confronting a wide range of legal proceedings, investigations and regulatory matters, including:\n\n* U.S. lawsuits in which plaintiffs are trying to limit or avoid Section\u202f230 immunity, some of which have survived motions to dismiss and rely on product\u2011liability or breach\u2011of\u2011contract theories\u30101\u3011.  \n* Investigations and litigation under new European regulatory regimes \u2013 the Digital Services Act, Digital Markets Act, EU AI Act \u2013 and comparable statutes in the United Kingdom (Digital Markets, Competition and Consumer Act) as well as ongoing compliance inquiries under the GDPR fining guidelines\u30101\u3011.  \n* Private litigation in Europe, including class and mass actions that claim damages for loss of control of data (and seek injunctions) for alleged failures to meet regulatory requirements\u30101\u3011.  \n* Government investigations and lawsuits alleging Meta\u2019s role in various societal harms, such as mental and physical health impacts on users (especially younger users), child and adult sexual exploitation, illegal drug activity, fraud, unlawful discrimination and other large\u2011scale harms\u30101\u3011\u30104\u3011.  \n* Significant tax, competition, antitrust, stockholder, commercial, consumer, intellectual\u2011property and privacy litigation and investigations\u30101\u3011.  \n* Regulatory inquiries and litigation over allegedly deceptive advertising, including financial scams and the use of Meta\u2019s services to promote deceptive activity worldwide\u30104\u3011.  \n* Law\u2011enforcement and regulatory requests in Brazil, Russia and other European countries concerning disclosure of user information, some of which have resulted in fines and penalties that Meta intends to contest\u30104\u3011.  \n* Ongoing regulatory and tax inquiries worldwide that create uncertain obligations and could give rise to additional legal or regulatory action\u30103\u3011\u30105\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
         1,
         3,
+        4,
         5
       ],
       "has_citation": true,
@@ -2128,34 +2131,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "META_10-K_2026-01-29::126",
+        "chunk_id": "META_10-K_2026-01-29::150",
         "doc_id": "META_10-K_2026-01-29",
         "section": "Item 3. Legal Proceedings",
-        "score": 0.032018442622950824
+        "score": 0.0304147465437788
       },
       {
-        "chunk_id": "JPM_10-K_2026-02-13::1069",
+        "chunk_id": "JPM_10-K_2026-02-13::1200",
         "doc_id": "JPM_10-K_2026-02-13",
         "section": "Item 15. Exhibits, Financial Statement Schedules.",
-        "score": 0.03047794966520434
+        "score": 0.02889344262295082
       },
       {
-        "chunk_id": "META_10-K_2026-01-29::303",
+        "chunk_id": "META_10-K_2026-01-29::194",
         "doc_id": "META_10-K_2026-01-29",
-        "section": "Item 8. Financial Statements and Supplementary Data",
-        "score": 0.030017921146953404
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "score": 0.027364110201042444
       },
       {
-        "chunk_id": "AMZN_10-K_2026-02-06::36",
-        "doc_id": "AMZN_10-K_2026-02-06",
-        "section": "Item 1A. Risk Factors",
-        "score": 0.028991596638655463
-      },
-      {
-        "chunk_id": "META_10-K_2026-01-29::147",
+        "chunk_id": "META_10-K_2026-01-29::174",
         "doc_id": "META_10-K_2026-01-29",
         "section": "Item 3. Legal Proceedings",
-        "score": 0.028125
+        "score": 0.01639344262295082
+      },
+      {
+        "chunk_id": "META_10-K_2026-01-29::338",
+        "doc_id": "META_10-K_2026-01-29",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "score": 0.016129032258064516
       }
     ]
   },
@@ -2166,13 +2169,12 @@
     "gold_doc_id": "JNJ_10-K_2026-02-11",
     "gold_section": "Item 1. Business",
     "retrieval_hit_at_k": true,
-    "generated_answer": "Johnson &\u202fJohnson is a global healthcare holding company whose subsidiaries research, develop, manufacture and sell a broad range of health\u2011related products in virtually every country\u202f[1].  The firm\u2019s operations are organized into two primary business segments:\n\n* **Innovative Medicine** \u2013 a pharmaceutical\u2011focused segment that targets therapeutic areas such as oncology, immunology, neuroscience, pulmonary hypertension, infectious diseases and cardiovascular/metabolic disorders; its products are sold directly to retailers, wholesalers, hospitals and health\u2011care professionals for prescription use\u202f[2][5].\n\n* **MedTech** \u2013 a medical\u2011technology segment that offers devices for surgery, orthopaedics, cardiovascular and vision applications; these products are distributed to wholesalers, hospitals and retailers and are used mainly by physicians, nurses, eye\u2011care professionals and clinics\u202f[2][5].  The company announced in October\u202f2025 that it will separate its orthopaedics business, with completion expected 18\u201124\u202fmonths after the announcement\u202f[2][5].\n\nThe company is overseen by its Chief Executive Officer as the Chief Operating Decision Maker and an Executive Committee that sets strategy and accountability across the two segments\u202f[1][2].",
+    "generated_answer": "Johnson &\u202fJohnson is a holding company whose subsidiaries research, develop, manufacture and sell a broad range of health\u2011care products worldwide\u30101\u2020L1-L4\u3011.  The Company conducts business in virtually all countries and focuses on products that promote human health and well\u2011being\u30102\u2020L1-L4\u3011.  \n\nIts operations are organized into two primary segments\u30101\u2020L9-L12\u3011\u30102\u2020L5-L9\u3011:  \n\n* **Innovative Medicine** \u2013 focused on prescription\u2011use therapeutics in oncology, immunology, neuroscience, pulmonary hypertension, infectious diseases, and cardiovascular & metabolism, sold through retailers, wholesalers, hospitals and health\u2011care professionals.  \n\n* **MedTech** \u2013 a portfolio of devices for surgery, orthopaedics, cardiovascular and vision applications, distributed to wholesalers, hospitals, retailers and used by physicians, nurses, eye\u2011care professionals and clinics.  \n\nEach segment is run by senior management groups that set their own strategic plans and day\u2011to\u2011day operations under the direction of the Executive Committee and the Chief Executive Officer, who is the Company\u2019s Chief Operating Decision Maker\u30102\u2020L9-L13\u3011.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
         1,
-        2,
-        5
+        2
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -2186,27 +2188,27 @@
         "score": 0.03278688524590164
       },
       {
-        "chunk_id": "JNJ_10-K_2026-02-11::60",
+        "chunk_id": "JNJ_10-K_2026-02-11::67",
         "doc_id": "JNJ_10-K_2026-02-11",
         "section": "Item 7. Management's discussion and analysis of results of operations and financial condition",
-        "score": 0.03128054740957967
+        "score": 0.031754032258064516
       },
       {
-        "chunk_id": "JNJ_10-K_2026-02-11::15",
+        "chunk_id": "JNJ_10-K_2026-02-11::19",
         "doc_id": "JNJ_10-K_2026-02-11",
         "section": "Item 1. Business",
-        "score": 0.027799227799227798
+        "score": 0.02900988017658188
       },
       {
-        "chunk_id": "JNJ_10-K_2026-02-11::320",
+        "chunk_id": "JNJ_10-K_2026-02-11::364",
         "doc_id": "JNJ_10-K_2026-02-11",
         "section": "Item 8. Financial statements and supplementary data",
         "score": 0.016129032258064516
       },
       {
-        "chunk_id": "JNJ_10-K_2026-02-11::141",
+        "chunk_id": "JNJ_10-K_2026-02-11::69",
         "doc_id": "JNJ_10-K_2026-02-11",
-        "section": "Item 8. Financial statements and supplementary data",
+        "section": "Item 7. Management's discussion and analysis of results of operations and financial condition",
         "score": 0.015873015873015872
       }
     ]
@@ -2218,11 +2220,11 @@
     "gold_doc_id": "NIST_SP-800-128",
     "gold_section": "3.1.2 PLANNING AT THE SYSTEM LEVEL",
     "retrieval_hit_at_k": true,
-    "generated_answer": "The system\u2011level planning phase should produce a system\u2011specific Security\u2011Focused Configuration Management (SecCM) Plan and the supporting artifacts that enable the SecCM program to be applied to that system.  At this level the organization:\n\n* **Develops the SecCM Plan** for the system, documenting a brief description of the system, a complete system\u2011component inventory, the defined configuration items, and the rigor to be applied when managing changes to those items\u30101\u2020L9-L15\u3011.  \n* **Identifies roles and responsibilities** for SecCM on the system, including the individuals or group that will evaluate change requests\u30101\u2020L16-L19\u3011.  \n* **Specifies the configuration\u2011change control procedures** to be followed (and references any organization\u2011wide procedures) and the location where SecCM artifacts (change requests, approvals, etc.) will be stored\u30101\u2020L20-L23\u3011.  \n* **Establishes a Configuration Control Board (CCB)** to govern change decisions\u30101\u2020L4-L6\u3011.  \n* **Creates an accurate system component inventory** and formally defines the system\u2019s configuration items\u30101\u2020L4-L6\u3011.  \n\nThese activities together constitute the planning tasks that are completed at the system level for security\u2011focused configuration management\u30101\u2020L1-L8\u3011.",
+    "generated_answer": "At the system level the planning phase consists of creating a system\u2011specific SecCM Plan and establishing the basic configuration\u2011management foundations.\u202fThe activities include\u202f[2]:\n\n* Developing a SecCM Plan that documents the system\u2019s description, component inventory, and the configuration items to be managed.  \n* Defining the rigor to be applied to changes (e.g., based on impact level).  \n* Identifying roles and responsibilities and the group or individuals that will evaluate change requests.  \n* Specifying the configuration\u2011change control procedures to be followed and where SecCM artifacts (change requests, approvals, etc.) will be stored.  \n* Establishing a Configuration Control Board (CCB).  \n* Producing an accurate system\u2011component inventory.  \n* Defining the configuration items for the system.",
     "provider": "groq",
     "faithfulness": {
       "citations": [
-        1
+        2
       ],
       "has_citation": true,
       "refused_unsupported": false,
@@ -2230,34 +2232,34 @@
     },
     "retrieved_context": [
       {
-        "chunk_id": "NIST_SP-800-128::100",
-        "doc_id": "NIST_SP-800-128",
-        "section": "3.1.2 PLANNING AT THE SYSTEM LEVEL",
-        "score": 0.03200204813108039
-      },
-      {
-        "chunk_id": "NIST_SP-800-128::62",
+        "chunk_id": "NIST_SP-800-128::70",
         "doc_id": "NIST_SP-800-128",
         "section": "2.2 THE PHASES OF SECURITY-FOCUSED CONFIGURATION MANAGEMENT",
-        "score": 0.03177805800756621
+        "score": 0.032018442622950824
       },
       {
-        "chunk_id": "NIST_SP-800-128::82",
+        "chunk_id": "NIST_SP-800-128::113",
+        "doc_id": "NIST_SP-800-128",
+        "section": "3.1.2 PLANNING AT THE SYSTEM LEVEL",
+        "score": 0.031746031746031744
+      },
+      {
+        "chunk_id": "NIST_SP-800-128::92",
         "doc_id": "NIST_SP-800-128",
         "section": "2.4 SECCM ROLES AND RESPONSIBILITIES",
-        "score": 0.03125763125763126
+        "score": 0.03128054740957967
       },
       {
-        "chunk_id": "NIST_SP-800-128::207",
+        "chunk_id": "NIST_SP-800-128::237",
         "doc_id": "NIST_SP-800-128",
         "section": "10. Control Software Installation",
-        "score": 0.029709507042253523
+        "score": 0.02946912242686891
       },
       {
-        "chunk_id": "NIST_SP-800-128::87",
+        "chunk_id": "NIST_SP-800-128::132",
         "doc_id": "NIST_SP-800-128",
-        "section": "3.1.1 PLANNING AT THE ORGANIZATIONAL LEVEL",
-        "score": 0.02964426877470356
+        "section": "3.2 IDENTIFYING AND IMPLEMENTING CONFIGURATIONS",
+        "score": 0.02938045560996381
       }
     ]
   }
