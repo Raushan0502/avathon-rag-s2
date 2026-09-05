@@ -36,21 +36,23 @@ CHROME_CANDIDATES = [
 ]
 
 CSS = """
-@page { size: A4; margin: 14mm 15mm; }
-body { font-family: Georgia, "Times New Roman", serif; font-size: 9.4pt;
-       line-height: 1.42; color: #111; margin: 0; }
-h1 { font-size: 15pt; margin: 0 0 2pt; letter-spacing: -0.2pt; }
-.sub { font-size: 9pt; color: #444; margin: 0 0 10pt;
-       border-bottom: 1.2pt solid #222; padding-bottom: 6pt; }
+@page { size: A4; margin: 10mm 11mm; }
+body { font-family: Georgia, "Times New Roman", serif; font-size: 11pt;
+       line-height: 1.24; color: #111; margin: 0; }
+h1 { font-size: 16pt; margin: 0 0 2pt; letter-spacing: -0.2pt; }
+.sub { font-size: 10pt; color: #333; margin: 0 0 8pt;
+       border-bottom: 1.2pt solid #222; padding-bottom: 5pt; }
 h2 { display: none; }
-p { margin: 0 0 6pt; text-align: justify; }
+h3 { font-size: 11.5pt; margin: 7pt 0 3pt; padding-bottom: 2pt;
+     border-bottom: 0.5pt solid #ccc; }
+p { margin: 0 0 4pt; text-align: justify; }
 strong { color: #000; }
-code { font-family: "Consolas", monospace; font-size: 8.4pt;
+code { font-family: "Consolas", monospace; font-size: 10pt;
        background: #f2f2f2; padding: 0 2px; }
-table { border-collapse: collapse; width: 100%; margin: 6pt 0 8pt;
-        font-size: 8.5pt; font-family: Helvetica, Arial, sans-serif; }
+table { border-collapse: collapse; width: 100%; margin: 4pt 0 5pt;
+        font-size: 9.5pt; font-family: Helvetica, Arial, sans-serif; }
 th { background: #ececec; text-align: left; }
-th, td { border: 0.6pt solid #bbb; padding: 2.5pt 5pt; }
+th, td { border: 0.6pt solid #bbb; padding: 1.8pt 5pt; }
 em { color: #222; }
 """
 
