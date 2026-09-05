@@ -656,19 +656,24 @@ corpus, reported p50/p95 because the tail governs capacity
 | Dense search | 66 ms | 89 ms | 15.1 |
 | BM25 search | 108 ms | 147 ms | 9.3 |
 | Hybrid search | 168 ms | 221 ms | 5.9 |
-| Generation (single call) | ~700–3,700 ms | — | ~0.3–1.4 |
+| **Generation — paced** | **1,557 ms** | 1,736 ms | 0.64 |
+| Generation — sustained (rate-limited) | 7,296 ms | 17,165 ms | 0.14 |
+
+*(Retrieval figures from a quiet machine. A later run with the embedding
+comparison competing for CPU showed 124–241 ms for the same stages —
+CPU contention, not variance in the code.)*
 
 **Retrieval is not the bottleneck.** The whole retrieval path is ~168 ms
-against a generation call at least 4× that. This retires an earlier
-temptation: swapping `IndexFlatIP` for `IVFFlat` would be 40× faster on
-search and would improve end-to-end latency by well under 1%.
+against ~1,557 ms of generation. This retires an earlier temptation:
+swapping `IndexFlatIP` for `IVFFlat` would be 40× faster on search and
+would improve end-to-end latency by roughly 0.4%.
 
-**Generation latency here is a free-tier artefact, not a model limit.**
-Measured back-to-back, generation appeared to cost ~14,500 ms p50 — but
-instrumenting a single call showed 2,234 prompt tokens and 655 completion
-tokens at 175 tok/s, i.e. **~700–3,700 ms of actual inference**. The rest
-was this pipeline's own exponential backoff absorbing free-tier 429s,
-which begin around the fourth consecutive call:
+**The two generation rows are the important result.** Measured back to
+back, generation appears to cost 7,296 ms p50 (and 17,165 ms p95). Paced
+to stay under the free tier's limit, the same calls take **1,557 ms** —
+a **4.7× difference that is entirely this pipeline's own exponential
+backoff absorbing free-tier 429s**, which begin around the fourth
+consecutive call:
 
 ```
 call 1: 3,414 ms   call 3:  2,036 ms   call 5: 17,648 ms
@@ -676,10 +681,11 @@ call 2:   684 ms   call 4:  8,787 ms   call 6: 30,083 ms
 ```
 
 So the capacity ceiling is **provider rate limits, not inference speed**,
-and it is trivially liftable: a paid tier removes the throttling
-outright, and the existing provider-fallback chain already spreads load
-across three vendors. Latency lands comfortably in the hundreds of
-milliseconds on paid endpoints — no code change, just credentials.
+and it is trivially liftable: a paid tier removes the throttling outright,
+and the existing provider-fallback chain already spreads load across three
+vendors. On paid endpoints this drops to the 1,557 ms measured here and
+lower — sub-second is routine for a 655-token completion — with **no code
+change, only credentials**. Nothing in the architecture has to move.
 
 Two further optimisations that need no new infrastructure:
 - **The model is doing hidden reasoning we discard.** `gpt-oss-120b`
