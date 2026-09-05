@@ -360,9 +360,31 @@ Factors sections; legal question → Legal Proceedings section, etc.)
 before Step 4 (retrieval quality evaluation proper) begins.
 
 **Embedding model:** `BAAI/bge-small-en-v1.5` (384-dim, CPU, 512-token
-context) — chosen over a hosted embeddings API so ingestion has no cost
-or external dependency; over larger local models for CPU-only latency on
-this corpus size. Full trade-off discussion in `src/embed_index.py`.
+context) — and unlike the other choices here, this one was originally
+argued *analytically* (MTEB standing, parameter count). It has since been
+**measured** against the same family one size step up, on this corpus and
+these questions, with everything else held constant
+(`scripts/compare_embeddings.py` → `results/embedding_comparison.json`):
+
+| Model | dim | MRR | R@k | P@k | attainment | embed | ms/query |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| **bge-small** (incumbent) | 384 | **0.948** | 0.978 | 0.554 | 75% | cached | **64** |
+| bge-large | 1024 | 0.940 | 0.978 | 0.604 | 82% | 15.3 min | 531 |
+
+**More capacity did not buy better ranking.** bge-large is marginally
+*worse* on MRR, identical on recall, better on precision — and **8.3×
+slower per query**. On a CPU-only pipeline where retrieval already sits
+well inside the generation budget, that trade is not worth taking, so the
+incumbent stands. The difference is small enough that the honest reading
+is "these two are equivalent for this task, so take the cheap one."
+
+Two caveats stated rather than buried. This ran on a **720-chunk subset**
+(every gold section retained, distractors sampled with a fixed seed)
+because a full-corpus bge-large pass ran **10.7 hours on CPU and was
+abandoned** — so the absolute figures are inflated by having fewer
+distractors (MRR 0.948 here vs 0.762 on the full corpus), and it is the
+*relative* comparison that carries. Widening is `--chunks N`, and the
+cache means nothing already embedded is re-paid.
 
 **Vector store:** FAISS `IndexFlatIP` — exact cosine similarity over
 L2-normalized vectors. "Flat" means no algorithm at all: the index *is*

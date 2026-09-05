@@ -604,6 +604,8 @@ def chunk_table(table: str, max_tokens: int = CHUNK_MAX_TOKENS) -> list[str]:
     header_text = "\n".join(header)
     header_cost = count_tokens(header_text)
 
+    body = [part for row in body for part in split_oversized(row, max_tokens - header_cost)]
+
     parts, current, current_tokens = [], [], 0
     for row in body:
         row_tokens = count_tokens(row)
@@ -615,6 +617,42 @@ def chunk_table(table: str, max_tokens: int = CHUNK_MAX_TOKENS) -> list[str]:
     if current:
         parts.append("\n".join(header + current))
     return parts
+
+
+def split_oversized(unit: str, max_tokens: int) -> list[str]:
+    """Hard-split a single unit that no structural boundary can break up.
+
+    Sentence and row boundaries usually bound a chunk, but not always: a
+    legal definition can run for hundreds of words without a sentence
+    terminator, and a table row can be enormous on its own. Such a unit was
+    previously emitted whole, and the embedding model then **silently
+    truncated it at 512 tokens** -- discarding the tail with no error, which
+    is precisely the failure token budgeting exists to prevent. 80 of 8,146
+    chunks were affected, the worst at 3,374 tokens.
+
+    Splitting on whitespace loses the structural guarantee, so this is a
+    last resort applied only when a unit already exceeds the budget alone.
+
+    Args:
+        unit: A single sentence or table row too large for one chunk.
+        max_tokens: Token budget per chunk.
+
+    Returns:
+        Word-aligned pieces, each within budget.
+    """
+    if count_tokens(unit) <= max_tokens:
+        return [unit]
+
+    words = unit.split()
+    if len(words) <= 1:
+        return [unit]  # a single unsplittable token; nothing more to do
+
+    # Convert the budget into words via this unit's own measured ratio,
+    # rather than a global constant -- numeric table text tokenises far
+    # more heavily than prose.
+    per_word = count_tokens(unit) / len(words)
+    step = max(1, int(max_tokens / per_word))
+    return [" ".join(words[i : i + step]) for i in range(0, len(words), step)]
 
 
 def chunk_prose(
@@ -638,6 +676,9 @@ def chunk_prose(
     sentences = [s for s in SENTENCE_SPLIT_RE.split(text.strip()) if s.strip()]
     if not sentences:
         return []
+    # A sentence larger than the whole budget cannot be packed; break it
+    # first so no chunk can exceed the limit and be silently truncated.
+    sentences = [part for s in sentences for part in split_oversized(s, max_tokens)]
 
     chunks: list[str] = []
     current: list[str] = []

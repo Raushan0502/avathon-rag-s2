@@ -138,6 +138,41 @@ class TestChunkSection(unittest.TestCase):
         self.assertEqual(chunk_section(""), [])
 
 
+class TestOversizedUnits(unittest.TestCase):
+    """A sentence or table row larger than the whole budget has no structural
+    boundary to split on. Emitted whole it is silently truncated at the
+    model's 512-token limit -- 80 of 8,146 corpus chunks hit this, the worst
+    at 3,374 tokens."""
+
+    LIMIT = 512  # the embedding model's hard max_seq_length
+
+    def test_a_single_giant_sentence_is_split_within_budget(self) -> None:
+        giant = " ".join(f"word{i}" for i in range(3000))
+        for chunk in chunk_prose(giant, max_tokens=400):
+            self.assertLess(count_tokens(chunk), self.LIMIT, "would be silently truncated")
+
+    def test_a_single_giant_table_row_is_split_within_budget(self) -> None:
+        row = "| row | " + " ".join(f"x{i}" for i in range(3000)) + " |"
+        table = f"{HEADER}\n{SEPARATOR}\n{row}"
+        for chunk in chunk_table(table, max_tokens=400):
+            self.assertLess(count_tokens(chunk), self.LIMIT)
+
+    def test_no_content_is_lost_when_hard_splitting(self) -> None:
+        giant = " ".join(f"word{i}" for i in range(1500))
+        joined = " ".join(chunk_prose(giant, max_tokens=400))
+        for probe in ("word0", "word749", "word1499"):
+            self.assertIn(probe, joined)
+
+    def test_normal_text_is_untouched_by_the_guard(self) -> None:
+        # The hard split loses structural alignment, so it must apply only
+        # when a unit already exceeds the budget on its own.
+        text = "One sentence. Two sentences. Three sentences."
+        self.assertEqual(chunk_prose(text, max_tokens=400), [text])
+
+    def test_a_single_unsplittable_token_is_returned_rather_than_looping(self) -> None:
+        self.assertEqual(len(chunk_prose("x" * 5000, max_tokens=10)), 1)
+
+
 class TestBuildEmbedText(unittest.TestCase):
     META = {"company": "Apple Inc.", "form": "10-K", "ticker": "AAPL"}
 
