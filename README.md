@@ -101,8 +101,81 @@ Evaluation).
   higher than raw accuracy (Algorithm Selection & Alternative Analysis is
   30% of the score — the single highest-weighted rubric dimension).
 - **Deliverables required for submission:** this GitHub repo, a 5-minute
-  walkthrough video, and a 1–2 page technical write-up (PDF). The write-up
-  and video are tracked outside this repo and linked here once produced.
+  walkthrough video, and a 1–2 page technical write-up (PDF). The write-up's
+  source is the [Technical write-up](#technical-write-up) section below — the
+  submitted PDF is rendered from it, so the two cannot drift. The video is
+  tracked outside this repo and linked here once produced.
+
+## Technical write-up
+
+The brief requires a written justification addressing four things explicitly.
+This is that justification, in full; the sections below expand each point with
+the supporting detail. The submitted PDF is generated from this section, so
+there is one source of truth rather than two that can drift.
+
+**1. Chunking strategy, and what is lost at chunk boundaries.**
+Token-budgeted, structure-preserving chunking with contextual enrichment:
+split on the document's own headings first, then pack blocks to a **360-token
+budget with 60-token overlap**, never splitting a table row, prepending a
+`document › section` header to each chunk's embed text. Rejected: fixed-size
+character windows (cut mid-sentence and mid-table, and lose the header context
+needed to tell twenty different "Item 7"s apart); one-chunk-per-section (10-K
+Item 7 far exceeds any context window); embedding-based semantic splitting
+(cost scales with corpus, and the gain is unproven on filings that already
+carry explicit headings). *What is genuinely lost:* (a) **long-range
+coreference** — a chunk opening "These amounts exclude…" loses its antecedent;
+overlap and the section header mitigate but do not remove this; (b)
+**cross-section reasoning** — a question needing Item 7 *and* Item 8 requires
+two chunks retrieved together, which nothing in the chunker guarantees. That is
+the dominant residual error mode. The budget is enforced, not assumed: an
+earlier build silently truncated 80 chunks past the encoder's 512-token limit;
+an explicit oversize split plus a 60-token header reserve brought that to **0**.
+
+**2. Embedding model choice.** `BAAI/bge-small-en-v1.5` (384-dim), chosen by
+measurement against `bge-large-en-v1.5` (1024-dim) on the same eval set:
+
+| Model | Dim | MRR | Recall@k | P@k | Attainment |
+|---|---|---|---|---|---|
+| **bge-small** | 384 | **0.948** | 0.978 | 0.554 | 0.752 |
+| bge-large | 1024 | 0.940 | 0.978 | 0.554 | 0.752 |
+
+bge-large costs ~**8.3× more to embed on CPU and lost** by 0.008 MRR. On this
+corpus the bottleneck is not encoder capacity, so the small model ships. Both
+are used asymmetrically (query-instruction prefix on queries, none on
+passages) per the model card.
+
+**3. How fusion compares to a single retriever — quantitatively.**
+
+| Mode | P@k | Recall@k | MRR | Attainment |
+|---|---|---|---|---|
+| **dense** | **0.349** | **0.867** | **0.762** | **47.3%** |
+| bm25 | 0.218 | 0.733 | 0.554 | 29.5% |
+| hybrid (RRF, k=60) | 0.290 | 0.867 | 0.727 | 39.3% |
+
+**Hybrid did not beat dense**, which is the opposite of the expected result and
+of what an earlier draft of this project asserted before the numbers were in.
+The cause is **corpus-wide IDF dilution**: as the corpus grew 6 → 100
+documents, the terms that discriminate in filings ("revenue", "Item 7",
+"Company") appear everywhere, BM25's IDF flattens, and fusing a weaker ranker
+into a stronger one drags the stronger one down. RRF is kept behind a flag
+because it is the right default on a lexically diverse corpus, but **dense is
+the shipped mode here** because that is what the measurement supports.
+Precision is also structurally capped — a third of questions have single-chunk
+gold sections, so P@5 cannot exceed 0.2 for them — which is why **attainment**
+(P@k ÷ ceiling 0.738) and **MRR** are the honest headline metrics, and why
+questions are tiered by k = 1/5/10/20.
+
+**4. Hallucination prevention and detection.** Three layers, because
+prevention alone is not verifiable. *Prevention:* the prompt constrains the
+model to retrieved context, requires a bracketed citation per claim, and
+explicitly permits refusal. *Detection:* every answer is parsed for citation
+markers and annotated `cited` / `refused` / `UNGROUNDED` — **41 cited, 4
+refused, 0 UNGROUNDED** on 45 questions, where the refusals are correct
+behaviour because retrieval genuinely missed (hit@k = 40/45). *Correctness,
+measured separately:* **cited ≠ correct** — grounding says an answer pointed at
+context, not that it is right. Accuracy is scored independently by a
+deterministic lexical key-fact scorer and by an LLM judge, because they
+disagree informatively, and disagreement is where a human should look.
 
 ## Data source (Step 2)
 
@@ -864,7 +937,7 @@ avathon-rag-s2/
 ├── scripts/            # runnable pipeline stages (see Setup)
 ├── tests/              # unit tests, one module per src/ module
 ├── results/            # evaluation outputs, metrics, comparison tables
-├── write-up/           # technical write-up source (final PDF submitted separately)
+├── write-up/           # rendered PDF of the README write-up section (submitted separately)
 ├── requirements.txt
 ├── .env.example        # copy to .env and fill in your own LLM API key (never committed)
 └── README.md

@@ -17,7 +17,7 @@
     "reference_answer": "Competition has intensified as competitors have aggressively cut prices and lowered product margins; Apple has only a minority market share in the global smartphone, personal computer, tablet, and wearables markets.",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1A. Risk Factors",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::16",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::18",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -28,7 +28,7 @@
     "reference_answer": "Many of Apple's suppliers and contract manufacturers are located in areas prone to earthquakes and other natural disasters, and climate change is increasing the frequency and intensity of such events.",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1A. Risk Factors",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::12",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::14",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -39,7 +39,7 @@
     "reference_answer": "Apple's Head of Corporate Information Security, who leads a dedicated Information Security team responsible for identifying, assessing, and managing cybersecurity risk.",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1C. Cybersecurity",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::46",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::51",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -50,7 +50,7 @@
     "reference_answer": "Cupertino, California.",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 2. Properties",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::48",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::53",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -61,7 +61,7 @@
     "reference_answer": "A Digital Markets Act Article 5(4) noncompliance investigation, opened by the European Commission on March 25, 2024, concerning how developers may communicate and promote offers, and conclude contracts, with end users for apps distributed through the App Store.",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 3. Legal Proceedings",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::49",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::54",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -72,7 +72,7 @@
     "reference_answer": "$416,161 million in fiscal 2025, up from $391,035 million in fiscal 2024 (and $383,285 million in fiscal 2023).",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 8. Financial Statements and Supplementary Data",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::80",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::86",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -83,7 +83,7 @@
     "reference_answer": "No -- Apple reports \"None.\"",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 1B. Unresolved Staff Comments",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::45",
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::50",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -127,7 +127,7 @@
     "reference_answer": "1) Preparation for a cybersecurity incident, 2) detection and analysis of a security incident, 3) containment, eradication and recovery, and 4) post-incident analysis.",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1C. CYBERSECURITY",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::69",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::80",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -138,7 +138,7 @@
     "reference_answer": "Austin, Texas.",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 2. PROPERTIES",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::73",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::84",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -149,7 +149,7 @@
     "reference_answer": "To Note 13, Commitments and Contingencies, in the consolidated financial statements included elsewhere in the 10-K.",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 3. LEGAL PROCEEDINGS",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::76",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::87",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -160,7 +160,7 @@
     "reference_answer": "$65,821 million (2025), $72,480 million (2024), and $78,509 million (2023).",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 8. FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::137",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::154",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -171,7 +171,7 @@
     "reference_answer": "No -- Tesla reports \"None.\"",
     "gold_doc_id": "TSLA_10-K_2026-01-29",
     "gold_section": "ITEM 1B. UNRESOLVED STAFF COMMENTS",
-    "gold_chunk_id": "TSLA_10-K_2026-01-29::68",
+    "gold_chunk_id": "TSLA_10-K_2026-01-29::79",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -204,7 +204,7 @@
     "reference_answer": "Adverse effects on Microsoft's business, operations, financial condition, results of operations, liquidity, and the trading price of its common stock.",
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 1A ITEM 1A. RIS",
-    "gold_chunk_id": "MSFT_10-K_2026-07-29::26",
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::27",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -215,7 +215,7 @@
     "reference_answer": "To Note 14, Contingencies, of the Notes to Financial Statements (Part II, Item 8 of the Form 10-K).",
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "ITEM 3. LEGAL",
-    "gold_chunk_id": "MSFT_10-K_2026-07-29::77",
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::84",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -226,7 +226,7 @@
     "reference_answer": "Total revenue of $331,839 million: $64,696 million from Product, and $267,143 million from Service and other (fiscal year ended June 30, 2026).",
     "gold_doc_id": "MSFT_10-K_2026-07-29",
     "gold_section": "Item 8 ITEM 8. FINANCIAL STATE",
-    "gold_chunk_id": "MSFT_10-K_2026-07-29::135",
+    "gold_chunk_id": "MSFT_10-K_2026-07-29::144",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -307,7 +307,7 @@
     "reference_answer": "Shares owned by immediate family members who live with you or use your address as their regular address -- for example a spouse, domestic partner, minor children, college students, parents, grandparents, and grandchildren.",
     "gold_doc_id": "MSFT_msft-ex19_1",
     "gold_section": "2. SUMMARY",
-    "gold_chunk_id": "MSFT_msft-ex19_1::2",
+    "gold_chunk_id": "MSFT_msft-ex19_1::3",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -331,7 +331,7 @@
     "reference_answer": "Because residual risk inevitably persists after controls are implemented, detection is needed to alert the organization whenever incidents occur, so the impact can be contained and recovered from.",
     "gold_doc_id": "NIST_SP-800-61r2",
     "gold_section": "3. Handling an Incident",
-    "gold_chunk_id": "NIST_SP-800-61r2::47",
+    "gold_chunk_id": "NIST_SP-800-61r2::52",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -343,7 +343,7 @@
     "reference_answer": "Understanding organizational context; establishing cybersecurity strategy and cybersecurity supply chain risk management; roles, responsibilities and authorities; policy; and oversight of cybersecurity strategy.",
     "gold_doc_id": "NIST_CSF-2.0",
     "gold_section": "2. Introduction to the CSF Core",
-    "gold_chunk_id": "NIST_CSF-2.0::7",
+    "gold_chunk_id": "NIST_CSF-2.0::8",
     "eval_k": 5,
     "question_type": "known-item"
   },
@@ -380,7 +380,7 @@
     "reference_answer": "No -- Apple reports \"None.\"",
     "gold_doc_id": "AAPL_10-K_2025-10-31",
     "gold_section": "Item 9. Changes in and Disagreements with Accountants on Accounting and Financial Disclosure",
-    "gold_chunk_id": "AAPL_10-K_2025-10-31::156"
+    "gold_chunk_id": "AAPL_10-K_2025-10-31::171"
   },
   {
     "id": "k1b",
@@ -391,7 +391,7 @@
     "reference_answer": "It defines the concepts of CSF Profiles and Tiers.",
     "gold_doc_id": "NIST_CSF-2.0",
     "gold_section": "3. Introduction to CSF Profiles and Tiers",
-    "gold_chunk_id": "NIST_CSF-2.0::11"
+    "gold_chunk_id": "NIST_CSF-2.0::12"
   },
   {
     "id": "k1c",
@@ -413,7 +413,7 @@
     "reference_answer": "Cybersecurity risk management is part of Meta's overall risk management; it regularly experiences incidents of varying degrees, runs risk assessments to evaluate maturity and effectiveness, and engages third-party security experts.",
     "gold_doc_id": "META_10-K_2026-01-29",
     "gold_section": "Item 1C. Cybersecurity",
-    "gold_chunk_id": "META_10-K_2026-01-29::120"
+    "gold_chunk_id": "META_10-K_2026-01-29::143"
   },
   {
     "id": "k5b",
@@ -424,7 +424,7 @@
     "reference_answer": "As of December 31, 2025 Amazon operated office space, physical stores, and fulfilment/data-centre facilities across North America and internationally, reported as leased and owned square footage in thousands.",
     "gold_doc_id": "AMZN_10-K_2026-02-06",
     "gold_section": "Item 2. Properties",
-    "gold_chunk_id": "AMZN_10-K_2026-02-06::44"
+    "gold_chunk_id": "AMZN_10-K_2026-02-06::52"
   },
   {
     "id": "k5c",
@@ -435,7 +435,7 @@
     "reference_answer": "Organisations face many types of ICT risk (privacy, supply chain, AI) and may integrate them at a high level; the CSF helps translate cybersecurity terminology and gives executives input to integrate governance and risk strategies.",
     "gold_doc_id": "NIST_CSF-2.0",
     "gold_section": "5.2. Improving Integration with Other Risk Management Programs",
-    "gold_chunk_id": "NIST_CSF-2.0::21"
+    "gold_chunk_id": "NIST_CSF-2.0::23"
   },
   {
     "id": "k10a",
@@ -446,7 +446,7 @@
     "reference_answer": "Amazon seeks to offer low prices, fast and free delivery, easy-to-use functionality and timely customer service, plus subscription services such as Amazon Prime, which includes fast free shipping.",
     "gold_doc_id": "AMZN_10-K_2026-02-06",
     "gold_section": "Item 1. Business",
-    "gold_chunk_id": "AMZN_10-K_2026-02-06::0"
+    "gold_chunk_id": "AMZN_10-K_2026-02-06::1"
   },
   {
     "id": "k10b",
@@ -457,7 +457,7 @@
     "reference_answer": "Information such as PII and CUI requires protection by regulation, law or contract; policies should identify incident data likely to contain PII and describe safeguards for the privacy risks of sharing it.",
     "gold_doc_id": "NIST_SP-800-150",
     "gold_section": "3.4.1 Information Sensitivity and Privacy",
-    "gold_chunk_id": "NIST_SP-800-150::36"
+    "gold_chunk_id": "NIST_SP-800-150::39"
   },
   {
     "id": "k10c",
@@ -468,7 +468,7 @@
     "reference_answer": "As of January 31, 2026 Walmart reports retail unit counts and square footage for Walmart U.S., Sam's Club U.S. and Walmart International, including 3,566 Supercenters averaging around 179,000 square feet.",
     "gold_doc_id": "WMT_10-K_2026-03-13",
     "gold_section": "ITEM 2. PROPERTIES",
-    "gold_chunk_id": "WMT_10-K_2026-03-13::5"
+    "gold_chunk_id": "WMT_10-K_2026-03-13::9"
   },
   {
     "id": "k20a",
@@ -479,7 +479,7 @@
     "reference_answer": "As a multinational company Meta is subject to numerous claims, litigation, regulatory, tax and government inquiries across jurisdictions, and the number and significance of these matters has increased in recent years.",
     "gold_doc_id": "META_10-K_2026-01-29",
     "gold_section": "Item 3. Legal Proceedings",
-    "gold_chunk_id": "META_10-K_2026-01-29::125"
+    "gold_chunk_id": "META_10-K_2026-01-29::149"
   },
   {
     "id": "k20b",
@@ -501,6 +501,6 @@
     "reference_answer": "The planning phase activities completed at the system level are described in the order they typically occur, with flexibility for organisations to adapt them.",
     "gold_doc_id": "NIST_SP-800-128",
     "gold_section": "3.1.2 PLANNING AT THE SYSTEM LEVEL",
-    "gold_chunk_id": "NIST_SP-800-128::100"
+    "gold_chunk_id": "NIST_SP-800-128::113"
   }
 ]

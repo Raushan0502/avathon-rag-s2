@@ -2,11 +2,11 @@
   "dense": {
     "mode": "dense",
     "k": 5,
-    "mean_precision_at_k": 0.3488888888888889,
-    "mean_recall_at_k": 0.8666666666666667,
-    "mean_max_precision_at_k": 0.7377777777777779,
-    "precision_attainment": 0.47289156626506024,
-    "mrr": 0.7620786815523658,
+    "mean_precision_at_k": 0.37777777777777777,
+    "mean_recall_at_k": 0.8888888888888888,
+    "mean_max_precision_at_k": 0.7522222222222222,
+    "precision_attainment": 0.5022156573116691,
+    "mrr": 0.7811111111111111,
     "per_query": [
       {
         "id": "q01",
@@ -22,11 +22,11 @@
         "id": "q02",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.6,
+        "precision_at_k": 0.4,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.6,
-        "reciprocal_rank": 1.0
+        "precision_attainment": 0.4,
+        "reciprocal_rank": 0.5
       },
       {
         "id": "q03",
@@ -64,8 +64,8 @@
         "question_type": "known-item",
         "precision_at_k": 0.4,
         "hit_at_k": 1.0,
-        "max_precision_at_k": 0.6,
-        "precision_attainment": 0.6666666666666667,
+        "max_precision_at_k": 0.8,
+        "precision_attainment": 0.5,
         "reciprocal_rank": 1.0
       },
       {
@@ -112,10 +112,10 @@
         "id": "q11",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.6,
+        "precision_at_k": 0.4,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.6,
+        "precision_attainment": 0.4,
         "reciprocal_rank": 0.5
       },
       {
@@ -172,31 +172,31 @@
         "id": "q17",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.8,
+        "precision_at_k": 0.6,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.8,
+        "precision_attainment": 0.6,
         "reciprocal_rank": 1.0
       },
       {
         "id": "q18",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.4,
+        "precision_at_k": 0.6,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.4,
+        "precision_attainment": 0.6,
         "reciprocal_rank": 1.0
       },
       {
         "id": "q19",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.2,
+        "precision_at_k": 0.6,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.2,
-        "reciprocal_rank": 0.25
+        "precision_attainment": 0.6,
+        "reciprocal_rank": 0.5
       },
       {
         "id": "q20",
@@ -212,10 +212,10 @@
         "id": "q21",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.4,
+        "precision_at_k": 0.8,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.4,
+        "precision_attainment": 0.8,
         "reciprocal_rank": 0.5
       },
       {
@@ -232,10 +232,10 @@
         "id": "q23",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.6,
+        "precision_at_k": 0.8,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.6,
+        "precision_attainment": 0.8,
         "reciprocal_rank": 1.0
       },
       {
@@ -284,9 +284,9 @@
         "question_type": "known-item",
         "precision_at_k": 0.2,
         "hit_at_k": 1.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 1.0,
-        "reciprocal_rank": 0.3333333333333333
+        "max_precision_at_k": 0.4,
+        "precision_attainment": 0.5,
+        "reciprocal_rank": 1.0
       },
       {
         "id": "q29",
@@ -306,7 +306,7 @@
         "hit_at_k": 0.0,
         "max_precision_at_k": 0.2,
         "precision_attainment": 0.0,
-        "reciprocal_rank": 0.09090909090909091
+        "reciprocal_rank": 0.08333333333333333
       },
       {
         "id": "q31",
@@ -372,10 +372,10 @@
         "id": "k5a",
         "k": 5,
         "question_type": "topical",
-        "precision_at_k": 0.4,
+        "precision_at_k": 0.6,
         "hit_at_k": 1.0,
-        "max_precision_at_k": 0.8,
-        "precision_attainment": 0.5,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.6,
         "reciprocal_rank": 1.0
       },
       {
@@ -396,11 +396,462 @@
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
         "precision_attainment": 0.4,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 0.5
       },
       {
         "id": "k10a",
         "k": 10,
+        "question_type": "topical",
+        "precision_at_k": 0.3,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.3,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "k10b",
+        "k": 10,
+        "question_type": "topical",
+        "precision_at_k": 0.1,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.9,
+        "precision_attainment": 0.11111111111111112,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "k10c",
+        "k": 10,
+        "question_type": "topical",
+        "precision_at_k": 0.6,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.6,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "k20a",
+        "k": 20,
+        "question_type": "topical",
+        "precision_at_k": 0.4,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.4,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "k20b",
+        "k": 20,
+        "question_type": "topical",
+        "precision_at_k": 0.25,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.25,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "k20c",
+        "k": 20,
+        "question_type": "topical",
+        "precision_at_k": 0.15,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.95,
+        "precision_attainment": 0.15789473684210525,
+        "reciprocal_rank": 0.3333333333333333
+      }
+    ]
+  },
+  "bm25": {
+    "mode": "bm25",
+    "k": 5,
+    "mean_precision_at_k": 0.20777777777777778,
+    "mean_recall_at_k": 0.7333333333333333,
+    "mean_max_precision_at_k": 0.7522222222222222,
+    "precision_attainment": 0.276218611521418,
+    "mrr": 0.5545679012345679,
+    "per_query": [
+      {
+        "id": "q01",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.4,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.4,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q02",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.6,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.6,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q03",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.4,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.4,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q04",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.4,
+        "precision_attainment": 0.5,
+        "reciprocal_rank": 0.2
+      },
+      {
+        "id": "q05",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.2,
+        "precision_attainment": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q06",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.8,
+        "precision_attainment": 0.25,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q07",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.0
+      },
+      {
+        "id": "q08",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 0.2,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.0
+      },
+      {
+        "id": "q09",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "id": "q10",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.2,
+        "reciprocal_rank": 0.3333333333333333
+      },
+      {
+        "id": "q11",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.0
+      },
+      {
+        "id": "q12",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.8,
+        "precision_attainment": 0.25,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q13",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 0.6,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.0
+      },
+      {
+        "id": "q14",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.2,
+        "precision_attainment": 1.0,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "id": "q15",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 1.0,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q16",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 0.2,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.0
+      },
+      {
+        "id": "q17",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.4,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.4,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q18",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.4,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.4,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q19",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.1
+      },
+      {
+        "id": "q20",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.2,
+        "precision_attainment": 1.0,
+        "reciprocal_rank": 0.25
+      },
+      {
+        "id": "q21",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.1111111111111111
+      },
+      {
+        "id": "q22",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.4,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.4,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "id": "q23",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.2,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "id": "q24",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.6,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.6,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q25",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.4,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.4,
+        "precision_attainment": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q26",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.8,
+        "precision_attainment": 0.25,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q27",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 0.2,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.0
+      },
+      {
+        "id": "q28",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.4,
+        "precision_attainment": 0.5,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "id": "q29",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.2,
+        "precision_attainment": 1.0,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "id": "q30",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.2,
+        "precision_attainment": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q31",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.8,
+        "precision_attainment": 0.25,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q32",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.2,
+        "precision_attainment": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "q33",
+        "k": 5,
+        "question_type": "known-item",
+        "precision_at_k": 0.2,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 0.2,
+        "precision_attainment": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "k1a",
+        "k": 1,
+        "question_type": "known-item",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.0
+      },
+      {
+        "id": "k1b",
+        "k": 1,
+        "question_type": "known-item",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.0
+      },
+      {
+        "id": "k1c",
+        "k": 1,
+        "question_type": "known-item",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.16666666666666666
+      },
+      {
+        "id": "k5a",
+        "k": 5,
+        "question_type": "topical",
+        "precision_at_k": 0.0,
+        "hit_at_k": 0.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.0,
+        "reciprocal_rank": 0.0
+      },
+      {
+        "id": "k5b",
+        "k": 5,
+        "question_type": "topical",
+        "precision_at_k": 0.4,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.4,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "k5c",
+        "k": 5,
         "question_type": "topical",
         "precision_at_k": 0.2,
         "hit_at_k": 1.0,
@@ -409,14 +860,24 @@
         "reciprocal_rank": 1.0
       },
       {
+        "id": "k10a",
+        "k": 10,
+        "question_type": "topical",
+        "precision_at_k": 0.1,
+        "hit_at_k": 1.0,
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.1,
+        "reciprocal_rank": 0.1111111111111111
+      },
+      {
         "id": "k10b",
         "k": 10,
         "question_type": "topical",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
+        "precision_at_k": 0.1,
+        "hit_at_k": 1.0,
         "max_precision_at_k": 0.9,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.05263157894736842
+        "precision_attainment": 0.11111111111111112,
+        "reciprocal_rank": 0.25
       },
       {
         "id": "k10c",
@@ -432,472 +893,11 @@
         "id": "k20a",
         "k": 20,
         "question_type": "topical",
-        "precision_at_k": 0.25,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.25,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "k20b",
-        "k": 20,
-        "question_type": "topical",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.2,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "k20c",
-        "k": 20,
-        "question_type": "topical",
-        "precision_at_k": 0.15,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.9,
-        "precision_attainment": 0.16666666666666666,
-        "reciprocal_rank": 0.3333333333333333
-      }
-    ]
-  },
-  "bm25": {
-    "mode": "bm25",
-    "k": 5,
-    "mean_precision_at_k": 0.2177777777777778,
-    "mean_recall_at_k": 0.7333333333333333,
-    "mean_max_precision_at_k": 0.7377777777777779,
-    "precision_attainment": 0.29518072289156627,
-    "mrr": 0.5538888888888889,
-    "per_query": [
-      {
-        "id": "q01",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.4,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.4,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q02",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.6,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.6,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q03",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.4,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.4,
-        "reciprocal_rank": 0.5
-      },
-      {
-        "id": "q04",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.4,
-        "precision_attainment": 0.5,
-        "reciprocal_rank": 0.2
-      },
-      {
-        "id": "q05",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 1.0,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q06",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.6,
-        "precision_attainment": 0.33333333333333337,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q07",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.0
-      },
-      {
-        "id": "q08",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.0
-      },
-      {
-        "id": "q09",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.2,
-        "reciprocal_rank": 0.3333333333333333
-      },
-      {
-        "id": "q10",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.4,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.4,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q11",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.05
-      },
-      {
-        "id": "q12",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.8,
-        "precision_attainment": 0.25,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q13",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 0.6,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.0
-      },
-      {
-        "id": "q14",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 1.0,
-        "reciprocal_rank": 0.5
-      },
-      {
-        "id": "q15",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 1.0,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 1.0,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q16",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.0
-      },
-      {
-        "id": "q17",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.4,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.4,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q18",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.4,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.4,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q19",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.125
-      },
-      {
-        "id": "q20",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 1.0,
-        "reciprocal_rank": 0.2
-      },
-      {
-        "id": "q21",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.1
-      },
-      {
-        "id": "q22",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.4,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.4,
-        "reciprocal_rank": 0.5
-      },
-      {
-        "id": "q23",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.2,
-        "reciprocal_rank": 0.5
-      },
-      {
-        "id": "q24",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.6,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.6,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q25",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.4,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.4,
-        "precision_attainment": 1.0,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q26",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.8,
-        "precision_attainment": 0.25,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q27",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.0
-      },
-      {
-        "id": "q28",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 1.0,
-        "reciprocal_rank": 0.3333333333333333
-      },
-      {
-        "id": "q29",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 1.0,
-        "reciprocal_rank": 0.5
-      },
-      {
-        "id": "q30",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 1.0,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q31",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.4,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.8,
-        "precision_attainment": 0.5,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q32",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 1.0,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "q33",
-        "k": 5,
-        "question_type": "known-item",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 0.2,
-        "precision_attainment": 1.0,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "k1a",
-        "k": 1,
-        "question_type": "known-item",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.0
-      },
-      {
-        "id": "k1b",
-        "k": 1,
-        "question_type": "known-item",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.0
-      },
-      {
-        "id": "k1c",
-        "k": 1,
-        "question_type": "known-item",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.16666666666666666
-      },
-      {
-        "id": "k5a",
-        "k": 5,
-        "question_type": "topical",
-        "precision_at_k": 0.0,
-        "hit_at_k": 0.0,
-        "max_precision_at_k": 0.8,
-        "precision_attainment": 0.0,
-        "reciprocal_rank": 0.0
-      },
-      {
-        "id": "k5b",
-        "k": 5,
-        "question_type": "topical",
-        "precision_at_k": 0.4,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.4,
-        "reciprocal_rank": 0.5
-      },
-      {
-        "id": "k5c",
-        "k": 5,
-        "question_type": "topical",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.2,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "k10a",
-        "k": 10,
-        "question_type": "topical",
-        "precision_at_k": 0.2,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.2,
-        "reciprocal_rank": 0.16666666666666666
-      },
-      {
-        "id": "k10b",
-        "k": 10,
-        "question_type": "topical",
         "precision_at_k": 0.1,
         "hit_at_k": 1.0,
-        "max_precision_at_k": 0.9,
-        "precision_attainment": 0.11111111111111112,
-        "reciprocal_rank": 0.5
-      },
-      {
-        "id": "k10c",
-        "k": 10,
-        "question_type": "topical",
-        "precision_at_k": 0.4,
-        "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.4,
-        "reciprocal_rank": 1.0
-      },
-      {
-        "id": "k20a",
-        "k": 20,
-        "question_type": "topical",
-        "precision_at_k": 0.15,
-        "hit_at_k": 1.0,
-        "max_precision_at_k": 1.0,
-        "precision_attainment": 0.15,
-        "reciprocal_rank": 0.25
+        "precision_attainment": 0.1,
+        "reciprocal_rank": 0.1
       },
       {
         "id": "k20b",
@@ -915,20 +915,20 @@
         "question_type": "topical",
         "precision_at_k": 0.05,
         "hit_at_k": 1.0,
-        "max_precision_at_k": 0.9,
-        "precision_attainment": 0.05555555555555556,
-        "reciprocal_rank": 0.5
+        "max_precision_at_k": 0.95,
+        "precision_attainment": 0.052631578947368425,
+        "reciprocal_rank": 0.3333333333333333
       }
     ]
   },
   "hybrid": {
     "mode": "hybrid",
     "k": 5,
-    "mean_precision_at_k": 0.29000000000000004,
+    "mean_precision_at_k": 0.3,
     "mean_recall_at_k": 0.8666666666666667,
-    "mean_max_precision_at_k": 0.7377777777777779,
-    "precision_attainment": 0.3930722891566265,
-    "mrr": 0.7269135802469135,
+    "mean_max_precision_at_k": 0.7522222222222222,
+    "precision_attainment": 0.3988183161004431,
+    "mrr": 0.7352469135802469,
     "per_query": [
       {
         "id": "q01",
@@ -954,10 +954,10 @@
         "id": "q03",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.6,
+        "precision_at_k": 0.8,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.6,
+        "precision_attainment": 0.8,
         "reciprocal_rank": 1.0
       },
       {
@@ -986,8 +986,8 @@
         "question_type": "known-item",
         "precision_at_k": 0.4,
         "hit_at_k": 1.0,
-        "max_precision_at_k": 0.6,
-        "precision_attainment": 0.6666666666666667,
+        "max_precision_at_k": 0.8,
+        "precision_attainment": 0.5,
         "reciprocal_rank": 1.0
       },
       {
@@ -1008,16 +1008,16 @@
         "hit_at_k": 1.0,
         "max_precision_at_k": 0.2,
         "precision_attainment": 1.0,
-        "reciprocal_rank": 0.5
+        "reciprocal_rank": 0.25
       },
       {
         "id": "q09",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.2,
+        "precision_at_k": 0.4,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.2,
+        "precision_attainment": 0.4,
         "reciprocal_rank": 1.0
       },
       {
@@ -1028,7 +1028,7 @@
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
         "precision_attainment": 0.4,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 0.5
       },
       {
         "id": "q11",
@@ -1038,16 +1038,16 @@
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
         "precision_attainment": 0.2,
-        "reciprocal_rank": 0.3333333333333333
+        "reciprocal_rank": 0.25
       },
       {
         "id": "q12",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.2,
+        "precision_at_k": 0.4,
         "hit_at_k": 1.0,
         "max_precision_at_k": 0.8,
-        "precision_attainment": 0.25,
+        "precision_attainment": 0.5,
         "reciprocal_rank": 1.0
       },
       {
@@ -1058,7 +1058,7 @@
         "hit_at_k": 1.0,
         "max_precision_at_k": 0.6,
         "precision_attainment": 0.6666666666666667,
-        "reciprocal_rank": 0.3333333333333333
+        "reciprocal_rank": 1.0
       },
       {
         "id": "q14",
@@ -1074,10 +1074,10 @@
         "id": "q15",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 1.0,
+        "precision_at_k": 0.8,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 1.0,
+        "precision_attainment": 0.8,
         "reciprocal_rank": 1.0
       },
       {
@@ -1094,10 +1094,10 @@
         "id": "q17",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.6,
+        "precision_at_k": 0.4,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.6,
+        "precision_attainment": 0.4,
         "reciprocal_rank": 1.0
       },
       {
@@ -1118,7 +1118,7 @@
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
         "precision_attainment": 0.2,
-        "reciprocal_rank": 0.5
+        "reciprocal_rank": 0.25
       },
       {
         "id": "q20",
@@ -1158,16 +1158,16 @@
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
         "precision_attainment": 0.2,
-        "reciprocal_rank": 0.3333333333333333
+        "reciprocal_rank": 1.0
       },
       {
         "id": "q24",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.8,
+        "precision_at_k": 0.6,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.8,
+        "precision_attainment": 0.6,
         "reciprocal_rank": 1.0
       },
       {
@@ -1178,7 +1178,7 @@
         "hit_at_k": 1.0,
         "max_precision_at_k": 0.4,
         "precision_attainment": 1.0,
-        "reciprocal_rank": 0.3333333333333333
+        "reciprocal_rank": 0.5
       },
       {
         "id": "q26",
@@ -1204,11 +1204,11 @@
         "id": "q28",
         "k": 5,
         "question_type": "known-item",
-        "precision_at_k": 0.2,
+        "precision_at_k": 0.4,
         "hit_at_k": 1.0,
-        "max_precision_at_k": 0.2,
+        "max_precision_at_k": 0.4,
         "precision_attainment": 1.0,
-        "reciprocal_rank": 0.3333333333333333
+        "reciprocal_rank": 1.0
       },
       {
         "id": "q29",
@@ -1228,7 +1228,7 @@
         "hit_at_k": 1.0,
         "max_precision_at_k": 0.2,
         "precision_attainment": 1.0,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 0.5
       },
       {
         "id": "q31",
@@ -1294,11 +1294,11 @@
         "id": "k5a",
         "k": 5,
         "question_type": "topical",
-        "precision_at_k": 0.4,
+        "precision_at_k": 0.6,
         "hit_at_k": 1.0,
-        "max_precision_at_k": 0.8,
-        "precision_attainment": 0.5,
-        "reciprocal_rank": 0.5
+        "max_precision_at_k": 1.0,
+        "precision_attainment": 0.6,
+        "reciprocal_rank": 1.0
       },
       {
         "id": "k5b",
@@ -1328,7 +1328,7 @@
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
         "precision_attainment": 0.2,
-        "reciprocal_rank": 0.5
+        "reciprocal_rank": 0.3333333333333333
       },
       {
         "id": "k10b",
@@ -1338,26 +1338,26 @@
         "hit_at_k": 1.0,
         "max_precision_at_k": 0.9,
         "precision_attainment": 0.11111111111111112,
-        "reciprocal_rank": 0.16666666666666666
+        "reciprocal_rank": 0.125
       },
       {
         "id": "k10c",
         "k": 10,
         "question_type": "topical",
-        "precision_at_k": 0.5,
+        "precision_at_k": 0.6,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.5,
+        "precision_attainment": 0.6,
         "reciprocal_rank": 1.0
       },
       {
         "id": "k20a",
         "k": 20,
         "question_type": "topical",
-        "precision_at_k": 0.2,
+        "precision_at_k": 0.15,
         "hit_at_k": 1.0,
         "max_precision_at_k": 1.0,
-        "precision_attainment": 0.2,
+        "precision_attainment": 0.15,
         "reciprocal_rank": 1.0
       },
       {
@@ -1376,9 +1376,9 @@
         "question_type": "topical",
         "precision_at_k": 0.1,
         "hit_at_k": 1.0,
-        "max_precision_at_k": 0.9,
-        "precision_attainment": 0.11111111111111112,
-        "reciprocal_rank": 1.0
+        "max_precision_at_k": 0.95,
+        "precision_attainment": 0.10526315789473685,
+        "reciprocal_rank": 0.5
       }
     ]
   }
