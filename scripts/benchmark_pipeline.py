@@ -42,9 +42,12 @@ from src.retrieval import RetrievalIndex
 
 WARMUP = 3
 TOP_K = 5
+# Enough spacing to stay under the free tier's limit, so the paced run
+# measures the model rather than our own backoff.
+GENERATION_PAUSE_SECONDS = 20.0
 
 
-def timed(fn, queries: list[str], warmup: int = WARMUP) -> dict:
+def timed(fn, queries: list[str], warmup: int = WARMUP, pause_seconds: float = 0.0) -> dict:
     """Time a single-argument callable across queries, after warming up.
 
     Args:
@@ -52,6 +55,9 @@ def timed(fn, queries: list[str], warmup: int = WARMUP) -> dict:
         queries: Queries to time.
         warmup: Untimed calls first, so model loading and cache warming do
             not land in the measurements.
+        pause_seconds: Sleep between timed calls, untimed. Used to stay under
+            a provider's rate limit so the measurement reflects inference
+            speed rather than this pipeline's own retry backoff.
 
     Returns:
         Dict of p50/p95/mean/min/max in milliseconds, plus queries-per-second
@@ -61,7 +67,9 @@ def timed(fn, queries: list[str], warmup: int = WARMUP) -> dict:
         fn(query)
 
     samples = []
-    for query in queries:
+    for position, query in enumerate(queries):
+        if pause_seconds and position:
+            time.sleep(pause_seconds)
         started = time.perf_counter()
         fn(query)
         samples.append((time.perf_counter() - started) * 1000)
@@ -102,15 +110,27 @@ def main() -> None:
               f"{row['qps_single_thread']:7.1f} q/s")
 
     if with_llm:
-        print("\n  measuring generation (network-bound, slow)...")
-        results["5_generation"] = timed(
+        # Two separate numbers, because conflating them overstates the model's
+        # cost by ~4x. Fired back to back, the free tier throttles from about
+        # the fourth call and call_llm's exponential backoff dominates the
+        # measurement -- that is a rate-limit ceiling, not inference speed.
+        print("\n  measuring generation, paced (true single-call latency)...")
+        results["5_generation_paced"] = timed(
             lambda q: generate_answer(q, index.search(q, k=TOP_K, mode="hybrid")),
-            queries[:10],
+            queries[:6],
             warmup=1,
+            pause_seconds=GENERATION_PAUSE_SECONDS,
         )
-        row = results["5_generation"]
-        print(f"  {'5_generation':<20} p50={row['p50_ms']:8.2f} ms  p95={row['p95_ms']:8.2f} ms  "
-              f"{row['qps_single_thread']:7.2f} q/s")
+        print("  measuring generation, back to back (sustained throughput)...")
+        results["6_generation_sustained"] = timed(
+            lambda q: generate_answer(q, index.search(q, k=TOP_K, mode="hybrid")),
+            queries[6:14],
+            warmup=0,
+        )
+        for label in ("5_generation_paced", "6_generation_sustained"):
+            row = results[label]
+            print(f"  {label:<24} p50={row['p50_ms']:9.0f} ms  p95={row['p95_ms']:9.0f} ms  "
+                  f"{row['qps_single_thread']:6.2f} q/s")
 
     results["corpus"] = {"chunks": len(index.chunk_dicts), "top_k": TOP_K}
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)

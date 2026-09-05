@@ -614,6 +614,90 @@ Catching mis-grounding needs answer-vs-reference comparison — an LLM judge
 or entailment scoring against the gold answer — which this pipeline does
 not have. Identified, not implemented.
 
+## Answer accuracy — grounding is not correctness
+
+Faithfulness says an answer *cited* something. It does not say the answer
+is *right*. `src/answer_scoring.py` scores the generated answers against
+the 45 `reference_answer` values, using two deliberately different
+signals (`results/answer_accuracy.json`):
+
+| Measure | Result |
+|---|---:|
+| Refused (excluded — declining without context is correct) | 4 |
+| Answered | 41 |
+| Lexical key-fact recall | 0.534 |
+| **Lexical accuracy** (≥60% of reference key facts present) | **39.0%** |
+| **LLM judge — CORRECT** | **56.1%** (23/41) |
+| LLM judge — CORRECT + PARTIAL | 85.4% (35/41) |
+| LLM judge — WRONG | 6 |
+
+**Both numbers are reported because the gap between them is informative.**
+The lexical scorer is free and deterministic but punishes paraphrase:
+q02's reference says *"aggressively cut prices … lowered product margins"*
+and the answer said *"repeatedly slashing prices … driven down product
+margins"* — semantically identical, scored 0.29. So **39% is a floor, not
+the accuracy.** The judge handles paraphrase but inherits its own biases,
+so it is reported alongside rather than instead.
+
+Manual inspection of low scorers found one genuinely wrong answer (k1b
+describes a different NIST section entirely), traceable to the k=1
+retrieval miss — retrieval failure propagating into a confident wrong
+answer, the same mechanism documented under "cited does not mean correct".
+
+## Performance — where the time actually goes
+
+`scripts/benchmark_pipeline.py` times each query stage over the real
+corpus, reported p50/p95 because the tail governs capacity
+(`results/latency_benchmark.json`):
+
+| Stage | p50 | p95 | q/s (1 thread) |
+|---|---:|---:|---:|
+| Query embedding | 67 ms | 79 ms | 14.9 |
+| Dense search | 66 ms | 89 ms | 15.1 |
+| BM25 search | 108 ms | 147 ms | 9.3 |
+| Hybrid search | 168 ms | 221 ms | 5.9 |
+| Generation (single call) | ~700–3,700 ms | — | ~0.3–1.4 |
+
+**Retrieval is not the bottleneck.** The whole retrieval path is ~168 ms
+against a generation call at least 4× that. This retires an earlier
+temptation: swapping `IndexFlatIP` for `IVFFlat` would be 40× faster on
+search and would improve end-to-end latency by well under 1%.
+
+**Generation latency here is a free-tier artefact, not a model limit.**
+Measured back-to-back, generation appeared to cost ~14,500 ms p50 — but
+instrumenting a single call showed 2,234 prompt tokens and 655 completion
+tokens at 175 tok/s, i.e. **~700–3,700 ms of actual inference**. The rest
+was this pipeline's own exponential backoff absorbing free-tier 429s,
+which begin around the fourth consecutive call:
+
+```
+call 1: 3,414 ms   call 3:  2,036 ms   call 5: 17,648 ms
+call 2:   684 ms   call 4:  8,787 ms   call 6: 30,083 ms
+```
+
+So the capacity ceiling is **provider rate limits, not inference speed**,
+and it is trivially liftable: a paid tier removes the throttling
+outright, and the existing provider-fallback chain already spreads load
+across three vendors. Latency lands comfortably in the hundreds of
+milliseconds on paid endpoints — no code change, just credentials.
+
+Two further optimisations that need no new infrastructure:
+- **The model is doing hidden reasoning we discard.** `gpt-oss-120b`
+  returned 1,697 characters of internal reasoning alongside a 1,617
+  character answer — roughly **2× the tokens billed for an extractive
+  task**. A non-reasoning model of similar quality would cut cost and
+  latency directly.
+- **Hybrid retrieval costs 2.5× dense latency (168 ms vs 66 ms) while
+  scoring worse on every quality metric.** On this corpus, dense-only is
+  both faster and better; hybrid is retained as the measured comparison
+  the assignment asks for, not as the recommended configuration.
+
+**At 1,000 concurrent queries** the bottleneck is therefore the LLM
+provider's concurrency limit, not this pipeline. Retrieval scales
+horizontally (the index is read-only and 12 MB), so the levers are a paid
+tier, request batching, and caching repeat queries — none of which touch
+retrieval.
+
 ## Tests
 
 ```bash
