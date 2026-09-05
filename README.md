@@ -17,28 +17,50 @@ all in a regulated setting.
 That shape — large corpus, changing content, an auditable answer required
 — is what determines the track.
 
-**Why Track D (RAG) and not the others:**
+**Why Track D (RAG) and not the others.** Two things drove this: what the
+problem actually needs, and what could be built *well* rather than merely
+attempted inside a **48-hour window on CPU-only, free-tier compute**. The
+second constraint is real and worth stating plainly — a shallow attempt at
+a harder track scores worse than a rigorous one at a well-matched track.
 
-- **Not Track B (fine-tuning).** The knowledge here changes every filing
-  season. Fine-tuning bakes a snapshot into weights, so every 10-K or
-  8-K would mean retraining, and the model still could not cite a source.
-  This corpus grew 6 → 100 documents mid-project; a RAG index absorbed
-  that by re-indexing, where a fine-tune would have meant a new training
-  run. Fine-tuning teaches *behaviour*; the need here is *recall of
-  specific text*.
+- **Not Track B (fine-tuning).** Two independent reasons.
+  *Technically:* the knowledge changes every filing season. Fine-tuning
+  bakes a snapshot into weights, so each new 10-K means retraining, and the
+  model still cannot cite a source. This corpus grew 6 → 100 documents
+  mid-project; the RAG index absorbed that by re-indexing, where a
+  fine-tune would have needed a fresh training run. Fine-tuning teaches
+  *behaviour*; the need here is *recall of specific text*.
+  *Practically:* it needs a GPU I do not have, plus dataset curation,
+  training runs, and hyperparameter iteration — each cycle measured in
+  hours. Within 48 hours that leaves one, maybe two shots at a training
+  configuration, and no room to be wrong. Against that, the CPU-only
+  budget here was spent on measurable work: a validation gate, a 45-question
+  evaluation set, four metric families, and five measured algorithm
+  comparisons.
 - **Not Track C (optimisation).** There is no decision variable, objective
-  function or constraint set. Forcing an optimiser onto document Q&A would
-  be a solution in search of a problem.
-- **Not Track A (agents).** A multi-agent orchestration adds latency, cost
-  and failure surface, and the underlying capability it would coordinate
-  is still retrieval. Agents are the right answer when a task needs
-  planning and tool use across steps; "find the passage, answer from it"
-  needs one retrieval and one generation.
-- **Track D fits because the requirement is auditability.** Retrieval
-  returns a passage, the answer cites it, and a reader can follow the
-  citation back to a specific section of a specific filing — which is
-  exactly what the compliance use case demands, and what a parametric
-  model cannot offer.
+  function or constraint set in "find the passage and answer from it".
+  Forcing an optimiser onto document Q&A would be a solution in search of
+  a problem, and the track explicitly rejects submissions without a real
+  formulated optimisation problem.
+- **Not Track A (agents).** Multi-agent orchestration adds latency, cost
+  and failure surface, and the capability it would coordinate is still
+  retrieval. It is also the hardest thing to debug under time pressure:
+  non-deterministic control flow across agents, where one bad hand-off is
+  hard to reproduce. Agents earn their complexity when a task needs
+  planning and tool use across steps; this one needs one retrieval and one
+  generation.
+- **Track D fits because the requirement is auditability**, and because it
+  is genuinely completable to depth on this hardware. Retrieval returns a
+  passage, the answer cites it, and a reader can follow the citation back
+  to a specific section of a specific filing — exactly what the compliance
+  use case demands and what a parametric model cannot offer. Every stage
+  runs on CPU except the generation call, which uses free-tier APIs the
+  assignment explicitly permits.
+
+The time that would have gone into a training loop went instead into the
+parts this track is graded on: **measured** comparisons rather than
+asserted ones (chunking, vector store, retrieval mode, embedding model,
+scoring method), and honest error analysis of where the system fails.
 
 **What this system replaces:** the manual "open the filing and search"
 loop, with a grounded answer plus its source. **What it must never do:**
